@@ -55,11 +55,52 @@ First line of institution2 address\\
 
 \section{Introduction}
 
-\section{Microbenchmarks}
+\section{Characteristics of the ALM Algorithm}
+Describe the two variants of the ALM algorithm
+Show Pseudocode for one variant
+\subsection{Computational Complexity}
+
+
+\section{Efficient Implementation on the CPU}
+% With a reshuffling of the order of operations and a change of the termination
+% condition, the inner loop takes the form of two matrix-vector multiplications
+% and a sequence of vector-vector operations.
+\subsection{CPU Hardware Parallelism}
+High-level discussion of CPU parallelism, i.e.
+thread-level, vector-level, cache size, cache locality
+\subsection{Tuning the GEMV operation}
+When matrix-vector operations are called sequentially on the same data,
+the operation can be blocked so that each thread operates on the same block of data for each operation.
+
 For Single threaded MKL sgemv, Code took          0.0335823 msec per instance to run!
+
 For Automatic multi-threaded MKL sgemv, Code took 0.008179 msec per instance to run!
+
 For Manually multi-threaded MKL sgemv, Code took  0.0061276 msec per instance to run!
 
+\subsection{Tuning the Soft-Thresholding Operator}
+...Make sure there are no branches
+
+...Make sure there are no function calls
+
+...Make sure the loop gets automatically vectorized
+
+...Block the computation into work for different cpu cores
+
+\section{Efficient Implementation on the CPU}
+\subsection{GPU Hardware Parallelism}
+High-level description of GPU parallelism, i.e.
+
+cuda cores, SIMD width, scheduling restrictions, bandwidth
+
+\subsection{Solving multiple L1 minimizations in parallel}
+This section is about Drew's kernels for solving multiple L1 minimizations in parllel
+
+How to efficiently perform an L1 minimization on a single core, quote performance on a large batch.
+
+How to solve multiple instances in smaller batches without losing concurrency, using CUDA streams.
+
+...Mention effect of compiler verion on streams implementation
 
 \section{Application to Face Recognition}
 \begin{algorithm}[thb]
