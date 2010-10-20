@@ -44,16 +44,44 @@ First line of institution2 address\\
 \maketitle
 
 \begin{abstract}
-Abstract
+
 \end{abstract}
 
-\section{Introduction}
+\section{Introduction} 
+
+Significant strides have been made in automatic face recognition by re-casting
+it as a sparse representation problem.  This core of this algorithm consists of
+stacking the test image into a vector $\y$, stacking the training images for
+all of the users into the columns of a matrix $A$, and solving the following
+minimization problem:
+\begin{equation}
+\min_{\x, \e} \| \x \|_1 + \|\e\|_1 \quad \subj \quad \y = A \x + \e.
+\end{equation}
+This optimization promotes a solution that is sparse both in $\x$ and $\e$. 
+%The solution we are looking for should be sparse in $\x$ because
 
 \cite{Wagner2009-CVPR}
 \cite{Wright2009-PAMI}
 
+For iterative alignment, we need to perform the following optimization problem:
+\begin{equation}
+\min_{\x, \e} \|\e\|_1 \quad \subj \quad \y = A \x + \e.
+\end{equation}
+
+
 \section{Characteristics of the ALM Algorithm}
 Describe the two variants of the ALM algorithm
+
+We need to define the following soft-thresholding operator for a
+scalar $x$ and a scalar $\alpha \geq 0$:
+\begin{equation}
+\textup{shrink}(x,\alpha) = \textup{sign}(x)\cdot \max \{|x| - \alpha, 0\},
+\end{equation}
+In practice, this operator will be applied elementwise to a vector $\x$ with a single $\lambda$,
+and will be notated as $\texup{shrink}(\x,\alpha).
+
+
+
 Show Pseudocode for one variant
 \subsection{Computational Complexity}
 The Matrix-vector computions are O($mn$), and the vector-vector operations are O($m$), 
@@ -92,6 +120,9 @@ For Manually multi-threaded MKL sgemv, Code took  0.0061276 msec per instance to
 High-level description of GPU parallelism, i.e.
 
 cuda cores, SIMD width, scheduling restrictions, bandwidth
+\subsection{Solving a Single L1 minimization}
+This section is about Victor's CUBLAS implementations.
+Plot Solver Bandwidth in GB/s vs. Problem size in MB
 
 \subsection{Solving multiple L1 minimizations in parallel}
 This section is about Drew's kernels for solving multiple L1 minimizations in parllel
@@ -101,6 +132,7 @@ How to efficiently perform an L1 minimization on a single core, quote performanc
 How to solve multiple instances in smaller batches without losing concurrency, using CUDA streams.
 
 ...Mention effect of compiler verion on streams implementation
+
 
 \section{Application to Face Recognition}
 \begin{algorithm}[thb]
@@ -140,6 +172,43 @@ $$\hat{\x} = \arg \min_{\x, \e} \| \x \|_1 + \|\e\|_1 \;\; \subj \;\; \y = A \x 
 \end{algorithmic}
 \end{algorithm}
 
+We summarize the entire ALM
+algorithm as Algorithm~\ref{alg:alm}, where $\gamma$ denotes the
+largest eigenvalue of the matrix $A^TA$. For the choice of parameter $\mu$, we take the same strategy as
+in \cite{YangJ2009-pp} and set $\mu = 2m / \|\y\|_1$.
+\begin{algorithm}[h]
+\caption{\bf (Augmented Lagrange Multiplier Method for Global
+Recognition)}
+\begin{algorithmic}[1]
+\STATE {\bf Input:} $\y \in \Re^m$, $A \in \Re^{m \times n}$,
+$\x_1 = \mathbf{0}$, $\e_1 = \y$, $\blamda_1 =
+\mathbf{0}$.
+\WHILE{not converged ($k = 1,2,\ldots$)}
+\STATE $\e_{k+1} = \textup{shrink}\left(\y - A\x_k +
+\frac{1}{\mu}\blamda_k, \frac{1}{\mu}\right)$;
+\STATE $t_1\leftarrow 1$, $\z_1 \leftarrow \x_k$, $\w_1 \leftarrow \x_k$;
+\WHILE{not converged ($l = 1,2,\ldots$)}
+\STATE $\w_{l+1} \leftarrow \textup{shrink}\left(\z_l +
+\frac{1}{\gamma}A^T\left(\y - A\z_l - \e_{k+1} +
+\frac{1}{\mu}\blamda_k\right), \frac{1}{\mu\gamma}\right)$;
+\STATE $t_{l+1} \leftarrow \frac{1}{2}\left( 1 +
+\sqrt{1+4t_l^2}\right)$;
+\STATE $\z_{l+1} \leftarrow \w_{l+1} + \frac{t_l - 1}{t_{l+1}}(\w_{l+1} - \w_l)$;
+\ENDWHILE
+\STATE $\x_{k+1} \leftarrow \w_{l}$;
+\STATE $\blamda_{k+1} \leftarrow \blamda_k + \mu (\y - A\x_{k+1} - \e_{k+1})$;
+\ENDWHILE \STATE
+{\bf Output:} $\x^* \leftarrow \x_k, \e^* \leftarrow \e_k$.
+\end{algorithmic}
+\label{alg:alm}
+\end{algorithm}
+
+
+
+\section{Conclusion}
+...How lessons from this paper extend (or don't extend) to other similar problems in computer vision
+
+...Reiterate how the appropriate hardware choice depends on the problem size.
 
 {\small
 \bibliographystyle{../authorkit/ieee}
