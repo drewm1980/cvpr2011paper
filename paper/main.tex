@@ -75,7 +75,7 @@ Describe the two variants of the ALM algorithm
 We need to define the following soft-thresholding operator for a
 scalar $x$ and a scalar $\alpha \geq 0$:
 \begin{equation}
-\textup{shrink}(x,\alpha) = \textup{sign}(x)\cdot \max \{|x| - \alpha, 0\},
+\textrm{shrink}(x,\alpha) = \textrm{sign}(x)\cdot \max \{|x| - \alpha, 0\},
 \end{equation}
 In practice, this operator will be applied elementwise to a vector $\x$ with a single $\lambda$,
 and will be notated as $\texup{shrink}(\x,\alpha).
@@ -184,11 +184,11 @@ Recognition)}
 $\x_1 = \mathbf{0}$, $\e_1 = \y$, $\blamda_1 =
 \mathbf{0}$.
 \WHILE{not converged ($k = 1,2,\ldots$)}
-\STATE $\e_{k+1} = \textup{shrink}\left(\y - A\x_k +
+\STATE $\e_{k+1} = \textrm{shrink}\left(\y - A\x_k +
 \frac{1}{\mu}\blamda_k, \frac{1}{\mu}\right)$;
 \STATE $t_1\leftarrow 1$, $\z_1 \leftarrow \x_k$, $\w_1 \leftarrow \x_k$;
 \WHILE{not converged ($l = 1,2,\ldots$)}
-\STATE $\w_{l+1} \leftarrow \textup{shrink}\left(\z_l +
+\STATE $\w_{l+1} \leftarrow \textrm{shrink}\left(\z_l +
 \frac{1}{\gamma}A^T\left(\y - A\z_l - \e_{k+1} +
 \frac{1}{\mu}\blamda_k\right), \frac{1}{\mu\gamma}\right)$;
 \STATE $t_{l+1} \leftarrow \frac{1}{2}\left( 1 +
