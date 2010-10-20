@@ -1,0 +1,6 @@
+*.aux
+*.log
+*latexmk
+*.swp
+*.dvi
+*.pdf

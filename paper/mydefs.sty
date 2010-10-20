@@ -1,0 +1,213 @@
+%% Old stuff provided by the template, we're going to get rid of all of this eventually
+
+% 2 theta with ` ' marks
+\providecommand{\tth}{\mbox{`}2 \theta \mbox{'}}
+% chemical formulas -- doesn't work in headings!  
+\newlength{\fntxvi} \newlength{\fntxvii}%
+\newcommand{\chemical}[1]
+{{\fontencoding{OMS}\fontfamily{cmsy}\selectfont
+	\fntxvi\the\fontdimen16\font
+   \fntxvii\the\fontdimen17\font
+   \fontdimen16\font=3pt\fontdimen17\font=3pt
+   $\mathrm{#1}$
+   \fontencoding{OMS}\fontfamily{cmys}\selectfont
+   \fontdimen16\font=\fntxvi \fontdimen17\font=\fntxvii}}% 
+% shortcut for Cu3Au -- works in headings
+\providecommand{\cutau}{Cu$_3$Au}%
+
+%% Minimizations.
+\newcommand{\Min}[1]{{\hbox{$\underset{#1}{\mbox{min}}\;$}}}\long\def\commentOUT#1{} 
+\newcommand{\argmin}[1]{{\hbox{$\underset{#1}{\mbox{argmin}}\;$}}}\long\def\commentOUT#1{}
+
+%% Shankar's special shorthand
+%\renewcommand{\arrow}{\ \ \ \Longrightarrow \ \ \ }
+\newcommand{\moo}{\mathbf{\mu}}
+\newcommand{\fie}{\mathbf{\phi}}
+\newcommand{\alfa}{\mathbf{\alpha}}
+
+\def\chat{\mathbf{\hat{c}}}
+\def\xhat{\mathbf{\hat{x}}}
+\def\nhat{\mathbf{\hat{n}}}
+
+%% The rest I stole ... err ... borrowed from Yi's gpcabook
+\newtheorem{problem}{Problem}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}{Example}
+\newtheorem{remark}{Remark}
+\newtheorem{comment}{Comment}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newtheorem{assumption}{Assumption}
+\newtheorem{alg}{Algorithm}
+
+\def\QED{~\rule[-1pt]{5pt}{5pt}\par\medskip}
+
+\newcommand {\itembbox}{\item[\hbox{\rule[3pt]{7pt}{7pt}}]} % black box
+\newcommand {\itembull}{\item[$\bullet$] }                  % bullet
+\newcommand {\itemcirc}{\item[$\circ$] }                    % open circle
+\newcommand {\itemlt}  {\item[$\leadsto$] }                 % curly arrow
+\newcommand {\itemnull}{\item[] }                           % empty
+\newcommand {\itempt}  {\item[$\rightarrow$] }              % -->
+\newcommand {\itemimp} {\item[$\Rightarrow$] }              % ==>
+%\long\def\comment#1{}
+\long\def\commentOUT#1{} % Jana's def for commenting things temporarily out
+
+%\newcommand{\ie}{{i.e., }}
+%\newcommand{\eg}{{e.g., }}
+%\newcommand{\etal}{{et al.}}
+\newcommand{\D}{\displaystyle}
+
+\renewcommand{\simeq}{{~\sim~}}
+
+\renewcommand{\mathbf}{\boldsymbol}
+
+\def\mychi{{\raisebox{0.3ex}{$\chi$}}}
+
+%\newcommand{\W}{{\mathbf W}} % The wind speed.
+%\newcommand{\sign}{{\text{sign}}}
+%\newcommand{\temp1}{{\text{temp}_1}}
+%\def\temp1{{\text{temp}_1}}
+
+\newcommand{\Sym}{{\text{Sym}}} % Symmetric tensor space
+\renewcommand{\S}{{\mathcal{S}}} % Symmetric tensor space
+\newcommand{\rank}{{\text{rank}}} % rank of a matrix
+\newcommand{\F}{\mathbf{F}}     % Force vector 
+\newcommand{\T}{\mathcal{T}}     % Multibody fundamental matrix
+\newcommand{\Pol}{{{R}}}
+\newcommand{\Ce}{{\mathbb{C}}} % Complex numbers
+\renewcommand{\Re}{\mathbb R}
+\newcommand{\Ze}{\mathbb Z}
+\newcommand{\Pe}{\mathbb P}
+\newcommand{\Ee}{\mathbb E}
+\newcommand{\He}{\mathbb H}
+%\newcommand{\myhat}[1]{[#1]_{\times}}
+\newcommand{\myhat}{\widehat}
+
+%\def\QED{~\rule[-1pt]{5pt}{5pt}\par\medskip}
+\def\END{~\rule[-1pt]{5pt}{5pt}\par\medskip}
+%\def\QED{{\bf Q.E.D.}\par\medskip}
+%\newenvironment{proof}{{\bf Proof: \ }}{ \hfill \QED}
+
+\def\e1{{{\mathbf e}_1}}
+\def\e2{{{\mathbf e}_2}}
+\def\e3{{{\mathbf e}_3}}
+
+\renewcommand{\v}{\mathbf{v}}
+\newcommand{\w}{\mathbf{w}}
+
+\newcommand{\bu}{{\mathbf u}}
+\newcommand{\bx}{{\mathbf x}}
+\newcommand{\bl}{{\mathbf \ell}}
+\newcommand{\bX}{{\mathbf X}}
+\newcommand{\bU}{{\mathbf u}}
+\newcommand{\bv}{{\mathbf v}}
+\newcommand{\p}{{p}}
+\newcommand{\bH}{{\mathbf H}}
+\newcommand{\bh}{{\mathbf h}}
+\newcommand{\q}{{\mathbf q}}
+\newcommand{\rr}{{\mathbf r}}
+\newcommand{\te}{\mathbf{t}}
+
+% LIST OF SYMBOLS AND NOTATION
+\renewcommand{\a}{\mathbf{a}} % Stacked multibody affine matrix
+\newcommand{\A}{\mathcal{A}} % Multibody affine matrix
+\renewcommand{\b}{\mathbf{b}} % Normal to each subspace in GPCA
+\renewcommand{\c}{\mathbf{c}} % Vector of coefficients
+\renewcommand{\d}{\mathbf{d}} % 2-D displacement vector
+\renewcommand{\e}{\mathbf{e}} % Epipole
+\newcommand{\g}{\mathbf{g}}   % Vector in optimal derivations
+\newcommand{\f}{\mathbf{f}}   % Vector in optimal derivations Stacked fundamental matrix
+\renewcommand{\l}{\boldsymbol{\ell}} % Epipolar line
+\newcommand{\n}{\mathbf{n}}   % Multivariate degree of a polynomial
+\renewcommand{\u}{\mathbf{u}} % Optical flow
+\newcommand{\vv}{\mathbf{v}} % Don't know
+
+\renewcommand{\r}{\mathbf{r}}   % Noise in data point
+
+\newcommand{\s}{\mathbf{s}}   % Noise in data point
+\newcommand{\x}{\mathbf{x}}   % Image or data point
+
+\newcommand{\blamda}{\mathbf{\lambda}} % lambda as a vector.
+
+\newcommand{\V}{\mathbf{V}}   % Embedded data set
+\newcommand{\X}{\mathbf{X}}   % Data Set
+\newcommand{\y}{\mathbf{y}}   % Image derivatives
+\newcommand{\z}{\mathbf{z}}   % Vector for combination of eigenvectors
+
+
+\def\X{{\mathbf{X}}}
+\def\Y{{\mathbf{Y}}}
+\def\hOm{{\widehat {\Omega}}}
+\def\hom{{\widehat {\omega}}}
+\def\SO3{{SO(3)}}
+\def\so3{{so(3)}}
+\def\SE3{{SE(3)}}
+\def\se3{{se(3)}}
+
+\newcommand{\subj}{\textup{subj to}}
+
+%\def\commentSS#1{{\small{\textsc{[\underline{STEFANO COMMENT:}{#1{]}}}}}}
+%\def\commentSSS#1{{\small{\textsc{[\underline{SHANKAR COMMENT:}{#1{]}}}}}}
+%\def\commentYM#1{{\small{\textsc{[\underline{YI COMMENT:}{#1{]}}}}}}
+%\def\commentJK#1{{\small{\textsc{[\underline{JANA COMMENT:}{#1{]}}}}}}
+
+% TO REMOVE ALL COMMENTS JUST COMMENT LINE ABOVE AND UNCOMMENT FOLLOWING
+
+\def\commentSS#1{}\def\commentSSS#1{}\def\commentYM#1{}\def\commentJK#1{}
+
+
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\ba}{\left[ \begin{array}}
+\newcommand{\ea}{\end{array} \right]}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+
+%\floatstyle{ruled}
+%\floatname{alg}{Algorithm}
+
+%\newenvironment{algorithm}
+%{\begin{alg} \noindent \small} {\vspace{0.01cm}
+%\end{alg}}
+
+%\floatstyle{ruled}
+%\floatname{prob}{Problem}
+
+\newcommand{\psfigure}[3]
+    {
+    \begin{tabular}{c}
+    { \psfig{figure=#1,height=#2in,width=#3in}}
+    \end{tabular}   }
+
+\def\real{{\Re}}
+\def\Q{{\mathbf{Q}}}
+\def\P{{\mathcal{P}}}
+%\def\P{{P}}
+\def\X{{\mathbf{X}}}
+\def\x{{\mathbf{x}}}
+\def\Y{{\mathbf{Y}}}
+\def\y{{\mathbf{y}}}
+\def\n{{\mathbf{n}}}
+\def\bry{{\mathbf{\bar y}}}
+\def\brx{{\mathbf{\bar x}}}
+\def\brZ{{{\bar Z}}}
+\def\H{{\cal{H}}}
+\def\Ss{{\cal{S}}}
+\def\brX{{\mathbf{\bar X}}}
+\def\brY{{\mathbf{\bar Y}}}
+\def\1{{\mathbf{1}}}
+\def\S{{\mathbf{S}}}
+\def\prS{{\rm pr}_{<\Sigma>}}
+\def\hOm{{\widehat {\Omega}}}
+\def\hom{{\widehat {\omega}}}
+\def\hv{{\widehat \twist}}
+\def\simSE3{{\stackrel{SE(3)}{\sim}}}
+\def\simse3{{\stackrel{se(3)}{\sim}}}
+\def\expectation{{\mathbf {E}}}
+%\def\SO3{{\mathbf {SO(3)}}}
+%\def\SE3{{\mathbf {SE(3)}}}
+\newcommand{\avect}{eigenvector}
+
+\newcommand{\0}{\mathbf{0}}

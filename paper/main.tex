@@ -1,0 +1,103 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{../authorkit/cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Packages added by us
+\usepackage{mydefs}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
+
+% \cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+\ifcvprfinal\pagestyle{empty}\fi
+\begin{document}
+
+\title{Efficient Parallelization of Sparse Representation for Face Recognition}
+
+\author{First Author\\
+Institution1\\
+Institution1 address\\
+{\tt\small firstauthor@i1.org}
+% For a paper whose authors are all at the same institution,
+% omit the following lines up until the closing ``}''.
+% Additional authors and addresses can be added with ``\and'',
+% just like the second author.
+% To save space, use either the email address or home page, not both
+\and
+Second Author\\
+Institution2\\
+First line of institution2 address\\
+{\small\url{http://www.author.org/~second}}
+}
+
+\maketitle
+
+\begin{abstract}
+   The ABSTRACT is to be in fully-justified italicized text, at the top
+   of the left-hand column, below the author and affiliation
+   information. Use the word ``Abstract'' as the title, in 12-point
+   Times, boldface type, centered relative to the column, initially
+   capitalized. The abstract is to be in 10-point, single-spaced type.
+   Leave two blank lines after the Abstract, then begin the main text.
+   Look at previous CVPR abstracts to get a feel for style and length.
+\end{abstract}
+
+\section{Introduction}
+
+\section{Application to Face Recognition}
+\begin{algorithm}[thb]
+\caption{\bf (Deformable Sparse Recovery and Classification for
+Face Recognition)} \label{alg:deformable-src}
+\begin{algorithmic}[1]
+\STATE {\bf Input:} Frontal training images $A_i \in \Re^{m\times n_i}, i=1,2,\ldots,K$ for $K$ subjects,  a test image
+$\y\in\Re^m$ and a deformation group $T$. 
+\STATE
+{\bf for} each subject $i$, 
+\STATE \hspace{3mm} $\tau^{(0)}
+\leftarrow I$. 
+\STATE \hspace{3mm} {\bf while} not converged $(j=1,2,\ldots)$ {\bf do} 
+\STATE \hspace{6mm}
+$\tilde \y(\tau) \leftarrow \frac{\y \circ \tau}{\|\y \circ
+\tau\|_2}$; \;\;\; $J \leftarrow  \frac{\partial}{\partial
+\tau} \tilde\y(\tau)  \bigr|_{\tau^{(j)}} $;
+%\STATE \hspace{6mm} $(\hat \x, \hat \e, \Delta \tau) \leftarrow \left\{\begin{array}{l} \arg \min_{\x,\e,\Delta \tau} \| \e \|_1 \\  \subj \; \y + J \Delta \tau = A_k \x + \e \end{array}\right.$
+\STATE \hspace{6mm} $ \Delta \tau =  \arg\min \; \| \e \|_1  \;
+\subj \; \tilde \y + J \Delta \tau = A_i \x + \e.$ 
+\STATE
+\hspace{6mm} $\tau^{(j+1)} \leftarrow \tau^{(j)} + \Delta
+\tau$; 
+\STATE \hspace{3mm} {\bf end while} \STATE {\bf end} \STATE Keep
+the top $S$ candidates $k_1, \ldots, k_S$ with the smallest
+residuals $\|\e\|_1$. \STATE Compute an average transformation
+$\bar{\tau}$ from $\tau_{k_1}, \tau_{k_2}, \ldots, \tau_{k_S}$.
+\STATE Update $\y \leftarrow \y \circ \bar{\tau}$ and $\tau_i
+\leftarrow \tau_i \cdot \bar{\tau}^{-1}$ for $i = k_1, \dots,
+k_S$. \STATE Set $A \leftarrow \big[ A_{k_1} \circ
+\tau_{k_1}^{-1} \mid A_{k_2} \circ \tau_{k_2}^{-1} \mid \dots
+\mid A_{k_S} \circ \tau_{k_S}^{-1} \big]$. \STATE Solve the
+$\ell^1$-minimization problem:
+$$\hat{\x} = \arg \min_{\x, \e} \| \x \|_1 + \|\e\|_1 \;\; \subj \;\; \y = A \x + \e.$$
+\STATE Compute residuals $r_i(\y) = \| {\y} - {A}_i \, \delta_i(\hat{\x}) \|_2$ for $i = k_1, \dots, k_S$.
+\STATE {\bf Output:} $\mbox{identity}(\y) = \arg\min_i r_i(\y)$.
+\end{algorithmic}
+\end{algorithm}
+
+
+{\small
+\bibliographystyle{ieee}
+\bibliography{faces}
+}
+
+
+\end{document}
