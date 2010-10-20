@@ -12,10 +12,9 @@
 % If you comment hyperref and then uncomment it, you should delete
 % egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
 % run, let it finish, and you should be clear).
-\usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
+%\usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
 
-
-% \cvprfinalcopy % *** Uncomment this line for the final submission
+\cvprfinalcopy % *** Uncomment this line for the final submission
 
 \def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
 \def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
@@ -40,11 +39,11 @@ Institution1 address\\
 Second Author\\
 Institution2\\
 First line of institution2 address\\
-{\small\url{http://www.author.org/~second}}
+{\tt\small secondauthor@i2.org}
 }
 
 \maketitle
-% \thispagestyle{empty}
+\thispagestyle{empty}
 
 %%%%%%%%% ABSTRACT
 \begin{abstract}
@@ -74,12 +73,14 @@ All manuscripts must be in English.
 \subsection{Dual submission}
 
 By submitting a manuscript to CVPR, the authors assert that it has not been
-previously published in substantially similar form. Furthermore, no paper which
-contains significant overlap with the contributions of this paper either has
- been or will be submitted during the CVPR 2009 review period to {\bf either
-a journal} or a conference (including CVPR 2009).
-{\bf Note that this is a strengthening of previous CVPR policy,}
-and papers violating this condition will be rejected.
+previously published in substantially similar form. Furthermore, no paper
+which contains significant overlap with the contributions of this paper
+either has been or will be submitted during the CVPR 2011 review period to
+{\bf either a journal} or any conference (including CVPR 2011) or any
+workshop (including CVPR2011 workshops)
+ {\bf Note that
+  this is consistent with CVPR2010 but a strengthening from some previous CVPR
+  policy}.  Papers violating this condition will be rejected and a list of violating authors may be included in the proceedings. 
 
 If there are papers that may appear to the reviewers
 to violate this condition, then it is your responsibility to: (1)~cite
@@ -88,27 +89,17 @@ these papers (preserving anonymity as described in Section 1.6 below),
 different from these concurrent submissions, and (3)~include anonymized
 versions of those papers in the supplemental material.
 
-%By submitting this manuscript to CVPR, the authors assert that it has not
-%been previously published in substantially similar form, and no paper
-%currently under submission to a conference contains significant overlap
-%with this one.  If you are in doubt about the amount of overlap, cite the
-%dual submission (as described below), and argue in the body of your paper
-%why this is a nontrivial advance.  A simultaneous journal submission would
-%be expected to have significant additional material not in the conference
-%paper, and should not be previously published, nor in the final acceptance
-%stages. The conference chairs reserve the right to cancel
-%submission of any paper which is found to violate these conditions.  In
-%particular, {\em uncited} dual submissions will be summarily dealt with.
-
 \subsection{Paper length}
-Consult the call for papers for page-length limits.  Overlength papers will
-simply not be reviewed.  This includes papers where the margins and
-formatting are deemed to have been significantly altered from those laid
-down by this style guide.  Note that this \LaTeX\ guide already sets figure
-captions and references in a smaller font.  The reason such papers will not
-be reviewed is that there is no provision for supervised revisions of
-manuscripts.  The reviewing process cannot determine the suitability of the
-paper for presentation in eight pages if it is reviewed in eleven.
+CVPR papers may be between 6 pages and 8 pages, with a \$100 per page added
+fee.  Overlength papers will simply not be reviewed.  This includes papers
+where the margins and formatting are deemed to have been significantly
+altered from those laid down by this style guide.  Note that this
+\LaTeX\ guide already sets figure captions and references in a smaller font.
+The reason such papers will not be reviewed is that there is no provision for
+supervised revisions of manuscripts.  The reviewing process cannot determine
+the suitability of the paper for presentation in eight pages if it is
+reviewed in eleven.  If you submit 8 for review expect to pay the added page
+charges for them. 
 
 %-------------------------------------------------------------------------
 \subsection{The ruler}
@@ -136,7 +127,7 @@ might not need to refer to it.  It is cumbersome to have to use
 circumlocutions like ``the equation second from the top of page 3 column
 1''.  (Note that the ruler will not be present in the final copy, so is not
 an alternative to equation numbers).  All authors will benefit from reading
-Mermin's description of how to write mathematics: \url{http://www.cvpr.org/doc/mermin.pdf}.
+Mermin's description of how to write mathematics.%: \url{http://www.cvpr.org/doc/mermin.pdf}.
 
 
 \subsection{Blind review}
@@ -157,7 +148,7 @@ work.  If you are Smith and Jones, do not say ``as we show in
 [7]'', say ``as Smith and Jones show in [7]'' and at the end of the
 paper, include reference 7 as you would any other cited work.
 
-An example of a bad paper:
+An example of a bad paper just asking to be rejected:
 \begin{quote}
 \begin{center}
     An analysis of the frobnicatable foo filter.
@@ -172,7 +163,7 @@ An example of a bad paper:
 \end{quote}
 
 
-An example of an excellent paper:
+An example of an acceptable paper:
 
 \begin{quote}
 \begin{center}
@@ -193,11 +184,11 @@ If you are making a submission to another conference at the same time,
 which covers similar or overlapping material, you may need to refer to that
 submission in order to explain the differences, just as you would if you
 had previously published related work.  In such cases, include the
-anonymized parallel submission~\cite{Authors06} as additional material and
+anonymized parallel submission~\cite{Authors11} as additional material and
 cite it as
 \begin{quote}
-[1] Authors. ``The frobnicatable foo filter'', ECCV 2006 Submission ID 324,
-Supplied as additional material {\tt eccv06.pdf}.
+[1] Authors. ``The frobnicatable foo filter'', F\&G 2011 Submission ID 324,
+Supplied as additional material {\tt fg324.pdf}.
 \end{quote}
 
 Finally, you may feel you need to tell the reader that more details can be
@@ -205,13 +196,13 @@ found elsewhere, and refer them to a technical report.  For conference
 submissions, the paper must stand on its own, and not {\em require} the
 reviewer to go to a techreport for further details.  Thus, you may say in
 the body of the paper ``further details may be found
-in~\cite{Authors06b}''.  Then submit the techreport as additional material.
+in~\cite{Authors11b}''.  Then submit the techreport as additional material.
 Again, you may not assume the reviewers will read this material.
 
 Sometimes your paper is about a problem which you tested using a tool which
 is widely known to be restricted to a single institution.  For example,
 let's say it's 1969, you have solved a key problem on the Apollo lander,
-and you believe that the CVPR70 audience would like to hear about your
+and you believe that the CVPR11 audience would like to hear about your
 solution.  The work is a development of your celebrated 1968 paper entitled
 ``Zero-g frobnication: How being the only people in the world with access to
 the Apollo lander source code makes us a wow at parties'', by Zeus \etal.
@@ -355,7 +346,7 @@ second-, and third-order headings.
 
 FIRST-ORDER HEADINGS. (For example, {\large \bf 1. Introduction})
 should be Times 12-point boldface, initially capitalized, flush left,
-with one blank line before, and one blank line after.
+with one blank line before.
 
 SECOND-ORDER HEADINGS. (For example, { \bf 1.1. Database elements})
 should be Times 11-point boldface, initially capitalized, flush left,
@@ -436,23 +427,10 @@ You must include your signed IEEE copyright release form when you submit
 your finished paper. We MUST have this form before your paper can be
 published in the proceedings.
 
-Please direct any questions to the production editor in charge of these
-proceedings at the IEEE Computer Society Press: Phone (714) 821-8380, or
-Fax (714) 761-1784.
 
 {\small
 \bibliographystyle{ieee}
 \bibliography{egbib}
 }
-
-\newpage
-\rule{0pt}{1pt}\newpage
-\rule{0pt}{1pt}\newpage
-\rule{0pt}{1pt}\newpage
-\rule{0pt}{1pt}\newpage
-\rule{0pt}{1pt}\newpage
-\rule{0pt}{1pt}\newpage
-\rule{0pt}{1pt}\newpage
-\rule{0pt}{1pt}\newpage
 
 \end{document}
