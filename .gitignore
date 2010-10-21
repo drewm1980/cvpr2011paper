@@ -3,3 +3,10 @@
 *.bbl
 *.blg
 *_MACOSX
+*.aux
+*.log
+*latexmk
+*.swp
+*.dvi
+*.pdf
+*.brf

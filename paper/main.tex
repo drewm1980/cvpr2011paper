@@ -8,6 +8,7 @@
 \usepackage{amssymb}
 
 % Packages added by us
+\usepackage{amsfonts}
 \usepackage{mydefs}
 \usepackage{algorithm}
 \usepackage{algorithmic}
@@ -23,7 +24,11 @@
 \ifcvprfinal\pagestyle{empty}\fi
 \begin{document}
 
-\title{Efficient Parallelization of Sparse Representation for Face Recognition}
+%\title{Efficient Parallelization of Sparse Representation for Face Recognition}
+%\title{Accelerating $\ell_1$-Minimization Using Many-Core CPUs/GPUs \\ and Application to Face Recognition
+%\thanks{Corresponding author: . This work was partially supported by ARO MURI W911NF-06-1-0076.}}
+\title{Efficient Parallelization of $\ell_1$-Minimization for Face Recognition
+\thanks{Corresponding author: . This work was partially supported by ARO MURI W911NF-06-1-0076.}}
 
 \author{First Author\\
 Institution1\\
@@ -48,6 +53,19 @@ First line of institution2 address\\
 \end{abstract}
 
 \section{Introduction} 
+
+[Motivate the paper by an overview about the scope and importance of $\ell_1$-minimization].
+
+[Review the available different algorithms solving $\ell_1$-minimization and $\ell_0$-minimization, please refer to Allen's SIAM paper.]
+
+[Zero in and justify why we choose ALM for our implementation.]
+
+\subsection{Literature review}
+[Review the past parallel algorithms for $\ell_1$-minimization. Hopefully there aren't many]
+
+\subsection{Contributions of the paper}
+[Can leave empty until later.]
+
 
 Significant strides have been made in automatic face recognition by re-casting
 it as a sparse representation problem.  This core of this algorithm consists of
@@ -75,12 +93,10 @@ Describe the two variants of the ALM algorithm
 We need to define the following soft-thresholding operator for a
 scalar $x$ and a scalar $\alpha \geq 0$:
 \begin{equation}
-\textrm{shrink}(x,\alpha) = \textrm{sign}(x)\cdot \max \{|x| - \alpha, 0\},
+\textup{shrink}(x,\alpha) = \textup{sign}(x)\cdot \max \{|x| - \alpha, 0\},
 \end{equation}
 In practice, this operator will be applied elementwise to a vector $\x$ with a single $\lambda$,
-and will be notated as $\texup{shrink}(\x,\alpha).
-
-
+and will be notated as $\textup{shrink}(\x,\alpha)$.
 
 Show Pseudocode for one variant
 \subsection{Computational Complexity}
@@ -184,11 +200,11 @@ Recognition)}
 $\x_1 = \mathbf{0}$, $\e_1 = \y$, $\blamda_1 =
 \mathbf{0}$.
 \WHILE{not converged ($k = 1,2,\ldots$)}
-\STATE $\e_{k+1} = \textrm{shrink}\left(\y - A\x_k +
+\STATE $\e_{k+1} = \textup{shrink}\left(\y - A\x_k +
 \frac{1}{\mu}\blamda_k, \frac{1}{\mu}\right)$;
 \STATE $t_1\leftarrow 1$, $\z_1 \leftarrow \x_k$, $\w_1 \leftarrow \x_k$;
 \WHILE{not converged ($l = 1,2,\ldots$)}
-\STATE $\w_{l+1} \leftarrow \textrm{shrink}\left(\z_l +
+\STATE $\w_{l+1} \leftarrow \textup{shrink}\left(\z_l +
 \frac{1}{\gamma}A^T\left(\y - A\z_l - \e_{k+1} +
 \frac{1}{\mu}\blamda_k\right), \frac{1}{\mu\gamma}\right)$;
 \STATE $t_{l+1} \leftarrow \frac{1}{2}\left( 1 +
