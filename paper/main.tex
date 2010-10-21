@@ -149,6 +149,111 @@ How to solve multiple instances in smaller batches without losing concurrency, u
 
 ...Mention effect of compiler verion on streams implementation
 
+\section{Benchmarks on Synthetic Data}
+\subsection{PALM L1 minimization benchmark}
+
+Optimization:
+\begin{equation}
+\min_{\x, \e} \|\e\|_1 \quad \subj \quad \y = A \x + \e.
+\end{equation}
+
+$A$ is $mxn$
+$m = 5120$
+$n = 32$
+
+One of these minimizations is performed per 
+alignment iteration in our face recognition pipeline.
+
+All of the following are implementations of primal ALM.
+Primal ALM contains outer and inner iterations.
+To simplify the benchmark, the number of outer iterations
+is clamped to 50, and the number of inner iterations is
+clamped to 50 iterations per outer loop.  Running with
+a convergence criterion will typically result in fewer
+iterations, depending on the data, so these numbers are
+for comparison across hardware, and may look worse than
+with other benchmarks on face data.
+
+To generate a meaningful comparison between different hardware
+architectures, we compare on a per-board basis:
+
+For CPU implementations, the benchmark makes use of
+as all of the cores in as many cpu's are present.
+
+For GPU implementations, the benchmark makes the best use
+of the entire GPU chip (most GPU boards have a single GPU chip).
+
+Since different platforms may perform most efficiently when
+executing multiple L1 minimizations simultaneously,
+we quote the average time required to solve a single L1
+minimization problem instance.
+
+schur:  Mac Pro, dual socket, quad core, hyperthreading intel nehalem @ 2.66 GHz
+
+Nvidia GTX480: This is the current state of the art consumer card.  
+It is clocked slightly faster than the pro version of the card, so it 
+should have slightly faster single precision float performance. (double precision is crippled, though)
+GTX480 has 15 cores, each of which has 2x32-wide floating point pipelines.
+All Fermi GPU's have 768KB L2 cache.
+
+Zihan's OpenCV implementation: *** 190 ms per L1 minimization ***
+amortized over 16 instances,
+four of which run simultaneously.  Tuning note:  the cpus
+can support up to 16 logical threads, but 4 instances seem
+sufficient to saturate the memory architecture.  Using more
+than 5 instances results in lower performance, perhaps due
+to less efficient usage of the cpu caches.
+
+Zihan's MATLAB implementation: *** 60 ms per L1 minimization ***
+This is amortized over 100 sequential instances.  All 16 logical
+cores were used, i.e. showed 100% usage in htop.  Pararllelism
+is a result of MATLAB's usage of Intel's MKL, a parallel blas
+implementation. I believe performance is very high to
+efficient cache usage:
+
+The A matrix takes up 5120*32*8 bytes = 1.25 MB
+The two processors have 16MB L3 Cache in total.
+The two processors have 2MB L2 Cache in total.
+
+Drew's pure CUDA, single kernel implementation: *** 36 ms per L1 minimization ***
+This implementation performs L1 minimization on 60 instances of L1.
+They are all run as a single cuda kernel.  
+Each instance of L1 is mapped onto a cuda block. (tuned to 64 threads / block)
+This means that the GPU hardware will schedule the multiple instances to run
+on the (15 for GTX480) cuda cores as concurrently (15? 30?) as possible.  
+For this to work, all of the data has to be ready at the same time.
+
+Drew's pure CUDA, streams implementation: *** 70 ms per L1 minimization ***
+This implementation performs L1 minimization on 60 instances of L1.
+Each instance of L1 is mapped onto a cuda block. (tuned to 128 threads / block)
+Each instance is run in a separate single-block CUDA kernel.
+The 60 kernels are added to 15 cuda streams.
+The GPU (hardware? driver?) then runs the kernels, up to 15 concurrently.
+
+Victor's CUDA/cublas mixed implementation: *** 302 ms per L1 minimization ***
+This implementation makes use of hand-written kernels for vector-vector operations,
+and cublas for matrix-vector operations.  There are two implementations under development:
+1. Perform a single L1 minimization using the entire GPU.
+2. Use cuda streams to perform multiple L1 minimizations concurrently on the GPU.
+Benchmarked on Drew's GTX480
+
+Drew's OpenMP implementation: *** 200 ms per L1 minimization***
+Benchmarked on schur(Dual Socket Quad Core Nehalem), all compiler optimizations turned on.
+This divides the matrix operations into 8 chunks, each of which is handled by a thread
+on a different CPU core.  Fine-grained parallelism is achieved through SSE2 vector
+floating point operations.  This implementation should ultimately beat the MATLAB/MKL
+implementation, especially for small problem sizes, since the primary advantage
+over MKL is a reduction in the number of times image-sized temporary variables
+are written and read from memory. 
+
+Drew's Single-Threaded MKL implementation: *** 226 ms per L1 minimization ***
+Benchmarked on schur(Dual Socket Quad Core Nehalem), all compiler optimizations turned on.
+Uses MKL for single-threaded matrix-vector multiplies.  
+Saves ~almost as many writes of temporary vector variables as the previous OpenMP implementation.
+Shrinkage operator improved; at least with g++ there is now no branching or function call overhead.
+This implementation uses a single CPU core...
+... so if linear speedup can be achieved, could possibly get *** 28 ms per minimization ***
+
 
 \section{Application to Face Recognition}
 \begin{algorithm}[thb]
