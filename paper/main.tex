@@ -67,25 +67,6 @@ First line of institution2 address\\
 [Can leave empty until later.]
 
 
-Significant strides have been made in automatic face recognition by re-casting
-it as a sparse representation problem.  This core of this algorithm consists of
-stacking the test image into a vector $\y$, stacking the training images for
-all of the users into the columns of a matrix $A$, and solving the following
-minimization problem:
-\begin{equation}
-\min_{\x, \e} \| \x \|_1 + \|\e\|_1 \quad \subj \quad \y = A \x + \e.
-\end{equation}
-This optimization promotes a solution that is sparse both in $\x$ and $\e$. 
-Sparsity in $\x$ arrises from the fact that only a subset of the training images (if any)
-correspond to the user in the test image.  Sparsity in $\e$ arrises from the knowledge
-that small occlusions in the test image will only corrupt a small subset of the pixels \cite{Wright2009-PAMI}.
-The large coefficients in $\x$ will concentrate on the correct user, and can be used as the basis of a classifier.
-
-For this idea to work, all of the images must be aligned. \cite{Wagner2009-CVPR}
-For iterative alignment, we need to perform the following optimization problem:
-\begin{equation}
-\min_{\x, \e} \|\e\|_1 \quad \subj \quad \y = A \x + \e.
-\end{equation}
 
 
 \section{Characteristics of the ALM Algorithm}
@@ -257,6 +238,47 @@ This implementation uses a single CPU core...
 
 
 \section{Application to Face Recognition}
+
+Significant strides have been made in automatic face recognition by re-casting
+it as a sparse representation problem.  This core of this algorithm consists of
+Significant strides have been made in automatic face recognition by re-casting
+it as a sparse representation problem.  This core of this algorithm consists of
+stacking the test image into a vector $\y$, stacking the training images for
+all of the users into the columns of a matrix $A$, and solving the following
+minimization problem:
+\begin{equation}
+\min_{\x, \e} \| \x \|_1 + \|\e\|_1 \quad \subj \quad \y = A \x + \e.
+\end{equation}
+This optimization promotes a solution that is sparse both in $\x$ and $\e$. 
+Sparsity in $\x$ arrises from the fact that only a subset of the training images (if any)
+correspond to the user in the test image.  Sparsity in $\e$ arrises from the knowledge
+that small occlusions in the test image will only corrupt a small subset of the pixels \cite{Wright2009-PAMI}.
+The large coefficients in $\x$ will concentrate on the correct user, and can be used as the basis of a classifier.
+
+For this idea to work, all of the images must be aligned. \cite{Wagner2009-CVPR}
+For iterative alignment, we need to perform the following optimization problem:
+\begin{equation}
+\min_{\x, \e} \|\e\|_1 \quad \subj \quad \y = A \x + \e.
+\end{equation}
+stacking the test image into a vector $\y$, stacking the training images for
+all of the users into the columns of a matrix $A$, and solving the following
+minimization problem:
+\begin{equation}
+\min_{\x, \e} \| \x \|_1 + \|\e\|_1 \quad \subj \quad \y = A \x + \e.
+\end{equation}
+This optimization promotes a solution that is sparse both in $\x$ and $\e$. 
+Sparsity in $\x$ arrises from the fact that only a subset of the training images (if any)
+correspond to the user in the test image.  Sparsity in $\e$ arrises from the knowledge
+that small occlusions in the test image will only corrupt a small subset of the pixels \cite{Wright2009-PAMI}.
+The large coefficients in $\x$ will concentrate on the correct user, and can be used as the basis of a classifier.
+
+For this idea to work, all of the images must be aligned. \cite{Wagner2009-CVPR}
+For iterative alignment, we need to perform the following optimization problem:
+\begin{equation}
+\min_{\x, \e} \|\e\|_1 \quad \subj \quad \y = A \x + \e.
+\end{equation}
+
+
 \begin{algorithm}[thb]
 \caption{\bf (Deformable Sparse Recovery and Classification for
 Face Recognition)} \label{alg:deformable-src}
