@@ -115,13 +115,6 @@ both the current representation coefficients, as well as an update to the transf
 \section{Characteristics of the ALM Algorithm}
 Describe the two variants of the ALM algorithm
 
-	%Major steps:
-	%while:
-		%mu *= rho
-		%lambda += mu(y - Ax - e)
-		%while:
-			%e <- shrink(y-Ax+lambda/mu, 1/mu)
-			%x <- Apinvt'*(y-e+lamba/mu)
 We summarize the entire ALM
 algorithm as Algorithm~\ref{alg:alm}, where $\gamma$ denotes the
 largest eigenvalue of the matrix $A^TA$. For the choice of parameter $\mu$, we take the same strategy as
