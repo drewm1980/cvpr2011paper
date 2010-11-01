@@ -23,9 +23,9 @@ for i=ratio
     
     cpuData = load(cpuName);
     
-    gpuDimsPowers = gpuData.dimsPowers(gpuData.dimsPowers <= 2000);
+    gpuDimsPowers = gpuData.dimsPowers(gpuData.dimsPowers <= 5000);
     gpuDimLen     = numel(gpuDimsPowers);
-    cpuDimsPowers = cpuData.dimsPowers(cpuData.dimsPowers <= 2000);
+    cpuDimsPowers = cpuData.dimsPowers(cpuData.dimsPowers <= 5000);
     cpuDimLen     = numel(cpuDimsPowers);
     
     for j=1:numel(tols)
