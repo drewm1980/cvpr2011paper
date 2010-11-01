@@ -66,7 +66,7 @@ For many applications of $\ell_1$-minimization solving a system $b=Ax$, $A$ ofte
 special structure that can be leveraged to compute portions of $A$ on the fly
 as they are needed, speeding up perfomance of the minimization dramatically.
 Unfortunately, there are many import applications where this does not hold true.
-This paper targets applications where $\b$ and $A$ contain
+This paper targets applications where $\bb$ and $A$ contain
 image data, and thus must be loaded every time they are used, as is the 
 case for many problems in computer vision.
 The techniques presented in this paper target these applications, as well
@@ -79,11 +79,11 @@ The primary motivating application for this paper is face recognition for access
 Recently, advances in automatic face recognition have been made by re-casting
 it as a sparse representation problem.  This core of this technique consists of
 re-casting recognition as a sparse representation problem. This is done by  
-stacking the test image into a vector $\b$, stacking the training images for
+stacking the test image into a vector $\bb$, stacking the training images for
 all of the users into the columns of a matrix $A$, and solving the following
 minimization problem:
 \begin{equation}
-\min_{\x, \e} \| \x \|_1 + \|\e\|_1 \quad \subj \quad \b = A \x + \e.
+\min_{\x, \e} \| \x \|_1 + \|\e\|_1 \quad \subj \quad \bb = A \x + \e.
 \end{equation}
 This optimization promotes a solution that is sparse both in $\x$ and $\e$. 
 Sparsity in $\x$ arrises from the fact that only a subset of the training images (if any)
@@ -96,10 +96,10 @@ algorithm for this purpose was described as part of the \cite{Wagner2009-CVPR}, 
 the first paper to expand \cite{Wright2009-PAMI} into a functioning face recognition system.
 This iterative alignment routine is based on repeatedly solving the following optimization problem:
 \begin{equation}
-\min_{\x, \e} \|\e\|_1 \quad \subj \quad \b = A_k \x + \e.
+\min_{\x, \e} \|\e\|_1 \quad \subj \quad \bb = A_k \x + \e.
 \end{equation}
 Where $A_k$ contains the training images for user $k$ as well as several vectors consisting of the
-Jacobian of the test image $\b$ with respect to the transformation parameters, and $\x$ contains
+Jacobian of the test image $\bb$ with respect to the transformation parameters, and $\x$ contains
 both the current representation coefficients, as well as an update to the transformation parameters.
 
 \subsection{Literature review}
@@ -125,27 +125,19 @@ Describe the two variants of the ALM algorithm
 We summarize the entire ALM
 algorithm as Algorithm~\ref{alg:alm}, where $\gamma$ denotes the
 largest eigenvalue of the matrix $A^TA$. For the choice of parameter $\mu$, we take the same strategy as
-in \cite{YangJ2009-pp} and set $\mu = 2m / \|\b\|_1$.
+in \cite{YangJ2009-pp} and set $\mu_0 = 2m / \|\bb\|_1$. We set $\rho=1.5$.
 \begin{algorithm}[h]
-\caption{\bf (Augmented Lagrange Multiplier Method for Global
-Recognition)}
+\caption{\bf (Augmented Lagrange Multiplier Method Used in Alignment Inner Loop)}
 \begin{algorithmic}[1]
-\STATE {\bf Input:} $\b \in \Re^m$, $A \in \Re^{m \times n}$,
-$\x_1 = \mathbf{0}$, $\e_1 = \b$, $\blamda_1 =
-\mathbf{0}$.
+\STATE {\bf Input:} $\bb \in \Re^m$, $A \in \Re^{m \times n}$,
+$\x_1 = \mathbf{0}$, $\blamda_1 = \mathbf{0}$.
 \WHILE{not converged ($k = 1,2,\ldots$)}
-\STATE $\e_{k+1} = \textup{shrink}\left(\b - A\x_k + \frac{\blamda_k}{\mu}, \frac{1}{\mu}\right)$;
-\STATE $t_1\leftarrow 1$, $\z_1 \leftarrow \x_k$, $\w_1 \leftarrow \x_k$;
 \WHILE{not converged ($l = 1,2,\ldots$)}
-\STATE $\w_{l+1} \leftarrow \textup{shrink}\left(\z_l +
-\frac{1}{\gamma}A^T\left(\b - A\z_l - \e_{k+1} +
-\frac{1}{\mu}\blamda_k\right), \frac{1}{\mu\gamma}\right)$;
-\STATE $t_{l+1} \leftarrow \frac{1}{2}\left( 1 +
-\sqrt{1+4t_l^2}\right)$;
-\STATE $\z_{l+1} \leftarrow \w_{l+1} + \frac{t_l - 1}{t_{l+1}}(\w_{l+1} - \w_l)$;
+\STATE $\e_{l+1} \leftarrow \textup{shrink}\left(\bb - A\x_l + \frac{\blamda_k}{\mu_k}, \frac{1}{\mu_k}\right)$;
+\STATE $\x_{l+1} \leftarrow (A^\dagger)^T \left(\bb - \e_{l+1} + \frac{\blamda_k}{\mu_k} \right) $;
 \ENDWHILE
-\STATE $\x_{k+1} \leftarrow \w_{l}$;
-\STATE $\blamda_{k+1} \leftarrow \blamda_k + \mu (\b - A\x_{k+1} - \e_{k+1})$;
+\STATE $\blamda_{k+1} \leftarrow \blamda_k + \mu (\bb - A\x_{k+1} - \e_{k+1})$;
+\STATE $\mu_{k+1} \leftarrow \rho\mu_k$;
 \ENDWHILE \STATE
 {\bf Output:} $\x^* \leftarrow \x_k, \e^* \leftarrow \e_k$.
 \end{algorithmic}
@@ -218,10 +210,10 @@ How to solve multiple instances in smaller batches without losing concurrency, u
 
 Optimization:
 \begin{equation}
-\min_{\x, \e} \|\e\|_1 \quad \subj \quad \b = A \x + \e.
+\min_{\x, \e} \|\e\|_1 \quad \subj \quad \bb = A \x + \e.
 \end{equation}
 
-$A$ is $mxn$
+$A$ is $m \times n$
 $m = 5120$
 $n = 32$
 
@@ -321,73 +313,73 @@ This implementation uses a single CPU core...
 
 
 
-\begin{algorithm}[thb]
-\caption{\bf (Deformable Sparse Recovery and Classification for
-Face Recognition)} \label{alg:deformable-src}
-\begin{algorithmic}[1]
-\STATE {\bf Input:} Frontal training images $A_i \in \Re^{m\times n_i}, i=1,2,\ldots,K$ for $K$ subjects,  a test image
-$\b\in\Re^m$ and a deformation group $T$. 
-\STATE
-{\bf for} each subject $i$, 
-\STATE \hspace{3mm} $\tau^{(0)}
-\leftarrow I$. 
-\STATE \hspace{3mm} {\bf while} not converged $(j=1,2,\ldots)$ {\bf do} 
-\STATE \hspace{6mm}
-$\tilde \b(\tau) \leftarrow \frac{\b \circ \tau}{\|\b \circ
-\tau\|_2}$; \;\;\; $J \leftarrow  \frac{\partial}{\partial
-\tau} \tilde\b(\tau)  \bigr|_{\tau^{(j)}} $;
-%\STATE \hspace{6mm} $(\hat \x, \hat \e, \Delta \tau) \leftarrow \left\{\begin{array}{l} \arg \min_{\x,\e,\Delta \tau} \| \e \|_1 \\  \subj \; \b + J \Delta \tau = A_k \x + \e \end{array}\right.$
-\STATE \hspace{6mm} $ \Delta \tau =  \arg\min \; \| \e \|_1  \;
-\subj \; \tilde \b + J \Delta \tau = A_i \x + \e.$ 
-\STATE
-\hspace{6mm} $\tau^{(j+1)} \leftarrow \tau^{(j)} + \Delta
-\tau$; 
-\STATE \hspace{3mm} {\bf end while} \STATE {\bf end} \STATE Keep
-the top $S$ candidates $k_1, \ldots, k_S$ with the smallest
-residuals $\|\e\|_1$. \STATE Compute an average transformation
-$\bar{\tau}$ from $\tau_{k_1}, \tau_{k_2}, \ldots, \tau_{k_S}$.
-\STATE Update $\b \leftarrow \b \circ \bar{\tau}$ and $\tau_i
-\leftarrow \tau_i \cdot \bar{\tau}^{-1}$ for $i = k_1, \dots,
-k_S$. \STATE Set $A \leftarrow \big[ A_{k_1} \circ
-\tau_{k_1}^{-1} \mid A_{k_2} \circ \tau_{k_2}^{-1} \mid \dots
-\mid A_{k_S} \circ \tau_{k_S}^{-1} \big]$. \STATE Solve the
-$\ell^1$-minimization problem:
-$$\hat{\x} = \arg \min_{\x, \e} \| \x \|_1 + \|\e\|_1 \;\; \subj \;\; \b = A \x + \e.$$
-\STATE Compute residuals $r_i(\b) = \| {\b} - {A}_i \, \delta_i(\hat{\x}) \|_2$ for $i = k_1, \dots, k_S$.
-\STATE {\bf Output:} $\mbox{identity}(\b) = \arg\min_i r_i(\b)$.
-\end{algorithmic}
-\end{algorithm}
+%\begin{algorithm}[thb]
+%\caption{\bf (Deformable Sparse Recovery and Classification for
+%Face Recognition)} \label{alg:deformable-src}
+%\begin{algorithmic}[1]
+%\STATE {\bf Input:} Frontal training images $A_i \in \Re^{m\times n_i}, i=1,2,\ldots,K$ for $K$ subjects,  a test image
+%$\bb\in\Re^m$ and a deformation group $T$. 
+%\STATE
+%{\bf for} each subject $i$, 
+%\STATE \hspace{3mm} $\tau^{(0)}
+%\leftarrow I$. 
+%\STATE \hspace{3mm} {\bf while} not converged $(j=1,2,\ldots)$ {\bf do} 
+%\STATE \hspace{6mm}
+%$\tilde \bb(\tau) \leftarrow \frac{\bb \circ \tau}{\|\bb \circ
+%\tau\|_2}$; \;\;\; $J \leftarrow  \frac{\partial}{\partial
+%\tau} \tilde\bb(\tau)  \bigr|_{\tau^{(j)}} $;
+%%\STATE \hspace{6mm} $(\hat \x, \hat \e, \Delta \tau) \leftarrow \left\{\begin{array}{l} \arg \min_{\x,\e,\Delta \tau} \| \e \|_1 \\  \subj \; \bb + J \Delta \tau = A_k \x + \e \end{array}\right.$
+%\STATE \hspace{6mm} $ \Delta \tau =  \arg\min \; \| \e \|_1  \;
+%\subj \; \tilde \bb + J \Delta \tau = A_i \x + \e.$ 
+%\STATE
+%\hspace{6mm} $\tau^{(j+1)} \leftarrow \tau^{(j)} + \Delta
+%\tau$; 
+%\STATE \hspace{3mm} {\bf end while} \STATE {\bf end} \STATE Keep
+%the top $S$ candidates $k_1, \ldots, k_S$ with the smallest
+%residuals $\|\e\|_1$. \STATE Compute an average transformation
+%$\bar{\tau}$ from $\tau_{k_1}, \tau_{k_2}, \ldots, \tau_{k_S}$.
+%\STATE Update $\bb \leftarrow \bb \circ \bar{\tau}$ and $\tau_i
+%\leftarrow \tau_i \cdot \bar{\tau}^{-1}$ for $i = k_1, \dots,
+%k_S$. \STATE Set $A \leftarrow \big[ A_{k_1} \circ
+%\tau_{k_1}^{-1} \mid A_{k_2} \circ \tau_{k_2}^{-1} \mid \dots
+%\mid A_{k_S} \circ \tau_{k_S}^{-1} \big]$. \STATE Solve the
+%$\ell^1$-minimization problem:
+%$$\hat{\x} = \arg \min_{\x, \e} \| \x \|_1 + \|\e\|_1 \;\; \subj \;\; \bb = A \x + \e.$$
+%\STATE Compute residuals $r_i(\bb) = \| {\bb} - {A}_i \, \delta_i(\hat{\x}) \|_2$ for $i = k_1, \dots, k_S$.
+%\STATE {\bf Output:} $\mbox{identity}(\bb) = \arg\min_i r_i(\bb)$.
+%\end{algorithmic}
+%\end{algorithm}
 
-We summarize the entire ALM
-algorithm as Algorithm~\ref{alg:alm}, where $\gamma$ denotes the
-largest eigenvalue of the matrix $A^TA$. For the choice of parameter $\mu$, we take the same strategy as
-in \cite{YangJ2009-pp} and set $\mu = 2m / \|\b\|_1$.
-\begin{algorithm}[h]
-\caption{\bf (Augmented Lagrange Multiplier Method for Global
-Recognition)}
-\begin{algorithmic}[1]
-\STATE {\bf Input:} $\b \in \Re^m$, $A \in \Re^{m \times n}$,
-$\x_1 = \mathbf{0}$, $\e_1 = \b$, $\blamda_1 =
-\mathbf{0}$.
-\WHILE{not converged ($k = 1,2,\ldots$)}
-\STATE $\e_{k+1} = \textup{shrink}\left(\b - A\x_k +
-\frac{1}{\mu}\blamda_k, \frac{1}{\mu}\right)$;
-\STATE $t_1\leftarrow 1$, $\z_1 \leftarrow \x_k$, $\w_1 \leftarrow \x_k$;
-\WHILE{not converged ($l = 1,2,\ldots$)}
-\STATE $\w_{l+1} \leftarrow \textup{shrink}\left(\z_l +
-\frac{1}{\gamma}A^T\left(\b - A\z_l - \e_{k+1} +
-\frac{1}{\mu}\blamda_k\right), \frac{1}{\mu\gamma}\right)$;
-\STATE $t_{l+1} \leftarrow \frac{1}{2}\left( 1 +
-\sqrt{1+4t_l^2}\right)$;
-\STATE $\z_{l+1} \leftarrow \w_{l+1} + \frac{t_l - 1}{t_{l+1}}(\w_{l+1} - \w_l)$;
-\ENDWHILE
-\STATE $\x_{k+1} \leftarrow \w_{l}$;
-\STATE $\blamda_{k+1} \leftarrow \blamda_k + \mu (\b - A\x_{k+1} - \e_{k+1})$;
-\ENDWHILE \STATE
-{\bf Output:} $\x^* \leAftarrow \x_k, \e^* \leftarrow \e_k$.
-\end{algorithmic}
-\label{alg:alm}
-\end{algorithm}
+%We summarize the entire ALM
+%algorithm as Algorithm~\ref{alg:alm}, where $\gamma$ denotes the
+%largest eigenvalue of the matrix $A^TA$. For the choice of parameter $\mu$, we take the same strategy as
+%in \cite{YangJ2009-pp} and set $\mu = 2m / \|\bb\|_1$.
+%\begin{algorithm}[h]
+%\caption{\bf (Augmented Lagrange Multiplier Method for Global
+%Recognition)}
+%\begin{algorithmic}[1]
+%\STATE {\bf Input:} $\bb \in \Re^m$, $A \in \Re^{m \times n}$,
+%$\x_1 = \mathbf{0}$, $\e_1 = \bb$, $\blamda_1 =
+%\mathbf{0}$.
+%\WHILE{not converged ($k = 1,2,\ldots$)}
+%\STATE $\e_{k+1} = \textup{shrink}\left(\bb - A\x_k +
+%\frac{1}{\mu}\blamda_k, \frac{1}{\mu}\right)$;
+%\STATE $t_1\leftarrow 1$, $\z_1 \leftarrow \x_k$, $\w_1 \leftarrow \x_k$;
+%\WHILE{not converged ($l = 1,2,\ldots$)}
+%\STATE $\w_{l+1} \leftarrow \textup{shrink}\left(\z_l +
+%\frac{1}{\gamma}A^T\left(\bb - A\z_l - \e_{k+1} +
+%\frac{1}{\mu}\blamda_k\right), \frac{1}{\mu\gamma}\right)$;
+%\STATE $t_{l+1} \leftarrow \frac{1}{2}\left( 1 +
+%\sqrt{1+4t_l^2}\right)$;
+%\STATE $\z_{l+1} \leftarrow \w_{l+1} + \frac{t_l - 1}{t_{l+1}}(\w_{l+1} - \w_l)$;
+%\ENDWHILE
+%\STATE $\x_{k+1} \leftarrow \w_{l}$;
+%\STATE $\blamda_{k+1} \leftarrow \blamda_k + \mu (\bb - A\x_{k+1} - \e_{k+1})$;
+%\ENDWHILE \STATE
+%{\bf Output:} $\x^* \leftarrow \x_k, \e^* \leftarrow \e_k$.
+%\end{algorithmic}
+%\label{alg:alm}
+%\end{algorithm}
 
 
 \section{Conclusion}
