@@ -23,35 +23,37 @@ for i=ratio
     
     cpuData = load(cpuName);
     
-    dimsPowers = [500:100:900 1000:1000:2000];
-    lenPlot = numel(dimsPowers);
+    gpuDimsPowers = gpuData.dimsPowers(gpuData.dimsPowers <= 2000);
+    gpuDimLen     = numel(gpuDimsPowers);
+    cpuDimsPowers = cpuData.dimsPowers(cpuData.dimsPowers <= 2000);
+    cpuDimLen     = numel(cpuDimsPowers);
     
     for j=1:numel(tols)
         
         subplot(numel(tols), 3, (j-1)*3+1);
         plotA = gpuData.averageRunTime(j,j,:,2,2);
         plotB = cpuData.averageRunTime(j,j,:,1,2);
-        plot(dimsPowers, squeeze(plotA(1:lenPlot)), 'b');
+        plot(gpuDimsPowers, squeeze(plotA(1:gpuDimLen)), 'bx-');
         hold on
-        plot(dimsPowers, squeeze(plotB(1:lenPlot)), 'r');
+        plot(cpuDimsPowers, squeeze(plotB(1:cpuDimLen)), 'r+-');
         title(['Average runtime - tolerance ' num2str(tols(j)) ' ratio ' num2str(i)]);
         hold off
         
         subplot(numel(tols), 3, (j-1)*3+2);
         plotA = gpuData.averageL2error(j,j,:,2);
         plotB = cpuData.averageL2error(j,j,:,1);
-        plot(dimsPowers, squeeze(plotA(1:lenPlot)), 'b');
+        plot(gpuDimsPowers, squeeze(plotA(1:gpuDimLen)), 'bx-');
         hold on
-        plot(dimsPowers, squeeze(plotB(1:lenPlot)), 'r');
+        plot(cpuDimsPowers, squeeze(plotB(1:cpuDimLen)), 'r+-');
         title(['Average L2 error - tolerance ' num2str(tols(j)) ' ratio ' num2str(i)]);
         hold off
         
         subplot(numel(tols), 3, (j-1)*3+3);
         plotA = gpuData.averageIteration(j,j,:,2);
         plotB = cpuData.averageIteration(j,j,:,1);
-        plot(dimsPowers, squeeze(plotA(1:lenPlot)), 'b');
+        plot(gpuDimsPowers, squeeze(plotA(1:gpuDimLen)), 'bx-');
         hold on
-        plot(dimsPowers, squeeze(plotB(1:lenPlot)), 'r');
+        plot(cpuDimsPowers, squeeze(plotB(1:cpuDimLen)), 'r+-');
         title(['Average iterations - tolerance ' num2str(tols(j)) ' ratio ' num2str(i)]);
         hold off
     end
