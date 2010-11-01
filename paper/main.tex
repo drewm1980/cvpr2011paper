@@ -10,8 +10,8 @@
 % Packages added by us
 \usepackage{amsfonts}
 \usepackage{mydefs}
-\usepackage{algorithm}
 \usepackage{algorithmic}
+\usepackage{algorithm}
 
 \usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
 
@@ -24,8 +24,8 @@
 \ifcvprfinal\pagestyle{empty}\fi
 \begin{document}
 
-%\title{Efficient Parallelization of Sparse Representation for Face Recognition}
 %\title{Accelerating $\ell_1$-Minimization Using Many-Core CPUs/GPUs \\ and Application to Face Recognition
+%\title{Efficient Parallelization of Sparse Representation for Face Recognition}
 %\thanks{Corresponding author: . This work was partially supported by ARO MURI W911NF-06-1-0076.}}
 \title{Efficient Parallelization of $\ell_1$-Minimization for Face Recognition
 \thanks{Corresponding author: . This work was partially supported by ARO MURI W911NF-06-1-0076.}}
@@ -54,23 +54,97 @@ First line of institution2 address\\
 
 \section{Introduction} 
 
-[Motivate the paper by an overview about the scope and importance of $\ell_1$-minimization].
+%Motivate the paper by an overview about the scope and importance of $\ell_1$-minimization.
+$\ell_1$-minimization is one of the most powerful tools to be added to the engineer's
+toolbox in years.  It has strong theoretical motivation for both for use in recovering sparse
+solutions to systems of linear equations, and has been shown to perform well even in the
+presence of a combination of sparse and dense error.  Since solutions of linear systems
+arise in practically every branch of engineering and there are very few application which
+do {\em not} benefit from a robust error function, the applications are far to numerous to
+itemize here.  
+For many applications of $\ell_1$-minimization solving a system $b=Ax$, $A$ often has a
+special structure that can be leveraged to compute portions of $A$ on the fly
+as they are needed, speeding up perfomance of the minimization dramatically.
+Unfortunately, there are many import applications where this does not hold true.
+This paper targets applications where $\bb$ and $A$ contain
+image data, and thus must be loaded every time they are used, as is the 
+case for many problems in computer vision.
+The techniques presented in this paper target these applications, as well
+as others where the dictionary is dense and unstructured. $A$ must be loaded every time
+it is used, and algorithm performance becomes highly dependent on memory bandwidth, rather
+that arithmetic logic.
 
-[Review the available different algorithms solving $\ell_1$-minimization and $\ell_0$-minimization, please refer to Allen's SIAM paper.]
+% Narrow focus for applications to Recognition Application
+The primary motivating application for this paper is face recognition for access control applications.
+Recently, advances in automatic face recognition have been made by re-casting
+it as a sparse representation problem.  This core of this technique consists of
+re-casting recognition as a sparse representation problem. This is done by  
+stacking the test image into a vector $\bb$, stacking the training images for
+all of the users into the columns of a matrix $A$, and solving the following
+minimization problem:
+\begin{equation}
+\min_{\x, \e} \| \x \|_1 + \|\e\|_1 \quad \subj \quad \bb = A \x + \e.
+\end{equation}
+This optimization promotes a solution that is sparse both in $\x$ and $\e$. 
+Sparsity in $\x$ arrises from the fact that only a subset of the training images (if any)
+correspond to the user in the test image.  Sparsity in $\e$ arrises from the knowledge
+that small occlusions in the test image will only corrupt a small subset of the pixels \cite{Wright2009-PAMI}.
+The large coefficients in $\x$ will concentrate on the correct user, and can be used as the basis of a classifier.
 
-[Zero in and justify why we choose ALM for our implementation.]
+For this idea to work, all of the images must be aligned. An iterative alignment
+algorithm for this purpose was described as part of the \cite{Wagner2009-CVPR}, which was
+the first paper to expand \cite{Wright2009-PAMI} into a functioning face recognition system.
+This iterative alignment routine is based on repeatedly solving the following optimization problem:
+\begin{equation}
+\min_{\x, \e} \|\e\|_1 \quad \subj \quad \bb = A_k \x + \e.
+\end{equation}
+Where $A_k$ contains the training images for user $k$ as well as several vectors consisting of the
+Jacobian of the test image $\bb$ with respect to the transformation parameters, and $\x$ contains
+both the current representation coefficients, as well as an update to the transformation parameters.
 
 \subsection{Literature review}
 [Review the past parallel algorithms for $\ell_1$-minimization. Hopefully there aren't many]
 
+[Review the available different algorithms solving $\ell_1$-minimization and $\ell_0$-minimization, please refer to Allen's SIAM paper.]
+[Allen]
+
+[Zero in and justify why we choose ALM for our implementation.]
+
 \subsection{Contributions of the paper}
-[Can leave empty until later.]
-
-
-
 
 \section{Characteristics of the ALM Algorithm}
 Describe the two variants of the ALM algorithm
+
+	%Major steps:
+	%while:
+		%mu *= rho
+		%lambda += mu(y - Ax - e)
+		%while:
+			%e <- shrink(y-Ax+lambda/mu, 1/mu)
+			%x <- Apinvt'*(y-e+lamba/mu)
+We summarize the entire ALM
+algorithm as Algorithm~\ref{alg:alm}, where $\gamma$ denotes the
+largest eigenvalue of the matrix $A^TA$. For the choice of parameter $\mu$, we take the same strategy as
+in \cite{YangJ2009-pp} and set $\mu_0 = 2m / \|\bb\|_1$. We set $\rho=1.5$.
+\begin{algorithm}[h]
+\caption{\bf (Augmented Lagrange Multiplier Method Used in Alignment Inner Loop)}
+\begin{algorithmic}[1]
+\STATE {\bf Input:} $\bb \in \Re^m$, $A \in \Re^{m \times n}$,
+$\x_1 = \mathbf{0}$, $\blamda_1 = \mathbf{0}$.
+\WHILE{not converged ($k = 1,2,\ldots$)}
+\WHILE{not converged ($l = 1,2,\ldots$)}
+\STATE $\e_{l+1} \leftarrow \textup{shrink}\left(\bb - A\x_l + \frac{\blamda_k}{\mu_k}, \frac{1}{\mu_k}\right)$;
+\STATE $\x_{l+1} \leftarrow (A^\dagger)^T \left(\bb - \e_{l+1} + \frac{\blamda_k}{\mu_k} \right) $;
+\ENDWHILE
+\STATE $\blamda_{k+1} \leftarrow \blamda_k + \mu (\bb - A\x_{k+1} - \e_{k+1})$;
+\STATE $\mu_{k+1} \leftarrow \rho\mu_k$;
+\ENDWHILE \STATE
+{\bf Output:} $\x^* \leftarrow \x_k, \e^* \leftarrow \e_k$.
+\end{algorithmic}
+\label{alg:alm}
+\end{algorithm}
+
+
 
 We need to define the following soft-thresholding operator for a
 scalar $x$ and a scalar $\alpha \geq 0$:
@@ -136,10 +210,10 @@ How to solve multiple instances in smaller batches without losing concurrency, u
 
 Optimization:
 \begin{equation}
-\min_{\x, \e} \|\e\|_1 \quad \subj \quad \y = A \x + \e.
+\min_{\x, \e} \|\e\|_1 \quad \subj \quad \bb = A \x + \e.
 \end{equation}
 
-$A$ is $mxn$
+$A$ is $m \times n$
 $m = 5120$
 $n = 32$
 
@@ -150,7 +224,7 @@ All of the following are implementations of primal ALM.
 Primal ALM contains outer and inner iterations.
 To simplify the benchmark, the number of outer iterations
 is clamped to 50, and the number of inner iterations is
-clamped to 50 iterations per outer loop.  Running with
+clamped to 50 iterations per outer loopsretrsitrsi.  Running with
 a convergence criterion will typically result in fewer
 iterations, depending on the data, so these numbers are
 for comparison across hardware, and may look worse than
@@ -237,116 +311,75 @@ This implementation uses a single CPU core...
 ... so if linear speedup can be achieved, could possibly get *** 28 ms per minimization ***
 
 
-\section{Application to Face Recognition}
-
-Significant strides have been made in automatic face recognition by re-casting
-it as a sparse representation problem.  This core of this algorithm consists of
-Significant strides have been made in automatic face recognition by re-casting
-it as a sparse representation problem.  This core of this algorithm consists of
-stacking the test image into a vector $\y$, stacking the training images for
-all of the users into the columns of a matrix $A$, and solving the following
-minimization problem:
-\begin{equation}
-\min_{\x, \e} \| \x \|_1 + \|\e\|_1 \quad \subj \quad \y = A \x + \e.
-\end{equation}
-This optimization promotes a solution that is sparse both in $\x$ and $\e$. 
-Sparsity in $\x$ arrises from the fact that only a subset of the training images (if any)
-correspond to the user in the test image.  Sparsity in $\e$ arrises from the knowledge
-that small occlusions in the test image will only corrupt a small subset of the pixels \cite{Wright2009-PAMI}.
-The large coefficients in $\x$ will concentrate on the correct user, and can be used as the basis of a classifier.
-
-For this idea to work, all of the images must be aligned. \cite{Wagner2009-CVPR}
-For iterative alignment, we need to perform the following optimization problem:
-\begin{equation}
-\min_{\x, \e} \|\e\|_1 \quad \subj \quad \y = A \x + \e.
-\end{equation}
-stacking the test image into a vector $\y$, stacking the training images for
-all of the users into the columns of a matrix $A$, and solving the following
-minimization problem:
-\begin{equation}
-\min_{\x, \e} \| \x \|_1 + \|\e\|_1 \quad \subj \quad \y = A \x + \e.
-\end{equation}
-This optimization promotes a solution that is sparse both in $\x$ and $\e$. 
-Sparsity in $\x$ arrises from the fact that only a subset of the training images (if any)
-correspond to the user in the test image.  Sparsity in $\e$ arrises from the knowledge
-that small occlusions in the test image will only corrupt a small subset of the pixels \cite{Wright2009-PAMI}.
-The large coefficients in $\x$ will concentrate on the correct user, and can be used as the basis of a classifier.
-
-For this idea to work, all of the images must be aligned. \cite{Wagner2009-CVPR}
-For iterative alignment, we need to perform the following optimization problem:
-\begin{equation}
-\min_{\x, \e} \|\e\|_1 \quad \subj \quad \y = A \x + \e.
-\end{equation}
 
 
-\begin{algorithm}[thb]
-\caption{\bf (Deformable Sparse Recovery and Classification for
-Face Recognition)} \label{alg:deformable-src}
-\begin{algorithmic}[1]
-\STATE {\bf Input:} Frontal training images $A_i \in \Re^{m\times n_i}, i=1,2,\ldots,K$ for $K$ subjects,  a test image
-$\y\in\Re^m$ and a deformation group $T$. 
-\STATE
-{\bf for} each subject $i$, 
-\STATE \hspace{3mm} $\tau^{(0)}
-\leftarrow I$. 
-\STATE \hspace{3mm} {\bf while} not converged $(j=1,2,\ldots)$ {\bf do} 
-\STATE \hspace{6mm}
-$\tilde \y(\tau) \leftarrow \frac{\y \circ \tau}{\|\y \circ
-\tau\|_2}$; \;\;\; $J \leftarrow  \frac{\partial}{\partial
-\tau} \tilde\y(\tau)  \bigr|_{\tau^{(j)}} $;
-%\STATE \hspace{6mm} $(\hat \x, \hat \e, \Delta \tau) \leftarrow \left\{\begin{array}{l} \arg \min_{\x,\e,\Delta \tau} \| \e \|_1 \\  \subj \; \y + J \Delta \tau = A_k \x + \e \end{array}\right.$
-\STATE \hspace{6mm} $ \Delta \tau =  \arg\min \; \| \e \|_1  \;
-\subj \; \tilde \y + J \Delta \tau = A_i \x + \e.$ 
-\STATE
-\hspace{6mm} $\tau^{(j+1)} \leftarrow \tau^{(j)} + \Delta
-\tau$; 
-\STATE \hspace{3mm} {\bf end while} \STATE {\bf end} \STATE Keep
-the top $S$ candidates $k_1, \ldots, k_S$ with the smallest
-residuals $\|\e\|_1$. \STATE Compute an average transformation
-$\bar{\tau}$ from $\tau_{k_1}, \tau_{k_2}, \ldots, \tau_{k_S}$.
-\STATE Update $\y \leftarrow \y \circ \bar{\tau}$ and $\tau_i
-\leftarrow \tau_i \cdot \bar{\tau}^{-1}$ for $i = k_1, \dots,
-k_S$. \STATE Set $A \leftarrow \big[ A_{k_1} \circ
-\tau_{k_1}^{-1} \mid A_{k_2} \circ \tau_{k_2}^{-1} \mid \dots
-\mid A_{k_S} \circ \tau_{k_S}^{-1} \big]$. \STATE Solve the
-$\ell^1$-minimization problem:
-$$\hat{\x} = \arg \min_{\x, \e} \| \x \|_1 + \|\e\|_1 \;\; \subj \;\; \y = A \x + \e.$$
-\STATE Compute residuals $r_i(\y) = \| {\y} - {A}_i \, \delta_i(\hat{\x}) \|_2$ for $i = k_1, \dots, k_S$.
-\STATE {\bf Output:} $\mbox{identity}(\y) = \arg\min_i r_i(\y)$.
-\end{algorithmic}
-\end{algorithm}
+%\begin{algorithm}[thb]
+%\caption{\bf (Deformable Sparse Recovery and Classification for
+%Face Recognition)} \label{alg:deformable-src}
+%\begin{algorithmic}[1]
+%\STATE {\bf Input:} Frontal training images $A_i \in \Re^{m\times n_i}, i=1,2,\ldots,K$ for $K$ subjects,  a test image
+%$\bb\in\Re^m$ and a deformation group $T$. 
+%\STATE
+%{\bf for} each subject $i$, 
+%\STATE \hspace{3mm} $\tau^{(0)}
+%\leftarrow I$. 
+%\STATE \hspace{3mm} {\bf while} not converged $(j=1,2,\ldots)$ {\bf do} 
+%\STATE \hspace{6mm}
+%$\tilde \bb(\tau) \leftarrow \frac{\bb \circ \tau}{\|\bb \circ
+%\tau\|_2}$; \;\;\; $J \leftarrow  \frac{\partial}{\partial
+%\tau} \tilde\bb(\tau)  \bigr|_{\tau^{(j)}} $;
+%%\STATE \hspace{6mm} $(\hat \x, \hat \e, \Delta \tau) \leftarrow \left\{\begin{array}{l} \arg \min_{\x,\e,\Delta \tau} \| \e \|_1 \\  \subj \; \bb + J \Delta \tau = A_k \x + \e \end{array}\right.$
+%\STATE \hspace{6mm} $ \Delta \tau =  \arg\min \; \| \e \|_1  \;
+%\subj \; \tilde \bb + J \Delta \tau = A_i \x + \e.$ 
+%\STATE
+%\hspace{6mm} $\tau^{(j+1)} \leftarrow \tau^{(j)} + \Delta
+%\tau$; 
+%\STATE \hspace{3mm} {\bf end while} \STATE {\bf end} \STATE Keep
+%the top $S$ candidates $k_1, \ldots, k_S$ with the smallest
+%residuals $\|\e\|_1$. \STATE Compute an average transformation
+%$\bar{\tau}$ from $\tau_{k_1}, \tau_{k_2}, \ldots, \tau_{k_S}$.
+%\STATE Update $\bb \leftarrow \bb \circ \bar{\tau}$ and $\tau_i
+%\leftarrow \tau_i \cdot \bar{\tau}^{-1}$ for $i = k_1, \dots,
+%k_S$. \STATE Set $A \leftarrow \big[ A_{k_1} \circ
+%\tau_{k_1}^{-1} \mid A_{k_2} \circ \tau_{k_2}^{-1} \mid \dots
+%\mid A_{k_S} \circ \tau_{k_S}^{-1} \big]$. \STATE Solve the
+%$\ell^1$-minimization problem:
+%$$\hat{\x} = \arg \min_{\x, \e} \| \x \|_1 + \|\e\|_1 \;\; \subj \;\; \bb = A \x + \e.$$
+%\STATE Compute residuals $r_i(\bb) = \| {\bb} - {A}_i \, \delta_i(\hat{\x}) \|_2$ for $i = k_1, \dots, k_S$.
+%\STATE {\bf Output:} $\mbox{identity}(\bb) = \arg\min_i r_i(\bb)$.
+%\end{algorithmic}
+%\end{algorithm}
 
-We summarize the entire ALM
-algorithm as Algorithm~\ref{alg:alm}, where $\gamma$ denotes the
-largest eigenvalue of the matrix $A^TA$. For the choice of parameter $\mu$, we take the same strategy as
-in \cite{YangJ2009-pp} and set $\mu = 2m / \|\y\|_1$.
-\begin{algorithm}[h]
-\caption{\bf (Augmented Lagrange Multiplier Method for Global
-Recognition)}
-\begin{algorithmic}[1]
-\STATE {\bf Input:} $\y \in \Re^m$, $A \in \Re^{m \times n}$,
-$\x_1 = \mathbf{0}$, $\e_1 = \y$, $\blamda_1 =
-\mathbf{0}$.
-\WHILE{not converged ($k = 1,2,\ldots$)}
-\STATE $\e_{k+1} = \textup{shrink}\left(\y - A\x_k +
-\frac{1}{\mu}\blamda_k, \frac{1}{\mu}\right)$;
-\STATE $t_1\leftarrow 1$, $\z_1 \leftarrow \x_k$, $\w_1 \leftarrow \x_k$;
-\WHILE{not converged ($l = 1,2,\ldots$)}
-\STATE $\w_{l+1} \leftarrow \textup{shrink}\left(\z_l +
-\frac{1}{\gamma}A^T\left(\y - A\z_l - \e_{k+1} +
-\frac{1}{\mu}\blamda_k\right), \frac{1}{\mu\gamma}\right)$;
-\STATE $t_{l+1} \leftarrow \frac{1}{2}\left( 1 +
-\sqrt{1+4t_l^2}\right)$;
-\STATE $\z_{l+1} \leftarrow \w_{l+1} + \frac{t_l - 1}{t_{l+1}}(\w_{l+1} - \w_l)$;
-\ENDWHILE
-\STATE $\x_{k+1} \leftarrow \w_{l}$;
-\STATE $\blamda_{k+1} \leftarrow \blamda_k + \mu (\y - A\x_{k+1} - \e_{k+1})$;
-\ENDWHILE \STATE
-{\bf Output:} $\x^* \leftarrow \x_k, \e^* \leftarrow \e_k$.
-\end{algorithmic}
-\label{alg:alm}
-\end{algorithm}
-
+%We summarize the entire ALM
+%algorithm as Algorithm~\ref{alg:alm}, where $\gamma$ denotes the
+%largest eigenvalue of the matrix $A^TA$. For the choice of parameter $\mu$, we take the same strategy as
+%in \cite{YangJ2009-pp} and set $\mu = 2m / \|\bb\|_1$.
+%\begin{algorithm}[h]
+%\caption{\bf (Augmented Lagrange Multiplier Method for Global
+%Recognition)}
+%\begin{algorithmic}[1]
+%\STATE {\bf Input:} $\bb \in \Re^m$, $A \in \Re^{m \times n}$,
+%$\x_1 = \mathbf{0}$, $\e_1 = \bb$, $\blamda_1 =
+%\mathbf{0}$.
+%\WHILE{not converged ($k = 1,2,\ldots$)}
+%\STATE $\e_{k+1} = \textup{shrink}\left(\bb - A\x_k +
+%\frac{1}{\mu}\blamda_k, \frac{1}{\mu}\right)$;
+%\STATE $t_1\leftarrow 1$, $\z_1 \leftarrow \x_k$, $\w_1 \leftarrow \x_k$;
+%\WHILE{not converged ($l = 1,2,\ldots$)}
+%\STATE $\w_{l+1} \leftarrow \textup{shrink}\left(\z_l +
+%\frac{1}{\gamma}A^T\left(\bb - A\z_l - \e_{k+1} +
+%\frac{1}{\mu}\blamda_k\right), \frac{1}{\mu\gamma}\right)$;
+%\STATE $t_{l+1} \leftarrow \frac{1}{2}\left( 1 +
+%\sqrt{1+4t_l^2}\right)$;
+%\STATE $\z_{l+1} \leftarrow \w_{l+1} + \frac{t_l - 1}{t_{l+1}}(\w_{l+1} - \w_l)$;
+%\ENDWHILE
+%\STATE $\x_{k+1} \leftarrow \w_{l}$;
+%\STATE $\blamda_{k+1} \leftarrow \blamda_k + \mu (\bb - A\x_{k+1} - \e_{k+1})$;
+%\ENDWHILE \STATE
+%{\bf Output:} $\x^* \leftarrow \x_k, \e^* \leftarrow \e_k$.
+%\end{algorithmic}
+%\label{alg:alm}
+%\end{algorithm}
 
 
 \section{Conclusion}
