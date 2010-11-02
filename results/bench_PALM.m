@@ -3,7 +3,7 @@ function rtn = bench_PALM()
 type = 'PALM';
 n  = 10; % denominator for ratio
 ks = 0.1;
-tols = [1e-4 1e-5 1e-6];
+tols = [1e-4 1e-5];
 maxIter = 5000;
 iterations = 10;
 dimsPowers = [500:100:900 1000:1000:10000];
@@ -23,9 +23,9 @@ for i=ratio
     
     cpuData = load(cpuName);
     
-    gpuDimsPowers = gpuData.dimsPowers(gpuData.dimsPowers <= 5000);
+    gpuDimsPowers = gpuData.dimsPowers(gpuData.dimsPowers <= 8000);
     gpuDimLen     = numel(gpuDimsPowers);
-    cpuDimsPowers = cpuData.dimsPowers(cpuData.dimsPowers <= 5000);
+    cpuDimsPowers = cpuData.dimsPowers(cpuData.dimsPowers <= 8000);
     cpuDimLen     = numel(cpuDimsPowers);
     
     for j=1:numel(tols)
