@@ -22,22 +22,24 @@ cpuNUlen    = numel(cpuNumUsers);
 
 for j=1:numel(tols)
     
-    subplot(numel(tols), 2, (j-1)*3+1);
+    subplot(numel(tols), 2, (j-1)*2+1);
     plotA = gpuData.averageRunTime(j,:,2,2);
     plotB = cpuData.averageRunTime(j,:,1,2);
     plot(gpuNumUsers, squeeze(plotA(1:gpuNUlen)), 'bx-');
     hold on
     plot(cpuNumUsers, squeeze(plotB(1:cpuNUlen)), 'r+-');
     title(['Average runtime - tolerance ' num2str(tols(j))]);
+    xlabel('Number of Users');
     hold off
     
-    subplot(numel(tols), 2, (j-1)*3+2);
+    subplot(numel(tols), 2, (j-1)*2+2);
     plotA = gpuData.averageIteration(j,:,2);
     plotB = cpuData.averageIteration(j,:,1);
     plot(gpuNumUsers, squeeze(plotA(1:gpuNUlen)), 'bx-');
     hold on
     plot(cpuNumUsers, squeeze(plotB(1:cpuNUlen)), 'r+-');
     title(['Average iterations - tolerance ' num2str(tols(j))]);
+    xlabel('Number of Users');
     hold off
 end
 
