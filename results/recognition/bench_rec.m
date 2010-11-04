@@ -33,7 +33,7 @@ for j=1:numel(tols)
         plot(gpuNumUsers, squeeze(plotA(1:gpuNUlen)), 'bx-');
         hold on
         plot(cpuNumUsers, squeeze(plotB(1:cpuNUlen)), 'r+-');
-        title(['Average runtime - tolerance ' num2str(tols(j))]);
+        title(['Average runtime - outer tolerance ' num2str(tols(j)) '- inner tolerance ' num2str(tol_ints(k))]);
         xlabel('Number of Users');
         hold off
         
@@ -43,7 +43,7 @@ for j=1:numel(tols)
         plot(gpuNumUsers, squeeze(plotA(1:gpuNUlen)), 'bx-');
         hold on
         plot(cpuNumUsers, squeeze(plotB(1:cpuNUlen)), 'r+-');
-        title(['Average iterations - tolerance ' num2str(tols(j))]);
+        title(['Average iterations - outer tolerance ' num2str(tols(j)) '- inner tolerance ' num2str(tol_ints(k))]);
         xlabel('Number of Users');
         hold off
         
