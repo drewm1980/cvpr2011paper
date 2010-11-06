@@ -8,7 +8,7 @@ maxIter = 5000;
 iterations = 10;
 dimsPowers = [500:100:900 1000:1000:10000];
 lambda = 10;
-ratio = 1:5;
+ratio = 1:3;
 
 h = figure;
 
@@ -23,37 +23,49 @@ for i=ratio
     
     cpuData = load(cpuName);
     
+    cpuName = [name 'BLAS.mat'];
+    
+    blasData = load(cpuName);
+    
     gpuDimsPowers = gpuData.dimsPowers(gpuData.dimsPowers <= 6000);
     gpuDimLen     = numel(gpuDimsPowers);
     cpuDimsPowers = cpuData.dimsPowers(cpuData.dimsPowers <= 6000);
     cpuDimLen     = numel(cpuDimsPowers);
+    blasDimsPowers = blasData.dimsPowers(blasData.dimsPowers <= 6000);
+    blasDimLen     = numel(blasDimsPowers);
     
     for j=1:numel(tols)
         
         subplot(numel(tols), 3, (j-1)*3+1);
         plotA = gpuData.averageRunTime(j,j,:,2,2);
         plotB = cpuData.averageRunTime(j,j,:,1,2);
+        plotC = blasData.averageRunTime(j,j,:,1,3);
         plot(gpuDimsPowers, squeeze(plotA(1:gpuDimLen)), 'bx-');
         hold on
         plot(cpuDimsPowers, squeeze(plotB(1:cpuDimLen)), 'r+-');
+        plot(cpuDimsPowers, squeeze(plotC(1:blasDimLen)), 'g+-');
         title(['Average runtime - tolerance ' num2str(tols(j)) ' ratio ' num2str(i)]);
         hold off
         
         subplot(numel(tols), 3, (j-1)*3+2);
         plotA = gpuData.averageL2error(j,j,:,2);
         plotB = cpuData.averageL2error(j,j,:,1);
+        plotC = blasData.averageL2error(j,j,:,3);
         plot(gpuDimsPowers, squeeze(plotA(1:gpuDimLen)), 'bx-');
         hold on
         plot(cpuDimsPowers, squeeze(plotB(1:cpuDimLen)), 'r+-');
+        plot(cpuDimsPowers, squeeze(plotC(1:blasDimLen)), 'g+-');
         title(['Average L2 error - tolerance ' num2str(tols(j)) ' ratio ' num2str(i)]);
         hold off
         
         subplot(numel(tols), 3, (j-1)*3+3);
         plotA = gpuData.averageIteration(j,j,:,2);
         plotB = cpuData.averageIteration(j,j,:,1);
+        plotC = blasData.averageIteration(j,j,:,3);
         plot(gpuDimsPowers, squeeze(plotA(1:gpuDimLen)), 'bx-');
         hold on
         plot(cpuDimsPowers, squeeze(plotB(1:cpuDimLen)), 'r+-');
+        plot(cpuDimsPowers, squeeze(plotC(1:blasDimLen)), 'g+-');
         title(['Average iterations - tolerance ' num2str(tols(j)) ' ratio ' num2str(i)]);
         hold off
     end
