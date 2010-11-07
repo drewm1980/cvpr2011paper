@@ -8,7 +8,7 @@ maxIter = 5000;
 iterations = 10;
 dimsPowers = [500:100:900 1000:1000:10000];
 lambda = 10;
-ratio = 1:3;
+ratio = 1:5;
 
 h = figure;
 
