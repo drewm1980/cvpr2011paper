@@ -44,7 +44,9 @@ for i=ratio
         hold on
         plot(cpuDimsPowers, squeeze(plotB(1:cpuDimLen)), 'r+-');
         plot(cpuDimsPowers, squeeze(plotC(1:blasDimLen)), 'g+-');
-        title(['Average runtime - tolerance ' num2str(tols(j)) ' ratio ' num2str(i)]);
+        title(['Tolerance ' num2str(tols(j)) ' ratio ' num2str(i)]);
+        ylabel('Average runtime (s)');
+        xlabel('Height of A');
         hold off
         
         subplot(numel(tols), 3, (j-1)*3+2);
@@ -55,7 +57,9 @@ for i=ratio
         hold on
         plot(cpuDimsPowers, squeeze(plotB(1:cpuDimLen)), 'r+-');
         plot(cpuDimsPowers, squeeze(plotC(1:blasDimLen)), 'g+-');
-        title(['Average L2 error - tolerance ' num2str(tols(j)) ' ratio ' num2str(i)]);
+        title(['Tolerance ' num2str(tols(j)) ' ratio ' num2str(i)]);
+        ylabel('Average L2 error');
+        xlabel('Height of A');
         hold off
         
         subplot(numel(tols), 3, (j-1)*3+3);
@@ -66,7 +70,9 @@ for i=ratio
         hold on
         plot(cpuDimsPowers, squeeze(plotB(1:cpuDimLen)), 'r+-');
         plot(cpuDimsPowers, squeeze(plotC(1:blasDimLen)), 'g+-');
-        title(['Average iterations - tolerance ' num2str(tols(j)) ' ratio ' num2str(i)]);
+        title(['Tolerance ' num2str(tols(j)) ' ratio ' num2str(i)]);
+        ylabel('Average iterations');
+        xlabel('Height of A');
         hold off
     end
     

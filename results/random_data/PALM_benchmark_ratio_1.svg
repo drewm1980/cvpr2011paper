@@ -131,13 +131,23 @@
 <g id="ID000005" >
   <g transform="translate(253.704,47.558)">
     <g transform="rotate(-0.0)">
-      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Average runtime - tolerance 0.0001 ratio 1</text>
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Tolerance 0.0001 ratio 1</text>
     </g>
   </g>
 </g>
 <g id="ID000006" >
+  <g transform="translate(109.449,183.481)">
+    <g transform="rotate(-90.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Average runtime (s)</text>
+    </g>
+  </g>
 </g>
 <g id="ID000007" >
+  <g transform="translate(252.706,340.448)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Height of A</text>
+    </g>
+  </g>
 </g>
     </g>
     <g>
@@ -360,13 +370,23 @@
 <g id="ID000013" >
   <g transform="translate(556.464,47.558)">
     <g transform="rotate(-0.0)">
-      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Average L2 error - tolerance 0.0001 ratio 1</text>
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Tolerance 0.0001 ratio 1</text>
     </g>
   </g>
 </g>
 <g id="ID000014" >
+  <g transform="translate(412.584,183.481)">
+    <g transform="rotate(-90.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Average L2 error</text>
+    </g>
+  </g>
 </g>
 <g id="ID000015" >
+  <g transform="translate(556.464,340.448)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Height of A</text>
+    </g>
+  </g>
 </g>
     </g>
     <g>
@@ -566,13 +586,23 @@
 <g id="ID000021" >
   <g transform="translate(860.226,47.558)">
     <g transform="rotate(-0.0)">
-      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Average iterations - tolerance 0.0001 ratio 1</text>
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Tolerance 0.0001 ratio 1</text>
     </g>
   </g>
 </g>
 <g id="ID000022" >
+  <g transform="translate(704.990,183.481)">
+    <g transform="rotate(-90.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Average iterations</text>
+    </g>
+  </g>
 </g>
 <g id="ID000023" >
+  <g transform="translate(859.228,340.448)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Height of A</text>
+    </g>
+  </g>
 </g>
     </g>
     <g>
@@ -788,13 +818,23 @@
 <g id="ID000029" >
   <g transform="translate(253.704,398.671)">
     <g transform="rotate(-0.0)">
-      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Average runtime - tolerance 1e-05 ratio 1</text>
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Tolerance 1e-05 ratio 1</text>
     </g>
   </g>
 </g>
 <g id="ID000030" >
+  <g transform="translate(109.449,534.594)">
+    <g transform="rotate(-90.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Average runtime (s)</text>
+    </g>
+  </g>
 </g>
 <g id="ID000031" >
+  <g transform="translate(252.706,691.562)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Height of A</text>
+    </g>
+  </g>
 </g>
     </g>
     <g>
@@ -1017,13 +1057,23 @@
 <g id="ID000037" >
   <g transform="translate(556.464,398.671)">
     <g transform="rotate(-0.0)">
-      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Average L2 error - tolerance 1e-05 ratio 1</text>
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Tolerance 1e-05 ratio 1</text>
     </g>
   </g>
 </g>
 <g id="ID000038" >
+  <g transform="translate(412.584,534.594)">
+    <g transform="rotate(-90.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Average L2 error</text>
+    </g>
+  </g>
 </g>
 <g id="ID000039" >
+  <g transform="translate(556.464,691.562)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Height of A</text>
+    </g>
+  </g>
 </g>
     </g>
     <g>
@@ -1265,13 +1315,23 @@
 <g id="ID000045" >
   <g transform="translate(860.226,398.671)">
     <g transform="rotate(-0.0)">
-      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Average iterations - tolerance 1e-05 ratio 1</text>
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Tolerance 1e-05 ratio 1</text>
     </g>
   </g>
 </g>
 <g id="ID000046" >
+  <g transform="translate(704.990,534.594)">
+    <g transform="rotate(-90.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Average iterations</text>
+    </g>
+  </g>
 </g>
 <g id="ID000047" >
+  <g transform="translate(859.228,691.562)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Height of A</text>
+    </g>
+  </g>
 </g>
     </g>
     <g>
