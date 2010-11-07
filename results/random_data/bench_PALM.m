@@ -49,6 +49,10 @@ for i=ratio
         xlabel('Height of A');
         hold off
         
+        if j == 1
+            legend('GPU', 'CPU', 'BLAS');
+        end
+        
         subplot(numel(tols), 3, (j-1)*3+2);
         plotA = gpuData.averageL2error(j,j,:,2);
         plotB = cpuData.averageL2error(j,j,:,1);
