@@ -154,7 +154,7 @@ in terms of both computation cost and memory-bandwidth.
 Therefore, assuming the iterative solver always takes a constant number of iterations,
 the computational complexity of the overall algorithm is linear in the problem size.
 
-\section{Efficient Implementation on the CPU}
+\section{CPU Implementation}
 % With a reshuffling of the order of operations and a change of the termination
 % condition, the inner loop takes the form of two matrix-vector multiplications
 % and a sequence of vector-vector operations.
@@ -180,7 +180,7 @@ For Manually multi-threaded MKL sgemv, Code took  0.0061276 msec per instance to
 
 ...Block the computation into work for different cpu cores
 
-\section{Efficient Implementation on the CPU}
+\section{GPU Implementation}
 \subsection{GPU Hardware Parallelism}
 High-level description of GPU parallelism, i.e.
 
