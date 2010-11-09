@@ -115,6 +115,24 @@ both the current representation coefficients, as well as an update to the transf
 \section{Characteristics of the ALM Algorithm}
 Describe the two variants of the ALM algorithm
 
+The augmented lagrange multiplier (ALM) method utilizes a popular class of convex techniques, the lagrange multiplier, solving the problem:
+\begin{equation}
+F(x) = f(x) + \lambda g(x).
+\end{equation}
+
+Because the optimal lagrange multiplier values are not known, ALM iterates between estimating the solution and the lagrange multipier values.
+
+In order to solve the recognition stage, we consider the $l_1$ problem:
+\begin{equation}
+\min_{\x, \e} \|\x\|_1 \quad \subj \quad \bb = A \x + \e.
+\end{equation}
+which can be formulated as
+\begin{equation}
+L_u(x,y) = \|x\|_1 + <\y, \b - A\x - \e> + \frac{\mu}2 \| \b-A\x-\e \|_2^2
+\end{equation}
+
+where $\mu > 0$ is a constant that penalizes infeasibility and $y$ is a vector of lagrange multipliers.
+
 We summarize the entire ALM
 algorithm as Algorithm~\ref{alg:alm}, where $\gamma$ denotes the
 largest eigenvalue of the matrix $A^TA$. For the choice of parameter $\mu$, we take the same strategy as
@@ -137,7 +155,11 @@ $\x_1 = \mathbf{0}$, $\blamda_1 = \mathbf{0}$.
 \label{alg:alm}
 \end{algorithm}
 
-
+In order to solve the alignment stage before recognition, we consider the $l_1$ problem: 
+\begin{equation}
+\min_{\x, \e} \|\e\|_1 \quad \subj \quad \bb = A \x + \e.
+\end{equation}
+which is solved in a similar fashion.
 
 We need to define the following soft-thresholding operator for a
 scalar $x$ and a scalar $\alpha \geq 0$:
@@ -201,9 +223,18 @@ How to solve multiple instances in smaller batches without losing concurrency, u
 \section{Benchmarks on Synthetic Data}
 \subsection{PALM L1 minimization benchmark}
 
+In this section, we benchmark the performance of MATLAB, BLAS MKL, and GPU Cuda implementations of the Primal ALM algorithm on synthetic data to find the point at which the GPU version runs faster than CPU versions.
+To simply the benchmark, we cap the number of inner iterations at 50 and outer iterations at 5000 and run the algorithm to convergence.
+CPU code was run on an Intel Dual Socket Quad Core with 8 gigs of DDR3 RAM.  GPU code was run on a GTX480
+We ran the A matrix with different ratios between m:n from 10:1:5 for m:2000:25:8000 with an x vector of 10 percent sparsity.  Tolerance levels were empirically seen to allow best performance with the inner loop tolerance set at one order of magnitude lower than the outer loop tolerance.
+
+For figures ...
+
+As the dimensions of A increase, so does the significance of the size of AtA.  Until the A and AtA matrix reach x Mb, the CPU version runs faster than the GPU.  
+
 Optimization:
 \begin{equation}
-\min_{\x, \e} \|\e\|_1 \quad \subj \quad \bb = A \x + \e.
+\min_{\x, \e} \|\x\|_1 \quad \subj \quad \bb = A \x + \e.
 \end{equation}
 
 $A$ is $m \times n$
