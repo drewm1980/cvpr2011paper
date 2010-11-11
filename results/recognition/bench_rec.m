@@ -2,7 +2,7 @@ function rtn = bench_rec()
 
 type = 'PALM';
 tols = [1e-3 1e-4 1e-5];
-tol_ints = [1e-3 1e-4 1e-5 1e-6];
+tol_ints = [1e-4 1e-5 1e-6];
 
 h = figure;
 
@@ -26,48 +26,46 @@ for size=sizes
     
     blasData = load(blasName);
     
-    gpuNumUsers = gpuData.numUsers(gpuData.numUsers < 50);
+    gpuNumUsers = gpuData.numUsers(gpuData.numUsers < 240);
     gpuNUlen    = numel(gpuNumUsers);
-    cpuNumUsers = cpuData.numUsers(cpuData.numUsers < 50);
+    cpuNumUsers = cpuData.numUsers(cpuData.numUsers < 240);
     cpuNUlen    = numel(cpuNumUsers);
-    blasNumUsers = blasData.numUsers(blasData.numUsers < 50);
+    blasNumUsers = blasData.numUsers(blasData.numUsers < 240);
     blasNUlen    = numel(blasNumUsers);
     
     for j=1:numel(tols)
+        k = j;
         
         plotNum = 1;
         
-        for k = 1:numel(tol_ints);
-            
-            subplot(numel(tol_ints), 2, plotNum);
-            plotA = gpuData.averageRunTime(j,k,:,2,2);
-            plotB = cpuData.averageRunTime(j,k,:,1,2);
-            plotC = blasData.averageRunTime(j,k,:,3,2);
-            plot(gpuNumUsers, squeeze(plotA(1:gpuNUlen)), 'bx-');
-            hold on
-            plot(cpuNumUsers, squeeze(plotB(1:cpuNUlen)), 'r+-');
-            plot(blasNumUsers, squeeze(plotC(1:blasNUlen)), 'g+-');
-            title(['Outer tolerance: ' num2str(tols(j)) '   inner tolerance: ' num2str(tol_ints(k))]);
-            ylabel('Average runtime (s)');
-            xlabel('Number of Users');
-            hold off
-            
-            subplot(numel(tol_ints), 2, plotNum+1);
-            plotA = gpuData.averageIteration(j,k,:,2);
-            plotB = cpuData.averageIteration(j,k,:,1);
-            plotC = blasData.averageIteration(j,k,:,3);
-            plot(gpuNumUsers, squeeze(plotA(1:gpuNUlen)), 'bx-');
-            hold on
-            plot(cpuNumUsers, squeeze(plotB(1:cpuNUlen)), 'r+-');
-            plot(blasNumUsers, squeeze(plotC(1:blasNUlen)), 'g+-');
-            title(['Outer tolerance: ' num2str(tols(j)) '   inner tolerance: ' num2str(tol_ints(k))]);
-            ylabel('Average iterations');
-            xlabel('Number of Users');
-            hold off
-            
-            plotNum = plotNum + 2;
-        end
+        subplot(1, 2, 1);
+        plotA = gpuData.averageRunTime(j,k,:,2,2);
+        plotB = cpuData.averageRunTime(j,k,:,1,2);
+        plotC = blasData.averageRunTime(j,k,:,3,2);
+        plot(gpuNumUsers, squeeze(plotA(1:gpuNUlen)), 'bx-');
+        hold on
+        plot(cpuNumUsers, squeeze(plotB(1:cpuNUlen)), 'r+-');
+        plot(blasNumUsers, squeeze(plotC(1:blasNUlen)), 'g+-');
+        title(['Outer tolerance: ' num2str(tols(j)) '   inner tolerance: ' num2str(tol_ints(k))]);
+        ylabel('Average runtime (s)');
+        xlabel('Number of Users');
+        hold off
         
+        legend('GPU', 'CPU', 'BLAS');
+        
+        subplot(1, 2, 2);
+        plotA = gpuData.averageIteration(j,k,:,2);
+        plotB = cpuData.averageIteration(j,k,:,1);
+        plotC = blasData.averageIteration(j,k,:,3);
+        plot(gpuNumUsers, squeeze(plotA(1:gpuNUlen)), 'bx-');
+        hold on
+        plot(cpuNumUsers, squeeze(plotB(1:cpuNUlen)), 'r+-');
+        plot(blasNumUsers, squeeze(plotC(1:blasNUlen)), 'g+-');
+        title(['Outer tolerance: ' num2str(tols(j)) '   inner tolerance: ' num2str(tol_ints(k))]);
+        ylabel('Average iterations');
+        xlabel('Number of Users');
+        hold off
+                
         set (gcf,'windowstyle','normal');               %   Window must be undocked for the following
         set (gcf,'Units','Inches');                     %   Using units of inches
         pos=get(gcf,'position');                        %   Save position values
