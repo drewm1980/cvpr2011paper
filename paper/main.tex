@@ -228,7 +228,13 @@ To simply the benchmark, we cap the number of inner iterations at 50 and outer i
 CPU code was run on an Intel Dual Socket Quad Core with 8 gigs of DDR3 RAM.  GPU code was run on a GTX480
 We ran the A matrix with different ratios between m:n from 10:1:5 for m:2000:25:8000 with an x vector of 10 percent sparsity.  Tolerance levels were empirically seen to allow best performance with the inner loop tolerance set at one order of magnitude lower than the outer loop tolerance.
 
-For figures ...
+%An example of image inclusion for Victor:
+\begin{figure}
+\centering
+\includegraphics[width=3.5in]{figures/PALM_benchmark_ratio_1.png}
+\caption{This is where the caption goes.}
+\label{fig:uniqueidentifierforthisimage}
+\end{figure}
 
 As the dimensions of A increase, so does the significance of the size of AtA.  Until the A and AtA matrix reach x Mb, the CPU version runs faster than the GPU.  
 
