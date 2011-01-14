@@ -128,7 +128,7 @@ In order to solve the recognition stage, we consider the $l_1$ problem:
 \end{equation}
 which can be formulated as
 \begin{equation}
-L_u(x,y) = \|x\|_1 + <\y, \b - A\x - \e> + \frac{\mu}2 \| \b-A\x-\e \|_2^2
+L_u(x,y) = \|x\|_1 + <\y, b - A\x - \e> + \frac{\mu}2 \| b-A\x-\e \|_2^2
 \end{equation}
 
 where $\mu > 0$ is a constant that penalizes infeasibility and $y$ is a vector of lagrange multipliers.
@@ -206,10 +206,24 @@ For Manually multi-threaded MKL sgemv, Code took  0.0061276 msec per instance to
 \subsection{GPU Hardware Parallelism}
 High-level description of GPU parallelism, i.e.
 
+The ALM algorithm requires many matrix-vector operations, this gives manycore processors such as GPUs a computational advantage for large problem sizes.  
+GPUs are comprised of several streaming multiprocessors, which contain 32 floating-point units.  The GPU executes programs as SIMT (Single Instruction Multiple Threads) in groups of 32 threads called warps.  These warps are then grouped into higher levels called thread blocks and grids.  The improvement in speed comes from the memory structure of the GPU.   The GPU contains an inverted memory hierarchy so that the L2 cache stays close to the cores, providing the increase in performance.  It essentially turns the GPU from being memory-limited to computational-limited.
+GPU memory also differs from CPU memory in that it requires data transfers over PCI-Express.  The cost of these transfers are amortized by doing large amounts of computation at once, requiring code to be run completely on the GPU.  The GPU can be analogous to a multi-core CPU processor, except with more sophisticated vector processing hardware.  Each streaming multiprocessor is analogous to a single CPU except that it can run multiple threads simultaneously... 
+
+
+%You should give a brief (1-2 paragraphs) overview of the GPU architecture -- most people have heard of GPUs and what they can do by now, so it isn't worth spending a whole lot of space in the paper describing it.
+
+%You should define the levels of the Cuda thread and memory hierarchies: i.e. warps, thread blocks, grids and register file, shared memory, global memory. Also mention that the GPU memories are all distinct from the CPU memories, and data transfers go over PCI-Express -- but the cost of those transfers are amortized by doing lots of work (i.e. solving an l1 minimization after transferring the matrix once). It is worth spending a little space describing how the GPU is a multi-core processor (just like the CPUs), but with much more sophisticated vector processing hardware. That is: on a Fermi there are 15 cores, and each one has two 16-wide vector floating-point units.
+
+%The GPU-algorithm is the same as the CPU algorithm: primary- and dual- ALM methods. The implementations differ in that you have to parallelize the GPU code at an additional level, and you can't use the GPU's caches to communicate between cores (only within a core). On the CPU, you only need to parallelize for the 4 or 8 cores -- and perhaps add SSE instructions when possible (usually this is inside of the BLAS library) -- any communication between cores happens implicitly via cache coherence. For the GPU, you need to parallelize for the 15 cores, but also for the 32-way SIMD parallelism of Warps. Any intra-core communication happens via the cache (aka scratchpad, or __shared__ memory) and within-block barriers (i.e. __syncthreads()), and any inter-core communication happens via the GPU's DRAM and the implicit barriers between grid launches.
+
+
 cuda cores, SIMD width, scheduling restrictions, bandwidth
 \subsection{Solving a Single L1 minimization}
 This section is about Victor's CUBLAS implementations.
 Plot Solver Bandwidth in GB/s vs. Problem size in MB
+
+The GPU ALM algorithm is written in CUDA and utilizes the CUBLAS libraries.  The algorithm is the same as the CPU algorithm except that we had to parallelize the GPU at an additional level.  The CPU portion of the code acts as a conductor, making calls to GPU functions in C, while the GPU portion does the computation.
 
 \subsection{Solving multiple L1 minimizations in parallel}
 This section is about Drew's kernels for solving multiple L1 minimizations in parllel
@@ -229,12 +243,12 @@ CPU code was run on an Intel Dual Socket Quad Core with 8 gigs of DDR3 RAM.  GPU
 We ran the A matrix with different ratios between m:n from 10:1:5 for m:2000:25:8000 with an x vector of 10 percent sparsity.  Tolerance levels were empirically seen to allow best performance with the inner loop tolerance set at one order of magnitude lower than the outer loop tolerance.
 
 %An example of image inclusion for Victor:
-\begin{figure}
+\begin{figure*}
 \centering
 \includegraphics[width=3.5in]{figures/PALM_benchmark_ratio_1.png}
 \caption{This is where the caption goes.}
 \label{fig:uniqueidentifierforthisimage}
-\end{figure}
+\end{figure*}
 
 As the dimensions of A increase, so does the significance of the size of AtA.  Until the A and AtA matrix reach x Mb, the CPU version runs faster than the GPU.  
 
