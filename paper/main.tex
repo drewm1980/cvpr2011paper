@@ -156,7 +156,7 @@ $\x_1 = \mathbf{0}$, $\blamda_1 = \mathbf{0}$.
 \end{algorithm}
 
 In order to solve the alignment stage before recognition, we consider the $l_1$ problem: 
-\begin{equation}
+\begin{equation} 
 \min_{\x, \e} \|\e\|_1 \quad \subj \quad \bb = A \x + \e.
 \end{equation}
 which is solved in a similar fashion.
@@ -169,12 +169,17 @@ scalar $x$ and a scalar $\alpha \geq 0$:
 In practice, this operator will be applied elementwise to a vector $\x$ with a single $\lambda$,
 and will be notated as $\textup{shrink}(\x,\alpha)$.
 
-Show Pseudocode for one variant
-\subsection{Computational Complexity}
+% Write about the general algorithm and then say they have to be adapted for the two problems.
+% Refer to book chapter
+
+Shown above is the general algorithm, which has been adapted for the two problems (alignment and recognition).  Refer to book...
+
+%Show Pseudocode for one variant
+%\subsection{Computational Complexity}
 The Matrix-vector computions are O($mn$), and the vector-vector operations are O($m$), 
-in terms of both computation cost and memory-bandwidth.
-Therefore, assuming the iterative solver always takes a constant number of iterations,
-the computational complexity of the overall algorithm is linear in the problem size.
+in terms of both computation cost and memory-bandwidth.  As A'A can be precomputed once, assuming the iterative solver always takes a constant number of iterations, the PALM algorithm has a computational complexity of O($mn+n^2$), where n < m.
+
+% Complexity of entire algorithm
 
 \section{CPU Implementation}
 % With a reshuffling of the order of operations and a change of the termination
@@ -207,45 +212,48 @@ For Manually multi-threaded MKL sgemv, Code took  0.0061276 msec per instance to
 High-level description of GPU parallelism, i.e.
 
 The ALM algorithm requires many matrix-vector operations, this gives manycore processors such as GPUs a computational advantage for large problem sizes.  
-GPUs are comprised of several streaming multiprocessors, which contain 32 floating-point units.  The GPU executes programs as SIMT (Single Instruction Multiple Threads) in groups of 32 threads called warps.  These warps are then grouped into higher levels called thread blocks and grids.  The improvement in speed comes from the memory structure of the GPU.   The GPU contains an inverted memory hierarchy so that the L2 cache stays close to the cores, providing the increase in performance.  It essentially turns the GPU from being memory-limited to computational-limited.
-GPU memory also differs from CPU memory in that it requires data transfers over PCI-Express.  The cost of these transfers are amortized by doing large amounts of computation at once, requiring code to be run completely on the GPU.  The GPU can be analogous to a multi-core CPU processor, except with more sophisticated vector processing hardware.  Each streaming multiprocessor is analogous to a single CPU except that it can run multiple threads simultaneously... 
+GPUs are comprised of several streaming multiprocessors, which contain 32 floating-point units.  The GPU executes programs as SIMT (Single Instruction Multiple Threads) in groups of 32 threads called warps.  These warps are then grouped into higher levels called thread blocks and grids.  The improvement in speed comes from the memory structure of the GPU.   The GPU contains an inverted memory hierarchy so that the L1 cache stays close to the cores, providing the increase in performance.  It essentially turns the GPU from being memory-limited to computational-limited.
+GPU memory also differs from CPU memory in that it requires data transfers over PCI-Express.  The cost of these transfers are amortized by doing large amounts of computation at once, requiring code to be run completely on the GPU.  The GPU can be analogous to a multi-core CPU processor, except with more sophisticated vector processing hardware.  Each streaming multiprocessor is analogous to a single CPU except that it can run multiple threads simultaneously.
+All of these differences allow GPUs to perform intensive calculations such as matrix-vector operations at much faster rates than CPUs.
 
 
 %You should give a brief (1-2 paragraphs) overview of the GPU architecture -- most people have heard of GPUs and what they can do by now, so it isn't worth spending a whole lot of space in the paper describing it.
 
-%You should define the levels of the Cuda thread and memory hierarchies: i.e. warps, thread blocks, grids and register file, shared memory, global memory. Also mention that the GPU memories are all distinct from the CPU memories, and data transfers go over PCI-Express -- but the cost of those transfers are amortized by doing lots of work (i.e. solving an l1 minimization after transferring the matrix once). It is worth spending a little space describing how the GPU is a multi-core processor (just like the CPUs), but with much more sophisticated vector processing hardware. That is: on a Fermi there are 15 cores, and each one has two 16-wide vector floating-point units.
+%You should define the levels of the Cuda thread and memory hierarchies: i.e. warps, thread blocks, grids and register file, shared memory, global memory. Also mention that the GPU memories are all distinct from the CPU memories, and data transfers go over PCI-Express -- but the cost of those transfers are amortized by doing lots of work (i.e. solving an $\ell_1$ minimization after transferring the matrix once). It is worth spending a little space describing how the GPU is a multi-core processor (just like the CPUs), but with much more sophisticated vector processing hardware. That is: on a Fermi there are 15 cores, and each one has two 16-wide vector floating-point units.
 
 %The GPU-algorithm is the same as the CPU algorithm: primary- and dual- ALM methods. The implementations differ in that you have to parallelize the GPU code at an additional level, and you can't use the GPU's caches to communicate between cores (only within a core). On the CPU, you only need to parallelize for the 4 or 8 cores -- and perhaps add SSE instructions when possible (usually this is inside of the BLAS library) -- any communication between cores happens implicitly via cache coherence. For the GPU, you need to parallelize for the 15 cores, but also for the 32-way SIMD parallelism of Warps. Any intra-core communication happens via the cache (aka scratchpad, or __shared__ memory) and within-block barriers (i.e. __syncthreads()), and any inter-core communication happens via the GPU's DRAM and the implicit barriers between grid launches.
 
 
 cuda cores, SIMD width, scheduling restrictions, bandwidth
-\subsection{Solving a Single L1 minimization}
-This section is about Victor's CUBLAS implementations.
-Plot Solver Bandwidth in GB/s vs. Problem size in MB
+\subsection{Solving a Single $\ell_1$ minimization}
 
-The GPU ALM algorithm is written in CUDA and utilizes the CUBLAS libraries.  The algorithm is similar to the CPU algorithm except that we had to parallelize the code at an additional level. The CPU portion of the code serves as the conductor, making calls to GPU functions and directing the flow of the code, while the GPU portion does all of the computation.
+The GPU ALM algorithm is written in CUDA and utilizes the CUBLAS libraries. CUBLAS are the BLAS libraries consisting of all single precision BLAS calls which are provided by Nvidia and are optimized for GPU performance. In addition, we coded kernel (GPU) methods for vector-vector operations to replace operations that would have taken multiple BLAS calls. The algorithm is similar to the CPU algorithm except that we had to parallelize the code at an additional level. The CPU portion of the code serves as the conductor, making calls to GPU functions and directing the flow of the code while the GPU portion does all of the actual computation.
 
-\subsection{Solving multiple L1 minimizations in parallel}
-This section is about Drew's kernels for solving multiple L1 minimizations in parllel
+\subsection{Solving multiple $\ell_1$ minimizations in parallel}
+This section is about Drew's kernels for solving multiple $\ell_1$ minimizations in parllel
 
-How to efficiently perform an L1 minimization on a single core, quote performance on a large batch.
+How to efficiently perform an $\ell_1$ minimization on a single core, quote performance on a large batch.
 
 How to solve multiple instances in smaller batches without losing concurrency, using CUDA streams.
 
 ...Mention effect of compiler verion on streams implementation
 
-\section{Benchmarks on Synthetic Data}
-\subsection{PALM L1 minimization benchmark}
+\section{Benchmarks}
 
-In this section, we benchmark the performance of MATLAB, BLAS MKL, and GPU Cuda implementations of the Primal ALM algorithm on synthetic data to find at which point the GPU implementation runs faster than CPU implementation.
-To simply the benchmark, we cap the number of inner iterations at 50 and outer iterations at 5000 and run the algorithm to convergence.
-CPU code was run on an Intel Dual Socket Quad Core with 8 gigs of DDR3 RAM.  GPU code was run on a GTX480
+In this section, we present __ sets of experiment to benchmark the performance of the PALM algorithm on CPU and GPU platforms. To generate a meaningful comparison between different hardware architectures, we compare on a per-board basis:  For CPU implementations, the benchmark makes use of as all of the cores in as many cpu's are present.  For GPU implementations, the benchmark makes the best use of the entire GPU chip (most GPU boards have a single GPU chip). Both implementations utilized single precision floating point datatypes and were verified to output results differing by no more than 10^-4.
+
+To construct the benchmark for synthetic data, we first created an mxn matrix A with entries \+- 1 each with a 50\% chance.  Then we created a sparse vector x0 with k\% nonzero random entries.  We also created a sparse vector yk with the same number of non-zero entries as x.  Let y0 = A*x0 + yk.  We timed the time taken for the ALM algorithm using y0, A, and other inputs.  The other inputs included, maximum number of inner/outer loop iterations, and inner/outer loop tolerance level.
+% give a discusison of how to construct the benchmark:
+% one paragraph for protocol on how to construct synthetic data
+% second P for protocol on how to construct the face data
+
+
+\subsection{PALM $\ell_1$ minimization benchmark on Synthetic Data}
+
+In this section, we benchmark the performance of MATLAB, BLAS MKL, and GPU CUDA implementations of the Primal ALM algorithm on synthetic data to find at which point the GPU implementation runs faster than CPU implementation.  To simply the benchmark, we cap the number of inner iterations at 50 and outer iterations at 5000 and run the algorithm to convergence.  CPU code was run on an Intel Dual Socket Quad Core with 8 gigs of DDR3 RAM.  GPU code was run on a GTX480
 We ran the A matrix with different ratios between m:n from 10:1:5 for m:2000:25:8000 with an x vector of 10 percent sparsity.  Tolerance levels were empirically seen to allow best performance with the inner loop tolerance set at one order of magnitude lower than the outer loop tolerance.
 
-To generate a meaningful comparison between different hardware
-architectures, we compare on a per-board basis:  For CPU implementations, the benchmark makes use of
-as all of the cores in as many cpu's are present.  For GPU implementations, the benchmark makes the best use
-of the entire GPU chip (most GPU boards have a single GPU chip).
+Results were plotted as total size of A and A'A vs Gb/s and size of A vs time elapsed to run a single $\ell_1$ solver.
 
 %An example of image inclusion for Victor:
 \begin{figure*}
@@ -255,172 +263,9 @@ of the entire GPU chip (most GPU boards have a single GPU chip).
 \label{fig:uniqueidentifierforthisimage}
 \end{figure*}
 
+% change picture to only include CPU/GPU not MATLAB
+
 As the dimensions of A increase, so does the significance of the size of AtA.  Until the A and AtA matrix reach x Mb, the CPU version runs faster than the GPU.  
-
-Optimization:
-\begin{equation}
-\min_{\x, \e} \|\x\|_1 \quad \subj \quad \bb = A \x + \e.
-\end{equation}
-
-$A$ is $m \times n$
-$m = 5120$
-$n = 32$
-
-One of these minimizations is performed per 
-alignment iteration in our face recognition pipeline.
-
-All of the following are implementations of primal ALM.
-Primal ALM contains outer and inner iterations.
-To simplify the benchmark, the number of outer iterations
-is clamped to 50, and the number of inner iterations is
-clamped to 50 iterations per outer loopsretrsitrsi.  Running with
-a convergence criterion will typically result in fewer
-iterations, depending on the data, so these numbers are
-for comparison across hardware, and may look worse than
-with other benchmarks on face data.
-
-Since different platforms may perform most efficiently when
-executing multiple L1 minimizations simultaneously,
-we quote the average time required to solve a single L1
-minimization problem instance.
-
-schur:  Mac Pro, dual socket, quad core, hyperthreading intel nehalem @ 2.66 GHz
-
-Nvidia GTX480: This is the current state of the art consumer card.  
-It is clocked slightly faster than the pro version of the card, so it 
-should have slightly faster single precision float performance. (double precision is crippled, though)
-GTX480 has 15 cores, each of which has 2x32-wide floating point pipelines.
-All Fermi GPU's have 768KB L2 cache.
-
-Zihan's OpenCV implementation: *** 190 ms per L1 minimization ***
-amortized over 16 instances,
-four of which run simultaneously.  Tuning note:  the cpus
-can support up to 16 logical threads, but 4 instances seem
-sufficient to saturate the memory architecture.  Using more
-than 5 instances results in lower performance, perhaps due
-to less efficient usage of the cpu caches.
-
-Zihan's MATLAB implementation: *** 60 ms per L1 minimization ***
-This is amortized over 100 sequential instances.  All 16 logical
-cores were used, i.e. showed 100% usage in htop.  Pararllelism
-is a result of MATLAB's usage of Intel's MKL, a parallel blas
-implementation. I believe performance is very high to
-efficient cache usage:
-
-The A matrix takes up 5120*32*8 bytes = 1.25 MB
-The two processors have 16MB L3 Cache in total.
-The two processors have 2MB L2 Cache in total.
-
-Drew's pure CUDA, single kernel implementation: *** 36 ms per L1 minimization ***
-This implementation performs L1 minimization on 60 instances of L1.
-They are all run as a single cuda kernel.  
-Each instance of L1 is mapped onto a cuda block. (tuned to 64 threads / block)
-This means that the GPU hardware will schedule the multiple instances to run
-on the (15 for GTX480) cuda cores as concurrently (15? 30?) as possible.  
-For this to work, all of the data has to be ready at the same time.
-
-Drew's pure CUDA, streams implementation: *** 70 ms per L1 minimization ***
-This implementation performs L1 minimization on 60 instances of L1.
-Each instance of L1 is mapped onto a cuda block. (tuned to 128 threads / block)
-Each instance is run in a separate single-block CUDA kernel.
-The 60 kernels are added to 15 cuda streams.
-The GPU (hardware? driver?) then runs the kernels, up to 15 concurrently.
-
-Victor's CUDA/cublas mixed implementation: *** 302 ms per L1 minimization ***
-This implementation makes use of hand-written kernels for vector-vector operations,
-and cublas for matrix-vector operations.  There are two implementations under development:
-1. Perform a single L1 minimization using the entire GPU.
-2. Use cuda streams to perform multiple L1 minimizations concurrently on the GPU.
-Benchmarked on Drew's GTX480
-
-Drew's OpenMP implementation: *** 200 ms per L1 minimization***
-Benchmarked on schur(Dual Socket Quad Core Nehalem), all compiler optimizations turned on.
-This divides the matrix operations into 8 chunks, each of which is handled by a thread
-on a different CPU core.  Fine-grained parallelism is achieved through SSE2 vector
-floating point operations.  This implementation should ultimately beat the MATLAB/MKL
-implementation, especially for small problem sizes, since the primary advantage
-over MKL is a reduction in the number of times image-sized temporary variables
-are written and read from memory. 
-
-Drew's Single-Threaded MKL implementation: *** 226 ms per L1 minimization ***
-Benchmarked on schur(Dual Socket Quad Core Nehalem), all compiler optimizations turned on.
-Uses MKL for single-threaded matrix-vector multiplies.  
-Saves ~almost as many writes of temporary vector variables as the previous OpenMP implementation.
-Shrinkage operator improved; at least with g++ there is now no branching or function call overhead.
-This implementation uses a single CPU core...
-... so if linear speedup can be achieved, could possibly get *** 28 ms per minimization ***
-
-
-
-
-%\begin{algorithm}[thb]
-%\caption{\bf (Deformable Sparse Recovery and Classification for
-%Face Recognition)} \label{alg:deformable-src}
-%\begin{algorithmic}[1]
-%\STATE {\bf Input:} Frontal training images $A_i \in \Re^{m\times n_i}, i=1,2,\ldots,K$ for $K$ subjects,  a test image
-%$\bb\in\Re^m$ and a deformation group $T$. 
-%\STATE
-%{\bf for} each subject $i$, 
-%\STATE \hspace{3mm} $\tau^{(0)}
-%\leftarrow I$. 
-%\STATE \hspace{3mm} {\bf while} not converged $(j=1,2,\ldots)$ {\bf do} 
-%\STATE \hspace{6mm}
-%$\tilde \bb(\tau) \leftarrow \frac{\bb \circ \tau}{\|\bb \circ
-%\tau\|_2}$; \;\;\; $J \leftarrow  \frac{\partial}{\partial
-%\tau} \tilde\bb(\tau)  \bigr|_{\tau^{(j)}} $;
-%%\STATE \hspace{6mm} $(\hat \x, \hat \e, \Delta \tau) \leftarrow \left\{\begin{array}{l} \arg \min_{\x,\e,\Delta \tau} \| \e \|_1 \\  \subj \; \bb + J \Delta \tau = A_k \x + \e \end{array}\right.$
-%\STATE \hspace{6mm} $ \Delta \tau =  \arg\min \; \| \e \|_1  \;
-%\subj \; \tilde \bb + J \Delta \tau = A_i \x + \e.$ 
-%\STATE
-%\hspace{6mm} $\tau^{(j+1)} \leftarrow \tau^{(j)} + \Delta
-%\tau$; 
-%\STATE \hspace{3mm} {\bf end while} \STATE {\bf end} \STATE Keep
-%the top $S$ candidates $k_1, \ldots, k_S$ with the smallest
-%residuals $\|\e\|_1$. \STATE Compute an average transformation
-%$\bar{\tau}$ from $\tau_{k_1}, \tau_{k_2}, \ldots, \tau_{k_S}$.
-%\STATE Update $\bb \leftarrow \bb \circ \bar{\tau}$ and $\tau_i
-%\leftarrow \tau_i \cdot \bar{\tau}^{-1}$ for $i = k_1, \dots,
-%k_S$. \STATE Set $A \leftarrow \big[ A_{k_1} \circ
-%\tau_{k_1}^{-1} \mid A_{k_2} \circ \tau_{k_2}^{-1} \mid \dots
-%\mid A_{k_S} \circ \tau_{k_S}^{-1} \big]$. \STATE Solve the
-%$\ell^1$-minimization problem:
-%$$\hat{\x} = \arg \min_{\x, \e} \| \x \|_1 + \|\e\|_1 \;\; \subj \;\; \bb = A \x + \e.$$
-%\STATE Compute residuals $r_i(\bb) = \| {\bb} - {A}_i \, \delta_i(\hat{\x}) \|_2$ for $i = k_1, \dots, k_S$.
-%\STATE {\bf Output:} $\mbox{identity}(\bb) = \arg\min_i r_i(\bb)$.
-%\end{algorithmic}
-%\end{algorithm}
-
-%We summarize the entire ALM
-%algorithm as Algorithm~\ref{alg:alm}, where $\gamma$ denotes the
-%largest eigenvalue of the matrix $A^TA$. For the choice of parameter $\mu$, we take the same strategy as
-%in \cite{YangJ2009-pp} and set $\mu = 2m / \|\bb\|_1$.
-%\begin{algorithm}[h]
-%\caption{\bf (Augmented Lagrange Multiplier Method for Global
-%Recognition)}
-%\begin{algorithmic}[1]
-%\STATE {\bf Input:} $\bb \in \Re^m$, $A \in \Re^{m \times n}$,
-%$\x_1 = \mathbf{0}$, $\e_1 = \bb$, $\blamda_1 =
-%\mathbf{0}$.
-%\WHILE{not converged ($k = 1,2,\ldots$)}
-%\STATE $\e_{k+1} = \textup{shrink}\left(\bb - A\x_k +
-%\frac{1}{\mu}\blamda_k, \frac{1}{\mu}\right)$;
-%\STATE $t_1\leftarrow 1$, $\z_1 \leftarrow \x_k$, $\w_1 \leftarrow \x_k$;
-%\WHILE{not converged ($l = 1,2,\ldots$)}
-%\STATE $\w_{l+1} \leftarrow \textup{shrink}\left(\z_l +
-%\frac{1}{\gamma}A^T\left(\bb - A\z_l - \e_{k+1} +
-%\frac{1}{\mu}\blamda_k\right), \frac{1}{\mu\gamma}\right)$;
-%\STATE $t_{l+1} \leftarrow \frac{1}{2}\left( 1 +
-%\sqrt{1+4t_l^2}\right)$;
-%\STATE $\z_{l+1} \leftarrow \w_{l+1} + \frac{t_l - 1}{t_{l+1}}(\w_{l+1} - \w_l)$;
-%\ENDWHILE
-%\STATE $\x_{k+1} \leftarrow \w_{l}$;
-%\STATE $\blamda_{k+1} \leftarrow \blamda_k + \mu (\bb - A\x_{k+1} - \e_{k+1})$;
-%\ENDWHILE \STATE
-%{\bf Output:} $\x^* \leftarrow \x_k, \e^* \leftarrow \e_k$.
-%\end{algorithmic}
-%\label{alg:alm}
-%\end{algorithm}
-
 
 \section{Conclusion}
 ...How lessons from this paper extend (or don't extend) to other similar problems in computer vision
