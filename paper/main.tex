@@ -72,7 +72,7 @@ case for many problems in computer vision.
 The techniques presented in this paper target these applications, as well
 as others where the dictionary is dense and unstructured. $A$ must be loaded every time
 it is used, and algorithm performance becomes highly dependent on memory bandwidth, rather
-that arithmetic logic.
+than arithmetic logic.
 
 % Narrow focus for applications to Recognition Application
 The primary motivating application for this paper is face recognition for access control applications.
@@ -113,28 +113,35 @@ both the current representation coefficients, as well as an update to the transf
 \subsection{Contributions of the paper}
 
 \section{Characteristics of the ALM Algorithm}
-Describe the two variants of the ALM algorithm
+%Describe the two variants of the ALM algorithm
 
-The augmented lagrange multiplier (ALM) method utilizes a popular class of convex techniques, the lagrange multiplier, solving the problem:
+%The augmented lagrange multiplier (ALM) method utilizes a popular class of convex techniques, the lagrange multiplier, solving the problem:
+%\begin{equation}
+%F(x) = f(x) + \lambda g(x).
+%\end{equation}
+
+%Because the optimal lagrange multiplier values are not known, ALM iterates between estimating the solution and the lagrange multipier values.
+
+%In order to solve the recognition stage, we consider the $l_1$ problem:
+%\begin{equation}
+%\min_{\x, \e} \|\x\|_1 \quad \subj \quad \bb = A \x + \e.
+%\end{equation}
+%which can be formulated as
+%\begin{equation}
+%L_u(x,y) = \|x\|_1 + <\y, b - A\x - \e> + \frac{\mu}2 \| b-A\x-\e \|_2^2
+%\end{equation}
+
+%where $\mu > 0$ is a constant that penalizes infeasibility and $y$ is a vector of lagrange multipliers.
+
+We define the following soft-thresholding operator for a
+scalar $x$ and a scalar $\alpha \geq 0$:
 \begin{equation}
-F(x) = f(x) + \lambda g(x).
+\textup{shrink}(x,\alpha) = \textup{sign}(x)\cdot \max \{|x| - \alpha, 0\},
 \end{equation}
+In practice, this operator will be applied elementwise to a vector $\x$ with a single $\lambda$,
+and will be notated as $\textup{shrink}(\x,\alpha)$.
 
-Because the optimal lagrange multiplier values are not known, ALM iterates between estimating the solution and the lagrange multipier values.
-
-In order to solve the recognition stage, we consider the $l_1$ problem:
-\begin{equation}
-\min_{\x, \e} \|\x\|_1 \quad \subj \quad \bb = A \x + \e.
-\end{equation}
-which can be formulated as
-\begin{equation}
-L_u(x,y) = \|x\|_1 + <\y, b - A\x - \e> + \frac{\mu}2 \| b-A\x-\e \|_2^2
-\end{equation}
-
-where $\mu > 0$ is a constant that penalizes infeasibility and $y$ is a vector of lagrange multipliers.
-
-We summarize the entire ALM
-algorithm as Algorithm~\ref{alg:alm}, where $\gamma$ denotes the
+We summarize the ALM algorithm as Algorithm~\ref{alg:alm}, where $\gamma$ denotes the
 largest eigenvalue of the matrix $A^TA$. For the choice of parameter $\mu$, we take the same strategy as
 in \cite{YangJ2009-pp} and set $\mu_0 = 2m / \|\bb\|_1$. We set $\rho=1.5$.
 \begin{algorithm}[h]
@@ -155,31 +162,20 @@ $\x_1 = \mathbf{0}$, $\blamda_1 = \mathbf{0}$.
 \label{alg:alm}
 \end{algorithm}
 
-In order to solve the alignment stage before recognition, we consider the $l_1$ problem: 
-\begin{equation} 
-\min_{\x, \e} \|\e\|_1 \quad \subj \quad \bb = A \x + \e.
-\end{equation}
-which is solved in a similar fashion.
+\subsection{Computational Complexity}
+Any discussion of the speed of an algorithm should discuss the comutational complexity of the algorithm.  For the ALM
+algorithms considered in this paper, this is rather simple.
+The Matrix-vector computions are $O(mn)$, and the vector-vector operations are $O(m)$, 
+in terms of both computation cost and memory-bandwidth.  Since A is very tall, 
+the computation of $A^\dagger$, the pseudoinverse of $A$, is best computed via $A^\dagger = (A^TA)^-1 A^T$.
+The complexity of computing $G = A^T A$ is $O(n*n*m)$.  $G$ is sufficiently small that it can be inverted via
+Gauss-Jordan elimination, which has a complexity of $O(n^3)$.  The computation of $A$ finishes with a matrix
+multiplication, with cost $O(n^2 m)$.
+Fortunately, $A^\dagger$ only needs to be computed once per instance of the $\ell_1$ minimization problem.
 
-We need to define the following soft-thresholding operator for a
-scalar $x$ and a scalar $\alpha \geq 0$:
-\begin{equation}
-\textup{shrink}(x,\alpha) = \textup{sign}(x)\cdot \max \{|x| - \alpha, 0\},
-\end{equation}
-In practice, this operator will be applied elementwise to a vector $\x$ with a single $\lambda$,
-and will be notated as $\textup{shrink}(\x,\alpha)$.
-
-% Write about the general algorithm and then say they have to be adapted for the two problems.
-% Refer to book chapter
-
-Shown above is the general algorithm, which has been adapted for the two problems (alignment and recognition).  Refer to book...
-
-%Show Pseudocode for one variant
-%\subsection{Computational Complexity}
-The Matrix-vector computions are O($mn$), and the vector-vector operations are O($m$), 
-in terms of both computation cost and memory-bandwidth.  As A'A can be precomputed once, assuming the iterative solver always takes a constant number of iterations, the PALM algorithm has a computational complexity of O($mn+n^2$), where n < m.
-
-% Complexity of entire algorithm
+Therefore, for problems with large $n$, we expect the computation of the pseudoinverse to dominate.  However,
+for the problem sizes needed in face recognition problems, we find that the computation time is dominated
+by the repeated computation of matrix-vector and matrix-matrix multiplications in the inner loop.
 
 \section{CPU Implementation}
 % With a reshuffling of the order of operations and a change of the termination
@@ -237,25 +233,28 @@ additional level. The CPU portion of the code serves as the conductor, making
 calls to GPU functions and directing the flow of the code while the GPU portion
 does all of the actual computation.
 
-\subsection{Solving multiple $\ell_1$ minimizations in parallel}
-This section is about Drew's kernels for solving multiple $\ell_1$ minimizations in parllel
 
-How to efficiently perform an $\ell_1$ minimization on a single core, quote performance on a large batch.
 
-How to solve multiple instances in smaller batches without losing concurrency, using CUDA streams.
+\section{Benchmarks on a Single Large $\ell_1$ Problem}
 
-...Mention effect of compiler verion on streams implementation
+In this section, we present $2$ sets of experiment to benchmark the performance
+of the PALM algorithm on CPU and GPU platforms. 
+The first set of experiments will compare implementations that solve a single
+large instance of an $ell_1$ minimization problem.  
+The second set of experiments will compare implementations that must solve
+many instances of $\ell_1$ minimization.  
 
-\section{Benchmarks}
+To generate a meaningful comparison between different hardware architectures,
+in all cases we compare the performance of hardware architectures on a
+per-board basis:  For CPU implementations, the benchmark makes use of all of
+the cores in as many cpu's are present.  For GPU implementations, the benchmark
+makes the best use of the entire GPU chip (most GPU boards have a single GPU
+chip). 
 
-In this section, we present INSERTNUMBERHERE sets of experiment to benchmark the performance
-of the PALM algorithm on CPU and GPU platforms. To generate a meaningful
-comparison between different hardware architectures, we compare on a per-board
-basis:  For CPU implementations, the benchmark makes use of as all of the cores
-in as many cpu's are present.  For GPU implementations, the benchmark makes the
-best use of the entire GPU chip (most GPU boards have a single GPU chip). Both
-implementations utilized single precision floating point datatypes and were
-verified to output results differing by no more than $10^{-4}$.
+Unless otherwise specified, all implementations utilize single precision
+floating point datatypes.
+% and were verified to output results differing by no
+%more than $10^{-4}$.
 
 To construct the benchmark for synthetic data, we first created an $m \times n$
 matrix $A$ with entries $\pm 1$ each with a $50\%$ chance.  Then we created a
@@ -297,10 +296,22 @@ elapsed to run a single $\ell_1$ solver.
 
 As the dimensions of A increase, so does the significance of the size of AtA.  Until the A and AtA matrix reach x Mb, the CPU version runs faster than the GPU.  
 
+\section{Benchmarks on Solving Many $\ell_1$ Problems Concurrently}
+
+%This section is about Drew's kernels for solving multiple $\ell_1$ minimizations in parllel
+
+%How to efficiently perform an $\ell_1$ minimization on a single core, quote performance on a large batch.
+
+%How to solve multiple instances in smaller batches without losing concurrency, using CUDA streams.
+
+%...Mention effect of compiler verion on streams implementation
+
 \section{Conclusion}
 ...How lessons from this paper extend (or don't extend) to other similar problems in computer vision
 
 ...Reiterate how the appropriate hardware choice depends on the problem size.
+
+
 
 {\small
 \bibliographystyle{../authorkit/ieee}
