@@ -162,6 +162,10 @@ $\x_1 = \mathbf{0}$, $\blamda_1 = \mathbf{0}$.
 \label{alg:alm}
 \end{algorithm}
 
+% With a reshuffling of the order of operations and a change of the termination
+% condition, the inner loop takes the form of two matrix-vector multiplications
+% and a sequence of vector-vector operations.
+
 \subsection{Computational Complexity}
 Any discussion of the speed of an algorithm should discuss the comutational complexity of the algorithm.  For the ALM
 algorithms considered in this paper, this is rather simple.
@@ -178,30 +182,44 @@ for the problem sizes needed in face recognition problems, we find that the comp
 by the repeated computation of matrix-vector and matrix-matrix multiplications in the inner loop.
 
 \section{CPU Implementation}
-% With a reshuffling of the order of operations and a change of the termination
-% condition, the inner loop takes the form of two matrix-vector multiplications
-% and a sequence of vector-vector operations.
 \subsection{CPU Hardware Parallelism}
-High-level discussion of CPU parallelism, i.e.
-thread-level, vector-level, cache size, cache locality
-\subsection{Tuning the GEMV operation}
-When matrix-vector operations are called sequentially on the same data,
-the operation can be blocked so that each thread operates on the same block of data for each operation.
+The baseline architecture for our experiments is 
+a typical high end workstation with two quad-core Intel Nehalem E5530 processors clocked at 2.4 GHz.
+Each processor has its own memory interface, and is directly connected to half of the
+RAM installed in the machine.  The amount of RAM installed exceeds the amount used
+by the algorithms, and is not an important performance consideration.  
 
-For Single threaded MKL sgemv, Code took          0.0335823 msec per instance to run!
+Each core has a 32 KB L1 data cache and a 256 KB L2 cache. With Hyperthreading enabled, each core can
+support two threads simultaneously.  For floating point math, each core also has a vector unit capable of
+performing the same arithmetic operation on 4 single precision floating point values simultaneously.
+\footnote{The core also has scalar floating point units, but some compilers, notably gcc, generate
+code that uses the vector units exclusively for floating point math.} 
 
-For Automatic multi-threaded MKL sgemv, Code took 0.008179 msec per instance to run!
+There are thus two important levels of parallelism that need to be exploited to use
+a modern cpu efficiently: core-level parallelism and vector-level parallelism.
+For the implementations discussed here, we will primarily use the OpenMP programming model 
+to express core-level parallelism.  Depending on the section of the code, we will achieve vector-level parallelism 
+implicitly through either the auto-vectorization features of Intel's icc compiler, 
+or through the use of a highly optimized BLAS library (Intel's MKL).
 
-For Manually multi-threaded MKL sgemv, Code took  0.0061276 msec per instance to run!
+Each processor has 8MB of L3 cache that is shared by all 4 cores.
+Overall, this means the algorithm has approximately 16MB of on-chip cache available.  
+For the low resolution images used in sparse representation based face recognition,
+this is enough cache to hold over 800 image-sized variables, meaning that for small data sets
+it is possible to run completely using on-chip cache.
 
-\subsection{Tuning the Soft-Thresholding Operator}
-...Make sure there are no branches
+%\subsection{Tuning the GEMV operation}
+%When matrix-vector operations are called sequentially on the same data,
+%the operation can be blocked so that each thread operates on the same block of data for each operation.
+%For Single threaded MKL sgemv, Code took          0.0335823 msec per instance to run!
+%For Automatic multi-threaded MKL sgemv, Code took 0.008179 msec per instance to run!
+%For Manually multi-threaded MKL sgemv, Code took  0.0061276 msec per instance to run!
 
-...Make sure there are no function calls
-
-...Make sure the loop gets automatically vectorized
-
-...Block the computation into work for different cpu cores
+%\subsection{Tuning the Soft-Thresholding Operator}
+%...Make sure there are no branches
+%...Make sure there are no function calls
+%...Make sure the loop gets automatically vectorized
+%...Block the computation into work for different cpu cores
 
 \section{GPU Implementation}
 \subsection{GPU Hardware Parallelism}
