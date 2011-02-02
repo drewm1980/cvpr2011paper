@@ -166,48 +166,127 @@ $\x_1 = \mathbf{0}$, $\blamda_1 = \mathbf{0}$.
 % condition, the inner loop takes the form of two matrix-vector multiplications
 % and a sequence of vector-vector operations.
 
-\subsection{Computational Complexity}
-Any discussion of the speed of an algorithm should discuss the comutational complexity of the algorithm.  For the ALM
-algorithms considered in this paper, this is rather simple.
-The Matrix-vector computions are $O(mn)$, and the vector-vector operations are $O(m)$, 
-in terms of both computation cost and memory-bandwidth.  Since A is very tall, 
-the computation of $A^\dagger$, the pseudoinverse of $A$, is best computed via $A^\dagger = (A^TA)^-1 A^T$.
-The complexity of computing $G = A^T A$ is $O(n*n*m)$.  $G$ is sufficiently small that it can be inverted via
-Gauss-Jordan elimination, which has a complexity of $O(n^3)$.  The computation of $A$ finishes with a matrix
-multiplication, with cost $O(n^2 m)$.
-Fortunately, $A^\dagger$ only needs to be computed once per instance of the $\ell_1$ minimization problem.
+\subsection{Computational Complexity} Any discussion of the speed of an
+algorithm should discuss the comutational complexity of the algorithm.  For the
+ALM algorithms considered in this paper, this is rather simple.  The
+Matrix-vector computions are $O(mn)$, and the vector-vector operations are
+$O(m)$, in terms of both computation cost and memory-bandwidth.  Since A is
+very tall, the computation of $A^\dagger$, the pseudoinverse of $A$, is best
+computed via $A^\dagger = (A^TA)^{-1} A^T$.  The complexity of computing $G =
+A^T A$ is $O(nnm)$.  $G$ is sufficiently small that it can be inverted via
+Gauss-Jordan elimination, which has a complexity of $O(n^3)$.  The computation
+of $A$ finishes with a matrix multiplication, with cost $O(n^2 m)$.
+Fortunately, $A^\dagger$ only needs to be computed once per instance of the
+$\ell_1$ minimization problem.
 
-Therefore, for problems with large $n$, we expect the computation of the pseudoinverse to dominate.  However,
-for the problem sizes needed in face recognition problems, we find that the computation time is dominated
-by the repeated computation of matrix-vector and matrix-matrix multiplications in the inner loop.
+Therefore, for problems with large $n$, we expect the computation of the
+pseudoinverse to dominate.  However, for the problem sizes needed in face
+recognition problems, we find that the computation time is dominated by the
+repeated computation of matrix-vector and matrix-matrix multiplications in the
+inner loop.
 
-\section{CPU Implementation}
-\subsection{CPU Hardware Parallelism}
-The baseline architecture for our experiments is 
-a typical high end workstation with two quad-core Intel Nehalem E5530 processors clocked at 2.4 GHz.
-Each processor has its own memory interface, and is directly connected to half of the
-RAM installed in the machine.  The amount of RAM installed exceeds the amount used
-by the algorithms, and is not an important performance consideration.  
+\section{Hardware Parallelism} 
 
-Each core has a 32 KB L1 data cache and a 256 KB L2 cache. With Hyperthreading enabled, each core can
-support two threads simultaneously.  For floating point math, each core also has a vector unit capable of
-performing the same arithmetic operation on 4 single precision floating point values simultaneously.
-\footnote{The core also has scalar floating point units, but some compilers, notably gcc, generate
-code that uses the vector units exclusively for floating point math.} 
+\subsection{CPU Hardware Parallelism} 
+The baseline architecture for our experiments is a typical workstation,
+with two quad-core Intel Nehalem E5530 processors clocked at 2.4 GHz.  Each
+processor has its own memory interface, and is directly connected to half of
+the RAM installed in the machine.  The amount of RAM installed exceeds the
+amount used by the algorithms, and is not an important performance
+consideration.  
 
-There are thus two important levels of parallelism that need to be exploited to use
-a modern cpu efficiently: core-level parallelism and vector-level parallelism.
-For the implementations discussed here, we will primarily use the OpenMP programming model 
-to express core-level parallelism.  Depending on the section of the code, we will achieve vector-level parallelism 
-implicitly through either the auto-vectorization features of Intel's icc compiler, 
-or through the use of a highly optimized BLAS library (Intel's MKL).
+Each core has a 32 KB L1 data cache and a 256 KB L2 cache. With Hyperthreading
+enabled, each core can support two threads simultaneously.  For floating point
+math, each core also has a vector unit capable of performing the same
+arithmetic operation on four single precision floating point values
+simultaneously.  \footnote{The core also has scalar floating point units, but
+some compilers, notably gcc, generate code that uses the vector units
+exclusively for floating point math.} 
 
-Each processor has 8MB of L3 cache that is shared by all 4 cores.
-Overall, this means the algorithm has approximately 16MB of on-chip cache available.  
-For the low resolution images used in sparse representation based face recognition,
-this is enough cache to hold over 800 image-sized variables, meaning that for small data sets
-it is possible to run completely using on-chip cache.
+There are thus two important levels of parallelism that need to be exploited to
+use a modern cpu efficiently: core-level parallelism and vector-level
+parallelism.  For the implementations discussed here, we will primarily use the
+OpenMP programming model to express core-level parallelism.  Depending on the
+section of the code, we will achieve vector-level parallelism implicitly
+through either the auto-vectorization features of Intel's icc compiler, or
+through the use of a highly optimized BLAS library (Intel's MKL).
 
+Each processor has 8MB of L3 cache that is shared by all four cores.  Overall,
+this means the algorithm has approximately 16MB of on-chip cache available.
+For the low resolution images used in sparse representation based face
+recognition, this is enough cache to hold over 800 image-sized variables,
+meaning that for small data sets it is possible to run completely using on-chip
+cache.
+
+\subsection{GPU Hardware Parallelism}
+
+The ALM algorithm requires many matrix-vector operations, this gives manycore
+processors such as GPUs a computational advantage for large problem sizes.
+GPUs are comprised of several streaming multiprocessors, which contain 32
+floating-point units.  The GPU executes programs as SIMT (Single Instruction
+Multiple Threads) in groups of 32 threads called warps.  These warps are then
+grouped into higher levels called thread blocks and grids.  The improvement in
+speed comes from the memory structure of the GPU.   The GPU contains an
+inverted memory hierarchy so that the L1 cache stays close to the cores,
+providing the increase in performance.  It essentially turns the GPU from being
+memory-limited to computational-limited.  GPU memory also differs from CPU
+memory in that it requires data transfers over PCI-Express.  The cost of these
+transfers are amortized by doing large amounts of computation at once,
+requiring code to be run completely on the GPU.  The GPU can be analogous to a
+multi-core CPU processor, except with more sophisticated vector processing
+hardware.  Each streaming multiprocessor is analogous to a single CPU except
+that it can run multiple threads simultaneously.  All of these differences
+allow GPUs to perform intensive calculations such as matrix-vector operations
+at much faster rates than CPUs.
+
+%You should define the levels of the Cuda thread and memory hierarchies: i.e.
+%warps, thread blocks, grids and register file, shared memory, global memory.
+%Also mention that the GPU memories are all distinct from the CPU memories, and
+%data transfers go over PCI-Express -- but the cost of those transfers are
+%amortized by doing lots of work (i.e. solving an $\ell_1$ minimization after
+%transferring the matrix once). It is worth spending a little space describing
+%how the GPU is a multi-core processor (just like the CPUs), but with much more
+%sophisticated vector processing hardware. That is: on a Fermi there are 15
+%cores, and each one has two 16-wide vector floating-point units.
+
+%The GPU-algorithm is the same as the CPU algorithm: primary- and dual- ALM
+%methods. The implementations differ in that you have to parallelize the GPU
+%code at an additional level, and you can't use the GPU's caches to communicate
+%between cores (only within a core). On the CPU, you only need to parallelize
+%for the 4 or 8 cores -- and perhaps add SSE instructions when possible
+%(usually this is inside of the BLAS library) -- any communication between
+%cores happens implicitly via cache coherence. For the GPU, you need to
+%parallelize for the 15 cores, but also for the 32-way SIMD parallelism of
+%Warps. Any intra-core communication happens via the cache (aka scratchpad, or
+%__shared__ memory) and within-block barriers (i.e. __syncthreads()), and any
+%inter-core communication happens via the GPU's DRAM and the implicit barriers
+%between grid launches.
+
+% In the followingn 2 sections, just describe implementations; single number
+% benchmarks and microbenchmarks are ok, but save big graphs for experiments
+% section.
+
+% This section is Victor's 
+\section{Single Instance Implementations}
+
+\subsection{Single Instance CPU Implementations}
+
+\subsection{Single Instance GPU Implementations}
+
+The GPU ALM algorithm is written in CUDA and utilizes the CUBLAS libraries.
+CUBLAS are the BLAS libraries consisting of all single precision BLAS calls
+which are provided by Nvidia and are optimized for GPU performance. In
+addition, we coded kernel (GPU) methods for vector-vector operations to replace
+operations that would have taken multiple BLAS calls. The algorithm is similar
+to the CPU algorithm except that we had to parallelize the code at an
+additional level. The CPU portion of the code serves as the conductor, making
+calls to GPU functions and directing the flow of the code while the GPU portion
+does all of the actual computation.
+
+% This section is Drew's
+\section{Multiple Instance Implementations}
+
+\subsection{Multiple Instance CPU Implementations}
 %\subsection{Tuning the GEMV operation}
 %When matrix-vector operations are called sequentially on the same data,
 %the operation can be blocked so that each thread operates on the same block of data for each operation.
@@ -220,42 +299,12 @@ it is possible to run completely using on-chip cache.
 %...Make sure there are no function calls
 %...Make sure the loop gets automatically vectorized
 %...Block the computation into work for different cpu cores
+\subsection{Multiple Instance GPU Implementations}
 
-\section{GPU Implementation}
-\subsection{GPU Hardware Parallelism}
-High-level description of GPU parallelism, i.e.
+% Describingn the sequence of GPU implementations Drew has tried...
 
-The ALM algorithm requires many matrix-vector operations, this gives manycore processors such as GPUs a computational advantage for large problem sizes.  
-GPUs are comprised of several streaming multiprocessors, which contain 32 floating-point units.  The GPU executes programs as SIMT (Single Instruction Multiple Threads) in groups of 32 threads called warps.  These warps are then grouped into higher levels called thread blocks and grids.  The improvement in speed comes from the memory structure of the GPU.   The GPU contains an inverted memory hierarchy so that the L1 cache stays close to the cores, providing the increase in performance.  It essentially turns the GPU from being memory-limited to computational-limited.
-GPU memory also differs from CPU memory in that it requires data transfers over PCI-Express.  The cost of these transfers are amortized by doing large amounts of computation at once, requiring code to be run completely on the GPU.  The GPU can be analogous to a multi-core CPU processor, except with more sophisticated vector processing hardware.  Each streaming multiprocessor is analogous to a single CPU except that it can run multiple threads simultaneously.
-All of these differences allow GPUs to perform intensive calculations such as matrix-vector operations at much faster rates than CPUs.
-
-
-%You should give a brief (1-2 paragraphs) overview of the GPU architecture -- most people have heard of GPUs and what they can do by now, so it isn't worth spending a whole lot of space in the paper describing it.
-
-%You should define the levels of the Cuda thread and memory hierarchies: i.e. warps, thread blocks, grids and register file, shared memory, global memory. Also mention that the GPU memories are all distinct from the CPU memories, and data transfers go over PCI-Express -- but the cost of those transfers are amortized by doing lots of work (i.e. solving an $\ell_1$ minimization after transferring the matrix once). It is worth spending a little space describing how the GPU is a multi-core processor (just like the CPUs), but with much more sophisticated vector processing hardware. That is: on a Fermi there are 15 cores, and each one has two 16-wide vector floating-point units.
-
-%The GPU-algorithm is the same as the CPU algorithm: primary- and dual- ALM methods. The implementations differ in that you have to parallelize the GPU code at an additional level, and you can't use the GPU's caches to communicate between cores (only within a core). On the CPU, you only need to parallelize for the 4 or 8 cores -- and perhaps add SSE instructions when possible (usually this is inside of the BLAS library) -- any communication between cores happens implicitly via cache coherence. For the GPU, you need to parallelize for the 15 cores, but also for the 32-way SIMD parallelism of Warps. Any intra-core communication happens via the cache (aka scratchpad, or __shared__ memory) and within-block barriers (i.e. __syncthreads()), and any inter-core communication happens via the GPU's DRAM and the implicit barriers between grid launches.
-
-
-cuda cores, SIMD width, scheduling restrictions, bandwidth
-\subsection{Solving a Single $\ell_1$ minimization}
-
-The GPU ALM algorithm is written in CUDA and utilizes the CUBLAS libraries.
-CUBLAS are the BLAS libraries consisting of all single precision BLAS calls
-which are provided by Nvidia and are optimized for GPU performance. In
-addition, we coded kernel (GPU) methods for vector-vector operations to replace
-operations that would have taken multiple BLAS calls. The algorithm is similar
-to the CPU algorithm except that we had to parallelize the code at an
-additional level. The CPU portion of the code serves as the conductor, making
-calls to GPU functions and directing the flow of the code while the GPU portion
-does all of the actual computation.
-
-
-
-\section{Benchmarks on a Single Large $\ell_1$ Problem}
-
-In this section, we present $2$ sets of experiment to benchmark the performance
+\section{Benchmarks}
+In this section, we present two sets of experiment to benchmark the performance
 of the PALM algorithm on CPU and GPU platforms. 
 The first set of experiments will compare implementations that solve a single
 large instance of an $ell_1$ minimization problem.  
@@ -267,12 +316,13 @@ in all cases we compare the performance of hardware architectures on a
 per-board basis:  For CPU implementations, the benchmark makes use of all of
 the cores in as many cpu's are present.  For GPU implementations, the benchmark
 makes the best use of the entire GPU chip (most GPU boards have a single GPU
-chip). 
+chip).  Unless otherwise specified, all implementations utilize single
+precision floating point datatypes.  
 
-Unless otherwise specified, all implementations utilize single precision
-floating point datatypes.
-% and were verified to output results differing by no
-%more than $10^{-4}$.
+\subsection{Single Large $\ell_1$ Problem, Synthetic Data}
+In this section, we benchmark the performance of MATLAB, BLAS MKL, and GPU CUDA
+implementations of the Primal ALM algorithm on synthetic data to find at which
+point the GPU implementation runs faster than CPU implementation.  
 
 To construct the benchmark for synthetic data, we first created an $m \times n$
 matrix $A$ with entries $\pm 1$ each with a $50\%$ chance.  Then we created a
@@ -285,16 +335,10 @@ inner/outer loop iterations, and inner/outer loop tolerance level.
 % protocol on how to construct synthetic data second P for protocol on how to
 % construct the face data
 
-
-\subsection{PALM $\ell_1$ minimization benchmark on Synthetic Data}
-
-In this section, we benchmark the performance of MATLAB, BLAS MKL, and GPU CUDA
-implementations of the Primal ALM algorithm on synthetic data to find at which
-point the GPU implementation runs faster than CPU implementation.  To simply
-the benchmark, we cap the number of inner iterations at 50 and outer iterations
-at 5000 and run the algorithm to convergence.  CPU code was run on an Intel
-Dual Socket Quad Core with 8 gigs of DDR3 RAM.  GPU code was run on a GTX480 We
-ran the A matrix with different ratios between m:n from 10:1:5 for
+To simply the benchmark, we cap the number of inner iterations at 50 and outer
+iterations at 5000 and run the algorithm to convergence.  CPU code was run on
+an Intel Dual Socket Quad Core with 8 gigs of DDR3 RAM.  GPU code was run on a
+GTX480 We ran the A matrix with different ratios between m:n from 10:1:5 for
 m:2000:25:8000 with an x vector of 10 percent sparsity.  Tolerance levels were
 empirically seen to allow best performance with the inner loop tolerance set at
 one order of magnitude lower than the outer loop tolerance.
@@ -302,7 +346,6 @@ one order of magnitude lower than the outer loop tolerance.
 Results were plotted as total size of A and A'A vs Gb/s and size of A vs time
 elapsed to run a single $\ell_1$ solver.
 
-%An example of image inclusion for Victor:
 \begin{figure*}
 \centering
 \includegraphics[width=3.5in]{figures/PALM_benchmark_ratio_1.png}
@@ -310,31 +353,19 @@ elapsed to run a single $\ell_1$ solver.
 \label{fig:uniqueidentifierforthisimage}
 \end{figure*}
 
-% change picture to only include CPU/GPU not MATLAB
+As the dimensions of $A$ increase, so does the significance of the size of
+$A^TA$.  Until the $A$ and $A^TA$ reach ???? Mb (SHOULD BE MB?), the CPU version runs faster
+than the GPU.  
 
-As the dimensions of A increase, so does the significance of the size of AtA.  Until the A and AtA matrix reach x Mb, the CPU version runs faster than the GPU.  
+\subsection{Multiple Small $\ell_1$ Problems, Synthetic Data}
 
-\section{Benchmarks on Solving Many $\ell_1$ Problems Concurrently}
-
-%This section is about Drew's kernels for solving multiple $\ell_1$ minimizations in parllel
-
-%How to efficiently perform an $\ell_1$ minimization on a single core, quote performance on a large batch.
-
-%How to solve multiple instances in smaller batches without losing concurrency, using CUDA streams.
-
-%...Mention effect of compiler verion on streams implementation
+\subsection{Alignment Stage, Real Face Data}
 
 \section{Conclusion}
-...How lessons from this paper extend (or don't extend) to other similar problems in computer vision
-
-...Reiterate how the appropriate hardware choice depends on the problem size.
-
-
 
 {\small
 \bibliographystyle{../authorkit/ieee}
 \bibliography{faces}
 }
-
 
 \end{document}
