@@ -8,5 +8,4 @@
 *latexmk
 *.swp
 *.dvi
-*.pdf
 *.brf
