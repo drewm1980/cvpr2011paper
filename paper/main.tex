@@ -124,9 +124,13 @@ both the current representation coefficients, as well as an update to the transf
 
 [Zero in and justify why we choose ALM for our implementation.]
 
+Past work in parallelizing $\ell_1$-minimization has been limited.  Murphy at UCB implemented the L1-Spirit algorithm on Nvidia GPUs for MRI reconstruction and Borghi at UCLA developed a proximal based algorithm using Moreau-Yosida regularization.  
+
+In a review paper by Allen Yang, they list 5 fast methods that solve $\ell_1$-minimization including gradient projection, homotopy, iterative shrinkage-thresholding, proximal gradient, and augmented lagrangian methods.  According to the review paper, they have determined that Homotopy and the Augmented Lagrangian Multiplier methods achieve the best recognition rates while maintaining a low computational cost.  A closer look at these two algorithms will show that 
+
 \subsection{Contributions of the paper}
 
-\section{ALM Algorithm}
+\section{Augmented Lagrangian Multiplier Algorithm}
 %Describe the two variants of the ALM algorithm
 
 In this section, we describe the general version ALM algorithm and then describe how it can be adapted to solve our problem.
