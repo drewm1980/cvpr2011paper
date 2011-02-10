@@ -116,13 +116,6 @@ both the current representation coefficients, as well as an update to the transf
 \label{fig:alignment_l1}
 \end{figure}
 
-\begin{figure}
-\centering
-\includegraphics[width=3.5in]{figures/runtime_graph.pdf}
-\caption{GPU Alignment Stage Time vs. Size of Database}
-\label{fig:alignment_runtime}
-\end{figure}
-
 \subsection{Literature review}
 %[Review the past parallel algorithms for $\ell_1$-minimization. Hopefully there aren't many]
 %[Review the available different algorithms solving $\ell_1$-minimization and $\ell_0$-minimization, please refer to Allen's SIAM paper.
@@ -138,7 +131,6 @@ Past work in parallelizing $\ell_1$-minimization has been limited.  Murphy at UC
 \subsection{Contributions of the paper}
 
 \section{Augmented Lagrangian Multiplier Algorithm}
-%Describe the two variants of the ALM algorithm
 
 In this section, we describe the general version ALM algorithm and then describe how it can be adapted to solve our problem.
 
@@ -190,30 +182,18 @@ $\x_1 = \mathbf{0}$, $\blamda_1 = \mathbf{0}$.
 \label{alg:alm}
 \end{algorithm}
 
+%In order to solve the alignment stage before recognition, we consider the $l_1$ problem: 
+%\begin{equation} 
+%\min_{\x, \e} \|\e\|_1 \quad \subj \quad \bb = A \x + \e.
+%\end{equation}
+%which is solved in a similar fashion.
 
-%Show Pseudocode for one variant
-%\subsection{Computational Complexity}
-%The Matrix-vector computions are O($mn$), and the vector-vector operations are O($m$),  in terms of both computation cost and memory-bandwidth.  As A'A can be precomputed once, assuming the iterative solver always takes a constant number of iterations, the PALM algorithm has a computational complexity of O($mn+n^2$), where n $<$ m.
-
-% Complexity of entire algorithm
-
-\subsection{Adapations}
-
-In this section, we describe how to adapt the general ALM algorithm for the alignment and recognition problem.  Refer to book...
-
-In order to solve the alignment stage before recognition, we consider the $l_1$ problem: 
-\begin{equation} 
-\min_{\x, \e} \|\e\|_1 \quad \subj \quad \bb = A \x + \e.
-\end{equation}
-which is solved in a similar fashion.
-
-\section{CPU Implementation}
+% A note on alignment l1...
 % With a reshuffling of the order of operations and a change of the termination
 % condition, the inner loop takes the form of two matrix-vector multiplications
 % and a sequence of vector-vector operations.
 
-% put this computational complexity in section 2?
-\subsection{Computational Complexity} Any discussion of the speed of an
+\subsection{Alignment Stage L1 Computational Complexity} Any discussion of the speed of an
 algorithm should discuss the comutational complexity of the algorithm.  For the
 ALM algorithms considered in this paper, this is rather simple.  The
 Matrix-vector computions are $O(mn)$, and the vector-vector operations are
@@ -233,6 +213,20 @@ repeated computation of matrix-vector and matrix-matrix multiplications in the
 inner loop.
 
 \section{Hardware Parallelism} 
+In this section we give a brief overview of the hardware architectures used
+in this paper.
+
+We feel it is most meaningful to compare hardware architectures on a per-board basis,
+and in a typical hardware configuration.  GPU's are most commonly shipped with a single
+GPU chip per PCI-express card.  
+%For multicore CPU architectures, a typical workstation
+%will consist of 
+
+For CPU implementations, the benchmarks makes use of all of
+the cores in as many cpu's are present.  For GPU implementations, the benchmark
+makes the best use of the entire GPU chip (most GPU boards have a single GPU
+chip).  Unless otherwise specified, all implementations utilize single
+precision floating point datatypes.  
 
 \subsection{CPU Hardware Parallelism} 
 The baseline architecture for our experiments is a typical workstation,
@@ -272,7 +266,37 @@ The ALM algorithm requires many matrix-vector operations, this gives manycore pr
 
 The GPU can be analogous to a multi-core CPU processor, except with more sophisticated vector processing hardware.  Each thread block is a virtualized multiprocessor, which each thread as a virtualized scalar processor.  All of these differences allow GPUs to perform intensive calculations such as matrix-vector operations at much faster rates than CPUs. 
 
-%\subsection{Solving a Single $\ell_1$ minimization}
+
+% This section is Drew's
+\section{Iterative Alignment Stage Implementation}
+
+\subsection{Iterative Alignment on the CPU}
+%\subsection{Tuning the GEMV operation}
+%When matrix-vector operations are called sequentially on the same data,
+%the operation can be blocked so that each thread operates on the same block of data for each operation.
+%For Single threaded MKL sgemv, Code took          0.0335823 msec per instance to run!
+%For Automatic multi-threaded MKL sgemv, Code took 0.008179 msec per instance to run!
+%For Manually multi-threaded MKL sgemv, Code took  0.0061276 msec per instance to run!
+
+%\subsection{Tuning the Soft-Thresholding Operator}
+%...Make sure there are no branches
+%...Make sure there are no function calls
+%...Make sure the loop gets automatically vectorized
+%...Block the computation into work for different cpu cores
+\subsection{Iterative Alignment on the GPU}
+% Describingn the sequence of GPU implementations Drew has tried...
+
+\subsection{Benchmark on Real Face Data}
+
+\begin{figure}
+\centering
+\includegraphics[width=3.5in]{figures/runtime_graph.pdf}
+\caption{GPU Alignment Stage Time vs. Size of Database}
+\label{fig:alignment_runtime}
+\end{figure}
+
+\section{Recognition Stage Implementation}
+% This section is Victor's 
 
 %The ALM algorithm requires many matrix-vector operations, this gives manycore
 %processors such as GPUs a computational advantage for large problem sizes.
@@ -297,12 +321,7 @@ The GPU can be analogous to a multi-core CPU processor, except with more sophist
 % benchmarks and microbenchmarks are ok, but save big graphs for experiments
 % section.
 
-% This section is Victor's 
-\section{Single Instance Implementations}
-
-\subsection{Single Instance CPU Implementations}
-
-\subsection{Single Instance GPU Implementations}
+\subsection{ GPU Implementation}
 The GPU ALM algorithm is written in CUDA and utilizes the CUBLAS libraries.
 CUBLAS are the BLAS libraries consisting of all single precision BLAS calls
 which are provided by Nvidia and are optimized for GPU performance. In
@@ -312,45 +331,7 @@ to the CPU algorithm except that we had to parallelize the code at an
 additional level. The CPU portion of the code serves as the conductor, making
 calls to GPU functions and directing the flow of the code while the GPU keeps all of the data and runs the computation.
 
-% This section is Drew's
-\section{Multiple Instance Implementations}
-
-\subsection{Multiple Instance CPU Implementations}
-%\subsection{Tuning the GEMV operation}
-%When matrix-vector operations are called sequentially on the same data,
-%the operation can be blocked so that each thread operates on the same block of data for each operation.
-%For Single threaded MKL sgemv, Code took          0.0335823 msec per instance to run!
-%For Automatic multi-threaded MKL sgemv, Code took 0.008179 msec per instance to run!
-%For Manually multi-threaded MKL sgemv, Code took  0.0061276 msec per instance to run!
-
-%\subsection{Tuning the Soft-Thresholding Operator}
-%...Make sure there are no branches
-%...Make sure there are no function calls
-%...Make sure the loop gets automatically vectorized
-%...Block the computation into work for different cpu cores
-\subsection{Multiple Instance GPU Implementations}
-
-% Describingn the sequence of GPU implementations Drew has tried...
-
-\section{Benchmarks}
-In this section, we present two sets of experiment to benchmark the performance
-of the PALM algorithm on CPU and GPU platforms. 
-The first set of experiments will compare implementations that solve a single
-large instance of an $ell_1$ minimization problem on synthetic data to find at which
-point the GPU implementation runs faster than CPU implementation.  
-The second set of experiments will compare implementations that must solve
-many instances of $\ell_1$ minimization.  
-
-To generate a meaningful comparison between different hardware architectures,
-in all cases we compare the performance of hardware architectures on a
-per-board basis:  For CPU implementations, the benchmark makes use of all of
-the cores in as many cpu's are present.  For GPU implementations, the benchmark
-makes the best use of the entire GPU chip (most GPU boards have a single GPU
-chip).  Unless otherwise specified, all implementations utilize single
-precision floating point datatypes.  
-
-\subsection{Single Large $\ell_1$ Problem, Synthetic Data}
-%\subsection{PALM $\ell_1$ minimization benchmark on Synthetic Data}
+\subsection{Benchmark on Synthetic Data}
 
 To construct the benchmark for synthetic data, we first created an $m \times n$
 matrix $A$ with entries $\pm 1$ each with a $50\%$ chance.  Then we created a
@@ -370,7 +351,6 @@ one order of magnitude lower than the outer loop tolerance.
 Results were plotted as total size of A and A'A vs Gb/s and size of A vs time
 elapsed to run a single $\ell_1$ solver.
 
-
 \begin{figure*}
 \centering
 \includegraphics[width=3.5in]{figures/PALM_benchmark_ratio_1.png}
@@ -382,9 +362,7 @@ As the dimensions of $A$ increase, so does the significance of the size of
 $A^TA$.  Until the $A$ and $A^TA$ reach ???? Mb (SHOULD BE MB?), the CPU version runs faster
 than the GPU.  
 
-\subsection{Multiple Small $\ell_1$ Problems, Synthetic Data}
-
-\subsection{Alignment Stage, Real Face Data}
+\section{Full Pipeline Benchmarks}
 
 \section{Conclusion}
 
