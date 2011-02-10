@@ -124,16 +124,16 @@ both the current representation coefficients, as well as an update to the transf
 \end{figure}
 
 \subsection{Literature review}
-[Review the past parallel algorithms for $\ell_1$-minimization. Hopefully there aren't many]
+%[Review the past parallel algorithms for $\ell_1$-minimization. Hopefully there aren't many]
+%[Review the available different algorithms solving $\ell_1$-minimization and $\ell_0$-minimization, please refer to Allen's SIAM paper.
+%[Zero in and justify why we choose ALM for our implementation.]
 
-[Review the available different algorithms solving $\ell_1$-minimization and $\ell_0$-minimization, please refer to Allen's SIAM paper.]
-[Allen]
+Standard solvers for $\ell_1$-minimization include orthogonal matching pursuit, basis pursuit and LASSO which cast the $\ell_1$-minimization as either a linear program or quadratic program.  
 
-[Zero in and justify why we choose ALM for our implementation.]
+These methods can be accelerated by more contemporary methods such as gradient projection, homotopy, iterative shrinkage-thresholding, proximal gradient, and augmented lagrangian methods.  According to analysis of these five algorithms applied to face recognition, Yang et al have determined that Homotopy and the Augmented Lagrangian Multiplier methods (ALM) achieve the best recognition rates while maintaining a low computational cost.  A closer look at these two algorithms will show that while the Homotopy method will produce the exact solution, the algorithm structure and functions do not lend themselves parallelization well.  
+On the other hand, while the ALM finds an approximate solution, its computation mainly consists of matrix-vector operations, which lends itself to parallelization.
 
-Past work in parallelizing $\ell_1$-minimization has been limited.  Murphy at UCB implemented the L1-Spirit algorithm on Nvidia GPUs for MRI reconstruction and Borghi at UCLA developed a proximal based algorithm using Moreau-Yosida regularization.  
-
-In a review paper by Allen Yang, they list 5 fast methods that solve $\ell_1$-minimization including gradient projection, homotopy, iterative shrinkage-thresholding, proximal gradient, and augmented lagrangian methods.  According to the review paper, they have determined that Homotopy and the Augmented Lagrangian Multiplier methods (ALM) achieve the best recognition rates while maintaining a low computational cost.  A closer look at these two algorithms will show that while the Homotopy method will produce the exact solution, the algorithm structure and functions do not lend themselves parallelization well.  On the other hand, the ALM algorithm computation mainly consists of matrix-vector operations, which lends itself to parallelization.  
+Past work in parallelizing $\ell_1$-minimization has been limited.  Murphy at UCB implemented the L1-Spirit algorithm on Nvidia GPUs for MRI reconstruction and Borghi at UCLA developed a proximal point algorithm using Moreau-Yosida regularization, which is special form of the $\ell_1$-minimization based on proximal gradient.  
 
 \subsection{Contributions of the paper}
 
