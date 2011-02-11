@@ -126,7 +126,7 @@ Standard solvers for $\ell_1$-minimization include orthogonal matching pursuit, 
 These methods can be accelerated by more contemporary methods such as gradient projection, homotopy, iterative shrinkage-thresholding, proximal gradient, and augmented lagrangian methods.  According to analysis of these five algorithms applied to face recognition, Yang et al have determined that Homotopy and the Augmented Lagrangian Multiplier methods (ALM) achieve the best recognition rates while maintaining a low computational cost.  A closer look at these two algorithms will show that while the Homotopy method will produce the exact solution, the algorithm structure and functions do not lend themselves parallelization well.  
 On the other hand, while the ALM finds an approximate solution, its computation mainly consists of matrix-vector operations, which lends itself to parallelization.
 
-Past work in parallelizing $\ell_1$-minimization has been limited.  Murphy at UCB implemented the L1-Spirit algorithm on Nvidia GPUs for MRI reconstruction and Borghi at UCLA developed a proximal point algorithm using Moreau-Yosida regularization, which is special form of the $\ell_1$-minimization based on proximal gradient.  
+Past work in parallelizing $\ell_1$-minimization has been limited.  In 2009, Murphy at UCB implemented the L1-Spirit algorithm on Nvidia GPUs for MRI reconstruction and in 2009 Borghi at UCLA developed a proximal point algorithm using Moreau-Yosida regularization, which is special form of the $\ell_1$-minimization based on proximal gradient.  
 
 \subsection{Contributions of the paper}
 
@@ -138,7 +138,7 @@ The augmented lagrange multiplier (ALM) method utilizes a popular class of conve
 \begin{equation}
 F(x) = f(x) + \lambda g(x).
 \end{equation}
-which can be formulated as an augmented Langrange function given by
+which can be formulated as an augmented Lagrange function given by
 \begin{equation}
 L_u(x,y) = \|x\|_1 + <\y, b - A\x - \e> + \frac{\mu}2 \| b-A\x-\e \|_2^2
 \end{equation}
@@ -192,6 +192,9 @@ $\x_1 = \mathbf{0}$, $\blamda_1 = \mathbf{0}$.
 % With a reshuffling of the order of operations and a change of the termination
 % condition, the inner loop takes the form of two matrix-vector multiplications
 % and a sequence of vector-vector operations.
+
+In order to adapt the general algorithm to face alignment and recognition, we formulated the 
+$\ell_1$-minimization problem as ___ as described in [book].
 
 \subsection{Alignment Stage L1 Computational Complexity} Any discussion of the speed of an
 algorithm should discuss the comutational complexity of the algorithm.  For the
