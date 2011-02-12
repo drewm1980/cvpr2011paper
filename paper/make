@@ -1,2 +1,4 @@
 #!/bin/bash
 latexmk -pdf main.tex
+#latexmk -pdfdvi main.tex -f
+#latexmk -pdfps main.tex
