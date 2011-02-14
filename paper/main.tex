@@ -15,6 +15,10 @@
 
 \usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
 
+% Needed for getting formulas in dia diagrams.
+\usepackage{pstricks}
+\usepackage{tikz}
+
 % \cvprfinalcopy % *** Uncomment this line for the final submission
 
 \def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
@@ -104,17 +108,18 @@ both the current representation coefficients, as well as an update to the transf
 
 \begin{figure}
 \centering
-\includegraphics[width=3.5in]{figures/pipeline.pdf}
+%\includegraphics[width=3.5in]{figures/pipeline.pdf}
+\input{figures/pipeline.tex}
 \caption{The Full Recognition Pipeline}
 \label{fig:pipeline}
 \end{figure}
 
-\begin{figure}
-\centering
-\includegraphics[width=3.5in]{figures/alignment_l1.pdf}
-\caption{Alignment Stage L1 Solver}
-\label{fig:alignment_l1}
-\end{figure}
+%\begin{figure}
+%\centering
+%\includegraphics[width=3.5in]{figures/alignment_l1.pdf}
+%\caption{Alignment Stage L1 Solver}
+%\label{fig:alignment_l1}
+%\end{figure}
 
 \subsection{Literature review}
 %[Review the past parallel algorithms for $\ell_1$-minimization. Hopefully there aren't many]
@@ -194,7 +199,7 @@ $\x_1 = \mathbf{0}$, $\blamda_1 = \mathbf{0}$.
 % and a sequence of vector-vector operations.
 
 In order to adapt the general algorithm to face alignment and recognition, we formulated the 
-$\ell_1$-minimization problem as ___ as described in [book].
+$\ell_1$-minimization problem as described in \cite{}.
 
 \subsection{Alignment Stage L1 Computational Complexity} Any discussion of the speed of an
 algorithm should discuss the comutational complexity of the algorithm.  For the
@@ -291,12 +296,12 @@ The GPU can be analogous to a multi-core CPU processor, except with more sophist
 
 \subsection{Benchmark on Real Face Data}
 
-\begin{figure}
-\centering
-\includegraphics[width=3.5in]{figures/runtime_graph.pdf}
-\caption{GPU Alignment Stage Time vs. Size of Database}
-\label{fig:alignment_runtime}
-\end{figure}
+%\begin{figure}
+%\centering
+%\includegraphics[width=3.5in]{figures/runtime_graph.pdf}
+%\caption{GPU Alignment Stage Time vs. Size of Database}
+%\label{fig:alignment_runtime}
+%\end{figure}
 
 \section{Recognition Stage Implementation}
 % This section is Victor's 
@@ -356,7 +361,7 @@ elapsed to run a single $\ell_1$ solver.
 
 \begin{figure*}
 \centering
-\includegraphics[width=3.5in]{figures/PALM_benchmark_ratio_1.png}
+\includegraphics[width=3.5in]{figures/PALM_benchmark_ratio_1}
 \caption{This is where the caption goes.}
 \label{fig:uniqueidentifierforthisimage}
 \end{figure*}
