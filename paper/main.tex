@@ -73,12 +73,12 @@ Unfortunately, there are many import applications where this does not hold true.
 This paper targets applications where $\bb$ and $A$ contain
 image data, and thus must be loaded every time they are used, as is the 
 case for many problems in computer vision.
-The techniques presented in this paper target these applications, as well
-as others where the dictionary is dense and unstructured. $A$ must be loaded every time
-it is used, and algorithm performance becomes highly dependent on memory bandwidth, rather
-than arithmetic logic.
+The techniques presented in this paper target these applications, 
+but are relevant to other non-vision applications where the dictionary is dense and unstructured. 
+%$A$ must be loaded every time
+%it is used, and algorithm performance becomes highly dependent on memory bandwidth, rather
+%than arithmetic logic.
 
-% Narrow focus for applications to Recognition Application
 The primary motivating application for this paper is face recognition for access control applications.
 Recently, advances in automatic face recognition have been made by re-casting
 it as a sparse representation problem.  This core of this technique consists of
@@ -95,24 +95,84 @@ correspond to the user in the test image.  Sparsity in $\e$ arrises from the kno
 that small occlusions in the test image will only corrupt a small subset of the pixels \cite{Wright2009-PAMI}.
 The large coefficients in $\x$ will concentrate on the correct user, and can be used as the basis of a classifier.
 
-For this idea to work, all of the images must be aligned. An iterative alignment
-algorithm for this purpose was described as part of the \cite{Wagner2009-CVPR}, which was
-the first paper to expand \cite{Wright2009-PAMI} into a functioning face recognition system.
-This iterative alignment routine is based on repeatedly solving the following optimization problem:
-\begin{equation}
-\min_{\x, \e} \|\e\|_1 \quad \subj \quad \bb = A_k \x + \e.
-\end{equation}
-Where $A_k$ contains the training images for user $k$ as well as several vectors consisting of the
-Jacobian of the test image $\bb$ with respect to the transformation parameters, and $\x$ contains
-both the current representation coefficients, as well as an update to the transformation parameters.
+For this idea to work, all of the images must be aligned. An iterative
+alignment algorithm for this purpose was described described in
+\cite{Wagner2009-CVPR}.  The algorithm essentially extends Lucas-Kanade
+iterative alignment to use the $\ell_1$ norm as a robust error function, and to
+simultaneously estimate the illumination in terms of the gallery illuminations.
+In combination with a custom training image acquisition system, this resulted
+in a complete face recognition system that achieved good recognition rates even
+on data captured in realistic situations.  Unfortunately, the computational
+cost of this algorithm was still too high for production use.  This speed was
+somewhat improved in \cite{Wagner2010-PAMI}, which showed improved performance
+by using Augmented Lagrange Multiplier (ALM) based $\ell_1$ minimizations
+rather than interior point methods.  This brought alignment time down to about
+half a second per training user, this is still far too slow to be useful in
+access control scenariors where the gallery contains hundreds of users.
+The primary contribution of this paper is to demonstrate how massively
+parallel hardware can dramatically improve recognition time in this application,
+finally making it practical for real-world use.
+
+We now provide an overview of the recognition pipeline proposed 
+in \cite{Wagner2010-PAMI}.  The full recognition pipeline can be divided into 5 major stages.
+
+(... I will describe the stages in more detail with equations...)
+
+These stages are summarized in the diagram in Figure \ref{fig:pipeline}.
+
+%This iterative alignment routine is based on repeatedly solving the following optimization problem:
+%\begin{equation}
+%\min_{\x, \e} \|\e\|_1 \quad \subj \quad \bb = A_i \x + \e.
+%\end{equation}
+%Where $A_i$ contains the training images for user $i$ as well as several vectors consisting of the
+%Jacobian of the test image $\bb$ with respect to the transformation parameters, and $\x$ contains
+%both the current representation coefficients, as well as an update to the transformation parameters.
 
 \begin{figure}
 \centering
-%\includegraphics[width=3.5in]{figures/pipeline.pdf}
-{\tiny \input{figures/pipeline.tex}}
+{\tiny \input{figures/pipeline_simplified.tex}}
 \caption{The Full Recognition Pipeline}
 \label{fig:pipeline}
 \end{figure}
+
+\begin{algorithm}[thb]
+\caption{\bf (Deformable Sparse Recovery and Classification for
+Face Recognition)} \label{alg:deformable-src}
+\begin{algorithmic}[1]
+\begin{small}
+\STATE {\bf Input:} Training images $\{A_i \in \Re^{m\times n_i}\}_{i=1}^K$ for $K$ subjects,  a test image
+$\bb\in\Re^m$ and a deformation group $T$. 
+\STATE
+{\bf for} each subject $i$, 
+\STATE \hspace{3mm} $\tau^{(0)}
+\leftarrow I$. 
+\STATE \hspace{3mm} {\bf while} not converged $(j=1,2,\ldots)$ {\bf do} 
+\STATE \hspace{6mm}
+$\tilde \bb(\tau) \leftarrow \frac{\bb \circ \tau}{\|\bb \circ
+\tau\|_2}$; \;\;\; $J \leftarrow  \frac{\partial}{\partial
+\tau} \tilde\bb(\tau)  \bigr|_{\tau^{(j)}} $;
+%\STATE \hspace{6mm} $(\hat \x, \hat \e, \Delta \tau) \leftarrow \left\{\begin{array}{l} \arg \min_{\x,\e,\Delta \tau} \| \e \|_1 \\  \subj \; \bb + J \Delta \tau = A_k \x + \e \end{array}\right.$
+\STATE \hspace{6mm} $ \Delta \tau =  \arg\min \; \| \e \|_1  \;
+\subj \; \tilde \bb + J \Delta \tau = A_i \x + \e.$ 
+\STATE
+\hspace{6mm} $\tau^{(j+1)} \leftarrow \tau^{(j)} + \Delta
+\tau$; 
+\STATE \hspace{3mm} {\bf end while} \STATE {\bf end} \STATE Keep
+the top $S$ candidates $k_1, \ldots, k_S$ with the smallest
+residuals $\|\e\|_1$. \STATE Compute an average transformation
+$\bar{\tau}$ from $\tau_{k_1}, \tau_{k_2}, \ldots, \tau_{k_S}$.
+\STATE Update $\bb \leftarrow \bb \circ \bar{\tau}$ and $\tau_i
+\leftarrow \tau_i \cdot \bar{\tau}^{-1}$ for $i = k_1, \dots,
+k_S$. \STATE Set $A \leftarrow \big[ A_{k_1} \circ
+\tau_{k_1}^{-1} \mid A_{k_2} \circ \tau_{k_2}^{-1} \mid \dots
+\mid A_{k_S} \circ \tau_{k_S}^{-1} \big]$. \STATE Solve the
+$\ell^1$-minimization problem: \hspace{2mm}
+$\hat{\x} = \arg \min_{\x, \e} \| \x \|_1 + \|\e\|_1 \;\; \subj \;\; \bb = A \x + \e.$
+\STATE Compute residuals $r_i(\bb) = \| {\bb} - {A}_i \, \delta_i(\hat{\x}) \|_2$ for $i = k_1, \dots, k_S$.
+\STATE {\bf Output:} $\mbox{identity}(\bb) = \arg\min_i r_i(\y)$.
+\end{small}
+\end{algorithmic}
+\end{algorithm}
 
 %\begin{figure}
 %\centering

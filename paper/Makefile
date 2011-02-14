@@ -1,7 +1,7 @@
 TARGETS=main.pdf 
 all: ${TARGETS} 
 
-main.pdf:main.tex figures/pipeline.tex
+main.pdf:main.tex figures/pipeline_simplified.tex
 
 %.tex:%.dia
 	dia $< -e $@ -t tex

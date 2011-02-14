@@ -1,4 +1,5 @@
 TARGETS= pipeline.tex \
+		 pipeline_simplified.tex \
 		 alignment_l1.tex
 all: ${TARGETS} 
 
