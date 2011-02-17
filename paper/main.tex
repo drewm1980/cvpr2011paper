@@ -59,38 +59,85 @@ First line of institution2 address\\
 \end{abstract}
 
 \section{Introduction} 
-
-$\ell_1$-minimization ($\ell_1$-min) has received much attention in recent years due to important applications
-in compressive sensing \cite{BrucksteinA2007} and sparse representation \cite{WrightJ2010-PIEEE}.
-The problem refers to finding the minimum $\ell$-norm solution to an underdetermined linear system $\bb=A\xx$:
+$\ell_1$-minimization ($\ell_1$-min) has received much attention in recent
+years due to important applications in compressive sensing
+\cite{BrucksteinA2007} and sparse representation \cite{WrightJ2010-PIEEE}.  The
+problem refers to finding the minimum $\ell$-norm solution to an
+underdetermined linear system $\bb=A\xx$:
 \begin{equation}
 \min \|\xx\|_1\quad \mbox{ subj. to }\quad \bb = A\xx.
 \label{eq:l1min}
 \end{equation}
-It has now been well understood that, under certain conditions \cite{CandesE2005-IT_1,DonohoD2004}, the minimum $\ell_1$-norm solution is
-also the \emph{sparsest} solution to the system \eqref{eq:l1min}.
+It has now been well understood that, under certain conditions
+\cite{CandesE2005-IT_1,DonohoD2004}, the minimum $\ell_1$-norm solution is also
+the \emph{sparsest} solution to the system \eqref{eq:l1min}.
 
-Among its many applications, $\ell_1$-min has been recently used to reformulate image-based face recognition as a sparse representation problem \cite{WrightJ2009-PAMI}.
-If we stack the training images of $K$ subject classes $(A_1\in\Re^{d\times n_1}, \cdots, A_K\in\Re^{d\times n_K})$ into the columns of a matrix $A = [A_1, \cdots, A_K]\in\Re^{d\times n}$, given a new query image in the same vector form $\bb\in\Re^d$, \emph{sparsity-based classification} (SBC) solves the following minimization problem:
+Among its many applications, $\ell_1$-min has been recently used to reformulate
+image-based face recognition as a sparse representation problem
+\cite{WrightJ2009-PAMI}.  If we stack the training images of $K$ subject
+classes $(A_1\in\Re^{d\times n_1}, \cdots, A_K\in\Re^{d\times n_K})$ into the
+columns of a matrix $A = [A_1, \cdots, A_K]\in\Re^{d\times n}$, given a new
+query image in the same vector form $\bb\in\Re^d$, \emph{sparsity-based
+classification} (SBC) solves the following minimization problem:
 \begin{equation}
 \min_{\xx, \ee} \| \xx \|_1 + \|\ee\|_1 \quad \subj \quad \bb = A \xx + \ee.
 \label{eq:l1min_denoise}
 \end{equation}
-If the sparsest solutions for $\x$ and $\e$ are recovered, $\ee$ provides a means to compensate corrupted pixels that main occlude some part of the query image, and the dominant nonzero coefficients in $\xx$ reveals the membership of $\bb$ based on the training image labels associated with $A$.
+If the sparsest solutions for $\x$ and $\e$ are recovered, $\ee$ provides a
+means to compensate corrupted pixels that main occlude some part of the query
+image, and the dominant nonzero coefficients in $\xx$ reveals the membership of
+$\bb$ based on the training image labels associated with $A$.
 
-In this paper, we study parallelization of $\ell$-min on many-core CPU and GPU architectures. Firstly, although $\ell_1$-min \eqref{eq:l1min} is a convex program, conventional algorithms such as interior-point methods \cite{ChenS2001-SIAM,TibshiraniR1996} are known to suffer from poor scalability for large-scale applications such as face recognition. Recently, a number of accelerated algorithms have been proposed, which explicitly take advantage of the special structure of $\ell_1$-min problems \cite{LorisI2009,YangA2010-ICIP}. We investigate parallelization of a state-of-the-art $\ell_1$-min solution based on the classical framework of \emph{augmented Lagrange multiplier} (ALM) \cite{BertsekasD2003,YangA2010-ICIP}.
+In this paper, we study parallelization of $\ell$-min on many-core CPU and GPU
+architectures. Firstly, although $\ell_1$-min \eqref{eq:l1min} is a convex
+program, conventional algorithms such as interior-point methods
+\cite{ChenS2001-SIAM,TibshiraniR1996} are known to suffer from poor scalability
+for large-scale applications such as face recognition. Recently, a number of
+accelerated algorithms have been proposed, which explicitly take advantage of
+the special structure of $\ell_1$-min problems
+\cite{LorisI2009,YangA2010-ICIP}. We investigate parallelization of a
+state-of-the-art $\ell_1$-min solution based on the classical framework of
+\emph{augmented Lagrange multiplier} (ALM)
+\cite{BertsekasD2003,YangA2010-ICIP}.
 
-Secondly, while solving \eqref{eq:l1min_denoise} can achieve exceptional recognition accuracy on public databases, its success relies on the assumption that the query image is well aligned with the training images. In \cite{WagnerA2009-CVPR}, the framework of SBC was extended to iteratively align a query image to one subject class. The face alignment algorithm in turn solves the following minimization problem:
+Secondly, while solving \eqref{eq:l1min_denoise} can achieve exceptional
+recognition accuracy on public databases, its success relies on the assumption
+that the query image is well aligned with the training images. In
+\cite{WagnerA2009-CVPR}, the framework of SBC was extended to iteratively align
+a query image to one subject class. The face alignment algorithm in turn solves
+the following minimization problem:
 \begin{equation}
 \hat{\tau}_i = \arg\min_{\xx, \ee, \tau_i} \|\ee\|_1\quad \mbox{subj. to}\quad \bb\circ\tau_i = A_i\xx + \ee,
 \label{eq:l1min_alignment}
 \end{equation}
-where $\tau_i\in T$ is in a finite-dimensional group $T$ of transformations (e.g., affine or homography) acting on the image domain, which aligns $\bb$ with the training images from the $i$-th class $A_i$. The algorithm essentially extends Lucas-Kanade iterative alignment \cite{LucasB1981} to using the $\ell_1$ norm as a robust error function.
-Although the original solution \cite{WagnerA2009-CVPR} was implemented based on standard interior-point methods, its speed has been improved by ALM in a more recent paper \cite{WagnerA2011-PAMI}. In this paper, in addition to solving the generic $\ell_1$-min objectives \eqref{eq:l1min} or \eqref{eq:l1min_denoise}, we also discuss how to properly customize the implementation to accelerate the face alignment step \eqref{eq:l1min_alignment} on many-core CPUs and GPUs.
+where $\tau_i\in T$ is in a finite-dimensional group $T$ of transformations
+(e.g., affine or homography) acting on the image domain, which aligns $\bb$
+with the training images from the $i$-th class $A_i$. The algorithm essentially
+extends Lucas-Kanade iterative alignment \cite{LucasB1981} to using the
+$\ell_1$ norm as a robust error function.  Although the original solution
+\cite{WagnerA2009-CVPR} was implemented based on standard interior-point
+methods, its speed has been improved by ALM in a more recent paper
+\cite{WagnerA2011-PAMI}. In this paper, in addition to solving the generic
+$\ell_1$-min objectives \eqref{eq:l1min} or \eqref{eq:l1min_denoise}, we also
+discuss how to properly customize the implementation to accelerate the face
+alignment step \eqref{eq:l1min_alignment} on many-core CPUs and GPUs.
 
-Finally, we present extensive benchmark to compare the performance of the generic ALM $\ell_1$-min algorithm and the corresponding face recognition routines on massively parallel CPUs and GPUs. 
-To this end, the face recognition system has been fully implemented on a state-of-the-art workstation, as shown in Figure \ref{fig:pipeline}. Since any algorithm parallelization is highly dependent on the specific computer hardware, the architecture of our test system will be explained in detail in Section \ref{sec:parallelism}.
-We show that a highly accurate and robust face recognition system can be constructed to recognize face images from a moderate database of several hundred subjects. Note that with the possible continual increase of the number of subject classes, it is possible to modularize and dispatch different stages of the face recognition routine to a network of workstations to form an even larger scale networked system. Nevertheless, this scenario is not the focus of this paper. The source code of our algorithms, which is based on BLAS and Nvidia CUDA libraries, will be made available on our website to aid peer evaluation.
+Finally, we present extensive benchmark to compare the performance of the
+generic ALM $\ell_1$-min algorithm and the corresponding face recognition
+routines on massively parallel CPUs and GPUs.  To this end, the face
+recognition system has been fully implemented on a state-of-the-art
+workstation, as shown in Figure \ref{fig:pipeline}. Since any algorithm
+parallelization is highly dependent on the specific computer hardware, the
+architecture of our test system will be explained in detail in Section
+\ref{sec:parallelism}.  We show that a highly accurate and robust face
+recognition system can be constructed to recognize face images from a moderate
+database of several hundred subjects. Note that with the possible continual
+increase of the number of subject classes, it is possible to modularize and
+dispatch different stages of the face recognition routine to a network of
+workstations to form an even larger scale networked system. Nevertheless, this
+scenario is not the focus of this paper. The source code of our algorithms,
+which is based on BLAS and Nvidia CUDA libraries, will be made available on our
+website to aid peer evaluation.
 \begin{figure}
 \centering
 {\tiny \input{figures/pipeline_simplified.tex}}
@@ -98,36 +145,86 @@ We show that a highly accurate and robust face recognition system can be constru
 \label{fig:pipeline}
 \end{figure}
 
-\subsection{Literature Review}
-In this section, we briefly review the literature of $\ell_1$-min and existing works on its parallelization. Traditionally, $\ell_1$-min (or the so-called basis pursuit (BP)) has been formulated as a linear program \cite{ChenS2001-SIAM}. Several variations of the solution are also well known in optimization, including a noisy approximation via quadratic programming called the LASSO \cite{TibshiraniR1996} and truncated Newton interior-point method (TNIPM) \cite{KimS2007}.
+\subsection{Literature Review} 
+In this section, we briefly review the literature of $\ell_1$-min and existing
+works on its parallelization.  Traditionally, $\ell_1$-min (or the so-called
+basis pursuit (BP)) has been formulated as a linear program
+\cite{ChenS2001-SIAM}. Several variations of the solution are also well known
+in optimization, including a noisy approximation via quadratic programming
+called the LASSO \cite{TibshiraniR1996} and truncated Newton interior-point
+method (TNIPM) \cite{KimS2007}.
 
-One of the drawbacks of most interior-point methods for $\ell_1$-min (including BP, LASSO, and TNIPM) is that they require the solution sequence to follow an interior path, which is often computationally expensive. To mitigate these issues, an approach called \emph{Homotopy} has been studied to accelerate the speed of $\ell_1$-min. Homotopy methods for recovering sparse signals were first studied in the context of LASSO \cite{OsborneM2000}, which inspired a solution to the \emph{forward stagewise linear regression} problem called LARS \cite{EfronB2004}, and eventually led to the corresponding Homotopy algorithms for BP in \cite{MalioutovD2005,DonohoD2006}.
+One of the drawbacks of most interior-point methods for $\ell_1$-min (including
+BP, LASSO, and TNIPM) is that they require the solution sequence to follow an
+interior path, which is often computationally expensive. To mitigate these
+issues, an approach called \emph{Homotopy} has been studied to accelerate the
+speed of $\ell_1$-min. Homotopy methods for recovering sparse signals were
+first studied in the context of LASSO \cite{OsborneM2000}, which inspired a
+solution to the \emph{forward stagewise linear regression} problem called LARS
+\cite{EfronB2004}, and eventually led to the corresponding Homotopy algorithms
+for BP in \cite{MalioutovD2005,DonohoD2006}.
 
-Although Homotopy can be shown to exactly estimate BP when the solution is sufficiently sparse \cite{DonohoD2006}, the algorithm still involves expensive matrix operations such as matrix-matrix multiplication and solving least-squares problems with varying $A$ matrices. Hence, it is not efficient to implement Homotopy on parallel hardware. In Section \ref{sec:ALM}, we contend that ALM is a better choice among Homotopy and other existing $\ell_1$-min solvers to parallelize on many-core CPUs and GPUs. The algorithm belongs to a category of approximate $\ell_1$-min solutions called \emph{iterative shrinkage-thresholding} (IST) method \cite{WrightS2008,BeckA2009}. The (sequential) implementation of IST algorithms mainly involves elementary operations such as vector algebra and matrix-vector multiplication. Therefore, when the dimension of the problem becomes high, IST-type algorithms are particularly suitable for systems in parallel-computing environments. In \cite{YangA2010-ICIP}, the authors further showed that, compared to other IST-type algorithms, ALM is able to achieve good estimation accuracy comparable to BP and Homotopy, while at the same time significantly improve the speed compared to these exact $\ell_1$-min solutions. Due to these facts, in this paper, we choose ALM as the core algorithm to implement the complete parallel face recognition pipeline.
+Although Homotopy can be shown to exactly estimate BP when the solution is
+sufficiently sparse \cite{DonohoD2006}, the algorithm still involves expensive
+matrix operations such as matrix-matrix multiplication and solving
+least-squares problems with varying $A$ matrices. Hence, it is not efficient to
+implement Homotopy on parallel hardware. In Section \ref{sec:ALM}, we contend
+that ALM is a better choice among Homotopy and other existing $\ell_1$-min
+solvers to parallelize on many-core CPUs and GPUs. The algorithm belongs to a
+category of approximate $\ell_1$-min solutions called \emph{iterative
+shrinkage-thresholding} (IST) method \cite{WrightS2008,BeckA2009}. The
+(sequential) implementation of IST algorithms mainly involves elementary
+operations such as vector algebra and matrix-vector multiplication. Therefore,
+when the dimension of the problem becomes high, IST-type algorithms are
+particularly suitable for systems in parallel-computing environments. In
+\cite{YangA2010-ICIP}, the authors further showed that, compared to other
+IST-type algorithms, ALM is able to achieve good estimation accuracy comparable
+to BP and Homotopy, while at the same time significantly improve the speed
+compared to these exact $\ell_1$-min solutions. Due to these facts, in this
+paper, we choose ALM as the core algorithm to implement the complete parallel
+face recognition pipeline.
 
-In terms of the past works in parallel $\ell_1$-min, the literature has been limited, to the best of our knowledge. In \cite{BorghiA2010}, Borghi et al. developed a special proximal gradient $\ell_1$-min algorithm based on Moreau-Yosida regularization. In \cite{MurphyM2010}, Murphy et al. presented parallel implementation of the l1-SPIRIT MRI reconstruction algorithm on NVidia programmable GPUs.
-
-%\subsection{Contributions of the Paper}
+In terms of the past works in parallel $\ell_1$-min, the literature has been
+limited, to the best of our knowledge. In \cite{BorghiA2010}, Borghi et al.
+developed a special proximal gradient $\ell_1$-min algorithm based on
+Moreau-Yosida regularization. In \cite{MurphyM2010}, Murphy et al. presented
+parallel implementation of the l1-SPIRIT MRI reconstruction algorithm on NVidia
+programmable GPUs.
 
 \section{Augmented Lagrange Multiplier Method}
 \label{sec:ALM}
 
-For the completeness of the paper, in this section, we briefly describe the ALM algorithm for $\ell_1$-min \eqref{eq:l1min} \cite{YangA2010-ICIP} and analyze its complexity. Parallelization of ALM for face alignment and recognition will be discussed in Section \ref{sec:alignment} and Section \ref{sec:recognition}, respectively.
+For the completeness of the paper, in this section, we briefly describe the ALM
+algorithm for $\ell_1$-min \eqref{eq:l1min} \cite{YangA2010-ICIP} and analyze
+its complexity. Parallelization of ALM for face alignment and recognition will
+be discussed in Section \ref{sec:alignment} and Section \ref{sec:recognition},
+respectively.
 
-Lagrange multiplier methods have been frequently used in convex programming to eliminate equality constraints via adding a significant penalty term to the cost function for infeasible points. ALM methods differ from other penalty-based approaches by simultaneously estimating the optimal solution and Lagrange multipliers in an iterative fashion.
-For $\ell_1$-min, the augmented Lagrange function is defined as:
-\begin{equation}
-L_\mu(\xx,\yy) = \|\xx\|_1 + \yy^T(\bb - A\xx - \ee) + \frac{\mu}{2} \| \bb-A\xx-\ee \|_2^2,
-\end{equation}
-where $\mu > 0$ is a constant that penalizes infeasibility and $\yy$ is a vector of lagrange multipliers.
+Lagrange multiplier methods have been frequently used in convex programming to
+eliminate equality constraints via adding a significant penalty term to the
+cost function for infeasible points. ALM methods differ from other
+penalty-based approaches by simultaneously estimating the optimal solution and
+Lagrange multipliers in an iterative fashion.  For $\ell_1$-min, the augmented
+Lagrange function is defined as: \begin{equation} L_\mu(\xx,\yy) = \|\xx\|_1 +
+\yy^T(\bb - A\xx - \ee) + \frac{\mu}{2} \| \bb-A\xx-\ee \|_2^2, \end{equation}
+where $\mu > 0$ is a constant that penalizes infeasibility and $\yy$ is a
+vector of lagrange multipliers.
 
-In Lagrange Multiplier Theory, if there exists a Lagrangian $y^*$ that satisfies the second-order sufficiency conditions for optimality \cite{BertsekasD2003}, then for a sufficiently large $mu$, the optimal $\ell_1$-min solution also minimizes
+In Lagrange Multiplier Theory, if there exists a Lagrangian $y^*$ that
+satisfies the second-order sufficiency conditions for optimality
+\cite{BertsekasD2003}, then for a sufficiently large $mu$, the optimal
+$\ell_1$-min solution also minimizes
 \begin{equation}
 \xx^* = \arg \min L_\mu(\xx,\yy^*).
 \label{eq:optimal-ALM}
 \end{equation}
 
-In practice, the optimal values for the triplet $(\xx^*, \yy^*, \uu)$ are all unknown. Furthermore, it has been observed that if solving \eqref{eq:optimal-ALM} with a large initial value of $\mu$ tends to lead to slower convergence speed \cite{WrightS2008,YangA2010-ICIP}. In \cite{BertsekasD2003,YangJ2009}, an alternating procedure has been proposed to iteratively update $\xx$ and $\yy$:
+In practice, the optimal values for the triplet $(\xx^*, \yy^*, \uu)$ are all
+unknown. Furthermore, it has been observed that if solving
+\eqref{eq:optimal-ALM} with a large initial value of $\mu$ tends to lead to
+slower convergence speed \cite{WrightS2008,YangA2010-ICIP}. In
+\cite{BertsekasD2003,YangJ2009}, an alternating procedure has been proposed to
+iteratively update $\xx$ and $\yy$:
 \begin{equation}
 \left \{
 \begin{array}{lll}
@@ -137,9 +234,19 @@ In practice, the optimal values for the triplet $(\xx^*, \yy^*, \uu)$ are all un
 \right . ,
 \label{eq:alm}
 \end{equation}
-where $\left\{\mu_{k}\right\}$ is a monotonically increasing positive sequence. The iteration terminates when the estimates $(\xx, \yy)$ converges.
+where $\left\{\mu_{k}\right\}$ is a monotonically increasing positive sequence.
+The iteration terminates when the estimates $(\xx, \yy)$ converges.
 
-Note that in the iterative procedure outlined in \eqref{eq:alm}, the second step only involves vector algebra and matrix-vector multiplication. Therefore, the procedure is computationally efficient only if it is easier to minimize the augmented Lagrange function compared to solving the original problem \eqref{eq:l1min} directly. In fact, the first step that minimizes $L_{\mu_k} (\xx,\yy_k)$ assuming $\yy_k$ and $\mu_k$ are fixed can be solved element-wise iteratively by a soft-thresholding algorithm \cite{WrightS2008,BeckA2009}, whose time complexity is bounded by $O(n^2)$ and can be easily parallelized. Algorithm \ref{alg:alm} summarizes the ALM $\ell_1$-min algorithm.
+Note that in the iterative procedure outlined in \eqref{eq:alm}, the second
+step only involves vector algebra and matrix-vector multiplication. Therefore,
+the procedure is computationally efficient only if it is easier to minimize the
+augmented Lagrange function compared to solving the original problem
+\eqref{eq:l1min} directly. In fact, the first step that minimizes $L_{\mu_k}
+(\xx,\yy_k)$ assuming $\yy_k$ and $\mu_k$ are fixed can be solved element-wise
+iteratively by a soft-thresholding algorithm \cite{WrightS2008,BeckA2009},
+whose time complexity is bounded by $O(n^2)$ and can be easily parallelized.
+Algorithm \ref{alg:alm} summarizes the ALM $\ell_1$-min algorithm.
+
  \begin{algorithm}[h]
 \caption{Augmented Lagrange Multiplier (ALM)}
 {\bf INPUT:} $\bb \in \Re^m$, $A \in \Re^{m \times n}$, $\tau\leftarrow$ largest eigenvalue of $A^TA$, and a constant $\rho>1$.
@@ -161,20 +268,23 @@ converged ($l = 1,2,\ldots$)} \STATE $\uu_{l+1}  \leftarrow
 \label{alg:alm}
 \end{algorithm}
 
-\section{Hardware Parallelism}
-\label{sec:parallelism}
-In this section we discuss the hardware architectures used in this paper. Aside from the $\ell_1$-min algorithm, our choice
-of the architectures plays a significant role in many practical decisions we make in Section \ref{sec:alignment} and Section \ref{sec:recognition}.
-For CPU implementation, the system would make use of all the cores in as many CPUs are present on one motherboard.  For GPU implementation, the system would
-make the best use of a single many-core Nvidia GPU chip  on a PCI card (GPUs are commonly shipped with a single GPU chip per PCI-express card).  Unless otherwise specified, all implementations utilize single
-precision floating point datatypes.  
+\section{Hardware Parallelism} \label{sec:parallelism} 
+In this section we discuss the hardware architectures used in this paper. Aside
+from the $\ell_1$-min algorithm, our choice of the architectures plays a
+significant role in many practical decisions we make in Section
+\ref{sec:alignment} and Section \ref{sec:recognition}.  For CPU implementation,
+the system would make use of all the cores in as many CPUs are present on one
+motherboard.  For GPU implementation, the system would make the best use of a
+single many-core Nvidia GPU chip  on a PCI card (GPUs are commonly shipped with
+a single GPU chip per PCI-express card).  Unless otherwise specified, all
+implementations utilize single precision floating point datatypes.  
 
 \subsection{CPU Hardware Parallelism} 
-The baseline architecture for our experiments is a Linux workstation with two quad-core Intel Nehalem E5530 processors clocked at 2.4 GHz.  Each
-processor has its own memory interface, and is directly connected to half of
-the RAM installed in the machine.  The amount of RAM installed exceeds the
-amount used by the algorithms, and is not an important performance
-consideration.  
+The baseline architecture for our experiments is a Linux workstation with two
+quad-core Intel Nehalem E5530 processors clocked at 2.4 GHz.  Each processor
+has its own memory interface, and is directly connected to half of the RAM
+installed in the machine.  The amount of RAM installed exceeds the amount used
+by the algorithms, and is not an important performance consideration.  
 
 Each core has a 32\,KB L1 data cache and a 256\,KB L2 cache. With Hyperthreading
 enabled, each core can support two threads simultaneously.  For floating point
@@ -184,30 +294,50 @@ simultaneously.  \footnote{The core also has scalar floating point units, but
 some compilers, notably gcc, generate code that uses the vector units
 exclusively for floating point instructions.} 
 
-There are thus two important levels of parallelism that need to be exploited to efficiently
-use a modern CPU: core-level parallelism and vector-level
+There are thus two important levels of parallelism that need to be exploited to
+efficiently use a modern CPU: core-level parallelism and vector-level
 parallelism.  For the implementations discussed here, we will primarily use the
-OpenMP programming model to express core-level parallelism {\bf AY: What is OpenMP? citation needed}.  Depending on the
-section of the code{\bf AY: What is a section of the code?}, we will achieve vector-level parallelism implicitly
+OpenMP programming model to express core-level parallelism {\bf AY: What is
+OpenMP? citation needed}.  Depending on the section of the code{\bf AY: What is
+a section of the code?}, we will achieve vector-level parallelism implicitly
 through either the auto-vectorization features of Intel's icc compiler, or
-through the use of a highly optimized BLAS library (Intel's MKL). {\bf AY: citations needed, what is icc, what is the relation between BLAS and MKL? Are they equivalent? not clear in the context.}
+through the use of a highly optimized BLAS library (Intel's MKL). {\bf AY:
+citations needed, what is icc, what is the relation between BLAS and MKL? Are
+they equivalent? not clear in the context.}
 
-Each processor further has 8MB of L3 cache that is shared by all four cores.  Overall,
-this means the algorithm has approximately 16MB of on-chip cache available.
-For the low resolution images used in sparse representation based face
-recognition, this is enough cache to hold over 800 image-sized variables, {\bf AY: how low resolution? which sparse representation problem? ``image-sized variables'' means simply ``image vectors''?}
-meaning that for small data sets it is possible to run completely using on-chip
-cache.
+Each processor further has 8MB of L3 cache that is shared by all four cores.
+Overall, this means the algorithm has approximately 16MB of on-chip cache
+available.  For the low resolution images used in sparse representation based
+face recognition, this is enough cache to hold over 800 image-sized variables,
+{\bf AY: how low resolution? which sparse representation problem? ``image-sized
+variables'' means simply ``image vectors''?} meaning that for small data sets
+it is possible to run completely using on-chip cache.
 
 \subsection{GPU Hardware Parallelism}
-%High-level description of GPU parallelism, i.e.
 
-The ALM algorithm requires many matrix-vector operations, this gives many-core processors such as GPUs a computational advantage for large problem sizes.  GPUs are comprised of several streaming multiprocessors (SMP) (16 for the Nvidia Fermi) which each contains 32 floating-point units.  Each SMP contains its own L1-cache and shared memory and all SMPs share a common L2-cache.  The GPU executes programs as SIMT (Single Instruction Multiple Threads) in groups of 32 threads called \emph{warps}.  These warps are then grouped into higher levels called \emph{thread blocks} and \emph{grids}. The GPU contains an inverted memory hierarchy so that the L1 cache stays close to the cores, providing the increase in performance and a computational advantage over CPUs.  Unlike normal CPUs, the Nvidia Fermi has 768 kb of L1 cache/shared memory and 768kb of L2 cache. However, this increase in performance does not come for free. As the GPU has its own memory system, any data the GPU uses must be transferred from RAM to the GPU over PCI-Express, which has limited bandwidth. However, the cost of these transfers are amortized by doing large amounts of computation at once, requiring code to be run completely on the GPU.  
+The ALM algorithm requires many matrix-vector operations, this gives many-core
+processors such as GPUs a computational advantage for large problem sizes.
+GPUs are comprised of several streaming multiprocessors (SMP) (16 for the
+Nvidia Fermi) which each contains 32 floating-point units.  Each SMP contains
+its own L1-cache and shared memory and all SMPs share a common L2-cache.  The
+GPU executes programs as SIMT (Single Instruction Multiple Threads) in groups
+of 32 threads called \emph{warps}.  These warps are then grouped into higher
+levels called \emph{thread blocks} and \emph{grids}. The GPU contains an
+inverted memory hierarchy so that the L1 cache stays close to the cores,
+providing the increase in performance and a computational advantage over CPUs.
+Unlike normal CPUs, the Nvidia Fermi has 768 kb of L1 cache/shared memory and
+768kb of L2 cache. However, this increase in performance does not come for
+free. As the GPU has its own memory system, any data the GPU uses must be
+transferred from RAM to the GPU over PCI-Express, which has limited bandwidth.
+However, the cost of these transfers are amortized by doing large amounts of
+computation at once, requiring code to be run completely on the GPU.  
 
-In summary, a programmable GPU can be analogous to a multi-core CPU processor, except with more sophisticated vector processing hardware.  Each thread block is a virtualized multiprocessor, which each thread as a virtualized scalar processor.  All of these differences allow GPUs to perform intensive calculations such as matrix-vector operations at much faster rates than CPUs. 
+In summary, a programmable GPU can be analogous to a multi-core CPU processor,
+except with more sophisticated vector processing hardware.  Each thread block
+is a virtualized multiprocessor, which each thread as a virtualized scalar
+processor.  All of these differences allow GPUs to perform intensive
+calculations such as matrix-vector operations at much faster rates than CPUs. 
 
-
-% This section is Drew's
 \section{Parallelization of the Face Alignment Stage}
 \label{sec:alignment}
 {\bf AY: Add an algorithm here describe the alignment block in the pipeline. Explain the algorithm and necessary modification from generic l-1}
