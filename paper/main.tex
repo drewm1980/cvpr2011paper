@@ -141,7 +141,7 @@ increase of the number of subject classes, it is possible to modularize and
 dispatch different stages of the face recognition routine to a network of
 workstations to form an even larger scale networked system. Nevertheless, this
 scenario is not the focus of this paper. The source code of our algorithms,
-which is based on BLAS and Nvidia CUDA libraries, will be made available on our
+which is based on CUBLAS and Nvidia CUDA libraries, will be made available on our
 website to aid peer evaluation.
 \begin{figure}
 \centering
@@ -322,26 +322,27 @@ it is possible to run completely using on-chip cache.
 
 The ALM algorithm requires many matrix-vector operations, this gives many-core
 processors such as GPUs a computational advantage for large problem sizes.
-GPUs are comprised of several streaming multiprocessors (SMP) (16 for the
-Nvidia Fermi) which each contains 32 floating-point units.  Each SMP contains
+GPUs are comprised of several streaming multiprocessors (SMP) (15 for our
+NVIDIA Fermi) which each contains 32 floating-point units.  Each SMP contains
 its own L1-cache and shared memory and all SMPs share a common L2-cache.  The
 GPU executes programs as SIMT (Single Instruction Multiple Threads) in groups
 of 32 threads called \emph{warps}.  These warps are then grouped into higher
-levels called \emph{thread blocks} and \emph{grids}. The GPU contains an
-inverted memory hierarchy so that the L1 cache stays close to the cores,
-providing the increase in performance and a computational advantage over CPUs.
-Unlike normal CPUs, the Nvidia Fermi has 768 kb of L1 cache/shared memory and
+levels called \emph{thread blocks} and \emph{grids}. 
+
+Fermi's inverted memory hierarchy (aggregate l1 capacity is greater than l2 capacity) is designed to support massively parallel workloads in which there is more task-private data than shared data, providing an increase in performance and a computational advantage over CPUs.
+For our system, each SMP has 64 kb of L1 cache with a total of 960 kb of L1 cache/shared memory and
 768kb of L2 cache. However, this increase in performance does not come for
 free. As the GPU has its own memory system, any data the GPU uses must be
 transferred from RAM to the GPU over PCI-Express, which has limited bandwidth.
 However, the cost of these transfers are amortized by doing large amounts of
-computation at once, requiring code to be run completely on the GPU.  
+computation at once, requiring code to be run completely on the GPU.  In 2011, NVIDIA is developing a new ARM-based CPU system, dubbed 
+"Project Denver" to fix performance issues such as the limited bandwidth due to PCI-E \cite{Dally-Web}.
 
 In summary, a programmable GPU can be analogous to a multi-core CPU processor,
 except with more sophisticated vector processing hardware.  Each thread block
 is a virtualized multiprocessor, which each thread as a virtualized scalar
 processor.  All of these differences allow GPUs to perform intensive
-calculations such as matrix-vector operations at much faster rates than CPUs. 
+calculations such as large scale matrix-vector operations at much faster rates than CPUs. 
 
 \section{Parallelization of the Face Alignment Stage}
 \label{sec:alignment}
@@ -368,12 +369,44 @@ calculations such as matrix-vector operations at much faster rates than CPUs.
 \section{Parallelization of the Face Recognition Stage}
 \label{sec:recognition}
 {\bf AY: Add an algorithm here describe the recognition block in the pipeline. Explain the algorithm and necessary modification from generic l-1}
+{\bf VS: Why did we modify the algorithm for the recognition stage? }
+
+\begin{algorithm}[t]
+\caption{\bf (Augmented Lagrange Multiplier Method for
+Recognition)}
+\begin{algorithmic}[1]
+\begin{small}
+\STATE {\bf Input:} $\y \in \Re^m$, $A \in \Re^{m \times n}$,
+$\x_1 = \mathbf{0}$, $\e_1 = \y$, $\blamda_1 =
+\mathbf{0}$.
+\WHILE{not converged ($k = 1,2,\ldots$)}
+\STATE $\e_{k+1} = \textup{shrink}\left(\y - A\x_k +
+\frac{1}{\mu}\blamda_k, \frac{1}{\mu}\right)$;
+\STATE $t_1\leftarrow 1$, $\z_1 \leftarrow \x_k$, $\w_1 \leftarrow \x_k$;
+\WHILE{not converged ($l = 1,2,\ldots$)}
+\STATE $\w_{l+1} \leftarrow \textup{shrink}\left(\z_l +
+\frac{1}{\gamma}A^T\left(\y - A\z_l - \e_{k+1} +
+\frac{1}{\mu}\blamda_k\right), \frac{1}{\mu\gamma}\right)$;
+\STATE $t_{l+1} \leftarrow \frac{1}{2}\left( 1 +
+\sqrt{1+4t_l^2}\right)$;
+\STATE $\z_{l+1} \leftarrow \w_{l+1} + \frac{t_l - 1}{t_{l+1}}(\w_{l+1} - \w_l)$;
+\ENDWHILE
+\STATE $\x_{k+1} \leftarrow \w_{l}$,  \; $\blamda_{k+1} \leftarrow \blamda_k + \mu (\y - A\x_{k+1} - \e_{k+1})$;
+\ENDWHILE \STATE
+{\bf Output:} $\x^* \leftarrow \x_k, \e^* \leftarrow \e_k$.
+\end{small}
+\end{algorithmic}
+\label{alg:alm_rec} 
+\end{algorithm}
+
 
 \subsection{CPU Implementation}
 {\bf AY: A diagram should be used to illustrate how the jobs are distributed on a CPU architecture.}
+The CPU ALM algorithm was written in C and compiled with Intel's MKL libraries, which provide
+automatic parallelization.  
 
 \subsection{GPU Implementation}
-{\bf AY: A diagram should be used to illustrate how the jobs are distributed on a CPU architecture.}
+{\bf AY: A diagram should be used to illustrate how the jobs are distributed on a GPU architecture.}
 The GPU ALM algorithm is written in CUDA and utilizes the CUBLAS libraries.
 CUBLAS are the BLAS libraries consisting of all single precision BLAS calls
 which are provided by Nvidia and are optimized for GPU performance. In
@@ -386,7 +419,38 @@ calls to GPU functions and directing the flow of the code while the GPU keeps al
 \section{Experiment}
 {\bf AY: Describe the benchmark protocol here. Both for simulation and real face data.}
 
+In this section, we present four experiments to benchmark the performance of our algorithm on CPU and GPU platforms. 
+To generate a meaningful comparison between different hardware architectures,
+in all cases we compare the performance of hardware architectures on a
+per-board basis:  For CPU implementations, the benchmark makes use of all of
+the cores in as many cpu's are present.  For GPU implementations, the benchmark
+makes the best use of the entire GPU chip (most GPU boards have a single GPU
+chip).  Unless otherwise specified, all implementations utilize single
+precision floating point datatypes.  
+
+The first experiment is designed to compare the two implementations of PALM
+that solve a single large instance of the $\ell_1$-minimization problem (Algorithm \ref{alg:alm}).  
+The measurement $d \times n$ matrix $A$ was generated as a random Gaussian matrix, with each entry
+randomly generated from the standard normal and normalized with unit norm.  The ratio of $d/n$ varied from
+$10:1$ to $10:5$ with the dimension of $d$ of matrix $A$ varying from 500 to 8000.
+The ground truth signals, $x_0$ and $y_k$ had a sparsity rate of 0.1 with elements generated using the standard normal and normalized with unit norm.
+The measurement vector was generated with the equation $\y_0 = A \x_0 + \y_k$.    We set the number of inner iterations at 50 and outer iterations at 5000.
+We also varied the different inner and tolerance levels from 1e-3 to 1e-6.
+We averaged the the time taken for the ALM algorithm to solve 10 instances of a problem.  
+
+The x set of experiments will compare the CPU and GPU versions of the entire pipeline, 
+which includes the alignment and recognition stage.
+
+We pl
+
 \subsection{Simulation}
+
+We plot the resulted of the simulation benchmark below.  The x-axis represents the size of the 
+$A$ and $A'A$ matrix and the y-axis represents the average amount of time it to complete
+a single problem instance.
+
+The observations of this experiment are summarized below:
+1.  With similar accuracy rates, the GPU implementation runs faster than the CPU when 
 
 \subsection{Face Recognition Benchmark}
 
