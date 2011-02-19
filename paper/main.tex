@@ -66,14 +66,14 @@ First line of institution2 address\\
 \section{Introduction} 
 $\ell_1$-minimization ($\ell_1$-min) has received much attention in recent
 years due to important applications in compressive sensing
-\cite{BrucksteinA2007} and sparse representation \cite{WrightJ2010-PIEEE}.  The
-problem refers to finding the minimum $\ell$-norm solution to an
+\cite{BrucksteinA2007} and sparse representation \cite{WrightJ2010-PIEEE}.  
+$\ell_1$-min refers to finding the minimum $\ell$-norm solution to an
 underdetermined linear system $\bb=A\xx$:
 \begin{equation}
 \min \|\xx\|_1\quad \mbox{ subj. to }\quad \bb = A\xx.
 \label{eq:l1min}
 \end{equation}
-It has now been well understood that, under certain conditions
+It is now well established that, under certain conditions
 \cite{CandesE2005-IT_1,DonohoD2004}, the minimum $\ell_1$-norm solution is also
 the \emph{sparsest} solution to the system \eqref{eq:l1min}.
 
@@ -89,23 +89,24 @@ classification} (SBC) solves the following minimization problem:
 \label{eq:l1min_denoise}
 \end{equation}
 If the sparsest solutions for $\x$ and $\e$ are recovered, $\ee$ provides a
-means to compensate corrupted pixels that main occlude some part of the query
-image, and the dominant nonzero coefficients in $\xx$ reveals the membership of
-$\bb$ based on the training image labels associated with $A$.
+means to compensate for pixels that are corrupted due to occlusion of some part of the query
+image, and the dominant nonzero coefficients of $\xx$ reveal the membership of
+$\bb$ based on the training image labels associated with $A$.  Since $A$ ideally
+contains many images per user taken under different illuminations, 
+$A\x$ also acts as a linear illumination model for the test image $\bb$.
 
 In this paper, we study parallelization of $\ell$-min on many-core CPU and GPU
-architectures. Firstly, although $\ell_1$-min \eqref{eq:l1min} is a convex
+architectures. Although $\ell_1$-min \eqref{eq:l1min} is a convex
 program, conventional algorithms such as interior-point methods
 \cite{ChenS2001-SIAM,TibshiraniR1996} are known to suffer from poor scalability
 for large-scale applications such as face recognition. Recently, a number of
-accelerated algorithms have been proposed, which explicitly take advantage of
+accelerated algorithms have been proposed that explicitly take advantage of
 the special structure of $\ell_1$-min problems
 \cite{LorisI2009,YangA2010-ICIP}. We investigate parallelization of a
 state-of-the-art $\ell_1$-min solution based on the classical framework of
-\emph{augmented Lagrange multiplier} (ALM)
-\cite{BertsekasD2003,YangA2010-ICIP}.
+\emph{augmented Lagrange multiplier} (ALM) \cite{BertsekasD2003,YangA2010-ICIP}.
 
-Secondly, while solving \eqref{eq:l1min_denoise} can achieve exceptional
+While solving \eqref{eq:l1min_denoise} can achieve exceptional
 recognition accuracy on public databases, its success relies on the assumption
 that the query image is well aligned with the training images. In
 \cite{WagnerA2009-CVPR}, the framework of SBC was extended to iteratively align
@@ -117,36 +118,42 @@ the following minimization problem:
 \end{equation}
 where $\tau_i\in T$ is in a finite-dimensional group $T$ of transformations
 (e.g., affine or homography) acting on the image domain, which aligns $\bb$
-with the training images from the $i$-th class $A_i$. The algorithm essentially
-extends Lucas-Kanade iterative alignment \cite{LucasB1981} to using the
-$\ell_1$ norm as a robust error function.  Although the original solution
-\cite{WagnerA2009-CVPR} was implemented based on standard interior-point
-methods, its speed has been improved by ALM in a more recent paper
-\cite{WagnerA2011-PAMI}. In this paper, in addition to solving the generic
-$\ell_1$-min objectives \eqref{eq:l1min} or \eqref{eq:l1min_denoise}, we also
-discuss how to properly customize the implementation to accelerate the face
-alignment step \eqref{eq:l1min_alignment} on many-core CPUs and GPUs.
+with the training images from the $i$-th class $A_i$. The algorithm 
+extends Lucas-Kanade iterative alignment \cite{LucasB1981} to both to use the
+$\ell_1$ norm as a robust error function, and also simultaneously 
+to estimate the illumination model $A\x$.  
+The original solution \cite{WagnerA2009-CVPR} was implemented based 
+on standard interior-point
+methods, and its speed has been since improved by ALM in a more recent paper
+\cite{WagnerA2011-PAMI}. However, primarily due the high per-user cost
+of the alignment step, the recognition system was still not fast enough
+for real-time recognition against datasets of hundreds of users.
+In this paper, in addition to solving the generic
+$\ell_1$-min objectives \eqref{eq:l1min} and \eqref{eq:l1min_denoise}, we 
+discuss how to properly accelerate the iterative face alignment step
+\eqref{eq:l1min_alignment} on multi-core CPUs and GPUs. 
 
 Finally, we present extensive benchmark to compare the performance of the
 generic ALM $\ell_1$-min algorithm and the corresponding face recognition
 routines on massively parallel CPUs and GPUs.  To this end, the face
 recognition system has been fully implemented on a state-of-the-art
-workstation, as shown in Figure \ref{fig:pipeline}. Since any algorithm
-parallelization is highly dependent on the specific computer hardware, the
-architecture of our test system will be explained in detail in Section
-\ref{sec:parallelism}.  We show that a highly accurate and robust face
-recognition system can be constructed to recognize face images from a moderate
-database of several hundred subjects. Note that with the possible continual
-increase of the number of subject classes, it is possible to modularize and
-dispatch different stages of the face recognition routine to a network of
-workstations to form an even larger scale networked system. Nevertheless, this
-scenario is not the focus of this paper. The source code of our algorithms,
-which is based on CUBLAS and Nvidia CUDA libraries, will be made available on our
-website to aid peer evaluation.
+workstation, as shown in Figure \ref{fig:pipeline}. 
+Since the parallelization of any algorithm
+is highly dependent on the target hardware, we will give a brief overview of
+the architecture of our test system in detail in Section
+\ref{sec:parallelism}.  We will show that a highly accurate and robust face
+recognition system can be constructed to recognize face images from a 
+database of several hundred subjects quickly enough to be practical for
+access control applications. 
+Note that for applications targeting thousands of users or more, it would likely be
+necessary to distribute the work over a network of machines; this paper
+focuses on the (shared memory) parallelism available in a single machine.
+The C++ source code of our implementations, which target Nvidia's CUDA GPU architecture
+will be made available for evaluation by other researchers.
 \begin{figure}
 \centering
 {\tiny \input{figures/pipeline_simplified.tex}}
-\caption{The face recognition pipeline implemented on massively parallel hardware.}
+\caption{Overview of the face recognition pipeline.}
 \label{fig:pipeline}
 \end{figure}
 
@@ -161,7 +168,10 @@ method (TNIPM) \cite{KimS2007}.
 
 One of the drawbacks of most interior-point methods for $\ell_1$-min (including
 BP, LASSO, and TNIPM) is that they require the solution sequence to follow an
-interior path, which is often computationally expensive. To mitigate these
+interior path{\bf DW: Following the interior path is what made them faster than
+traditional linear programming techniques that follow the edge of the feasible set;
+does Homotopy actually go outside the feasible set?  Just want to check if this is
+an accurate representation...}, which is often computationally expensive. To mitigate these
 issues, an approach called \emph{Homotopy} has been studied to accelerate the
 speed of $\ell_1$-min. Homotopy methods for recovering sparse signals were
 first studied in the context of LASSO \cite{OsborneM2000}, which inspired a
@@ -170,16 +180,16 @@ solution to the \emph{forward stagewise linear regression} problem called LARS
 for BP in \cite{MalioutovD2005,DonohoD2006}.
 
 Although Homotopy can be shown to exactly estimate BP when the solution is
-sufficiently sparse \cite{DonohoD2006}, the algorithm still involves expensive
-matrix operations such as matrix-matrix multiplication and solving
-least-squares problems with varying $A$ matrices. Hence, it is not efficient to
-implement Homotopy on parallel hardware. In Section \ref{sec:ALM}, we contend
+sufficiently sparse \cite{DonohoD2006}, the algorithm still involves 
+computationally expensive operations such as matrix-matrix multiplication and 
+the solution of least-squares problems with varying $A$ matrices. 
+In Section \ref{sec:ALM}, we contend
 that ALM is a better choice among Homotopy and other existing $\ell_1$-min
-solvers to parallelize on many-core CPUs and GPUs. The algorithm belongs to a
+solvers for implementation on many-core CPUs and GPUs. The ALM algorithm belongs to a
 category of approximate $\ell_1$-min solutions called \emph{iterative
-shrinkage-thresholding} (IST) method \cite{WrightS2008,BeckA2009}. The
-(sequential) implementation of IST algorithms mainly involves elementary
-operations such as vector algebra and matrix-vector multiplication. Therefore,
+shrinkage-thresholding} (IST) method \cite{WrightS2008,BeckA2009}.
+IST algorithms mainly involves elementary operations such as vector 
+algebra and matrix-vector multiplication. Therefore,
 when the dimension of the problem becomes high, IST-type algorithms are
 particularly suitable for systems in parallel-computing environments. In
 \cite{YangA2010-ICIP}, the authors further showed that, compared to other
