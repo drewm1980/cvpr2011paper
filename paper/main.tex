@@ -260,7 +260,9 @@ augmented Lagrange function compared to solving the original problem
 (\xx,\yy_k)$ assuming $\yy_k$ and $\mu_k$ are fixed can be solved element-wise
 iteratively by a soft-thresholding algorithm \cite{WrightS2008,BeckA2009},
 whose time complexity is bounded by $O(n^2)$ and can be easily parallelized.
-Algorithm \ref{alg:alm} summarizes the ALM $\ell_1$-min algorithm.
+Algorithm \ref{alg:alm} summarizes the ALM $\ell_1$-min algorithm \footnote{While we
+present the ALM algorithm in the primal domain, there also
+exists an implementation ALM in the dual domain.}.
 
  \begin{algorithm}[h]
 \caption{Augmented Lagrange Multiplier (ALM)}
@@ -474,11 +476,11 @@ inner loop.
 {\bf AY: Add an algorithm here describe the recognition block in the pipeline. Explain the algorithm and necessary modification from generic l-1}
 {\bf VS: Why did we modify the algorithm for the recognition stage? }
 
-Below is the psuedocode solving the minimization problem posed in \eqref{eq:l1min_denoise}. 
+Below is the algorithm for the face recognition stage in Figure \ref{fig:pipeline}, which
+solves the $\ell_1$ minimization problem posed in \eqref{eq:l1min_denoise}. 
 
 \begin{algorithm}[t]
-\caption{\bf (Augmented Lagrange Multiplier Method for
-Recognition)}
+\caption{\bf (Face Recognition via ALM)}
 \begin{algorithmic}[1]
 \begin{small}
 \STATE {\bf Input:} $\bb \in \Re^m$, $A \in \Re^{m \times n}$,
@@ -517,7 +519,7 @@ CUBLAS are the BLAS libraries consisting of all single precision BLAS calls
 which are provided by Nvidia and are optimized for GPU performance. In
 addition, we coded kernel (GPU) methods for vector-vector operations to replace
 operations that would have taken multiple BLAS calls. Because data transfer from the 
-RAM to GPU suffers bandwidth limitations, we designed our implementation to transfer the A matrix and measurement vector at once.  
+RAM to GPU suffers bandwidth limitations, we designed our implementation to transfer the A matrix and measurement vector once.  
 The algorithm is similar to the CPU algorithm except that we had to parallelize the code at an
 additional level. The CPU portion of the code serves as the conductor, making
 calls to GPU functions and directing the flow of the code while the GPU keeps all of the data and runs the computation.
@@ -532,20 +534,39 @@ per-board basis:  For CPU implementations, the benchmark makes use of all of
 the cores in as many cpu's are present.  For GPU implementations, the benchmark
 makes the best use of the entire GPU chip (most GPU boards have a single GPU
 chip).  Unless otherwise specified, all implementations utilize single
-precision floating point datatypes.  
+precision floating point datatypes.  For all of the experiments, we set the number 
+of inner loop iterations at 50 and outer loop iterations at 5000.
 
 The first experiment is designed to compare the two implementations of PALM
-that solve a single large instance of the $\ell_1$-minimization problem (Algorithm \ref{alg:alm_rec}).  
+that solve a single large instance of the $\ell_1$-minimization problem (Algorithm \ref{alg:alm_rec}) by
+comparing the amount of time to solve a problem given a generic random matrix $A$ and a random sparse
+vector $\xx_0$.  
 The measurement $d \times n$ matrix $A$ was generated as a random Gaussian matrix, with each entry
 randomly generated from the standard normal and normalized with unit norm.  The ratio of $d:n$ varied from
 $10:1$ to $10:5$ with the dimension of $d$ of matrix $A$ varying from 500 to 8000.
-The ground truth signals, $x_0$ and $y_k$ had a sparsity rate of 0.1 with elements generated using the standard normal and normalized with unit norm.
-The measurement vector was generated with the equation $\y_0 = A \x_0 + \y_k$.    We set the number of inner iterations at 50 and outer iterations at 5000.
+The ground truth signals, $\xx_0$ and $\yy_k$ had a sparsity rate of 0.1 with elements generated using the standard normal and normalized with unit norm.
+Because the ground truth signal $\xx_0$ and $yy_k$ are known, the algorithm terminates
+when $norm(\bx-\bx_0) < tolerance$.
+The measurement vector was generated with the equation $\y_0 = A \x_0 + \y_k$.   
 We also varied the different inner and tolerance levels from 1e-3 to 1e-6.
 We averaged the the time taken for the ALM algorithm to solve 10 instances of a problem.  
 
-The x set of experiments will compare the CPU and GPU versions of the entire pipeline, 
-which includes the alignment and recognition stage.
+%The x set of experiments will compare the CPU and GPU versions of the entire pipeline, 
+%which includes the alignment and recognition stage. 
+
+The second experiment is to compare the amount of time to solve the face alignment
+stage for each implementation.  Because the alignment stage is not affected by the resolution of the image,
+we fix the resolution at 60x80.
+{\bf VS:  this accuracy number depends on the number of subjects in the A matrix right?  So we either 
+need to fix the number of subjects to compare against or vary it...}
+
+The third experiment is to compare accuracy rate of the face recognition algorithm at different
+image resolutions.
+
+The fourth experiment is to compare the speed of the recognition stage w.r.t the number of 
+subjects in the matrix $A$.
+
+Our final experiment is to compare the speeds of CPU and GPU implementations entire pipeline in Figure \ref{fig:pipeline}.
 
 \subsection{Simulation}
 
