@@ -332,7 +332,7 @@ it is possible to run completely using on-chip cache.
 
 The ALM algorithm requires many matrix-vector operations, this gives many-core
 processors such as GPUs a computational advantage for large problem sizes.
-GPUs are comprised of several streaming multiprocessors (SMP) (15 for our
+GPUs are comprised of several streaming multiprocessors (SMP) (14 for our
 NVIDIA Fermi) which each contains 32 floating-point units.  Each SMP contains
 its own L1-cache and shared memory and all SMPs share a common L2-cache.  The
 GPU executes programs as SIMT (Single Instruction Multiple Threads) in groups
@@ -340,7 +340,7 @@ of 32 threads called \emph{warps}.  These warps are then grouped into higher
 levels called \emph{thread blocks} and \emph{grids}. 
 
 Fermi's inverted memory hierarchy (aggregate l1 capacity is greater than l2 capacity) is designed to support massively parallel workloads in which there is more task-private data than shared data, providing an increase in performance and a computational advantage over CPUs.
-For our system, each SMP has 64 kb of L1 cache with a total of 960 kb of L1 cache/shared memory and
+For our system, each SMP has 64 kb of L1 cache with a total of 896 kb of L1 cache/shared memory and
 768kb of L2 cache. However, this increase in performance does not come for
 free. As the GPU has its own memory system, any data the GPU uses must be
 transferred from RAM to the GPU over PCI-Express, which has limited bandwidth.
@@ -381,27 +381,29 @@ calculations such as large scale matrix-vector operations at much faster rates t
 {\bf AY: Add an algorithm here describe the recognition block in the pipeline. Explain the algorithm and necessary modification from generic l-1}
 {\bf VS: Why did we modify the algorithm for the recognition stage? }
 
+Below is the psuedocode solving the minimization problem posed in \eqref{eq:l1min_denoise}. 
+
 \begin{algorithm}[t]
 \caption{\bf (Augmented Lagrange Multiplier Method for
 Recognition)}
 \begin{algorithmic}[1]
 \begin{small}
-\STATE {\bf Input:} $\y \in \Re^m$, $A \in \Re^{m \times n}$,
-$\x_1 = \mathbf{0}$, $\e_1 = \y$, $\blamda_1 =
+\STATE {\bf Input:} $\bb \in \Re^m$, $A \in \Re^{m \times n}$,
+$\x_1 = \mathbf{0}$, $\e_1 = \bb$, $\y_1 =
 \mathbf{0}$.
 \WHILE{not converged ($k = 1,2,\ldots$)}
-\STATE $\e_{k+1} = \textup{shrink}\left(\y - A\x_k +
-\frac{1}{\mu}\blamda_k, \frac{1}{\mu}\right)$;
+\STATE $\e_{k+1} = \textup{shrink}\left(\bb - A\x_k +
+\frac{1}{\mu}\y_k, \frac{1}{\mu}\right)$;
 \STATE $t_1\leftarrow 1$, $\z_1 \leftarrow \x_k$, $\w_1 \leftarrow \x_k$;
 \WHILE{not converged ($l = 1,2,\ldots$)}
 \STATE $\w_{l+1} \leftarrow \textup{shrink}\left(\z_l +
-\frac{1}{\gamma}A^T\left(\y - A\z_l - \e_{k+1} +
-\frac{1}{\mu}\blamda_k\right), \frac{1}{\mu\gamma}\right)$;
+\frac{1}{\gamma}A^T\left(\bb - A\z_l - \e_{k+1} +
+\frac{1}{\mu}\y_k\right), \frac{1}{\mu\gamma}\right)$;
 \STATE $t_{l+1} \leftarrow \frac{1}{2}\left( 1 +
 \sqrt{1+4t_l^2}\right)$;
 \STATE $\z_{l+1} \leftarrow \w_{l+1} + \frac{t_l - 1}{t_{l+1}}(\w_{l+1} - \w_l)$;
 \ENDWHILE
-\STATE $\x_{k+1} \leftarrow \w_{l}$,  \; $\blamda_{k+1} \leftarrow \blamda_k + \mu (\y - A\x_{k+1} - \e_{k+1})$;
+\STATE $\x_{k+1} \leftarrow \w_{l}$,  \; $\y_{k+1} \leftarrow \y_k + \mu (\bb - A\x_{k+1} - \e_{k+1})$;
 \ENDWHILE \STATE
 {\bf Output:} $\x^* \leftarrow \x_k, \e^* \leftarrow \e_k$.
 \end{small}
@@ -421,8 +423,9 @@ The GPU ALM algorithm is written in CUDA and utilizes the CUBLAS libraries.
 CUBLAS are the BLAS libraries consisting of all single precision BLAS calls
 which are provided by Nvidia and are optimized for GPU performance. In
 addition, we coded kernel (GPU) methods for vector-vector operations to replace
-operations that would have taken multiple BLAS calls. Because data transfer from the RAM to GPU suffers bandwidth limitations, we designed our implementation to transfer the A matrix and measurement vector at once.  The algorithm is similar
-to the CPU algorithm except that we had to parallelize the code at an
+operations that would have taken multiple BLAS calls. Because data transfer from the 
+RAM to GPU suffers bandwidth limitations, we designed our implementation to transfer the A matrix and measurement vector at once.  
+The algorithm is similar to the CPU algorithm except that we had to parallelize the code at an
 additional level. The CPU portion of the code serves as the conductor, making
 calls to GPU functions and directing the flow of the code while the GPU keeps all of the data and runs the computation.
 
@@ -439,9 +442,9 @@ chip).  Unless otherwise specified, all implementations utilize single
 precision floating point datatypes.  
 
 The first experiment is designed to compare the two implementations of PALM
-that solve a single large instance of the $\ell_1$-minimization problem (Algorithm \ref{alg:alm}).  
+that solve a single large instance of the $\ell_1$-minimization problem (Algorithm \ref{alg:alm_rec}).  
 The measurement $d \times n$ matrix $A$ was generated as a random Gaussian matrix, with each entry
-randomly generated from the standard normal and normalized with unit norm.  The ratio of $d/n$ varied from
+randomly generated from the standard normal and normalized with unit norm.  The ratio of $d:n$ varied from
 $10:1$ to $10:5$ with the dimension of $d$ of matrix $A$ varying from 500 to 8000.
 The ground truth signals, $x_0$ and $y_k$ had a sparsity rate of 0.1 with elements generated using the standard normal and normalized with unit norm.
 The measurement vector was generated with the equation $\y_0 = A \x_0 + \y_k$.    We set the number of inner iterations at 50 and outer iterations at 5000.
@@ -451,12 +454,10 @@ We averaged the the time taken for the ALM algorithm to solve 10 instances of a 
 The x set of experiments will compare the CPU and GPU versions of the entire pipeline, 
 which includes the alignment and recognition stage.
 
-We pl
-
 \subsection{Simulation}
 
 We plot the resulted of the simulation benchmark below.  The x-axis represents the size of the 
-$A$ and $A'A$ matrix and the y-axis represents the average amount of time it to complete
+$A$ and $A^TA$ matrix and the y-axis represents the average amount of time it to complete
 a single problem instance.
 
 The observations of this experiment are summarized below:
