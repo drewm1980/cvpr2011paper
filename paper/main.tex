@@ -113,11 +113,11 @@ that the query image is well aligned with the training images. In
 a query image to one subject class. The face alignment algorithm in turn solves
 the following minimization problem:
 \begin{equation}
-\hat{\tau}_i = \arg\min_{\xx, \ee, \tau_i} \|\ee\|_1\quad \mbox{subj. to}\quad \bb\circ\tau_i = A_i\xx + \ee,
+\hat{\tau}_i = \arg\min_{\xx, \ee, \tau_i} \|\ee\|_1\quad \mbox{subj. to}\quad \tilde\bb\circ\tau_i = A_i\xx + \ee,
 \label{eq:l1min_alignment}
 \end{equation}
 where $\tau_i\in T$ is in a finite-dimensional group $T$ of transformations
-(e.g., affine or homography) acting on the image domain, which aligns $\bb$
+(e.g., affine or homography) acting on the image domain, which aligns $\tilde\bb$
 with the training images from the $i$-th class $A_i$. The algorithm 
 extends Lucas-Kanade iterative alignment \cite{LucasB1981} to both to use the
 $\ell_1$ norm as a robust error function, and also simultaneously 
@@ -356,7 +356,100 @@ calculations such as large scale matrix-vector operations at much faster rates t
 
 \section{Parallelization of the Face Alignment Stage}
 \label{sec:alignment}
-{\bf AY: Add an algorithm here describe the alignment block in the pipeline. Explain the algorithm and necessary modification from generic l-1}
+%{\bf AY: Add an algorithm here describe the alignment block in the pipeline. Explain the algorithm and necessary modification from generic l-1}
+This section provides a brief explanation of the iterative alignment stage
+of the recognition pipeline.  
+The inputs of the algorithm are the test image $f(x,y)$ stacked into an $M$-
+dimensional vector $\f$, and the aligned and stacked training images $A_i$ for
+each training user $i$. 
+The algorithm repeatedly solves a linearized version of the minimization problem
+in \eqref{eq:l1min_alignment}.  This involves two computational steps:
+the computation of the linearization, and the solution of the minimization problem.
+
+The computation of the linearization is complicated by the need to avoid trivial 
+solutions where the algorithm
+progressively zooms in on a black pixel of the test image.
+This is achieved by minimizing the $\ell_1$ error between the illumination model $Ax$ and the cropped,
+resampled, and normalized test image $\tilde\bb$, rather than the un-normalized version as in 
+conventional Lucas-Kanade iterative alignment.
+This involves a bit of calculus:
+\begin{equation}
+\frac{\partial}{\partial \tau_p} \frac{\bb}{||\bb||} 
+= \frac{1}{||\bb||} \frac{\partial \bb}{\partial \tau_p} - 
+\frac{\bb}{||\bb||^3} \bb^T \frac{\partial \bb}{\partial \tau_p}
+\end{equation}
+If the warping $\tau$ is constrained to be a similarity transform,
+it can be paramaterized in such a way that the computation of $\frac{\partial \bb}{\partial \tau_p}$
+reduces to several linear vector operations involving pixel coordinates $(u,v)$, $\tau \in \Re^4$,
+and the image gradients $\f_x, \f_y \in \Re^M$, the latter of which only has to be computed
+once per test image. {bf DW: I could go into the rest of the math for this, but I'm worried about space}
+
+The iterative alignment stage is summarized as Algorithm \ref{alg:iterative_alignment}.
+\begin{algorithm}[thb]
+\caption{\bf (Iterative Alignment Stage)} \label{alg:iterative_alignment}
+\begin{algorithmic}[1]
+\begin{small}
+\STATE {\bf Input:} Aligned training images $\{A_i \in \Re^{m\times n_i}\}_{i=1}^K$ for $K$ subjects,  a test image
+$\f\in\Re^M$ 
+\STATE $\tau^{(0)} \leftarrow \textrm{face detector($\f$)}$. 
+\STATE $\f_x, \f_y \in \Re^M \leftarrow \frac{df}{dx}, \frac{df}{dy}$ 
+\STATE {\bf for} each gallery subject $i$, 
+\STATE \hspace{3mm} {\bf while} not converged $(j=1,2,\ldots)$ {\bf do} 
+\STATE \hspace{6mm} $\tilde \bb(\tau) \leftarrow \frac{\bb \circ \tau}{\|\bb \circ \tau\|_2}$;
+\STATE \hspace{6mm} $J \leftarrow  \frac{\partial}{\partial \tau} \tilde\bb(\tau)  \bigr|_{\tau^{(j)}} $;
+\STATE \hspace{6mm} $\Delta \tau =  \arg\min \; \| \e \|_1  \; \subj \; \tilde \bb + J \Delta \tau = A_i \x + \e.$ 
+\STATE \hspace{6mm} $\tau^{(j+1)} \leftarrow \tau^{(j)} + \Delta
+\tau$; 
+\end{small}
+\end{algorithmic}
+\end{algorithm}
+
+The solution of the minimization problem in Algorithm
+\ref{alg:iterative_alignment} Step 8 can be solved via a
+variant of ALM, which is summarized as Algorithm \ref{alg:alignment_alm}.
+$\gamma$ denotes the largest eigenvalue of the matrix $A^TA$. For the choice of
+parameter $\mu$, we take the same strategy as in \cite{YangJ2009-pp} and set
+$\mu_0 = 2m / \|\bb\|_1$. We set $\rho=1.5$.
+
+\begin{algorithm}[h]
+\caption{\bf (Augmented Lagrange Multiplier Method For Alignment)}
+\begin{algorithmic}[1]
+\STATE {\bf Input:} $\bb \in \Re^m$, $A \in \Re^{m \times n}$,
+$\x_1 = \mathbf{0}$, $\blamda_1 = \mathbf{0}$.
+\WHILE{not converged ($k = 1,2,\ldots$)}
+\STATE $t_{1} \leftarrow 1, z_{1} \leftarrow \x_{k}, \u_{1} \leftarrow \x_{k}$;
+\WHILE{not converged ($l = 1,2,\ldots$)}
+\STATE $\e_{l+1} \leftarrow \textup{shrink}\left(\bb - A\x_l + \frac{\blamda_k}{\mu_k}, \frac{1}{\mu_k}\right)$;
+\STATE $\x_{l+1} \leftarrow (A^\dagger)^T \left(\bb - \e_{l+1} + \frac{\blamda_k}{\mu_k} \right) $;
+\ENDWHILE
+\STATE $\blamda_{k+1} \leftarrow \blamda_k + \mu (\bb - A\x_{k+1} - \e_{k+1})$;
+\STATE $\mu_{k+1} \leftarrow \rho\mu_k$;
+\ENDWHILE \STATE
+{\bf Output:} $\x^* \leftarrow \x_k, \e^* \leftarrow \e_k$.
+\end{algorithmic}
+\label{alg:alignment_alm}
+\end{algorithm}
+
+\subsection{Computational Complexity} Any discussion of the speed of an
+algorithm should discuss the comutational complexity of the algorithm.  For the
+alignment stage ALM algorithm \ref{alg:alignment_alm}, this is rather simple.  The
+Matrix-vector computions are $O(mn)$, and the vector-vector operations are
+$O(m)$, in terms of both computation cost and memory-bandwidth.  Since A is
+very tall, the computation of $A^\dagger$, the pseudoinverse of $A$, is best
+computed via $A^\dagger = (A^TA)^{-1} A^T$.  The complexity of computing $G =
+A^T A$ is $O(nnm)$.  $G$ is sufficiently small that it can be inverted via
+Gauss-Jordan elimination, which has a complexity of $O(n^3)$.  The computation
+of $A$ finishes with a matrix multiplication, with cost $O(n^2 m)$.
+Fortunately, $A^\dagger$ only needs to be computed once per instance of the
+$\ell_1$ minimization problem.
+
+Therefore, for problems with large $n$, we expect the computation of the
+pseudoinverse to dominate.  However, for the problem sizes needed in face
+recognition problems, we find that the computation time is dominated by the
+repeated computation of matrix-vector and matrix-matrix multiplications in the
+inner loop.
+
+%\STATE Compute residuals $r_i(\bb) = \| {\bb} - {A}_i \, \delta_i(\hat{\x}) \|_2$ for $i = k_1, \dots, k_S$.
 
 \subsection{CPU Implementation}
 
