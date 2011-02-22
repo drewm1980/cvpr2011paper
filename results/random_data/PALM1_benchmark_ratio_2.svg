@@ -1,0 +1,1431 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg preserveAspectRatio="xMinYMin meet" width="100%" height="100%" viewBox="0 0 1080.000 900.000"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <desc>Matlab Figure Converted by PLOT2SVG written by Juerg Schwizer</desc>
+  <g id="topgroup">
+  <rect x="0" y="0" width="1080.000" height="900.000" fill="#ffffff" stroke="none" />
+  <g id ="ID000000">
+  <clipPath id="ID000001">
+    <rect x="140.400" y="67.500" width="230.478" height="307.047"/>
+  </clipPath>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="140.400,374.547 370.878,374.547 370.878,67.500 140.400,67.500 "/>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="140.400,67.500 370.878,67.500 370.878,67.500 140.400,67.500 "/>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="140.400,374.547 140.400,374.547 140.400,67.500 140.400,67.500 "/>
+    <g>
+<g id="ID000002" clip-path="url(#ID000001)" >
+      <polyline fill="none" stroke="#0000ff" stroke-width="0.5pt" stroke-dasharray="none" points="151.654,326.825 154.643,322.539 157.984,312.661 161.677,302.502 165.721,294.689 170.117,285.299 174.865,276.382 179.964,273.379 185.415,254.705 191.218,244.926 197.372,235.580 203.879,232.158 210.736,216.268 217.946,256.688 225.507,249.965 233.420,238.416 241.684,231.375 250.301,231.391 259.268,225.778 268.588,216.980 278.259,201.634 288.282,197.881 298.657,194.222 309.383,178.349 320.461,164.039 "/>
+<g>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="148.854,329.625 154.454,324.025 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="148.854,324.025 154.454,329.625 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="151.843,325.339 157.443,319.739 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="151.843,319.739 157.443,325.339 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="155.184,315.461 160.784,309.861 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="155.184,309.861 160.784,315.461 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="158.877,305.302 164.477,299.702 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="158.877,299.702 164.477,305.302 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="162.921,297.489 168.521,291.889 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="162.921,291.889 168.521,297.489 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="167.317,288.099 172.917,282.499 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="167.317,282.499 172.917,288.099 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="172.065,279.182 177.665,273.582 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="172.065,273.582 177.665,279.182 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="177.164,276.179 182.764,270.579 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="177.164,270.579 182.764,276.179 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="182.615,257.505 188.215,251.905 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="182.615,251.905 188.215,257.505 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="188.418,247.726 194.018,242.126 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="188.418,242.126 194.018,247.726 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="194.572,238.380 200.172,232.780 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="194.572,232.780 200.172,238.380 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="201.079,234.958 206.679,229.358 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="201.079,229.358 206.679,234.958 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="207.936,219.068 213.536,213.468 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="207.936,213.468 213.536,219.068 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="215.146,259.488 220.746,253.888 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="215.146,253.888 220.746,259.488 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="222.707,252.765 228.307,247.165 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="222.707,247.165 228.307,252.765 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="230.620,241.216 236.220,235.616 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="230.620,235.616 236.220,241.216 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="238.884,234.175 244.484,228.575 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="238.884,228.575 244.484,234.175 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="247.501,234.191 253.101,228.591 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="247.501,228.591 253.101,234.191 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="256.468,228.578 262.068,222.978 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="256.468,222.978 262.068,228.578 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="265.788,219.780 271.388,214.180 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="265.788,214.180 271.388,219.780 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="275.459,204.434 281.059,198.834 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="275.459,198.834 281.059,204.434 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="285.482,200.681 291.082,195.081 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="285.482,195.081 291.082,200.681 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="295.857,197.022 301.457,191.422 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="295.857,191.422 301.457,197.022 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="306.583,181.149 312.183,175.549 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="306.583,175.549 312.183,181.149 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="317.661,166.839 323.261,161.239 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="317.661,161.239 323.261,166.839 "/>
+</g>
+</g>
+<g id="ID000003" clip-path="url(#ID000001)" >
+      <polyline fill="none" stroke="#00ff00" stroke-width="0.5pt" stroke-dasharray="none" points="151.654,105.298 154.643,101.548 157.984,87.719 161.677,93.487 165.721,95.235 170.117,143.492 174.865,139.091 179.964,176.046 185.415,177.620 191.218,196.067 197.372,202.458 203.879,209.520 210.736,206.856 217.946,210.987 225.507,217.112 233.420,219.763 241.684,218.158 250.301,218.005 259.268,225.903 268.588,222.837 278.259,225.829 288.282,227.716 298.657,227.797 309.383,227.577 320.461,229.242 "/>
+<g>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="147.654,105.298 155.654,105.298 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="151.654,101.298 151.654,109.298 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="150.643,101.548 158.643,101.548 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="154.643,97.548 154.643,105.548 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="153.984,87.719 161.984,87.719 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="157.984,83.719 157.984,91.719 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="157.677,93.487 165.677,93.487 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="161.677,89.487 161.677,97.487 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="161.721,95.235 169.721,95.235 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="165.721,91.235 165.721,99.235 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="166.117,143.492 174.117,143.492 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="170.117,139.492 170.117,147.492 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="170.865,139.091 178.865,139.091 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="174.865,135.091 174.865,143.091 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="175.964,176.046 183.964,176.046 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="179.964,172.046 179.964,180.046 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="181.415,177.620 189.415,177.620 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="185.415,173.620 185.415,181.620 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="187.218,196.067 195.218,196.067 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="191.218,192.067 191.218,200.067 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="193.372,202.458 201.372,202.458 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="197.372,198.458 197.372,206.458 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="199.879,209.520 207.879,209.520 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="203.879,205.520 203.879,213.520 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="206.736,206.856 214.736,206.856 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="210.736,202.856 210.736,210.856 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="213.946,210.987 221.946,210.987 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="217.946,206.987 217.946,214.987 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="221.507,217.112 229.507,217.112 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="225.507,213.112 225.507,221.112 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="229.420,219.763 237.420,219.763 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="233.420,215.763 233.420,223.763 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="237.684,218.158 245.684,218.158 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="241.684,214.158 241.684,222.158 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="246.301,218.005 254.301,218.005 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="250.301,214.005 250.301,222.005 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="255.268,225.903 263.268,225.903 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="259.268,221.903 259.268,229.903 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="264.588,222.837 272.588,222.837 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="268.588,218.837 268.588,226.837 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="274.259,225.829 282.259,225.829 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="278.259,221.829 278.259,229.829 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="284.282,227.716 292.282,227.716 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="288.282,223.716 288.282,231.716 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="294.657,227.797 302.657,227.797 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="298.657,223.797 298.657,231.797 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="305.383,227.577 313.383,227.577 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="309.383,223.577 309.383,231.577 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="316.461,229.242 324.461,229.242 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="320.461,225.242 320.461,233.242 "/>
+</g>
+</g>
+<g id="ID000004" >
+  <g transform="translate(255.639,59.499)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Tolerance 0.0001 ratio 2</text>
+    </g>
+  </g>
+</g>
+<g id="ID000005" >
+  <g transform="translate(98.489,222.023)">
+    <g transform="rotate(-90.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Average speed (Gbits/s)</text>
+    </g>
+  </g>
+</g>
+<g id="ID000006" >
+  <g transform="translate(254.641,406.550)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >A &amp; G Matrix (in Mbits)</text>
+    </g>
+  </g>
+</g>
+<g id="ID000007" >
+</g>
+<g id="ID000008" >
+</g>
+    </g>
+    <g>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="217.226,374.547 217.226,371.476 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="294.052,374.547 294.052,371.476 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="140.400,374.547 370.878,374.547 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="217.226,67.500 217.226,70.570 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="294.052,67.500 294.052,70.570 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="140.400,67.500 370.878,67.500 "/>
+  <g transform="translate(140.400,392.487)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >0</text>
+    </g>
+  </g>
+  <g transform="translate(217.226,392.487)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >200</text>
+    </g>
+  </g>
+  <g transform="translate(294.052,392.487)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >400</text>
+    </g>
+  </g>
+  <g transform="translate(370.878,392.487)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >600</text>
+    </g>
+  </g>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="140.400,313.137 143.470,313.137 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="140.400,251.728 143.470,251.728 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="140.400,190.319 143.470,190.319 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="140.400,128.909 143.470,128.909 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="140.400,374.547 140.400,67.500 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="370.878,313.137 367.808,313.137 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="370.878,251.728 367.808,251.728 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="370.878,190.319 367.808,190.319 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="370.878,128.909 367.808,128.909 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="370.878,374.547 370.878,67.500 "/>
+  <g transform="translate(135.790,379.047)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >0</text>
+    </g>
+  </g>
+  <g transform="translate(135.790,317.637)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >500</text>
+    </g>
+  </g>
+  <g transform="translate(135.790,256.228)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >1000</text>
+    </g>
+  </g>
+  <g transform="translate(135.790,194.819)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >1500</text>
+    </g>
+  </g>
+  <g transform="translate(135.790,133.409)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >2000</text>
+    </g>
+  </g>
+  <g transform="translate(135.790,72.000)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >2500</text>
+    </g>
+  </g>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="140.400,374.547 140.400,371.476 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="140.400,374.547 140.400,374.547 "/>
+    </g>
+  </g>
+  <g id ="ID000009">
+  <clipPath id="ID000010">
+    <rect x="443.661" y="67.500" width="230.478" height="307.047"/>
+  </clipPath>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="443.661,374.547 674.139,374.547 674.139,67.500 443.661,67.500 "/>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="443.661,67.500 674.139,67.500 674.139,67.500 443.661,67.500 "/>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="443.661,374.547 443.661,374.547 443.661,67.500 443.661,67.500 "/>
+    <g>
+<g id="ID000011" clip-path="url(#ID000010)" >
+      <polyline fill="none" stroke="#0000ff" stroke-width="0.5pt" stroke-dasharray="none" points="454.915,254.696 457.904,231.975 461.245,219.079 464.938,205.773 468.982,190.626 473.378,182.233 478.126,181.414 483.225,171.179 488.676,165.141 494.479,154.599 500.633,153.882 507.139,137.814 513.997,134.027 521.207,137.711 528.768,118.777 536.681,111.612 544.945,108.337 553.561,99.433 562.529,92.268 571.849,97.079 581.520,87.663 591.543,84.695 601.918,73.334 612.644,93.804 623.722,80.703 "/>
+<g>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="452.115,257.496 457.715,251.896 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="452.115,251.896 457.715,257.496 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="455.104,234.775 460.704,229.175 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="455.104,229.175 460.704,234.775 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="458.445,221.879 464.045,216.279 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="458.445,216.279 464.045,221.879 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="462.138,208.573 467.738,202.973 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="462.138,202.973 467.738,208.573 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="466.182,193.426 471.782,187.826 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="466.182,187.826 471.782,193.426 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="470.578,185.033 476.178,179.433 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="470.578,179.433 476.178,185.033 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="475.326,184.214 480.926,178.614 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="475.326,178.614 480.926,184.214 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="480.425,173.979 486.025,168.379 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="480.425,168.379 486.025,173.979 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="485.876,167.941 491.476,162.341 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="485.876,162.341 491.476,167.941 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="491.679,157.399 497.279,151.799 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="491.679,151.799 497.279,157.399 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="497.833,156.682 503.433,151.082 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="497.833,151.082 503.433,156.682 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="504.339,140.614 509.939,135.014 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="504.339,135.014 509.939,140.614 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="511.197,136.827 516.797,131.227 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="511.197,131.227 516.797,136.827 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="518.407,140.511 524.007,134.911 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="518.407,134.911 524.007,140.511 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="525.968,121.577 531.568,115.977 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="525.968,115.977 531.568,121.577 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="533.881,114.412 539.481,108.812 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="533.881,108.812 539.481,114.412 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="542.145,111.137 547.745,105.537 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="542.145,105.537 547.745,111.137 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="550.761,102.233 556.361,96.633 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="550.761,96.633 556.361,102.233 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="559.729,95.068 565.329,89.468 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="559.729,89.468 565.329,95.068 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="569.049,99.879 574.649,94.279 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="569.049,94.279 574.649,99.879 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="578.720,90.463 584.320,84.863 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="578.720,84.863 584.320,90.463 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="588.743,87.495 594.343,81.895 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="588.743,81.895 594.343,87.495 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="599.118,76.134 604.718,70.534 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="599.118,70.534 604.718,76.134 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="609.844,96.604 615.444,91.004 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="609.844,91.004 615.444,96.604 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="620.922,83.503 626.522,77.903 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="620.922,77.903 626.522,83.503 "/>
+</g>
+</g>
+<g id="ID000012" clip-path="url(#ID000010)" >
+      <polyline fill="none" stroke="#00ff00" stroke-width="0.5pt" stroke-dasharray="none" points="454.915,345.786 457.904,323.065 461.245,310.169 464.938,296.864 468.982,281.716 473.378,273.324 478.126,272.505 483.225,262.270 488.676,256.231 494.479,245.689 500.633,244.871 507.139,228.904 513.997,225.117 521.207,228.802 528.768,209.867 536.681,202.703 544.945,199.428 553.561,190.523 562.529,183.359 571.849,188.169 581.520,178.753 591.543,175.785 601.918,164.424 612.644,184.894 623.722,171.793 "/>
+<g>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="450.915,345.786 458.915,345.786 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="454.915,341.786 454.915,349.786 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="453.904,323.065 461.904,323.065 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="457.904,319.065 457.904,327.065 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="457.245,310.169 465.245,310.169 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="461.245,306.169 461.245,314.169 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="460.938,296.864 468.938,296.864 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="464.938,292.864 464.938,300.864 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="464.982,281.716 472.982,281.716 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="468.982,277.716 468.982,285.716 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="469.378,273.324 477.378,273.324 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="473.378,269.324 473.378,277.324 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="474.126,272.505 482.126,272.505 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="478.126,268.505 478.126,276.505 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="479.225,262.270 487.225,262.270 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="483.225,258.270 483.225,266.270 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="484.676,256.231 492.676,256.231 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="488.676,252.231 488.676,260.231 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="490.479,245.689 498.479,245.689 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="494.479,241.689 494.479,249.689 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="496.633,244.871 504.633,244.871 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="500.633,240.871 500.633,248.871 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="503.139,228.904 511.139,228.904 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="507.139,224.904 507.139,232.904 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="509.997,225.117 517.997,225.117 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="513.997,221.117 513.997,229.117 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="517.207,228.802 525.207,228.802 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="521.207,224.802 521.207,232.802 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="524.768,209.867 532.768,209.867 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="528.768,205.867 528.768,213.867 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="532.681,202.703 540.681,202.703 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="536.681,198.703 536.681,206.703 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="540.945,199.428 548.945,199.428 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="544.945,195.428 544.945,203.428 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="549.561,190.523 557.561,190.523 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="553.561,186.523 553.561,194.523 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="558.529,183.359 566.529,183.359 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="562.529,179.359 562.529,187.359 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="567.849,188.169 575.849,188.169 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="571.849,184.169 571.849,192.169 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="577.520,178.753 585.520,178.753 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="581.520,174.753 581.520,182.753 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="587.543,175.785 595.543,175.785 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="591.543,171.785 591.543,179.785 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="597.918,164.424 605.918,164.424 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="601.918,160.424 601.918,168.424 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="608.644,184.894 616.644,184.894 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="612.644,180.894 612.644,188.894 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="619.722,171.793 627.722,171.793 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="623.722,167.793 623.722,175.793 "/>
+</g>
+</g>
+<g id="ID000013" >
+  <g transform="translate(558.399,59.499)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Tolerance 0.0001 ratio 2</text>
+    </g>
+  </g>
+</g>
+<g id="ID000014" >
+  <g transform="translate(398.572,222.023)">
+    <g transform="rotate(-90.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Average total inner iterations</text>
+    </g>
+  </g>
+</g>
+<g id="ID000015" >
+  <g transform="translate(558.399,406.550)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >A &amp; G Matrix (in Mb)</text>
+    </g>
+  </g>
+</g>
+    </g>
+    <g>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="520.487,374.547 520.487,371.476 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="597.313,374.547 597.313,371.476 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="443.661,374.547 674.139,374.547 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="520.487,67.500 520.487,70.570 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="597.313,67.500 597.313,70.570 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="443.661,67.500 674.139,67.500 "/>
+  <g transform="translate(443.661,392.487)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >0</text>
+    </g>
+  </g>
+  <g transform="translate(520.487,392.487)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >200</text>
+    </g>
+  </g>
+  <g transform="translate(597.313,392.487)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >400</text>
+    </g>
+  </g>
+  <g transform="translate(674.139,392.487)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >600</text>
+    </g>
+  </g>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="443.661,323.372 446.731,323.372 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="443.661,272.198 446.731,272.198 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="443.661,221.023 446.731,221.023 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="443.661,169.849 446.731,169.849 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="443.661,118.674 446.731,118.674 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="443.661,374.547 443.661,67.500 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="674.139,323.372 671.069,323.372 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="674.139,272.198 671.069,272.198 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="674.139,221.023 671.069,221.023 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="674.139,169.849 671.069,169.849 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="674.139,118.674 671.069,118.674 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="674.139,374.547 674.139,67.500 "/>
+  <g transform="translate(439.051,379.047)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >3.32</text>
+    </g>
+  </g>
+  <g transform="translate(439.051,327.872)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >3.325</text>
+    </g>
+  </g>
+  <g transform="translate(439.051,276.698)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >3.33</text>
+    </g>
+  </g>
+  <g transform="translate(439.051,225.523)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >3.335</text>
+    </g>
+  </g>
+  <g transform="translate(439.051,174.349)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >3.34</text>
+    </g>
+  </g>
+  <g transform="translate(439.051,123.174)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >3.345</text>
+    </g>
+  </g>
+  <g transform="translate(439.051,72.000)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >3.35</text>
+    </g>
+  </g>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="443.661,374.547 443.661,371.476 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="443.661,374.547 443.661,374.547 "/>
+  <g transform="translate(443.661,60.000)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="10pt" fill="#000000" >&#215; 10<tspan font-size="7.0pt" dy="-7.0pt">4</tspan></text>
+    </g>
+  </g>
+    </g>
+  </g>
+  <g id ="ID000016">
+  <clipPath id="ID000017">
+    <rect x="746.922" y="67.500" width="230.478" height="307.047"/>
+  </clipPath>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="746.922,374.547 977.400,374.547 977.400,67.500 746.922,67.500 "/>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="746.922,67.500 977.400,67.500 977.400,67.500 746.922,67.500 "/>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="746.922,374.547 746.922,374.547 746.922,67.500 746.922,67.500 "/>
+    <g>
+<g id="ID000018" clip-path="url(#ID000017)" >
+      <polyline fill="none" stroke="#0000ff" stroke-width="0.5pt" stroke-dasharray="none" points="758.176,374.547 761.165,326.784 764.506,333.607 768.198,306.314 772.243,251.728 776.639,251.728 781.387,217.612 786.486,231.258 791.937,238.081 797.740,224.435 803.894,265.374 810.400,210.788 817.258,210.788 824.468,231.258 832.029,169.849 839.942,190.319 848.206,135.733 856.822,163.026 865.790,122.086 875.110,135.733 884.781,87.970 894.804,122.086 905.179,115.263 915.905,142.556 926.983,94.793 "/>
+<g>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="755.376,377.347 760.976,371.747 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="755.376,371.747 760.976,377.347 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="758.365,329.584 763.965,323.984 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="758.365,323.984 763.965,329.584 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="761.706,336.407 767.306,330.807 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="761.706,330.807 767.306,336.407 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="765.398,309.114 770.998,303.514 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="765.398,303.514 770.998,309.114 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="769.443,254.528 775.043,248.928 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="769.443,248.928 775.043,254.528 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="773.839,254.528 779.439,248.928 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="773.839,248.928 779.439,254.528 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="778.587,220.412 784.187,214.812 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="778.587,214.812 784.187,220.412 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="783.686,234.058 789.286,228.458 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="783.686,228.458 789.286,234.058 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="789.137,240.881 794.737,235.281 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="789.137,235.281 794.737,240.881 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="794.940,227.235 800.540,221.635 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="794.940,221.635 800.540,227.235 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="801.094,268.174 806.694,262.574 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="801.094,262.574 806.694,268.174 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="807.600,213.588 813.200,207.988 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="807.600,207.988 813.200,213.588 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="814.458,213.588 820.058,207.988 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="814.458,207.988 820.058,213.588 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="821.668,234.058 827.268,228.458 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="821.668,228.458 827.268,234.058 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="829.229,172.649 834.829,167.049 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="829.229,167.049 834.829,172.649 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="837.142,193.119 842.742,187.519 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="837.142,187.519 842.742,193.119 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="845.406,138.533 851.006,132.933 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="845.406,132.933 851.006,138.533 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="854.022,165.826 859.622,160.226 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="854.022,160.226 859.622,165.826 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="862.990,124.886 868.590,119.286 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="862.990,119.286 868.590,124.886 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="872.310,138.533 877.910,132.933 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="872.310,132.933 877.910,138.533 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="881.981,90.770 887.581,85.170 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="881.981,85.170 887.581,90.770 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="892.004,124.886 897.604,119.286 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="892.004,119.286 897.604,124.886 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="902.379,118.063 907.979,112.463 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="902.379,112.463 907.979,118.063 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="913.105,145.356 918.705,139.756 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="913.105,139.756 918.705,145.356 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="924.183,97.593 929.783,91.993 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="924.183,91.993 929.783,97.593 "/>
+</g>
+</g>
+<g id="ID000019" clip-path="url(#ID000017)" >
+      <polyline fill="none" stroke="#00ff00" stroke-width="0.5pt" stroke-dasharray="none" points="758.176,374.547 761.165,326.784 764.506,333.607 768.198,306.314 772.243,251.728 776.639,251.728 781.387,217.612 786.486,231.258 791.937,238.081 797.740,224.435 803.894,265.374 810.400,210.788 817.258,210.788 824.468,231.258 832.029,169.849 839.942,190.319 848.206,135.733 856.822,163.026 865.790,122.086 875.110,135.733 884.781,87.970 894.804,122.086 905.179,115.263 915.905,142.556 926.983,94.793 "/>
+<g>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="754.176,374.547 762.176,374.547 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="758.176,370.547 758.176,378.547 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="757.165,326.784 765.165,326.784 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="761.165,322.784 761.165,330.784 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="760.506,333.607 768.506,333.607 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="764.506,329.607 764.506,337.607 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="764.198,306.314 772.198,306.314 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="768.198,302.314 768.198,310.314 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="768.243,251.728 776.243,251.728 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="772.243,247.728 772.243,255.728 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="772.639,251.728 780.639,251.728 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="776.639,247.728 776.639,255.728 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="777.387,217.612 785.387,217.612 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="781.387,213.612 781.387,221.612 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="782.486,231.258 790.486,231.258 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="786.486,227.258 786.486,235.258 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="787.937,238.081 795.937,238.081 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="791.937,234.081 791.937,242.081 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="793.740,224.435 801.740,224.435 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="797.740,220.435 797.740,228.435 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="799.894,265.374 807.894,265.374 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="803.894,261.374 803.894,269.374 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="806.400,210.788 814.400,210.788 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="810.400,206.788 810.400,214.788 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="813.258,210.788 821.258,210.788 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="817.258,206.788 817.258,214.788 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="820.468,231.258 828.468,231.258 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="824.468,227.258 824.468,235.258 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="828.029,169.849 836.029,169.849 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="832.029,165.849 832.029,173.849 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="835.942,190.319 843.942,190.319 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="839.942,186.319 839.942,194.319 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="844.206,135.733 852.206,135.733 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="848.206,131.733 848.206,139.733 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="852.822,163.026 860.822,163.026 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="856.822,159.026 856.822,167.026 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="861.790,122.086 869.790,122.086 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="865.790,118.086 865.790,126.086 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="871.110,135.733 879.110,135.733 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="875.110,131.733 875.110,139.733 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="880.781,87.970 888.781,87.970 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="884.781,83.970 884.781,91.970 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="890.804,122.086 898.804,122.086 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="894.804,118.086 894.804,126.086 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="901.179,115.263 909.179,115.263 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="905.179,111.263 905.179,119.263 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="911.905,142.556 919.905,142.556 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="915.905,138.556 915.905,146.556 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="922.983,94.793 930.983,94.793 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="926.983,90.793 926.983,98.793 "/>
+</g>
+</g>
+<g id="ID000020" >
+  <g transform="translate(861.660,59.499)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Tolerance 0.0001 ratio 2</text>
+    </g>
+  </g>
+</g>
+<g id="ID000021" >
+  <g transform="translate(708.848,222.023)">
+    <g transform="rotate(-90.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Average iterations</text>
+    </g>
+  </g>
+</g>
+<g id="ID000022" >
+  <g transform="translate(861.660,406.550)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >A &amp; G Matrix (in Mb)</text>
+    </g>
+  </g>
+</g>
+    </g>
+    <g>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="823.748,374.547 823.748,371.476 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="900.574,374.547 900.574,371.476 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,374.547 977.400,374.547 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="823.748,67.500 823.748,70.570 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="900.574,67.500 900.574,70.570 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,67.500 977.400,67.500 "/>
+  <g transform="translate(746.922,392.487)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >0</text>
+    </g>
+  </g>
+  <g transform="translate(823.748,392.487)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >200</text>
+    </g>
+  </g>
+  <g transform="translate(900.574,392.487)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >400</text>
+    </g>
+  </g>
+  <g transform="translate(977.400,392.487)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >600</text>
+    </g>
+  </g>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,340.430 749.992,340.430 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,306.314 749.992,306.314 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,272.198 749.992,272.198 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,238.081 749.992,238.081 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,203.965 749.992,203.965 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,169.849 749.992,169.849 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,135.733 749.992,135.733 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,101.616 749.992,101.616 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,374.547 746.922,67.500 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="977.400,340.430 974.330,340.430 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="977.400,306.314 974.330,306.314 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="977.400,272.198 974.330,272.198 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="977.400,238.081 974.330,238.081 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="977.400,203.965 974.330,203.965 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="977.400,169.849 974.330,169.849 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="977.400,135.733 974.330,135.733 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="977.400,101.616 974.330,101.616 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="977.400,374.547 977.400,67.500 "/>
+  <g transform="translate(742.312,379.047)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >19.5</text>
+    </g>
+  </g>
+  <g transform="translate(742.312,344.930)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >20</text>
+    </g>
+  </g>
+  <g transform="translate(742.312,310.814)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >20.5</text>
+    </g>
+  </g>
+  <g transform="translate(742.312,276.698)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >21</text>
+    </g>
+  </g>
+  <g transform="translate(742.312,242.581)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >21.5</text>
+    </g>
+  </g>
+  <g transform="translate(742.312,208.465)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >22</text>
+    </g>
+  </g>
+  <g transform="translate(742.312,174.349)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >22.5</text>
+    </g>
+  </g>
+  <g transform="translate(742.312,140.233)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >23</text>
+    </g>
+  </g>
+  <g transform="translate(742.312,106.116)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >23.5</text>
+    </g>
+  </g>
+  <g transform="translate(742.312,72.000)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >24</text>
+    </g>
+  </g>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,374.547 746.922,371.476 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,374.547 746.922,374.547 "/>
+    </g>
+  </g>
+  <g id ="ID000023">
+  <clipPath id="ID000024">
+    <rect x="140.400" y="493.953" width="230.478" height="307.047"/>
+  </clipPath>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="140.400,801.000 370.878,801.000 370.878,493.953 140.400,493.953 "/>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="140.400,493.953 370.878,493.953 370.878,493.953 140.400,493.953 "/>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="140.400,801.000 140.400,801.000 140.400,493.953 140.400,493.953 "/>
+    <g>
+<g id="ID000025" clip-path="url(#ID000024)" >
+      <polyline fill="none" stroke="#0000ff" stroke-width="0.5pt" stroke-dasharray="none" points="151.654,791.645 154.643,784.854 157.984,782.010 161.677,771.085 165.721,760.208 170.117,751.870 174.865,736.285 179.964,732.995 185.415,712.462 191.218,711.046 197.372,690.135 203.879,692.496 210.736,681.176 217.946,727.244 225.507,715.766 233.420,703.983 241.684,697.473 250.301,689.092 259.268,677.209 268.588,672.613 278.259,660.844 288.282,656.112 298.657,646.334 309.383,636.758 320.461,627.346 "/>
+<g>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="148.854,794.445 154.454,788.845 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="148.854,788.845 154.454,794.445 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="151.843,787.654 157.443,782.054 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="151.843,782.054 157.443,787.654 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="155.184,784.810 160.784,779.210 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="155.184,779.210 160.784,784.810 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="158.877,773.885 164.477,768.285 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="158.877,768.285 164.477,773.885 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="162.921,763.008 168.521,757.408 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="162.921,757.408 168.521,763.008 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="167.317,754.670 172.917,749.070 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="167.317,749.070 172.917,754.670 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="172.065,739.085 177.665,733.485 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="172.065,733.485 177.665,739.085 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="177.164,735.795 182.764,730.195 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="177.164,730.195 182.764,735.795 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="182.615,715.262 188.215,709.662 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="182.615,709.662 188.215,715.262 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="188.418,713.846 194.018,708.246 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="188.418,708.246 194.018,713.846 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="194.572,692.935 200.172,687.335 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="194.572,687.335 200.172,692.935 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="201.079,695.296 206.679,689.696 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="201.079,689.696 206.679,695.296 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="207.936,683.976 213.536,678.376 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="207.936,678.376 213.536,683.976 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="215.146,730.044 220.746,724.444 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="215.146,724.444 220.746,730.044 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="222.707,718.566 228.307,712.966 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="222.707,712.966 228.307,718.566 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="230.620,706.783 236.220,701.183 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="230.620,701.183 236.220,706.783 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="238.884,700.273 244.484,694.673 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="238.884,694.673 244.484,700.273 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="247.501,691.892 253.101,686.292 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="247.501,686.292 253.101,691.892 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="256.468,680.009 262.068,674.409 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="256.468,674.409 262.068,680.009 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="265.788,675.413 271.388,669.813 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="265.788,669.813 271.388,675.413 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="275.459,663.644 281.059,658.044 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="275.459,658.044 281.059,663.644 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="285.482,658.912 291.082,653.312 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="285.482,653.312 291.082,658.912 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="295.857,649.134 301.457,643.534 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="295.857,643.534 301.457,649.134 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="306.583,639.558 312.183,633.958 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="306.583,633.958 312.183,639.558 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="317.661,630.146 323.261,624.546 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="317.661,624.546 323.261,630.146 "/>
+</g>
+</g>
+<g id="ID000026" clip-path="url(#ID000024)" >
+      <polyline fill="none" stroke="#00ff00" stroke-width="0.5pt" stroke-dasharray="none" points="151.654,568.026 154.643,587.464 157.984,546.729 161.677,529.884 165.721,538.145 170.117,577.621 174.865,586.945 179.964,619.278 185.415,585.992 191.218,624.515 197.372,627.456 203.879,640.051 210.736,628.170 217.946,640.427 225.507,649.456 233.420,647.310 241.684,643.744 250.301,645.121 259.268,650.444 268.588,650.396 278.259,646.120 288.282,659.017 298.657,657.122 309.383,663.069 320.461,662.439 "/>
+<g>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="147.654,568.026 155.654,568.026 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="151.654,564.026 151.654,572.026 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="150.643,587.464 158.643,587.464 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="154.643,583.464 154.643,591.464 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="153.984,546.729 161.984,546.729 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="157.984,542.729 157.984,550.729 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="157.677,529.884 165.677,529.884 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="161.677,525.884 161.677,533.884 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="161.721,538.145 169.721,538.145 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="165.721,534.145 165.721,542.145 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="166.117,577.621 174.117,577.621 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="170.117,573.621 170.117,581.621 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="170.865,586.945 178.865,586.945 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="174.865,582.945 174.865,590.945 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="175.964,619.278 183.964,619.278 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="179.964,615.278 179.964,623.278 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="181.415,585.992 189.415,585.992 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="185.415,581.992 185.415,589.992 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="187.218,624.515 195.218,624.515 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="191.218,620.515 191.218,628.515 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="193.372,627.456 201.372,627.456 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="197.372,623.456 197.372,631.456 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="199.879,640.051 207.879,640.051 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="203.879,636.051 203.879,644.051 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="206.736,628.170 214.736,628.170 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="210.736,624.170 210.736,632.170 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="213.946,640.427 221.946,640.427 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="217.946,636.427 217.946,644.427 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="221.507,649.456 229.507,649.456 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="225.507,645.456 225.507,653.456 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="229.420,647.310 237.420,647.310 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="233.420,643.310 233.420,651.310 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="237.684,643.744 245.684,643.744 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="241.684,639.744 241.684,647.744 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="246.301,645.121 254.301,645.121 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="250.301,641.121 250.301,649.121 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="255.268,650.444 263.268,650.444 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="259.268,646.444 259.268,654.444 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="264.588,650.396 272.588,650.396 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="268.588,646.396 268.588,654.396 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="274.259,646.120 282.259,646.120 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="278.259,642.120 278.259,650.120 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="284.282,659.017 292.282,659.017 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="288.282,655.017 288.282,663.017 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="294.657,657.122 302.657,657.122 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="298.657,653.122 298.657,661.122 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="305.383,663.069 313.383,663.069 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="309.383,659.069 309.383,667.069 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="316.461,662.439 324.461,662.439 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="320.461,658.439 320.461,666.439 "/>
+</g>
+</g>
+<g id="ID000027" >
+  <g transform="translate(255.639,485.953)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Tolerance 1e-05 ratio 2</text>
+    </g>
+  </g>
+</g>
+<g id="ID000028" >
+  <g transform="translate(98.489,648.477)">
+    <g transform="rotate(-90.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Average speed (Gbits/s)</text>
+    </g>
+  </g>
+</g>
+<g id="ID000029" >
+  <g transform="translate(254.641,833.003)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >A &amp; G Matrix (in Mbits)</text>
+    </g>
+  </g>
+</g>
+    </g>
+    <g>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="217.226,801.000 217.226,797.930 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="294.052,801.000 294.052,797.930 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="140.400,801.000 370.878,801.000 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="217.226,493.953 217.226,497.024 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="294.052,493.953 294.052,497.024 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="140.400,493.953 370.878,493.953 "/>
+  <g transform="translate(140.400,818.941)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >0</text>
+    </g>
+  </g>
+  <g transform="translate(217.226,818.941)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >200</text>
+    </g>
+  </g>
+  <g transform="translate(294.052,818.941)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >400</text>
+    </g>
+  </g>
+  <g transform="translate(370.878,818.941)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >600</text>
+    </g>
+  </g>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="140.400,757.136 143.470,757.136 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="140.400,713.272 143.470,713.272 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="140.400,669.409 143.470,669.409 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="140.400,625.545 143.470,625.545 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="140.400,581.681 143.470,581.681 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="140.400,537.817 143.470,537.817 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="140.400,801.000 140.400,493.953 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="370.878,757.136 367.808,757.136 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="370.878,713.272 367.808,713.272 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="370.878,669.409 367.808,669.409 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="370.878,625.545 367.808,625.545 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="370.878,581.681 367.808,581.681 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="370.878,537.817 367.808,537.817 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="370.878,801.000 370.878,493.953 "/>
+  <g transform="translate(135.790,805.500)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >200</text>
+    </g>
+  </g>
+  <g transform="translate(135.790,761.636)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >400</text>
+    </g>
+  </g>
+  <g transform="translate(135.790,717.772)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >600</text>
+    </g>
+  </g>
+  <g transform="translate(135.790,673.909)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >800</text>
+    </g>
+  </g>
+  <g transform="translate(135.790,630.045)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >1000</text>
+    </g>
+  </g>
+  <g transform="translate(135.790,586.181)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >1200</text>
+    </g>
+  </g>
+  <g transform="translate(135.790,542.317)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >1400</text>
+    </g>
+  </g>
+  <g transform="translate(135.790,498.453)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >1600</text>
+    </g>
+  </g>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="140.400,801.000 140.400,797.930 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="140.400,801.000 140.400,801.000 "/>
+    </g>
+  </g>
+  <g id ="ID000030">
+  <clipPath id="ID000031">
+    <rect x="443.661" y="493.953" width="230.478" height="307.047"/>
+  </clipPath>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="443.661,801.000 674.139,801.000 674.139,493.953 443.661,493.953 "/>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="443.661,801.000 674.139,801.000 674.139,801.000 443.661,801.000 "/>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="443.661,801.000 443.661,801.000 443.661,493.953 443.661,493.953 "/>
+    <g>
+<g id="ID000032" clip-path="url(#ID000031)" >
+      <polyline fill="none" stroke="#0000ff" stroke-width="0.5pt" stroke-dasharray="none" points="454.915,726.004 457.904,726.311 461.245,715.180 464.938,675.648 468.982,665.439 473.378,646.095 478.126,629.054 483.225,613.088 488.676,645.174 494.479,618.614 500.633,625.983 507.139,594.051 513.997,590.136 521.207,584.916 528.768,560.966 536.681,578.391 544.945,553.828 553.561,554.595 562.529,545.691 571.849,543.081 581.520,553.828 591.543,529.341 601.918,523.814 612.644,538.936 623.722,515.754 "/>
+<g>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="452.115,728.804 457.715,723.204 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="452.115,723.204 457.715,728.804 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="455.104,729.111 460.704,723.511 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="455.104,723.511 460.704,729.111 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="458.445,717.980 464.045,712.380 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="458.445,712.380 464.045,717.980 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="462.138,678.448 467.738,672.848 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="462.138,672.848 467.738,678.448 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="466.182,668.239 471.782,662.639 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="466.182,662.639 471.782,668.239 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="470.578,648.895 476.178,643.295 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="470.578,643.295 476.178,648.895 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="475.326,631.854 480.926,626.254 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="475.326,626.254 480.926,631.854 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="480.425,615.888 486.025,610.288 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="480.425,610.288 486.025,615.888 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="485.876,647.974 491.476,642.374 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="485.876,642.374 491.476,647.974 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="491.679,621.414 497.279,615.814 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="491.679,615.814 497.279,621.414 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="497.833,628.783 503.433,623.183 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="497.833,623.183 503.433,628.783 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="504.339,596.851 509.939,591.251 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="504.339,591.251 509.939,596.851 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="511.197,592.936 516.797,587.336 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="511.197,587.336 516.797,592.936 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="518.407,587.716 524.007,582.116 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="518.407,582.116 524.007,587.716 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="525.968,563.766 531.568,558.166 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="525.968,558.166 531.568,563.766 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="533.881,581.191 539.481,575.591 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="533.881,575.591 539.481,581.191 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="542.145,556.628 547.745,551.028 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="542.145,551.028 547.745,556.628 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="550.761,557.395 556.361,551.795 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="550.761,551.795 556.361,557.395 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="559.729,548.491 565.329,542.891 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="559.729,542.891 565.329,548.491 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="569.049,545.881 574.649,540.281 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="569.049,540.281 574.649,545.881 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="578.720,556.628 584.320,551.028 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="578.720,551.028 584.320,556.628 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="588.743,532.141 594.343,526.541 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="588.743,526.541 594.343,532.141 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="599.118,526.614 604.718,521.014 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="599.118,521.014 604.718,526.614 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="609.844,541.736 615.444,536.136 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="609.844,536.136 615.444,541.736 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="620.922,518.554 626.522,512.954 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="620.922,512.954 626.522,518.554 "/>
+</g>
+</g>
+<g id="ID000033" clip-path="url(#ID000031)" >
+      <polyline fill="none" stroke="#00ff00" stroke-width="0.5pt" stroke-dasharray="none" points="454.915,794.322 457.904,795.013 461.245,783.498 464.938,744.734 468.982,734.294 473.378,714.413 478.126,697.372 483.225,681.022 488.676,713.492 494.479,687.393 500.633,694.301 507.139,662.369 513.997,658.914 521.207,653.004 528.768,629.361 536.681,647.400 544.945,622.145 553.561,622.376 562.529,614.009 571.849,611.399 581.520,622.145 591.543,598.656 601.918,592.592 612.644,606.640 623.722,584.072 "/>
+<g>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="450.915,794.322 458.915,794.322 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="454.915,790.322 454.915,798.322 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="453.904,795.013 461.904,795.013 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="457.904,791.013 457.904,799.013 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="457.245,783.498 465.245,783.498 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="461.245,779.498 461.245,787.498 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="460.938,744.734 468.938,744.734 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="464.938,740.734 464.938,748.734 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="464.982,734.294 472.982,734.294 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="468.982,730.294 468.982,738.294 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="469.378,714.413 477.378,714.413 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="473.378,710.413 473.378,718.413 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="474.126,697.372 482.126,697.372 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="478.126,693.372 478.126,701.372 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="479.225,681.022 487.225,681.022 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="483.225,677.022 483.225,685.022 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="484.676,713.492 492.676,713.492 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="488.676,709.492 488.676,717.492 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="490.479,687.393 498.479,687.393 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="494.479,683.393 494.479,691.393 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="496.633,694.301 504.633,694.301 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="500.633,690.301 500.633,698.301 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="503.139,662.369 511.139,662.369 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="507.139,658.369 507.139,666.369 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="509.997,658.914 517.997,658.914 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="513.997,654.914 513.997,662.914 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="517.207,653.004 525.207,653.004 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="521.207,649.004 521.207,657.004 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="524.768,629.361 532.768,629.361 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="528.768,625.361 528.768,633.361 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="532.681,647.400 540.681,647.400 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="536.681,643.400 536.681,651.400 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="540.945,622.145 548.945,622.145 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="544.945,618.145 544.945,626.145 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="549.561,622.376 557.561,622.376 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="553.561,618.376 553.561,626.376 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="558.529,614.009 566.529,614.009 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="562.529,610.009 562.529,618.009 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="567.849,611.399 575.849,611.399 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="571.849,607.399 571.849,615.399 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="577.520,622.145 585.520,622.145 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="581.520,618.145 581.520,626.145 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="587.543,598.656 595.543,598.656 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="591.543,594.656 591.543,602.656 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="597.918,592.592 605.918,592.592 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="601.918,588.592 601.918,596.592 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="608.644,606.640 616.644,606.640 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="612.644,602.640 612.644,610.640 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="619.722,584.072 627.722,584.072 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="623.722,580.072 623.722,588.072 "/>
+</g>
+</g>
+<g id="ID000034" >
+  <g transform="translate(558.399,485.953)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Tolerance 1e-05 ratio 2</text>
+    </g>
+  </g>
+</g>
+<g id="ID000035" >
+  <g transform="translate(398.572,648.477)">
+    <g transform="rotate(-90.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Average total inner iterations</text>
+    </g>
+  </g>
+</g>
+<g id="ID000036" >
+  <g transform="translate(558.399,833.003)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >A &amp; G Matrix (in Mb)</text>
+    </g>
+  </g>
+</g>
+    </g>
+    <g>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="520.487,801.000 520.487,797.930 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="597.313,801.000 597.313,797.930 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="443.661,801.000 674.139,801.000 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="520.487,493.953 520.487,497.024 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="597.313,493.953 597.313,497.024 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="443.661,493.953 674.139,493.953 "/>
+  <g transform="translate(443.661,818.941)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >0</text>
+    </g>
+  </g>
+  <g transform="translate(520.487,818.941)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >200</text>
+    </g>
+  </g>
+  <g transform="translate(597.313,818.941)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >400</text>
+    </g>
+  </g>
+  <g transform="translate(674.139,818.941)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >600</text>
+    </g>
+  </g>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="443.661,762.619 446.731,762.619 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="443.661,724.238 446.731,724.238 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="443.661,685.858 446.731,685.858 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="443.661,647.477 446.731,647.477 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="443.661,609.096 446.731,609.096 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="443.661,570.715 446.731,570.715 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="443.661,532.334 446.731,532.334 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="443.661,801.000 443.661,493.953 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="674.139,762.619 671.069,762.619 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="674.139,724.238 671.069,724.238 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="674.139,685.858 671.069,685.858 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="674.139,647.477 671.069,647.477 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="674.139,609.096 671.069,609.096 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="674.139,570.715 671.069,570.715 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="674.139,532.334 671.069,532.334 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="674.139,801.000 674.139,493.953 "/>
+  <g transform="translate(439.051,805.500)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >3.385</text>
+    </g>
+  </g>
+  <g transform="translate(439.051,767.119)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >3.39</text>
+    </g>
+  </g>
+  <g transform="translate(439.051,728.738)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >3.395</text>
+    </g>
+  </g>
+  <g transform="translate(439.051,690.358)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >3.4</text>
+    </g>
+  </g>
+  <g transform="translate(439.051,651.977)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >3.405</text>
+    </g>
+  </g>
+  <g transform="translate(439.051,613.596)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >3.41</text>
+    </g>
+  </g>
+  <g transform="translate(439.051,575.215)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >3.415</text>
+    </g>
+  </g>
+  <g transform="translate(439.051,536.834)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >3.42</text>
+    </g>
+  </g>
+  <g transform="translate(439.051,498.453)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >3.425</text>
+    </g>
+  </g>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="443.661,801.000 443.661,797.930 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="443.661,801.000 443.661,801.000 "/>
+  <g transform="translate(443.661,486.453)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="10pt" fill="#000000" >&#215; 10<tspan font-size="7.0pt" dy="-7.0pt">4</tspan></text>
+    </g>
+  </g>
+    </g>
+  </g>
+  <g id ="ID000037">
+  <clipPath id="ID000038">
+    <rect x="746.922" y="493.953" width="230.478" height="307.047"/>
+  </clipPath>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="746.922,801.000 977.400,801.000 977.400,493.953 746.922,493.953 "/>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="746.922,801.000 977.400,801.000 977.400,801.000 746.922,801.000 "/>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="746.922,801.000 746.922,801.000 746.922,493.953 746.922,493.953 "/>
+    <g>
+<g id="ID000039" clip-path="url(#ID000038)" >
+      <polyline fill="none" stroke="#0000ff" stroke-width="0.5pt" stroke-dasharray="none" points="758.176,695.727 761.165,774.682 764.506,730.818 768.198,735.204 772.243,695.727 776.639,700.113 781.387,713.272 786.486,656.250 791.937,704.500 797.740,629.931 803.894,717.659 810.400,599.227 817.258,643.090 824.468,568.522 832.029,546.590 839.942,594.840 848.206,537.817 856.822,546.590 865.790,577.295 875.110,564.136 884.781,594.840 894.804,550.976 905.179,546.590 915.905,542.204 926.983,511.499 "/>
+<g>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="755.376,698.527 760.976,692.927 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="755.376,692.927 760.976,698.527 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="758.365,777.482 763.965,771.882 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="758.365,771.882 763.965,777.482 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="761.706,733.618 767.306,728.018 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="761.706,728.018 767.306,733.618 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="765.398,738.004 770.998,732.404 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="765.398,732.404 770.998,738.004 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="769.443,698.527 775.043,692.927 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="769.443,692.927 775.043,698.527 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="773.839,702.913 779.439,697.313 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="773.839,697.313 779.439,702.913 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="778.587,716.072 784.187,710.472 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="778.587,710.472 784.187,716.072 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="783.686,659.050 789.286,653.450 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="783.686,653.450 789.286,659.050 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="789.137,707.300 794.737,701.700 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="789.137,701.700 794.737,707.300 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="794.940,632.731 800.540,627.131 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="794.940,627.131 800.540,632.731 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="801.094,720.459 806.694,714.859 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="801.094,714.859 806.694,720.459 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="807.600,602.027 813.200,596.427 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="807.600,596.427 813.200,602.027 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="814.458,645.890 820.058,640.290 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="814.458,640.290 820.058,645.890 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="821.668,571.322 827.268,565.722 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="821.668,565.722 827.268,571.322 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="829.229,549.390 834.829,543.790 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="829.229,543.790 834.829,549.390 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="837.142,597.640 842.742,592.040 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="837.142,592.040 842.742,597.640 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="845.406,540.617 851.006,535.017 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="845.406,535.017 851.006,540.617 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="854.022,549.390 859.622,543.790 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="854.022,543.790 859.622,549.390 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="862.990,580.095 868.590,574.495 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="862.990,574.495 868.590,580.095 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="872.310,566.936 877.910,561.336 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="872.310,561.336 877.910,566.936 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="881.981,597.640 887.581,592.040 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="881.981,592.040 887.581,597.640 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="892.004,553.776 897.604,548.176 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="892.004,548.176 897.604,553.776 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="902.379,549.390 907.979,543.790 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="902.379,543.790 907.979,549.390 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="913.105,545.004 918.705,539.404 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="913.105,539.404 918.705,545.004 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="924.183,514.299 929.783,508.699 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="924.183,508.699 929.783,514.299 "/>
+</g>
+</g>
+<g id="ID000040" clip-path="url(#ID000038)" >
+      <polyline fill="none" stroke="#00ff00" stroke-width="0.5pt" stroke-dasharray="none" points="758.176,695.727 761.165,774.682 764.506,730.818 768.198,735.204 772.243,695.727 776.639,700.113 781.387,713.272 786.486,656.250 791.937,704.500 797.740,629.931 803.894,717.659 810.400,599.227 817.258,643.090 824.468,568.522 832.029,546.590 839.942,594.840 848.206,537.817 856.822,546.590 865.790,577.295 875.110,564.136 884.781,594.840 894.804,550.976 905.179,550.976 915.905,542.204 926.983,511.499 "/>
+<g>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="754.176,695.727 762.176,695.727 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="758.176,691.727 758.176,699.727 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="757.165,774.682 765.165,774.682 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="761.165,770.682 761.165,778.682 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="760.506,730.818 768.506,730.818 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="764.506,726.818 764.506,734.818 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="764.198,735.204 772.198,735.204 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="768.198,731.204 768.198,739.204 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="768.243,695.727 776.243,695.727 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="772.243,691.727 772.243,699.727 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="772.639,700.113 780.639,700.113 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="776.639,696.113 776.639,704.113 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="777.387,713.272 785.387,713.272 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="781.387,709.272 781.387,717.272 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="782.486,656.250 790.486,656.250 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="786.486,652.250 786.486,660.250 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="787.937,704.500 795.937,704.500 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="791.937,700.500 791.937,708.500 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="793.740,629.931 801.740,629.931 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="797.740,625.931 797.740,633.931 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="799.894,717.659 807.894,717.659 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="803.894,713.659 803.894,721.659 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="806.400,599.227 814.400,599.227 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="810.400,595.227 810.400,603.227 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="813.258,643.090 821.258,643.090 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="817.258,639.090 817.258,647.090 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="820.468,568.522 828.468,568.522 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="824.468,564.522 824.468,572.522 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="828.029,546.590 836.029,546.590 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="832.029,542.590 832.029,550.590 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="835.942,594.840 843.942,594.840 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="839.942,590.840 839.942,598.840 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="844.206,537.817 852.206,537.817 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="848.206,533.817 848.206,541.817 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="852.822,546.590 860.822,546.590 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="856.822,542.590 856.822,550.590 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="861.790,577.295 869.790,577.295 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="865.790,573.295 865.790,581.295 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="871.110,564.136 879.110,564.136 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="875.110,560.136 875.110,568.136 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="880.781,594.840 888.781,594.840 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="884.781,590.840 884.781,598.840 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="890.804,550.976 898.804,550.976 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="894.804,546.976 894.804,554.976 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="901.179,550.976 909.179,550.976 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="905.179,546.976 905.179,554.976 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="911.905,542.204 919.905,542.204 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="915.905,538.204 915.905,546.204 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="922.983,511.499 930.983,511.499 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="926.983,507.499 926.983,515.499 "/>
+</g>
+</g>
+<g id="ID000041" >
+  <g transform="translate(861.660,485.953)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Tolerance 1e-05 ratio 2</text>
+    </g>
+  </g>
+</g>
+<g id="ID000042" >
+  <g transform="translate(718.869,648.477)">
+    <g transform="rotate(-90.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >Average iterations</text>
+    </g>
+  </g>
+</g>
+<g id="ID000043" >
+  <g transform="translate(861.660,833.003)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >A &amp; G Matrix (in Mb)</text>
+    </g>
+  </g>
+</g>
+    </g>
+    <g>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="823.748,801.000 823.748,797.930 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="900.574,801.000 900.574,797.930 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,801.000 977.400,801.000 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="823.748,493.953 823.748,497.024 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="900.574,493.953 900.574,497.024 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,493.953 977.400,493.953 "/>
+  <g transform="translate(746.922,818.941)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >0</text>
+    </g>
+  </g>
+  <g transform="translate(823.748,818.941)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >200</text>
+    </g>
+  </g>
+  <g transform="translate(900.574,818.941)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >400</text>
+    </g>
+  </g>
+  <g transform="translate(977.400,818.941)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="middle" font-size="10pt" fill="#000000" >600</text>
+    </g>
+  </g>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,757.136 749.992,757.136 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,713.272 749.992,713.272 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,669.409 749.992,669.409 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,625.545 749.992,625.545 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,581.681 749.992,581.681 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,537.817 749.992,537.817 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,801.000 746.922,493.953 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="977.400,757.136 974.330,757.136 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="977.400,713.272 974.330,713.272 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="977.400,669.409 974.330,669.409 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="977.400,625.545 974.330,625.545 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="977.400,581.681 974.330,581.681 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="977.400,537.817 974.330,537.817 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="977.400,801.000 977.400,493.953 "/>
+  <g transform="translate(742.312,805.500)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >24</text>
+    </g>
+  </g>
+  <g transform="translate(742.312,761.636)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >25</text>
+    </g>
+  </g>
+  <g transform="translate(742.312,717.772)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >26</text>
+    </g>
+  </g>
+  <g transform="translate(742.312,673.909)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >27</text>
+    </g>
+  </g>
+  <g transform="translate(742.312,630.045)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >28</text>
+    </g>
+  </g>
+  <g transform="translate(742.312,586.181)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >29</text>
+    </g>
+  </g>
+  <g transform="translate(742.312,542.317)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >30</text>
+    </g>
+  </g>
+  <g transform="translate(742.312,498.453)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="end" font-size="10pt" fill="#000000" >31</text>
+    </g>
+  </g>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,801.000 746.922,797.930 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="746.922,801.000 746.922,801.000 "/>
+    </g>
+  </g>
+  <g id ="ID000044">
+  <clipPath id="ID000045">
+    <rect x="279.750" y="74.750" width="86.500" height="37.625"/>
+  </clipPath>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="279.750,112.375 366.250,112.375 366.250,74.750 279.750,74.750 "/>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="279.750,74.750 366.250,74.750 366.250,74.750 279.750,74.750 "/>
+      <polygon fill="#ffffff" fill-opacity="1.00" stroke="none" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="279.750,112.375 279.750,112.375 279.750,74.750 279.750,74.750 "/>
+    <g>
+<g id="ID000046" >
+  <g transform="translate(329.538,90.944)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="10pt" fill="#000000" >GPU</text>
+    </g>
+  </g>
+</g>
+<g id="ID000047" clip-path="url(#ID000045)" >
+      <polyline fill="none" stroke="#0000ff" stroke-width="0.5pt" stroke-dasharray="none" points="287.250,85.250 324.750,85.250 "/>
+<g>
+</g>
+</g>
+<g id="ID000048" clip-path="url(#ID000045)" >
+<g>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="303.200,88.050 308.800,82.450 "/>
+      <polyline fill="#0000ff" fill-opacity="1.00" stroke="#0000ff" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="303.200,82.450 308.800,88.050 "/>
+</g>
+</g>
+<g id="ID000049" >
+  <g transform="translate(329.538,107.215)">
+    <g transform="rotate(-0.0)">
+      <text x="0.000" y="0.000" font-family="Helvetica" text-anchor="start" font-size="10pt" fill="#000000" >BLAS</text>
+    </g>
+  </g>
+</g>
+<g id="ID000050" clip-path="url(#ID000045)" >
+      <polyline fill="none" stroke="#00ff00" stroke-width="0.5pt" stroke-dasharray="none" points="287.250,101.875 324.750,101.875 "/>
+<g>
+</g>
+</g>
+<g id="ID000051" clip-path="url(#ID000045)" >
+<g>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="302.000,101.875 310.000,101.875 "/>
+      <polyline fill="#00ff00" fill-opacity="1.00" stroke="#00ff00" stroke-width="0.5pt" stroke-opacity="1.00" stroke-dasharray="none" points="306.000,97.875 306.000,105.875 "/>
+</g>
+</g>
+<g id="ID000052" >
+</g>
+<g id="ID000053" >
+</g>
+<g id="ID000054" >
+</g>
+    </g>
+    <g>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="279.750,112.375 366.250,112.375 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="279.750,74.750 366.250,74.750 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="279.750,112.375 279.750,74.750 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="366.250,112.375 366.250,74.750 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="279.750,112.375 279.750,111.999 "/>
+      <polyline fill="none" stroke="#000000" stroke-width="0.5pt" stroke-dasharray="none" points="279.750,112.375 279.750,112.375 "/>
+    </g>
+  </g>
+  </g>
+</svg>

@@ -1,6 +1,6 @@
 function rtn = bench_PALM()
 
-type = 'PALM';
+type = 'PALM1';
 n  = 10; % denominator for ratio
 ks = 0.1;
 tols = [1e-4 1e-5];
@@ -19,49 +19,45 @@ for i=ratio
     
     gpuData = load(gpuName);
     
-    cpuName = [name 'CPU.mat'];
-    
-    cpuData = load(cpuName);
-    
     blasName = [name 'BLAS.mat'];
     
     blasData = load(blasName);
     
-    gpuDimsPowers  = gpuData.dimsPowers(gpuData.dimsPowers <= 6000);
-    gpuDimLen      = numel(gpuDimsPowers);
-    cpuDimsPowers  = cpuData.dimsPowers(cpuData.dimsPowers <= 6000);
-    cpuDimLen      = numel(cpuDimsPowers);
-    blasDimsPowers = blasData.dimsPowers(blasData.dimsPowers <= 6000);
-    blasDimLen     = numel(blasDimsPowers);
+    gpuDimsPowers  = gpuData.dimsPowers;
+    gpuDimLen      = numel(gpuData.dimsPowers <= 6000);
+    blasDimsPowers = blasData.dimsPowers;
+    blasDimLen     = numel(blasData.dimsPowers <= 6000);
     
-    gpuDimsPowers  = (gpuDimsPowers.^2 * i / 10 * (1 + i / 10)) * 32 / (2^20);
-    cpuDimsPowers  = (cpuDimsPowers.^2 * i / 10 * (1 + i / 10)) * 32 / (2^20);
-    blasDimsPowers = (blasDimsPowers.^2 * i / 10 * (1 + i / 10)) * 32 / (2^20);
-    
+    gpuASize       = (gpuDimsPowers.^2 * i / 10 * (1 + i / 10)) * 32 / (2^20);
+    blasASize      = (blasDimsPowers.^2 * i / 10 * (1 + i / 10)) * 32 / (2^20);
+        
     for j=1:numel(tols)
         
         subplot(numel(tols), 3, (j-1)*3+1);
-        gpuOutIter  = gpuData.averageIteration(j,j,:,2);
-        gpuInIter   = gpuData.averageTotalInnerIteration(j,j,:,2);
-        cpuOutIter  = cpuData.averageIteration(j,j,:,2);
-        cpuInIter   = cpuData.averageTotalInnerIteration(j,j,:,2);
-        blasOutIter = blasData.averageIteration(j,j,:,2);
-        blasInIter  = blasData.averageTotalInnerIteration(j,j,:,2);
+        gpuOutIter  = squeeze(gpuData.averageIteration(j,j,:,2))';
+        gpuInIter   = squeeze(gpuData.averageTotalInnerIteration(j,j,:,2))';
+        blasOutIter = squeeze(blasData.averageIteration(j,j,:,3))';
+        blasInIter  = squeeze(blasData.averageTotalInnerIteration(j,j,:,3))';
         
-        plotA = gpuData.averageRunTime(j,j,:,2,2);
-        plotB = cpuData.averageRunTime(j,j,:,1,2);
-        plotC = blasData.averageRunTime(j,j,:,1,3);
-        plot(gpuDimsPowers, squeeze(plotA(1:gpuDimLen)), 'bx-');
+        % Calculations for totalSize (aka the number of times we use each
+        % matrix * size of the matrix
+        % A is mxn.  G is nxn.  (3*m*n) * totalOutIterations + (n^2)
+        % * total Inner iterations.  Is that correct?
+        gpuTotalSize    = gpuDimsPowers.^2 .* ((3 * (i/10) .* gpuOutIter)  + (i/10)^2 .* gpuInIter) * 32 / (2^30);
+        blasTotalSize   = blasDimsPowers.^2 .* ((3 * (i/10) .* blasOutIter)  + (i/10)^2 .* blasInIter) * 32 / (2^30);
+
+        plotA = squeeze(gpuData.averageRunTime(j,j,:,2,2))';
+        plotC = squeeze(blasData.averageRunTime(j,j,:,3,2))';
+        plot(gpuASize(1:gpuDimLen), gpuTotalSize(1:gpuDimLen)./plotA(1:gpuDimLen), 'bx-');
         hold on
-        plot(cpuDimsPowers, squeeze(plotB(1:cpuDimLen)), 'r+-');
-        plot(blasDimsPowers, squeeze(plotC(1:blasDimLen)), 'g+-');
+        plot(blasASize(1:blasDimLen), blasTotalSize(1:blasDimLen)./plotC(1:blasDimLen), 'g+-');
         title(['Tolerance ' num2str(tols(j)) ' ratio ' num2str(i)]);
-        ylabel('Average speed (kb/s)');
-        xlabel('A & G Matrix (in Mb)');
+        ylabel('Average speed (Gbits/s)');
+        xlabel('A & G Matrix (in Mbits)');
         hold off
         
         if j == 1
-            legend('GPU', 'CPU', 'BLAS');
+            legend('GPU', 'BLAS');
         end
 %         
 %         subplot(numel(tols), 3, (j-1)*3+2);
@@ -79,12 +75,10 @@ for i=ratio
 
         subplot(numel(tols), 3, (j-1)*3+2);
         plotA = gpuData.averageTotalInnerIteration(j,j,:,2);
-        plotB = cpuData.averageTotalInnerIteration(j,j,:,1);
         plotC = blasData.averageTotalInnerIteration(j,j,:,3);
-        plot(gpuDimsPowers, squeeze(plotA(1:gpuDimLen)), 'bx-');
+        plot(gpuASize(1:gpuDimLen), squeeze(plotA(1:gpuDimLen)), 'bx-');
         hold on
-        plot(cpuDimsPowers, squeeze(plotB(1:cpuDimLen)), 'r+-');
-        plot(blasDimsPowers, squeeze(plotC(1:blasDimLen)), 'g+-');
+        plot(blasASize(1:blasDimLen), squeeze(plotC(1:blasDimLen)), 'g+-');
         title(['Tolerance ' num2str(tols(j)) ' ratio ' num2str(i)]);
         ylabel('Average total inner iterations');
         xlabel('A & G Matrix (in Mb)');
@@ -92,12 +86,10 @@ for i=ratio
 
         subplot(numel(tols), 3, (j-1)*3+3);
         plotA = gpuData.averageIteration(j,j,:,2);
-        plotB = cpuData.averageIteration(j,j,:,1);
         plotC = blasData.averageIteration(j,j,:,3);
-        plot(gpuDimsPowers, squeeze(plotA(1:gpuDimLen)), 'bx-');
+        plot(gpuASize(1:gpuDimLen), squeeze(plotA(1:gpuDimLen)), 'bx-');
         hold on
-        plot(cpuDimsPowers, squeeze(plotB(1:cpuDimLen)), 'r+-');
-        plot(blasDimsPowers, squeeze(plotC(1:blasDimLen)), 'g+-');
+        plot(blasASize(1:blasDimLen), squeeze(plotC(1:blasDimLen)), 'g+-');
         title(['Tolerance ' num2str(tols(j)) ' ratio ' num2str(i)]);
         ylabel('Average iterations');
         xlabel('A & G Matrix (in Mb)');
