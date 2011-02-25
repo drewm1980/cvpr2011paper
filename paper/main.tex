@@ -66,14 +66,14 @@ First line of institution2 address\\
 \section{Introduction} 
 $\ell_1$-minimization ($\ell_1$-min) has received much attention in recent
 years due to important applications in compressive sensing
-\cite{BrucksteinA2007} and sparse representation \cite{WrightJ2010-PIEEE}.  The
-problem refers to finding the minimum $\ell$-norm solution to an
+\cite{BrucksteinA2007} and sparse representation \cite{WrightJ2010-PIEEE}.  
+$\ell_1$-min refers to finding the minimum $\ell$-norm solution to an
 underdetermined linear system $\bb=A\xx$:
 \begin{equation}
 \min \|\xx\|_1\quad \mbox{ subj. to }\quad \bb = A\xx.
 \label{eq:l1min}
 \end{equation}
-It has now been well understood that, under certain conditions
+It is now well established that, under certain conditions
 \cite{CandesE2005-IT_1,DonohoD2004}, the minimum $\ell_1$-norm solution is also
 the \emph{sparsest} solution to the system \eqref{eq:l1min}.
 
@@ -89,64 +89,71 @@ classification} (SBC) solves the following minimization problem:
 \label{eq:l1min_denoise}
 \end{equation}
 If the sparsest solutions for $\x$ and $\e$ are recovered, $\ee$ provides a
-means to compensate corrupted pixels that main occlude some part of the query
-image, and the dominant nonzero coefficients in $\xx$ reveals the membership of
-$\bb$ based on the training image labels associated with $A$.
+means to compensate for pixels that are corrupted due to occlusion of some part of the query
+image, and the dominant nonzero coefficients of $\xx$ reveal the membership of
+$\bb$ based on the training image labels associated with $A$.  Since $A$ ideally
+contains many images per user taken under different illuminations, 
+$A\x$ also acts as a linear illumination model for the test image $\bb$.
 
 In this paper, we study parallelization of $\ell$-min on many-core CPU and GPU
-architectures. Firstly, although $\ell_1$-min \eqref{eq:l1min} is a convex
+architectures. Although $\ell_1$-min \eqref{eq:l1min} is a convex
 program, conventional algorithms such as interior-point methods
 \cite{ChenS2001-SIAM,TibshiraniR1996} are known to suffer from poor scalability
 for large-scale applications such as face recognition. Recently, a number of
-accelerated algorithms have been proposed, which explicitly take advantage of
+accelerated algorithms have been proposed that explicitly take advantage of
 the special structure of $\ell_1$-min problems
 \cite{LorisI2009,YangA2010-ICIP}. We investigate parallelization of a
 state-of-the-art $\ell_1$-min solution based on the classical framework of
-\emph{augmented Lagrange multiplier} (ALM)
-\cite{BertsekasD2003,YangA2010-ICIP}.
+\emph{augmented Lagrange multiplier} (ALM) \cite{BertsekasD2003,YangA2010-ICIP}.
 
-Secondly, while solving \eqref{eq:l1min_denoise} can achieve exceptional
+While solving \eqref{eq:l1min_denoise} can achieve exceptional
 recognition accuracy on public databases, its success relies on the assumption
 that the query image is well aligned with the training images. In
 \cite{WagnerA2009-CVPR}, the framework of SBC was extended to iteratively align
 a query image to one subject class. The face alignment algorithm in turn solves
 the following minimization problem:
 \begin{equation}
-\hat{\tau}_i = \arg\min_{\xx, \ee, \tau_i} \|\ee\|_1\quad \mbox{subj. to}\quad \bb\circ\tau_i = A_i\xx + \ee,
+\hat{\tau}_i = \arg\min_{\xx, \ee, \tau_i} \|\ee\|_1\quad \mbox{subj. to}\quad \tilde\bb\circ\tau_i = A_i\xx + \ee,
 \label{eq:l1min_alignment}
 \end{equation}
 where $\tau_i\in T$ is in a finite-dimensional group $T$ of transformations
-(e.g., affine or homography) acting on the image domain, which aligns $\bb$
-with the training images from the $i$-th class $A_i$. The algorithm essentially
-extends Lucas-Kanade iterative alignment \cite{LucasB1981} to using the
-$\ell_1$ norm as a robust error function.  Although the original solution
-\cite{WagnerA2009-CVPR} was implemented based on standard interior-point
-methods, its speed has been improved by ALM in a more recent paper
-\cite{WagnerA2011-PAMI}. In this paper, in addition to solving the generic
-$\ell_1$-min objectives \eqref{eq:l1min} or \eqref{eq:l1min_denoise}, we also
-discuss how to properly customize the implementation to accelerate the face
-alignment step \eqref{eq:l1min_alignment} on many-core CPUs and GPUs.
+(e.g., affine or homography) acting on the image domain, which aligns $\tilde\bb$
+with the training images from the $i$-th class $A_i$. The algorithm 
+extends Lucas-Kanade iterative alignment \cite{LucasB1981} to both to use the
+$\ell_1$ norm as a robust error function, and also simultaneously 
+to estimate the illumination model $A\x$.  
+The original solution \cite{WagnerA2009-CVPR} was implemented based 
+on standard interior-point
+methods, and its speed has been since improved by ALM in a more recent paper
+\cite{WagnerA2011-PAMI}. However, primarily due the high per-user cost
+of the alignment step, the recognition system was still not fast enough
+for real-time recognition against datasets of hundreds of users.
+In this paper, in addition to solving the generic
+$\ell_1$-min objectives \eqref{eq:l1min} and \eqref{eq:l1min_denoise}, we 
+discuss how to properly accelerate the iterative face alignment step
+\eqref{eq:l1min_alignment} on multi-core CPUs and GPUs. 
 
 Finally, we present extensive benchmark to compare the performance of the
 generic ALM $\ell_1$-min algorithm and the corresponding face recognition
 routines on massively parallel CPUs and GPUs.  To this end, the face
 recognition system has been fully implemented on a state-of-the-art
-workstation, as shown in Figure \ref{fig:pipeline}. Since any algorithm
-parallelization is highly dependent on the specific computer hardware, the
-architecture of our test system will be explained in detail in Section
-\ref{sec:parallelism}.  We show that a highly accurate and robust face
-recognition system can be constructed to recognize face images from a moderate
-database of several hundred subjects. Note that with the possible continual
-increase of the number of subject classes, it is possible to modularize and
-dispatch different stages of the face recognition routine to a network of
-workstations to form an even larger scale networked system. Nevertheless, this
-scenario is not the focus of this paper. The source code of our algorithms,
-which is based on BLAS and Nvidia CUDA libraries, will be made available on our
-website to aid peer evaluation.
+workstation, as shown in Figure \ref{fig:pipeline}. 
+Since the parallelization of any algorithm
+is highly dependent on the target hardware, we will give a brief overview of
+the architecture of our test system in detail in Section
+\ref{sec:parallelism}.  We will show that a highly accurate and robust face
+recognition system can be constructed to recognize face images from a 
+database of several hundred subjects quickly enough to be practical for
+access control applications. 
+Note that for applications targeting thousands of users or more, it would likely be
+necessary to distribute the work over a network of machines; this paper
+focuses on the (shared memory) parallelism available in a single machine.
+The C++ source code of our implementations, which target Nvidia's CUDA GPU architecture
+will be made available for evaluation by other researchers.
 \begin{figure}
 \centering
 {\tiny \input{figures/pipeline_simplified.tex}}
-\caption{The face recognition pipeline implemented on massively parallel hardware.}
+\caption{Overview of the face recognition pipeline.}
 \label{fig:pipeline}
 \end{figure}
 
@@ -161,7 +168,10 @@ method (TNIPM) \cite{KimS2007}.
 
 One of the drawbacks of most interior-point methods for $\ell_1$-min (including
 BP, LASSO, and TNIPM) is that they require the solution sequence to follow an
-interior path, which is often computationally expensive. To mitigate these
+interior path{\bf DW: Following the interior path is what made them faster than
+traditional linear programming techniques that follow the edge of the feasible set;
+does Homotopy actually go outside the feasible set?  Just want to check if this is
+an accurate representation...}, which is often computationally expensive. To mitigate these
 issues, an approach called \emph{Homotopy} has been studied to accelerate the
 speed of $\ell_1$-min. Homotopy methods for recovering sparse signals were
 first studied in the context of LASSO \cite{OsborneM2000}, which inspired a
@@ -170,16 +180,16 @@ solution to the \emph{forward stagewise linear regression} problem called LARS
 for BP in \cite{MalioutovD2005,DonohoD2006}.
 
 Although Homotopy can be shown to exactly estimate BP when the solution is
-sufficiently sparse \cite{DonohoD2006}, the algorithm still involves expensive
-matrix operations such as matrix-matrix multiplication and solving
-least-squares problems with varying $A$ matrices. Hence, it is not efficient to
-implement Homotopy on parallel hardware. In Section \ref{sec:ALM}, we contend
+sufficiently sparse \cite{DonohoD2006}, the algorithm still involves 
+computationally expensive operations such as matrix-matrix multiplication and 
+the solution of least-squares problems with varying $A$ matrices. 
+In Section \ref{sec:ALM}, we contend
 that ALM is a better choice among Homotopy and other existing $\ell_1$-min
-solvers to parallelize on many-core CPUs and GPUs. The algorithm belongs to a
+solvers for implementation on many-core CPUs and GPUs. The ALM algorithm belongs to a
 category of approximate $\ell_1$-min solutions called \emph{iterative
-shrinkage-thresholding} (IST) method \cite{WrightS2008,BeckA2009}. The
-(sequential) implementation of IST algorithms mainly involves elementary
-operations such as vector algebra and matrix-vector multiplication. Therefore,
+shrinkage-thresholding} (IST) method \cite{WrightS2008,BeckA2009}.
+IST algorithms mainly involves elementary operations such as vector 
+algebra and matrix-vector multiplication. Therefore,
 when the dimension of the problem becomes high, IST-type algorithms are
 particularly suitable for systems in parallel-computing environments. In
 \cite{YangA2010-ICIP}, the authors further showed that, compared to other
@@ -250,7 +260,9 @@ augmented Lagrange function compared to solving the original problem
 (\xx,\yy_k)$ assuming $\yy_k$ and $\mu_k$ are fixed can be solved element-wise
 iteratively by a soft-thresholding algorithm \cite{WrightS2008,BeckA2009},
 whose time complexity is bounded by $O(n^2)$ and can be easily parallelized.
-Algorithm \ref{alg:alm} summarizes the ALM $\ell_1$-min algorithm.
+Algorithm \ref{alg:alm} summarizes the ALM $\ell_1$-min algorithm \footnote{While we
+present the ALM algorithm in the primal domain, there also
+exists an implementation ALM in the dual domain.}.
 
  \begin{algorithm}[h]
 \caption{Augmented Lagrange Multiplier (ALM)}
@@ -322,30 +334,124 @@ it is possible to run completely using on-chip cache.
 
 The ALM algorithm requires many matrix-vector operations, this gives many-core
 processors such as GPUs a computational advantage for large problem sizes.
-GPUs are comprised of several streaming multiprocessors (SMP) (16 for the
-Nvidia Fermi) which each contains 32 floating-point units.  Each SMP contains
+GPUs are comprised of several streaming multiprocessors (SMP) (14 for our
+NVIDIA Fermi) which each contains 32 floating-point units.  Each SMP contains
 its own L1-cache and shared memory and all SMPs share a common L2-cache.  The
 GPU executes programs as SIMT (Single Instruction Multiple Threads) in groups
 of 32 threads called \emph{warps}.  These warps are then grouped into higher
-levels called \emph{thread blocks} and \emph{grids}. The GPU contains an
-inverted memory hierarchy so that the L1 cache stays close to the cores,
-providing the increase in performance and a computational advantage over CPUs.
-Unlike normal CPUs, the Nvidia Fermi has 768 kb of L1 cache/shared memory and
+levels called \emph{thread blocks} and \emph{grids}. 
+
+Fermi's inverted memory hierarchy (aggregate l1 capacity is greater than l2 capacity) is designed to support massively parallel workloads in which there is more task-private data than shared data, providing an increase in performance and a computational advantage over CPUs.
+For our system, each SMP has 64 kb of L1 cache with a total of 896 kb of L1 cache/shared memory and
 768kb of L2 cache. However, this increase in performance does not come for
 free. As the GPU has its own memory system, any data the GPU uses must be
 transferred from RAM to the GPU over PCI-Express, which has limited bandwidth.
 However, the cost of these transfers are amortized by doing large amounts of
-computation at once, requiring code to be run completely on the GPU.  
+computation at once, requiring code to be run completely on the GPU.  In 2011, NVIDIA is developing a new ARM-based CPU system, dubbed 
+"Project Denver" to fix performance issues such as the limited bandwidth due to PCI-E \cite{Dally-Web}.
 
 In summary, a programmable GPU can be analogous to a multi-core CPU processor,
 except with more sophisticated vector processing hardware.  Each thread block
 is a virtualized multiprocessor, which each thread as a virtualized scalar
 processor.  All of these differences allow GPUs to perform intensive
-calculations such as matrix-vector operations at much faster rates than CPUs. 
+calculations such as large scale matrix-vector operations at much faster rates than CPUs. 
 
 \section{Parallelization of the Face Alignment Stage}
 \label{sec:alignment}
-{\bf AY: Add an algorithm here describe the alignment block in the pipeline. Explain the algorithm and necessary modification from generic l-1}
+%{\bf AY: Add an algorithm here describe the alignment block in the pipeline. Explain the algorithm and necessary modification from generic l-1}
+This section provides a brief explanation of the iterative alignment stage
+of the recognition pipeline.  
+The inputs of the algorithm are the test image $f(x,y)$ stacked into an $M$-
+dimensional vector $\f$, and the aligned and stacked training images $A_i$ for
+each training user $i$. 
+The algorithm repeatedly solves a linearized version of the minimization problem
+in \eqref{eq:l1min_alignment}.  This involves two computational steps:
+the computation of the linearization, and the solution of the minimization problem.
+
+The computation of the linearization is complicated by the need to avoid trivial 
+solutions where the algorithm
+progressively zooms in on a black pixel of the test image.
+This is achieved by minimizing the $\ell_1$ error between the illumination model $Ax$ and the cropped,
+resampled, and normalized test image $\tilde\bb$, rather than the un-normalized version as in 
+conventional Lucas-Kanade iterative alignment.
+This involves a bit of calculus:
+\begin{equation}
+\frac{\partial}{\partial \tau_p} \frac{\bb}{||\bb||} 
+= \frac{1}{||\bb||} \frac{\partial \bb}{\partial \tau_p} - 
+\frac{\bb}{||\bb||^3} \bb^T \frac{\partial \bb}{\partial \tau_p}
+\end{equation}
+If the warping $\tau$ is constrained to be a similarity transform,
+it can be paramaterized in such a way that the computation of $\frac{\partial \bb}{\partial \tau_p}$
+reduces to several linear vector operations involving pixel coordinates $(u,v)$, $\tau \in \Re^4$,
+and the image gradients $\f_x, \f_y \in \Re^M$, the latter of which only has to be computed
+once per test image. {bf DW: I could go into the rest of the math for this, but I'm worried about space}
+
+The iterative alignment stage is summarized as Algorithm \ref{alg:iterative_alignment}.
+\begin{algorithm}[thb]
+\caption{\bf (Iterative Alignment Stage)} \label{alg:iterative_alignment}
+\begin{algorithmic}[1]
+\begin{small}
+\STATE {\bf Input:} Aligned training images $\{A_i \in \Re^{m\times n_i}\}_{i=1}^K$ for $K$ subjects,  a test image
+$\f\in\Re^M$ 
+\STATE $\tau^{(0)} \leftarrow \textrm{face detector($\f$)}$. 
+\STATE $\f_x, \f_y \in \Re^M \leftarrow \frac{df}{dx}, \frac{df}{dy}$ 
+\STATE {\bf for} each gallery subject $i$, 
+\STATE \hspace{3mm} {\bf while} not converged $(j=1,2,\ldots)$ {\bf do} 
+\STATE \hspace{6mm} $\tilde \bb(\tau) \leftarrow \frac{\bb \circ \tau}{\|\bb \circ \tau\|_2}$;
+\STATE \hspace{6mm} $J \leftarrow  \frac{\partial}{\partial \tau} \tilde\bb(\tau)  \bigr|_{\tau^{(j)}} $;
+\STATE \hspace{6mm} $\Delta \tau =  \arg\min \; \| \e \|_1  \; \subj \; \tilde \bb + J \Delta \tau = A_i \x + \e.$ 
+\STATE \hspace{6mm} $\tau^{(j+1)} \leftarrow \tau^{(j)} + \Delta
+\tau$; 
+\end{small}
+\end{algorithmic}
+\end{algorithm}
+
+The solution of the minimization problem in Algorithm
+\ref{alg:iterative_alignment} Step 8 can be solved via a
+variant of ALM, which is summarized as Algorithm \ref{alg:alignment_alm}.
+$\gamma$ denotes the largest eigenvalue of the matrix $A^TA$. For the choice of
+parameter $\mu$, we take the same strategy as in \cite{YangJ2009-pp} and set
+$\mu_0 = 2m / \|\bb\|_1$. We set $\rho=1.5$.
+
+\begin{algorithm}[h]
+\caption{\bf (Augmented Lagrange Multiplier Method For Alignment)}
+\begin{algorithmic}[1]
+\STATE {\bf Input:} $\bb \in \Re^m$, $A \in \Re^{m \times n}$,
+$\x_1 = \mathbf{0}$, $\blamda_1 = \mathbf{0}$.
+\WHILE{not converged ($k = 1,2,\ldots$)}
+\STATE $t_{1} \leftarrow 1, z_{1} \leftarrow \x_{k}, \u_{1} \leftarrow \x_{k}$;
+\WHILE{not converged ($l = 1,2,\ldots$)}
+\STATE $\e_{l+1} \leftarrow \textup{shrink}\left(\bb - A\x_l + \frac{\blamda_k}{\mu_k}, \frac{1}{\mu_k}\right)$;
+\STATE $\x_{l+1} \leftarrow (A^\dagger)^T \left(\bb - \e_{l+1} + \frac{\blamda_k}{\mu_k} \right) $;
+\ENDWHILE
+\STATE $\blamda_{k+1} \leftarrow \blamda_k + \mu (\bb - A\x_{k+1} - \e_{k+1})$;
+\STATE $\mu_{k+1} \leftarrow \rho\mu_k$;
+\ENDWHILE \STATE
+{\bf Output:} $\x^* \leftarrow \x_k, \e^* \leftarrow \e_k$.
+\end{algorithmic}
+\label{alg:alignment_alm}
+\end{algorithm}
+
+\subsection{Computational Complexity} Any discussion of the speed of an
+algorithm should discuss the comutational complexity of the algorithm.  For the
+alignment stage ALM algorithm \ref{alg:alignment_alm}, this is rather simple.  The
+Matrix-vector computions are $O(mn)$, and the vector-vector operations are
+$O(m)$, in terms of both computation cost and memory-bandwidth.  Since A is
+very tall, the computation of $A^\dagger$, the pseudoinverse of $A$, is best
+computed via $A^\dagger = (A^TA)^{-1} A^T$.  The complexity of computing $G =
+A^T A$ is $O(nnm)$.  $G$ is sufficiently small that it can be inverted via
+Gauss-Jordan elimination, which has a complexity of $O(n^3)$.  The computation
+of $A$ finishes with a matrix multiplication, with cost $O(n^2 m)$.
+Fortunately, $A^\dagger$ only needs to be computed once per instance of the
+$\ell_1$ minimization problem.
+
+Therefore, for problems with large $n$, we expect the computation of the
+pseudoinverse to dominate.  However, for the problem sizes needed in face
+recognition problems, we find that the computation time is dominated by the
+repeated computation of matrix-vector and matrix-matrix multiplications in the
+inner loop.
+
+%\STATE Compute residuals $r_i(\bb) = \| {\bb} - {A}_i \, \delta_i(\hat{\x}) \|_2$ for $i = k_1, \dots, k_S$.
 
 \subsection{CPU Implementation}
 
@@ -368,25 +474,108 @@ calculations such as matrix-vector operations at much faster rates than CPUs.
 \section{Parallelization of the Face Recognition Stage}
 \label{sec:recognition}
 {\bf AY: Add an algorithm here describe the recognition block in the pipeline. Explain the algorithm and necessary modification from generic l-1}
+{\bf VS: Why did we modify the algorithm for the recognition stage? }
+
+Below is the algorithm for the face recognition stage in Figure \ref{fig:pipeline}, which
+solves the $\ell_1$ minimization problem posed in \eqref{eq:l1min_denoise}. 
+
+\begin{algorithm}[t]
+\caption{\bf (Face Recognition via ALM)}
+\begin{algorithmic}[1]
+\begin{small}
+\STATE {\bf Input:} $\bb \in \Re^m$, $A \in \Re^{m \times n}$,
+$\x_1 = \mathbf{0}$, $\e_1 = \bb$, $\y_1 =
+\mathbf{0}$.
+\WHILE{not converged ($k = 1,2,\ldots$)}
+\STATE $\e_{k+1} = \textup{shrink}\left(\bb - A\x_k +
+\frac{1}{\mu}\y_k, \frac{1}{\mu}\right)$;
+\STATE $t_1\leftarrow 1$, $\z_1 \leftarrow \x_k$, $\w_1 \leftarrow \x_k$;
+\WHILE{not converged ($l = 1,2,\ldots$)}
+\STATE $\w_{l+1} \leftarrow \textup{shrink}\left(\z_l +
+\frac{1}{\gamma}A^T\left(\bb - A\z_l - \e_{k+1} +
+\frac{1}{\mu}\y_k\right), \frac{1}{\mu\gamma}\right)$;
+\STATE $t_{l+1} \leftarrow \frac{1}{2}\left( 1 +
+\sqrt{1+4t_l^2}\right)$;
+\STATE $\z_{l+1} \leftarrow \w_{l+1} + \frac{t_l - 1}{t_{l+1}}(\w_{l+1} - \w_l)$;
+\ENDWHILE
+\STATE $\x_{k+1} \leftarrow \w_{l}$,  \; $\y_{k+1} \leftarrow \y_k + \mu (\bb - A\x_{k+1} - \e_{k+1})$;
+\ENDWHILE \STATE
+{\bf Output:} $\x^* \leftarrow \x_k, \e^* \leftarrow \e_k$.
+\end{small}
+\end{algorithmic}
+\label{alg:alm_rec} 
+\end{algorithm}
+
 
 \subsection{CPU Implementation}
 {\bf AY: A diagram should be used to illustrate how the jobs are distributed on a CPU architecture.}
+The CPU ALM algorithm was written in C and compiled with Intel's MKL libraries, which provide
+automatic parallelization.  
 
 \subsection{GPU Implementation}
-{\bf AY: A diagram should be used to illustrate how the jobs are distributed on a CPU architecture.}
+{\bf AY: A diagram should be used to illustrate how the jobs are distributed on a GPU architecture.}
 The GPU ALM algorithm is written in CUDA and utilizes the CUBLAS libraries.
 CUBLAS are the BLAS libraries consisting of all single precision BLAS calls
 which are provided by Nvidia and are optimized for GPU performance. In
 addition, we coded kernel (GPU) methods for vector-vector operations to replace
-operations that would have taken multiple BLAS calls. Because data transfer from the RAM to GPU suffers bandwidth limitations, we designed our implementation to transfer the A matrix and measurement vector at once.  The algorithm is similar
-to the CPU algorithm except that we had to parallelize the code at an
+operations that would have taken multiple BLAS calls. Because data transfer from the 
+RAM to GPU suffers bandwidth limitations, we designed our implementation to transfer the A matrix and measurement vector once.  
+The algorithm is similar to the CPU algorithm except that we had to parallelize the code at an
 additional level. The CPU portion of the code serves as the conductor, making
 calls to GPU functions and directing the flow of the code while the GPU keeps all of the data and runs the computation.
 
 \section{Experiment}
 {\bf AY: Describe the benchmark protocol here. Both for simulation and real face data.}
 
+In this section, we present four experiments to benchmark the performance of our algorithm on CPU and GPU platforms. 
+To generate a meaningful comparison between different hardware architectures,
+in all cases we compare the performance of hardware architectures on a
+per-board basis:  For CPU implementations, the benchmark makes use of all of
+the cores in as many cpu's are present.  For GPU implementations, the benchmark
+makes the best use of the entire GPU chip (most GPU boards have a single GPU
+chip).  Unless otherwise specified, all implementations utilize single
+precision floating point datatypes.  For all of the experiments, we set the number 
+of inner loop iterations at 50 and outer loop iterations at 5000.
+
+The first experiment is designed to compare the two implementations of PALM
+that solve a single large instance of the $\ell_1$-minimization problem (Algorithm \ref{alg:alm}) by
+comparing the amount of time to solve a problem given a generic random matrix $A$ and a random sparse
+vector $\xx_0$.  
+The measurement $d \times n$ matrix $A$ was generated as a random Gaussian matrix, with each entry
+randomly generated from the standard normal and normalized with unit norm.  The ratio of $d:n$ varied from
+$10:1$ to $10:5$ with the dimension of $d$ of matrix $A$ varying from 500 to 8000.
+The ground truth signals, $\xx_0$ had a sparsity rate of 0.1 with elements generated using the standard normal and normalized with unit norm.
+Because the ground truth signal $\xx_0$ is known, the algorithm terminates
+when $norm(\bx-\bx_0) < tolerance$.
+The measurement vector was generated with the equation $\y_0 = A \x_0$.   
+We also varied the different inner and tolerance levels from 1e-3 to 1e-6.
+We averaged the the time taken for the ALM algorithm to solve 10 instances of a problem.  
+
+%The x set of experiments will compare the CPU and GPU versions of the entire pipeline, 
+%which includes the alignment and recognition stage. 
+
+The second experiment is to compare the amount of time to solve the face alignment
+stage for each implementation.  Because the alignment stage is not affected by the resolution of the image,
+we fix the resolution at 60x80.
+{\bf VS:  this accuracy number depends on the number of subjects in the A matrix right?  So we either 
+need to fix the number of subjects to compare against or vary it...}
+
+The third experiment is to compare accuracy rate of the face recognition algorithm at different
+image resolutions.
+
+The fourth experiment is to compare the speed of the recognition stage w.r.t the number of 
+subjects in the matrix $A$.
+
+Our final experiment is to compare the speeds of CPU and GPU implementations entire pipeline in Figure \ref{fig:pipeline}.
+
 \subsection{Simulation}
+
+We plot the resulted of the simulation benchmark below.  The x-axis represents the size of the 
+$A$ and $A^TA$ matrix and the y-axis represents the average amount of time it to complete
+a single problem instance.
+
+The observations of this experiment are summarized below:
+1.  With similar accuracy rates, the GPU implementation runs faster than the CPU when 
 
 \subsection{Face Recognition Benchmark}
 
