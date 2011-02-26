@@ -9,11 +9,11 @@ b = [a(1)];
 for i=2:numel(a)
     b(i) = a(i) + b(i-1);
 end
-plot(x,b);
+b = b;
+plot(x+1,b);
 
-xlabel('Number of users with lower residual that test user');
-ylabel('Percentage that user lies in training set');
-title('Percentage that usre lies in training set based on alignment residuals')
+xlabel('Number of users in reduced training set');
+ylabel('Probability that user lies in reduced training set');
 
 set (gcf,'windowstyle','normal');               %   Window must be undocked for the following
 set (gcf,'Units','Inches');                     %   Using units of inches
