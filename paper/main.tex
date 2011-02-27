@@ -548,7 +548,7 @@ The ground truth signals, $\xx_0$ had a sparsity rate of 0.1 with elements gener
 Because the ground truth signal $\xx_0$ is known, the algorithm terminates
 when $norm(\bx-\bx_0) < tolerance$.
 The measurement vector was generated with the equation $\y_0 = A \x_0$.   
-We also varied the different inner and tolerance levels from 1e-3 to 1e-6.
+We also varied the different inner and outer tolerance levels from 1e-2 to 1e-5.
 We averaged the the time taken for the ALM algorithm to solve 10 instances of a problem.  
 
 %The x set of experiments will compare the CPU and GPU versions of the entire pipeline, 
@@ -557,25 +557,33 @@ We averaged the the time taken for the ALM algorithm to solve 10 instances of a 
 The second experiment is to compare the amount of time to solve the face alignment
 stage for each implementation.  Because the alignment stage is not affected by the resolution of the image,
 we fix the resolution at 60x80.
-{\bf VS:  this accuracy number depends on the number of subjects in the A matrix right?  So we either 
-need to fix the number of subjects to compare against or vary it...}
 
-The third experiment is to compare accuracy rate of the face recognition algorithm at different
-image resolutions.
+Since we use a reduced training set for the recognition stage, our third experiment was to 
+find the relationship between the probability that the true subject is in the training set vs the
+ number of users in the reduced training set and the speed of the recognition stage w.r.t.
+ the number of subjects in the training set.  
 
-The fourth experiment is to compare the speed of the recognition stage w.r.t the number of 
-subjects in the matrix $A$.
+The fourth experiment is to compare accuracy rate of the face recognition algorithm at different
+image resolutions.  We fixed the number of users to be $enter here$ which was shown in figure  $enter here$  have 95\% probability
+to have the true user in the training set, inner loop tolerance to 1e-2 and outer loop tolerance to 1e-3.  
 
 Our final experiment is to compare the speeds of CPU and GPU implementations entire pipeline in Figure \ref{fig:pipeline}.
 
 \subsection{Simulation}
 
-We plot the resulted of the simulation benchmark below.  The x-axis represents the size of the 
-$A$ and $A^TA$ matrix and the y-axis represents the average amount of time it to complete
-a single problem instance.
+We plot the most significant results of the simulation benchmark below.  The x-axis represents the size of the 
+$A$ matrix and the y-axis represents the average amount of time it to complete a single problem instance.
 
 The observations of this experiment are summarized below:
-1.  With similar accuracy rates, the GPU implementation runs faster than the CPU when 
+1.  With similar accuracy rates, the GPU implementation runs faster than the CPU at the crossover points 
+noted on the plots.
+2.  From the results, it was seen that tolerances...
+
+\subsection{Face Alignment Benchmark}
+
+\subsection{Face Recognition Benchmarks}
+
+
 
 \subsection{Face Recognition Benchmark}
 
