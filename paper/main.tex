@@ -482,10 +482,9 @@ exhibit parallelism within image operations, i.e. at a pixel level.
 \subsection{CPU Implementation} 
 \label{sec:alignment_implementation_cpu}
 
-This section discusses how the iterative
-alignment problem can be implemented on CPU hardware.  The implementations
-presented in \cite{WagnerA2009-CVPR} and \cite{WagnerA2011-PAMI} were written
-using the OpenCV library.  
+This section discusses how the iterative alignment problem can be implemented
+on CPU hardware.  The implementations presented in \cite{WagnerA2009-CVPR} and
+\cite{WagnerA2011-PAMI} were written using the OpenCV library.  
 
 OpenCV wraps either the operating system's built-in BLAS library, or Math
 Kernel Library (MKL), Intel's BLAS implementation, and thus achieves vector
@@ -496,12 +495,23 @@ ten training users being solved concurrently, and with 20-40 images per
 training user, all of the required data fits into L3 cache.  This provided a
 significant, though sub-linear improvement over a single-core implementation.
 
-In the proposed CPU implementation, we instead solve a single alignment
-instance at a time, using a multi-core BLAS library.  Recall that the L2 cache
-can old up to 128 image vectors' worth of data.  Since we're only aligning data
-for 1 gallery user at a time the working set of the problem fits into L2 cache,
-resulting in significantly higher image alignment speed than previous cpu
-implementations. 
+During the course of development, many implementation strategies were tried.
+Listed in order of increasing performance based on a synthetic benchmark of
+the $\ell_1$ minimization step, they included:
+\begin{enumerate}
+\item A pure C++ implementation threaded and vectorized with OpenMP and icpc (200 ms).
+\item An OpenCV (with MKL backend) implementation threaded with OpenMP similar to \cite{WagnerA2011-PAMI} (190ms.)
+\item A straightforward MATLAB implementation (which uses threaded MKL internally) (60 ms.)
+\end{enumerate}
+
+In the proposed CPU implementation of the iterative alignment stage, we
+therefore perform parallelization in a manner similar to the matlab code:
+solving a single problem instance at a time, relying on the threaded version of
+MKL BLAS for both multi-core and vector parallelism.  Why is this
+implementation faster?  Recall that the L2 cache can old up to 128 image
+vectors' worth of data.  Since we're only aligning data for 1 gallery user at a
+time the working set of the problem fits into L2 cache, resulting in
+significantly higher image alignment speed than previous cpu implementations. 
 
 %\subsection{Tuning the GEMV operation}
 %When matrix-vector operations are called sequentially on the same data,
@@ -518,7 +528,27 @@ implementations.
 
 \subsection{GPU Implementation}
 \label{sec:alignment_implementation_gpu}
-{\bf AY: A diagram should be used to illustrate how the jobs are distributed on a CPU architecture.}
+
+This section discusses how to implement algorithm
+\eqref{alg:iterative_alignment} on the GPU.  Like for the CPU case, many GPU
+implementation strategies were explored during the course of our development,
+and are only mentioned briefly.  Listed in order of increasing performance
+based on a synthetic benchmark of the $\ell_1$ minimization step, they
+included:
+\begin{enumerate}
+\item Solving a single problem instance at a time using Cublas\footnote{Nvidia provided BLAS implementation} (302 ms)
+\item Pure CUDA C implementation solving one problem per SMP using cuda streams\footnote{Streams is a CUDA feature that allows multiple
+kernels to be run concurrently} (70 ms)
+\item Pure CUDA C implementation solving one problem per SMP using one large kernel call (36 ms)
+\end{enumerate}
+
+We attribute the low performance of Cublas in this benchmark to the relatively
+low problem size. Cublas is intended to take advantage of the resources of the
+entire gpu to solve a single large problem, and our problem size is too small
+to hide the memory latency.  Effects of this will be seen again in the
+benchmarks in section \ref{sec:simulation}.
+
+Based on the strength of the results for our single-kernel implementation, 
 
 \section{Parallelization of the Face Recognition Stage}
 \label{sec:recognition}
@@ -619,6 +649,7 @@ to have the true user in the training set, inner loop tolerance to 1e-2 and oute
 Our final experiment is to compare the speeds of CPU and GPU implementations entire pipeline in Figure \ref{fig:pipeline}.
 
 \subsection{Simulation}
+\label{sec:simulation}
 
 We plot the most significant results of the simulation benchmark below.  The x-axis represents the size of the 
 $A$ matrix and the y-axis represents the average amount of time it to complete a single problem instance.
@@ -629,12 +660,13 @@ noted on the plots.
 2.  From the results, it was seen that tolerances...
 
 \subsection{Face Alignment Benchmark}
+\label{sec:alignment_benchmark}
 
 \subsection{Face Recognition Benchmarks}
-
-
+\label{sec:recognition_benchmark}
 
 \subsection{Face Recognition Benchmark}
+\label{sec:pipeline_benchmark}
 
 \section{Conclusion}
 
