@@ -11,15 +11,15 @@
 \usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amssymb}
-
 \usepackage{amsfonts}
-\usepackage{mydefs}
 \usepackage{algorithm}
 \usepackage{algorithmic}
 
 % Needed for getting formulas in dia diagrams.
 \usepackage{pstricks}
 \usepackage{tikz}
+
+\usepackage{mydefs}
 
 % \cvprfinalcopy % *** Uncomment this line for the final submission
 
@@ -503,7 +503,6 @@ for 1 gallery user at a time the working set of the problem fits into L2 cache,
 resulting in significantly higher image alignment speed than previous cpu
 implementations. 
 
-{\bf AY: A diagram should be used to illustrate how the jobs are distributed on a CPU architecture.}
 %\subsection{Tuning the GEMV operation}
 %When matrix-vector operations are called sequentially on the same data,
 %the operation can be blocked so that each thread operates on the same block of data for each operation.
@@ -516,6 +515,7 @@ implementations.
 %...Make sure there are no function calls
 %...Make sure the loop gets automatically vectorized
 %...Block the computation into work for different cpu cores
+
 \subsection{GPU Implementation}
 \label{sec:alignment_implementation_gpu}
 {\bf AY: A diagram should be used to illustrate how the jobs are distributed on a CPU architecture.}
