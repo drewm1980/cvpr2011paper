@@ -663,6 +663,13 @@ Our final experiment is to compare the speeds of CPU and GPU implementations ent
 We plot the most significant results of the simulation benchmark below.  The x-axis represents the size of the 
 $A$ matrix and the y-axis represents the average amount of time it to complete a single problem instance.
 
+\begin{figure}[sim_plot]
+\begin{center}
+      \includegraphics{../results/random_data/time_vs_matrix_size_constant_tol.svg}
+\end{center}
+\caption{Speed vs Dimensions of A.  Outer loop tolerance = 0.1.  Inner loop tolerance = $10^{-5}$}
+\end{figure}
+
 The observations of this experiment are summarized below:
 1.  With similar accuracy rates, the GPU implementation runs faster than the CPU at the crossover points 
 noted on the plots.
