@@ -308,30 +308,26 @@ has its own memory interface, and is directly interfaced to half of the RAM
 installed in the machine.  The amount of RAM installed exceeds the amount used
 by the algorithms, and is not an important performance consideration.  
 
+% CPU CACHE DISCUSSION
 %2MB = 2**21 bytes
 %64*64*4 = 2**14 bytes = 16384 bytes per image
 %... so can fit 2**7  = 128 images.
 Each core has a private 32\,KB L1 data cache and a private 256\,KB L2 cache.  
 Between the 8 cores, this is a total of 2\,MB L2 cache.
 For the low resolution images used in sparse representation based
-face recognition (on the order of $64\times64$ pixel images), this corresponds to
-128 images.
-
-With Hyperthreading
-enabled, each core can support two threads simultaneously.  For floating point
-instructions, each core also has a vector unit capable of performing the same
-arithmetic operation on four single precision floating point values
-simultaneously.  
-
+face recognition (on the order of $64\times64$ pixel images), the L2 cache
+can in principle hold up to 128 image vectors.
 %16MB = 2**24 bytes = 16777216 bytes
 %64*64*4 = 2**14 bytes = 16384 bytes per image
 %... so can fit 2**10  = 1024 images.
 Each processor further has 8MB of L3 cache that is shared by all four cores.
 Overall, this means the algorithm has approximately 16MB of on-chip cache
-available.  
+available.  This corresponds to 1024 image vectors.  
 
-it is possible
-to simultaneously hold up to 1024 image vectors in on-chip cache at a time.  
+With Hyperthreading enabled, each core can support two threads simultaneously.
+For floating point instructions, each core also has a vector processing unit
+(SSE) capable of performing the same arithmetic operation on four single
+precision floating point values simultaneously.  
 
 There are thus two important levels of parallelism that need to be exploited to
 efficiently use a modern CPU: core-level parallelism and vector-level
@@ -358,12 +354,18 @@ to communicate between SMPs during gpu program execution, computational tasks
 are typically broken up into multiple gpu programs (kernels) that are executed
 serially.  
 
+% GPU CACHE DISCUSSION
+% for L2 cache
+% 768KB = 786432 bytes
+% 64*64*4 = 2**14 bytes = 16384 bytes per image
+% 48 images
 Each SMP contains its own L1-cache, which is divided between hardware managed
 and software managed ("shared") memory.  Additionally, all SMPs share a common
-L2-cache.  For our system, each SMP has 64 kb of L1 cache with a total of 896
-kb of L1 cache/shared memory and 768kb of L2 cache. The relatively small
-amount of cache on the GPU is ballanced by a significantly higher bandwidth between the
-processor chip and off-chip memory (DRAM) compared to the CPU.  
+L2-cache.  For our system, each SMP has 64 KB of L1 cache with a total of 896
+KB of L1 cache/shared memory and 768KB of L2 cache. The relatively small amount
+of cache (1/23 as much as CPU L3) on the GPU is ballanced by a significantly
+higher bandwidth between the processor chip and off-chip memory (DRAM) compared
+to the CPU.  
 
 The GPU has its own memory system, any data the GPU uses must first be
 transferred from CPU DRAM to GPU DRAM over PCI-Express.  For our application,
@@ -548,7 +550,14 @@ entire gpu to solve a single large problem, and our problem size is too small
 to hide the memory latency.  Effects of this will be seen again in the
 benchmarks in section \ref{sec:simulation}.
 
-Based on the strength of the results for our single-kernel implementation, 
+Based on the strength of the results for our single-kernel implementation, we chose to follow
+a single kernel strategy for the alignment stage. 
+
+% DREW Idea... in hindsight, maybe we should still try many kernel launches, even if it
+% means individual instances can't terminate early.
+
+% Should really verify somehow that we're maxing out GPU bandwidth
+
 
 \section{Parallelization of the Face Recognition Stage}
 \label{sec:recognition}
