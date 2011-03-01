@@ -550,10 +550,18 @@ entire gpu to solve a single large problem, and our problem size is too small
 to hide the memory latency.  Effects of this will be seen again in the
 benchmarks in section \ref{sec:simulation}.
 
-Based on the strength of the results for our single-kernel implementation, we chose to follow
-a single kernel strategy for the alignment stage. 
+Our proposed GPU implementation for the iterative alignment stage consists of a
+single kernel that performs all of the test image alignment problems.  Each of
+instance of the alignment problem is assigned its own thread block, and the GPU
+hardware schedules as many of these thread blocks to run concurrently as the 
+hardware will allow.  
 
-% DREW Idea... in hindsight, maybe we should still try many kernel launches, even if it
+
+% DREW Idea... in hindsight, maybe we should still try many kernel launches. 
+% instances can still exit early, and can still update a global variable signaling
+% that they're done
+
+%even if it
 % means individual instances can't terminate early.
 
 % Should really verify somehow that we're maxing out GPU bandwidth
