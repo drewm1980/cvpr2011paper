@@ -9,6 +9,9 @@ main.pdf:main.tex figures/pipeline_simplified.tex
 %.pdf:%.tex
 	latexmk -pdfdvi $<
 
+clean:
+	rm -f ${TARGETS} 
+
 #latexmk -pdf main.tex
 #latexmk -pdfdvi main.tex
 #latexmk -pdfps main.tex
