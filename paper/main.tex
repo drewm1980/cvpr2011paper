@@ -350,7 +350,7 @@ streaming multiprocessors (SMP) (currently 14 to 16 for a high end GPU).
 The GPU executes programs as SIMT (Single Instruction Multiple Threads) in
 groups of 32 threads called \emph{warps}.  These warps are then grouped into
 higher levels called \emph{thread blocks} and \emph{grids}.  It is impossible
-to communicate between SMPs during gpu program execution, computational tasks
+to communicate between SMPs during gpu program execution, so computational tasks
 are typically broken up into multiple gpu programs (kernels) that are executed
 serially.  
 
@@ -550,22 +550,34 @@ entire gpu to solve a single large problem, and our problem size is too small
 to hide the memory latency.  Effects of this will be seen again in the
 benchmarks in section \ref{sec:simulation}.
 
+One possible implementation of the iterative alignment stage would be to
+perform the optimization for all instances simultaneously, but to perform each
+linear algebraic operation in a separate gpu kernel call.  The primary
+advantage of this implementation strategy is that every kernel would be
+performing a very simple operation requiring fewer registers per thread.  The
+registers in a GPU are shared between all executing threads thus, barring other
+hardware limitations, the fewer registers each thread requires, the more
+threads can be scheduled to run simultaneously.  The primary downside of this
+approach is that it forces synchronization between all problem instances.  It will
+also have increased kernel launch overhead and potentially less efficient use of
+the GPU's L2 cache.
+% DREW Idea... in hindsight, maybe we should still try many kernel launches. 
+% instances can still exit early, and can still update a global variable signaling
+% that they're done
+
 Our proposed GPU implementation for the iterative alignment stage consists of a
 single kernel that performs all of the test image alignment problems.  Each of
 instance of the alignment problem is assigned its own thread block, and the GPU
 hardware schedules as many of these thread blocks to run concurrently as the 
 hardware will allow.  
 
-
-% DREW Idea... in hindsight, maybe we should still try many kernel launches. 
-% instances can still exit early, and can still update a global variable signaling
-% that they're done
-
-%even if it
-% means individual instances can't terminate early.
+The full resolution test image, along with its numerical derivatives in both
+image directions, are stored in GPU texture memory. This  allows the
+recomputation of $b(\tau)$ and $J(\tau)$, which essentially consist of warped
+versions of the test image and its derivatives, to exploit the GPU's special
+purpose hardware for bilinear interpolation.
 
 % Should really verify somehow that we're maxing out GPU bandwidth
-
 
 \section{Parallelization of the Face Recognition Stage}
 \label{sec:recognition}
