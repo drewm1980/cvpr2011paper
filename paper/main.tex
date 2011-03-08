@@ -289,9 +289,9 @@ In this section we discuss the hardware architectures used in this paper. Aside
 from the $\ell_1$-min algorithm, our choice of the architectures plays a
 significant role in many practical decisions we make in Section
 \ref{sec:alignment} and Section \ref{sec:recognition}.  For CPU implementation,
-the system would make use of all the cores in as many CPUs are present on one
-motherboard.  For GPU implementation, the system would make the best use of a
-single many-core Nvidia GPU chip  on a PCI card (GPUs are commonly shipped with
+the system makes use of all the cores in as many CPUs are present on one
+motherboard.  For GPU implementation, the system makes the best use of a
+single many-core Nvidia GPU chip on a PCI card (GPUs are commonly shipped with
 a single GPU chip per PCI-express card).  Unless otherwise specified, all
 implementations utilize single precision floating point datatypes.  Since on-chip
 memory (cache) is often orders of magnitude faster than off-chip memory, the sizes
@@ -614,36 +614,58 @@ $\x_1 = \mathbf{0}$, $\e_1 = \bb$, $\y_1 =
 \label{alg:alm_rec} 
 \end{algorithm}
 
+\subsection{CPU Implementation} Our CPU implementation of Algorithm
+\ref{alg:alm_rec} was written in C++.  For operations in the algorithm that map
+nicely onto the BLAS API (such as SGEMV, SAXPY {\bf? Victor, fill in here}), we
+call Intel's MKL BLAS library, which internally takes advantage of the SSE
+units on all available CPU cores. 
+{\bf TODO: Our current implementation links against the MKL
+library provided internally with matlab; we are in the process of updating the code to link directly against a newer version
+of MKL}  
 
-\subsection{CPU Implementation}
-{\bf AY: A diagram should be used to illustrate how the jobs are distributed on a CPU architecture.}
-The CPU ALM algorithm was written in C and compiled with Intel's MKL libraries, which provide
-automatic parallelization.  
+For operations that do not map nicely onto the BLAS API, such as the shrinkage
+operator, {\bf Argue that these parts are optimized, and/or demonstrate that
+performance of these parts is insignificant}.
 
-\subsection{GPU Implementation}
-{\bf AY: A diagram should be used to illustrate how the jobs are distributed on a GPU architecture.}
-The GPU ALM algorithm is written in CUDA and utilizes the CUBLAS libraries.
-CUBLAS are the BLAS libraries consisting of all single precision BLAS calls
-which are provided by Nvidia and are optimized for GPU performance. In
-addition, we coded kernel (GPU) methods for vector-vector operations to replace
-operations that would have taken multiple BLAS calls. Because data transfer from the 
-RAM to GPU suffers bandwidth limitations, we designed our implementation to transfer the A matrix and measurement vector once.  
-The algorithm is similar to the CPU algorithm except that we had to parallelize the code at an
-additional level. The CPU portion of the code serves as the conductor, making
-calls to GPU functions and directing the flow of the code while the GPU keeps all of the data and runs the computation.
+\subsection{GPU Implementation} Our GPU implementation of Algorithm
+\ref{alg:alm_rec} is similar to the CPU implementation described in the
+previous section, in that only one problem is solved at a time, and each linear
+algebraic operation is parallelized separately.
 
-\section{Experiment}
-{\bf AY: Describe the benchmark protocol here. Both for simulation and real face data.}
+For most of the operations, calls to MKL CPU BLAS library map directly onto
+similar calls in Nvidia's GPU BLAS library (CUBLAS).  The CUBLAS library is
+designed to utilize all of the SM's on the GPU.  
 
-In this section, we present four experiments to benchmark the performance of our algorithm on CPU and GPU platforms. 
+Operations that do not map well onto the BLAS API (mostly combined
+vector-vector operations) were implemented as gpu kernels (in C for CUDA).
+Even for operations that could have been implemented via multiple BLAS calls,
+this was found to have better performance due to reducede bandwidth and kernel
+call overhead {\bf Victor, verify or correct this}.
+
+In order to avoid expensive data transfer across the bus connecting the GPU
+card and the CPU motherboard (the PCI express bus), all of the data is
+transferred to GPU DRAM once, and all non-trivial tasks are performed on the
+GPU on data stored in GPU DRAM.  The sole exception to the above implementation
+strategy is that the pseudoinverse of A is still computed on the CPU via the
+LAPACK implementation that is part of Intel's MKL. This operation need only be
+performed (and results uploaded to GPU DRAM) once before GPU computation
+starts. {\bf we should prove justification for A pseudoinverse being cheap,
+either here or perhaps later in a pie chart}
+
+\section{Experiments}
+
+In this section, we benchmark the performance of our algorithm on CPU and GPU platforms. 
+In order to show how our $\ell_1$ minimization algorithms scale with problem size,
+we will begin with benchmarks on synthetic data.  We will then progress to demonstrating 
+the speed of our implementations as applied to the face recognition problem.
+
 To generate a meaningful comparison between different hardware architectures,
 in all cases we compare the performance of hardware architectures on a
 per-board basis:  For CPU implementations, the benchmark makes use of all of
 the cores in as many cpu's are present.  For GPU implementations, the benchmark
 makes the best use of the entire GPU chip (most GPU boards have a single GPU
 chip).  Unless otherwise specified, all implementations utilize single
-precision floating point datatypes.  For all of the experiments, we set the number 
-of inner loop iterations at 50 and outer loop iterations at 5000.
+precision floating point datatypes.  
 
 The first experiment is designed to compare the two implementations of PALM
 that solve a single large instance of the $\ell_1$-minimization problem (Algorithm \eqref{alg:alm}) by
@@ -685,7 +707,7 @@ $A$ matrix and the y-axis represents the average amount of time it to complete a
 
 \begin{figure}[sim_plot]
 \begin{center}
-      \includegraphics{../results/random_data/time_vs_matrix_size_constant_tol.svg}
+      \includegraphics{../results/random_data/time_vs_matrix_size_constant_tol}
 \end{center}
 \caption{Speed vs Dimensions of A.  Outer loop tolerance = 0.1.  Inner loop tolerance = $10^{-5}$}
 \end{figure}

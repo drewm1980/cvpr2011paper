@@ -10,7 +10,7 @@ main.pdf:main.tex figures/pipeline_simplified.tex
 	latexmk -pdfdvi $<
 
 clean:
-	rm -f ${TARGETS} 
+	rm -f ${TARGETS} *.brf *.dvi *.log *.fdb_latexmk *.bbl *.aux
 
 #latexmk -pdf main.tex
 #latexmk -pdfdvi main.tex
