@@ -1,7 +1,9 @@
 TARGETS=main.pdf 
 all: ${TARGETS} 
 
-main.pdf:main.tex figures/pipeline_simplified.tex
+main.pdf:main.tex
+
+# Always build main.pdf target, letting latexmk figure out all of the deps of main.pdf automatically
 
 %.tex:%.dia
 	dia $< -e $@ -t tex

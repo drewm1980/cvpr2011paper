@@ -694,12 +694,21 @@ in Figure \ref{fig:random_data}, the GPU implementation tends to be faster than
 the CPU implementation at solving a single large problem, whereas the the CPU
 implementation is faster at solving a single small problem.  
 \begin{figure}
-\label{fig:random_data}
 \begin{center}
-      \includegraphics{../results/random_data/time_vs_matrix_size_constant_tol}
+\includegraphics[width=3.5in]{../results/random_data/time_vs_matrix_size_constant_tol}
 \end{center}
 \caption{Speed vs Dimensions of A.  Outer loop tolerance = 0.1.  Inner loop tolerance = $10^{-5}$}
+\label{fig:random_data}
 \end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=3.5in]{../results/random_data/size_vs_speed_crossover_ratio_2}
+\end{center}
+\caption{\bf CAPTION NEEDED}
+\label{fig:random_data2}
+\end{figure}
+
 
 \subsection{Face Alignment Stage Benchmark} \label{sec:alignment_benchmark}
 This section presents benchmarks of our CPU and GPU implementations of the
@@ -724,12 +733,13 @@ In Figure \ref{fig:alignment_stage_runtime} we report the time it takes
 to align a single test image against each of the users in the gallery.
 We vary the size of the gallery to show how implementation scales in the
 number of gallery users.
-\begin{figure}
-\centering
-\includegraphics[width=3.5in]{figures/alignment_stage_runtime.pdf}
-\caption{Alignment Stage Time vs. Size of Training Database}
-\label{fig:alignment_stage_runtime}
-\end{figure}
+%\begin{figure}
+%\centering
+%\include{figures/alignment_stage_runtime.tex}
+%%\includegraphics[width=3.5in]{figures/alignment_stage_runtime.pdf}
+%\caption{Alignment Stage Runtime vs. Size of Training Database}
+%\label{fig:alignment_stage_runtime}
+%\end{figure}
 
 \subsection{Face Recognition Stage Benchmarks}
 \label{sec:recognition_benchmark}
