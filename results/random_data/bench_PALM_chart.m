@@ -41,7 +41,10 @@ for ratio=2:4
             %             plot(squeeze(blasData.averageRunTime(j,k,:,3,2)), 'r');
             %             hold off;
             
-            for m=-1:1
+            count = 0;
+            
+            for m=-1:0.5:1
+                count = count + 1;
                 xpoint  = find(squeeze(gpuData.averageRunTime(j,k,:,2,2)) + m/2 > squeeze(blasData.averageRunTime(j,k,:,3,2))==0,1);
                 if isempty(xpoint);
                     xpoint = inf;
@@ -50,8 +53,8 @@ for ratio=2:4
                     xtime = squeeze(gpuData.averageRunTime(j,k,xpoint,2,2));
                     xpoint = gpuData.dimsPowers(xpoint);
                 end
-                level_sets(i,m+2) = xpoint;
-                level_times(i,m+2) = xtime;
+                level_sets(i,count) = xpoint;
+                level_times(i,count) = xtime;
             end
         end
     end
@@ -89,15 +92,15 @@ for ratio=unique(ratios)'
         end
         
         plotX = [plotX; xpoint];
-        plotY = [plotY; unique_tols(j) unique_tols(j) unique_tols(j)];
+        plotY = [plotY; unique_tols(j) unique_tols(j) unique_tols(j) unique_tols(j) unique_tols(j)];
     end
         
     semilogy(plotX, plotY, '-o');
     set(gca, 'ydir', 'reverse');
     xlabel('A matrix');
-    xlabel(['A matrix (m x ' num2str(i/10) 'm)']);
+    xlabel(['A matrix (m x ' num2str(ratio/10) 'm)']);
     xlim([min(min(plotX))-500 max(max(plotX))+500]);
-    legend('GPU slower by 1 second', 'GPU = CPU speed', 'GPU faster by 1 second');
+    legend('GPU slower by 1 second','GPU slower by 1/2 second', 'GPU = CPU speed', 'GPU faster by 1/2 second', 'GPU faster by 1 second');
     %axis([]);
     
     %hold off;
