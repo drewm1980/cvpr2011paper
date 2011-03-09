@@ -735,10 +735,25 @@ We vary the size of the gallery to show how implementation scales in the
 number of gallery users.
 \begin{figure}
 \centering
-%\input{figures/alignment_runtime_graph}
 \includegraphics[width=3.4in]{figures/alignment_runtime_graph}
 \caption{Alignment Stage Runtime vs. Size of Training Database}
 \label{fig:alignment_stage_runtime}
+\end{figure}
+
+Previous publications used a hard threshold on the number of subjects kept for the recognition
+stage as a compromise between recognition speed and potential recognition rate.
+In order to better motivate 
+a choice for a threshold of the number of users kept for the recognition stage,
+we varied the number of users kept for the recognition stage and estimated the probability
+of the test user being among the set of training users kept for the recognition stage.
+As can be seen in Figure \ref{fig:user_alignment_rank_plot}, there are rapidly diminishing
+returns as the number of kept users is increased beyond ten.  
+\begin{figure}
+\centering
+\includegraphics[width=3.4in]{figures/user_alignment_rank_plot}
+\caption{Probability of the test user being kept for the recognition stage vs. Number of traning
+users kept for the recognition stage}
+\label{fig:user_alignment_rank_plot}
 \end{figure}
 
 \subsection{Face Recognition Stage Benchmarks}
