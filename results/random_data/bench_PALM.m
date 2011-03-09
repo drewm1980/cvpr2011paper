@@ -1,4 +1,4 @@
-function rtn = bench_PALM_paper()
+function rtn = bench_PALM()
 
 type = 'PALM1';
 n  = 10; % denominator for ratio
@@ -7,11 +7,11 @@ maxIter = 5000;
 iterations = 10;
 dimsPowers = [500:100:900 1000:1000:10000];
 lambda = 10;
-ratio = 1:5;
+ratio = 2:4;
 %tols = gpuData.tols;
 %tol_ints = gpuData.tol_ints;
-tols = [1e-2 1e-3];
-tol_ints = [1e-2 1e-3 1e-4];
+tols = [1e-1 1e-2];
+tol_ints = [1e-1 1e-2 1e-3 1e-4 1e-5];
 
 h = figure;
 
@@ -31,8 +31,8 @@ for i=ratio
     blasDimsPowers = blasData.dimsPowers;
     blasDimLen     = numel(blasData.dimsPowers <= 6000);
     
-    gpuASize       = (gpuDimsPowers.^2 * i / 10 * (1 + i / 10)) * 32 / (2^20);
-    blasASize      = (blasDimsPowers.^2 * i / 10 * (1 + i / 10)) * 32 / (2^20);
+    gpuASize       = (gpuDimsPowers.^2 * i / 10 * (1 + i / 10)) * 4 / (2^20);
+    blasASize      = (blasDimsPowers.^2 * i / 10 * (1 + i / 10)) * 4 / (2^20);
     
     for j=1:numel(tols)
         for k=1:numel(tol_ints)
@@ -47,8 +47,8 @@ for i=ratio
             % matrix * size of the matrix
             % A is mxn.  G is nxn.  (3*m*n) * totalOutIterations + (n^2)
             % * total Inner iterations.  Is that correct?
-            gpuTotalSize    = gpuDimsPowers.^2 .* ((3 * (i/10) .* gpuOutIter)  + (i/10)^2 .* gpuInIter) * 32 / (2^30);
-            blasTotalSize   = blasDimsPowers.^2 .* ((3 * (i/10) .* blasOutIter)  + (i/10)^2 .* blasInIter) * 32 / (2^30);
+            gpuTotalSize    = gpuDimsPowers.^2 .* ((3 * (i/10) .* gpuOutIter)  + (i/10)^2 .* gpuInIter) * 4 / (2^30);
+            blasTotalSize   = blasDimsPowers.^2 .* ((3 * (i/10) .* blasOutIter)  + (i/10)^2 .* blasInIter) * 4 / (2^30);
             
             plotA = squeeze(gpuData.averageRunTime(j,k,:,2,2))';
             plotC = squeeze(blasData.averageRunTime(j,k,:,3,2))';
@@ -57,13 +57,13 @@ for i=ratio
             plot(blasASize(1:blasDimLen), plotC(1:blasDimLen), 'g+-');
             title(['Tolerance ' num2str(tols(j)) ' Inner Tolerance ' num2str(tol_ints(k))]);
             ylabel('Elapsed time (s)');
-            xlabel('A & G Matrix (in Mbits)');
+            xlabel('A & G Matrix (in MB)');
             hold off
             
-            if k==1
-                legend('gpu', 'cpu');
-            end
-            
+%             if k==1
+%                 legend('gpu', 'cpu');
+%             end
+%             
             %             plotA = squeeze(gpuData.averageRunTime(j,k,:,2,2))';
             %             plotC = squeeze(blasData.averageRunTime(j,k,:,3,2))';
             %             plot(gpuASize(1:gpuDimLen), gpuTotalSize(1:gpuDimLen)./plotA(1:gpuDimLen), 'bx-');

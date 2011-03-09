@@ -37,9 +37,10 @@ for i=2:4
     subplot(1, 3, i-1);
     plotA = squeeze(gpuData.averageRunTime(1,5,:,2,2))';
     plotC = squeeze(blasData.averageRunTime(1,5,:,3,2))';
-    plot(gpuASize(1:gpuDimLen), plotA(1:gpuDimLen), 'bx-');
+    %plot(gpuASize(1:gpuDimLen), plotA(1:gpuDimLen), 'bx-');
+    plot(gpuDimsPowers(1:gpuDimLen), plotA(1:gpuDimLen), 'bx-');
     hold on
-    plot(blasASize(1:blasDimLen), plotC(1:blasDimLen), 'g+-');
+    plot(blasDimsPowers(1:blasDimLen), plotC(1:blasDimLen), 'g+-');
     %title(['Tolerance ' num2str(tols(1)) ', Inner Tolerance ' num2str(tol_ints(5))]);
     ylabel('Elapsed time (s)');
     %axis([0 100 0 30])
