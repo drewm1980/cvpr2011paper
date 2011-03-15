@@ -478,24 +478,53 @@ multiplications in the inner loop.
 
 I summary, the alignment stage essentially two levels of available parallelism:
 at the higher level there are multiple alignent problems that are solved
-independently.  At a lower level, the first-order linear algebraic operations
-exhibit parallelism within image operations, i.e. at a pixel level.
+independently, or {\bf problem-level} parallelism.  At a lower level, the first-order linear algebraic operations
+exhibit parallelism within image operations, i.e. at a pixel level.  We term
+this {\bf pixel-level} parallelism.
 
 \subsection{CPU Implementation} 
 \label{sec:alignment_implementation_cpu}
 
-This section discusses how the iterative alignment problem can be implemented
-on CPU hardware.  The implementations presented in \cite{WagnerA2009-CVPR} and
-\cite{WagnerA2011-PAMI} were written using the OpenCV library.  
+One of the main contributions of this paper is a more efficent mapping of the
+two levels of parallelism available in iterative face alignment to the two
+levels of concurrency available in atypical multicore CPU architecture.
 
-OpenCV wraps either the operating system's built-in BLAS library, or Math
-Kernel Library (MKL), Intel's BLAS implementation, and thus achieves vector
-(i.e. pixel)-level parallelism implicitly.  The authors of
-\cite{WagnerA2011-PAMI} used OpenMP to schedule instances of the alignment
-problem to the CPU cores in a 1:1 fashion.  With eight alignment problems for
-ten training users being solved concurrently, and with 20-40 images per
-training user, all of the required data fits into L3 cache.  This provided a
-significant, though sub-linear improvement over a single-core implementation.
+We argue that, in constrast with previous implementations, which mapped problem
+level parallelism onto core-level concurrency, it is more efficient to
+completely disregard problem-level parallelism, and instead map pixel-level
+parallelism onto both core-level and vector-level cpu concurrency.  In other words,
+the implementation we advocate performs alignment of the test image against the gallery
+images of a single user at a time.  Each matrix-vector and vector-vector operation
+gets broken into 8 parts that run one per core, and into 4 single float vectors
+that execute on the SSE SIMD units.
+
+Why is this
+implementation faster?  Recall that the L2 cache can old up to 128 image
+vectors' worth of data.  Since we're only aligning data for one gallery user at a
+time the working set of the problem fits into L2 cache, resulting in
+significantly higher image alignment speed than previous cpu implementations. 
+
+
+In our proposed CPU implementation of the iterative alignment stage, we
+therefore perform parallelization in a manner similar to the matlab code:
+solving a single problem instance at a time, relying on the threaded version of
+MKL BLAS for both multi-core and vector parallelism.  
+
+
+This section discusses how the iterative alignment problem can be implemented
+on CPU hardware.  
+
+{\bf Comparison to Previous Implementations}
+The implementations presented in \cite{WagnerA2009-CVPR} and
+\cite{WagnerA2011-PAMI} were written using the OpenCV library.  OpenCV wraps
+either the operating system's built-in BLAS library, or Math Kernel Library
+(MKL), Intel's BLAS implementation, and thus achieves vector (i.e. pixel)-level
+parallelism implicitly.  The authors of \cite{WagnerA2011-PAMI} used OpenMP to
+schedule instances of the alignment problem to the CPU cores in a 1:1 fashion.
+With eight alignment problems for ten training users being solved concurrently,
+and with 20-40 images per training user, all of the required data fits into L3
+cache.  This provided a significant, though sub-linear improvement over a
+single-core implementation.
 
 During the course of development, many implementation strategies were tried.
 Listed in order of increasing performance based on a synthetic benchmark of
@@ -506,14 +535,6 @@ the $\ell_1$ minimization step, they included:
 \item A straightforward MATLAB implementation (which uses threaded MKL internally) (60 ms.)
 \end{enumerate}
 
-In the proposed CPU implementation of the iterative alignment stage, we
-therefore perform parallelization in a manner similar to the matlab code:
-solving a single problem instance at a time, relying on the threaded version of
-MKL BLAS for both multi-core and vector parallelism.  Why is this
-implementation faster?  Recall that the L2 cache can old up to 128 image
-vectors' worth of data.  Since we're only aligning data for 1 gallery user at a
-time the working set of the problem fits into L2 cache, resulting in
-significantly higher image alignment speed than previous cpu implementations. 
 
 %\subsection{Tuning the GEMV operation}
 %When matrix-vector operations are called sequentially on the same data,
@@ -654,13 +675,14 @@ either here or perhaps later in a pie chart}
 
 \section{Experiments}
 
-In this section, we benchmark the performance of our algorithm on CPU and GPU
-platforms.  In order to show how our $\ell_1$ minimization algorithms scale
-with problem size, in Section \ref{sec:simulation} we will begin with
-benchmarks on synthetic data.  We will then progress in Sections
-\ref{sec:alignment_benchmark} and \ref{sec:recognition_benchmark} to
-demonstrating the speed of our implementations as applied to the alignment and
-recognition stages of the face recognition problem.
+In this section, we benchmark the performance of our parallel implementations
+of $\ell_1$ minimization on CPU and GPU platforms.  In order to show how our
+$\ell_1$ minimization algorithms scale with problem size, in Section
+\ref{sec:simulation} we will begin with benchmarks on synthetic data.  We will
+then progress in Sections \ref{sec:alignment_benchmark} and
+\ref{sec:recognition_benchmark} to demonstrating the speed of our
+implementations as applied to the alignment and recognition stages of the face
+recognition problem.
 
 To generate a meaningful comparison between different hardware architectures,
 in all cases we compare the performance of hardware architectures on a
