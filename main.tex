@@ -284,24 +284,40 @@ converged ($l = 1,2,\ldots$)} \STATE $\uu_{l+1}  \leftarrow
 \label{alg:alm}
 \end{algorithm}
 
-\section{Hardware Parallelism} \label{sec:parallelism} 
-In this section we discuss the hardware architectures used in this paper. Aside
-from the $\ell_1$-min algorithm, our choice of the architectures plays a
-significant role in many practical decisions we make in Section
-\ref{sec:alignment} and Section \ref{sec:recognition}.  For CPU implementation,
-the system makes use of all the cores in as many CPUs are present on one
-motherboard.  For GPU implementation, the system makes the best use of a
-single many-core Nvidia GPU chip on a PCI card (GPUs are commonly shipped with
-a single GPU chip per PCI-express card).  Unless otherwise specified, all
-implementations utilize single precision floating point datatypes.  Since on-chip
-memory (cache) is often orders of magnitude faster than off-chip memory, the sizes
-and speeds of on-chip memory (cache) have big performance implications.  We give
-a brief overview of the caches that are available in our target architectures,
-and defer discussion of their performance implications to sections
-\ref{sec:alignment_implementation_cpu} and
+\section{Hardware Concurrency} \label{sec:parallelism} 
+
+In this paper we will clearly distinguish between algorithm {\em parallelism},
+which is a property of an algorithm, and hardware {\em concurrency}, which is a
+property of a hardware architecture.  Parallelism in an algorithm provides the
+opportunity to perform computations concurrently on hardware.  Algorithms often
+exhibit multiple levels of parallelism, and hardware often provides multiple
+levels of concurrency.  In these terms, the primary contribution of this paper
+will be to determine the optimal mappings between the parallelism available in
+$\ell_1$-Minimization and the concurrency available in multi-core CPU and GPU architectures.
+
+In this section we discuss the levels of concurrency available in the hardware
+architectures considered in this paper, as well as other aspects of the
+hardware that are important for performance.  In particular, since on-chip
+memory (cache) is often orders of magnitude faster than off-chip memory, the
+sizes and speeds of on-chip memory (cache) have big performance implications.
+We give a brief overview of the caches that are available in our target
+architectures, and defer discussion of their performance implications to
+sections \ref{sec:alignment_implementation_cpu} and
 \ref{sec:alignment_implementation_gpu}.
 
-\subsection{CPU Hardware Parallelism} 
+We will primarily be comparing CPU and GPU architectures on a per-board basis:
+for CPU implementation we make use of all the cores in as many CPUs are present
+on one motherboard, and for GPU implementation we make use of a single
+many-core Nvidia GPU chip on a PCI card. GPUs are commonly shipped with a
+single GPU chip per PCI-express card.  Note that most engineering  workstations
+are capable of supporting several GPU cards.  Unless otherwise specified, all
+implementations utilize single precision floating point datatypes.  
+
+\subsection{CPU Hardware Concurrency} 
+The main defining characteristics of contemporary multi-core CPU architectures
+are that they have two levels of concurrency, relatively large amounts of
+on-chip cache, and relatively high clock speeds.
+
 The baseline architecture for our experiments is a Linux workstation with two
 quad-core Intel Nehalem E5530 processors clocked at 2.4 GHz.  Each processor
 has its own memory interface, and is directly interfaced to half of the RAM
@@ -329,19 +345,23 @@ For floating point instructions, each core also has a vector processing unit
 (SSE) capable of performing the same arithmetic operation on four single
 precision floating point values simultaneously.  
 
-There are thus two important levels of parallelism that need to be exploited to
-efficiently use a modern CPU: core-level parallelism and vector-level
-parallelism. CPU tools for exploiting these two levels of parallelism are
+There are thus two important levels of concurrency that need to be exploited to
+efficiently use a modern CPU: {\em core-level} concurrency and {\em vector-level}
+concurrency. CPU tools for exploiting these two levels of concurrency are
 relatively mature.  Heavily optimized Basic Linear Algebra Subprograms (BLAS) are
-commercially available that make good use of both levels of CPU parallelism.
+commercially available that make good use of both levels of CPU concurrency.
 For operations that do not fit well with the BLAS API, we 
-achieve both vector-level and core-level parallelism through a combination of
+achieve both vector-level and core-level concurrency through a combination of
 the OpenMP API \cite{dagum2002openmp} and the automatic vectorization 
 facilities of Intel's C++ compiler (ICC)\cite{dulong1999overview}.
 % DW: I'm really not sure these citations are even really relevant;
 % our target audience will just google icc openmp and get more up-to-date
 % info anyway.
-\subsection{GPU Hardware Parallelism}
+\subsection{GPU Hardware Concurrency}
+The main defining characteristics of contemporary multi-core GPU architectures
+are that they have two (much wider) levels of concurrency, relatively small amounts of
+on-chip cache, and relatively low clock speeds.  
+
 Compared to CPU architectures, GPU architectures dedicate less of their transistors
 to cache, and more of them for arithmetic logic. Our target GPU architecture
 is the Nvidia Fermi architecture.  CUDA based GPUs are comprised of several 
@@ -382,12 +402,16 @@ the CPU is limited by its relatively low bandwidth to DRAM compared to the gpu,
 while at small problem sizes the GPU is limited by the relatively high latency
 of its access to DRAM. 
 
-\section{Parallelization of the Face Alignment Stage}
+\section{Parallelism in the Face Alignment Stage}
 \label{sec:alignment}
-%{\bf AY: Add an algorithm here describe the alignment block in the pipeline. Explain the algorithm and necessary modification from generic l-1}
-This section provides a brief explanation of the iterative alignment stage
-of the recognition pipeline.  
-The inputs of the algorithm are the test image $f(x,y)$ stacked into an $M$-
+There are essentially two levels of parallelism available for exploitation in
+for iterative alignment in the face recognition application.  The primary goal
+of this section is to introduce these two levels of parallelism.  Additionally,
+in order for some important aspects of our implementations to be clear later,
+we need to establish how the iterative alignment stage works in some
+detail.
+
+The inputs of the iterative alignment stage are the test image $f(x,y)$ stacked into an $M$-
 dimensional vector $\f$, and the aligned and stacked training images $A_i$ for
 each training user $i$. 
 The algorithm repeatedly solves a linearized version of the minimization problem
@@ -410,21 +434,21 @@ If the warping $\tau$ is constrained to be a similarity transform,
 it can be paramaterized in such a way that the computation of $\frac{\partial \bb}{\partial \tau_p}$
 reduces to several linear vector operations involving pixel coordinates $(u,v)$, $\tau \in \Re^4$,
 and the image gradients $\f_x, \f_y \in \Re^M$, the latter of which only has to be computed
-once per test image.  The iterative alignment stage is summarized as Algorithm \eqref{alg:iterative_alignment}.
+once per test image.  The per-user iterative alignment algorithm is summarized as Algorithm \eqref{alg:iterative_alignment}.
 \begin{algorithm}[thb]
-\caption{\bf (Iterative Alignment Stage)} \label{alg:iterative_alignment}
+\caption{\bf (Per-User Iterative Alignment)} \label{alg:iterative_alignment}
 \begin{algorithmic}[1]
 \begin{small}
-\STATE {\bf Input:} Aligned training images $\{A_i \in \Re^{m\times n_i}\}_{i=1}^K$ for $K$ subjects,  a test image
+\STATE {\bf Input:} Aligned training images $\{A_i \in \Re^{m\times n}\}$ for gallery subject $i$, the test image
 $\f\in\Re^M$ 
 %\STATE $\tau^{(0)} \leftarrow \textrm{face detector($\f$)}$. 
-\STATE $\f_x, \f_y \in \Re^M \leftarrow \frac{df}{dx}, \frac{df}{dy}$ 
-\STATE {\bf for} each gallery subject $i$, 
-\STATE \hspace{3mm} {\bf while} not converged $(j=1,2,\ldots)$ {\bf do} 
-\STATE \hspace{6mm} $\tilde \bb(\tau) \leftarrow \frac{\bb \circ \tau}{\|\bb \circ \tau\|_2}$;
-\STATE \hspace{6mm} $J \leftarrow  \frac{\partial}{\partial \tau} \tilde\bb(\tau)  \bigr|_{\tau^{(j)}} $;
-\STATE \hspace{6mm} $\Delta \tau =  \arg\min \; \| \e \|_1  \; \subj \; \tilde \bb + J \Delta \tau = A_i \x + \e.$ 
-\STATE \hspace{6mm} $\tau^{(j+1)} \leftarrow \tau^{(j)} + \Delta
+%\STATE $\f_x, \f_y \in \Re^M \leftarrow \frac{df}{dx}, \frac{df}{dy}$ 
+%\STATE {\bf for} each gallery subject $i$, 
+\STATE \hspace{0mm} {\bf while} not converged $(j=1,2,\ldots)$ {\bf do} 
+\STATE \hspace{3mm} $\tilde \bb(\tau) \leftarrow \frac{\bb \circ \tau}{\|\bb \circ \tau\|_2}$;
+\STATE \hspace{3mm} $J \leftarrow  \frac{\partial}{\partial \tau} \tilde\bb(\tau)  \bigr|_{\tau^{(j)}} $;
+\STATE \hspace{3mm} $\Delta \tau =  \arg\min \; \| \e \|_1  \; \subj \; \tilde \bb + J \Delta \tau = A_i \x + \e.$ 
+\STATE \hspace{3mm} $\tau^{(j+1)} \leftarrow \tau^{(j)} + \Delta
 \tau$; 
 \end{small}
 \end{algorithmic}
@@ -457,7 +481,7 @@ $\x_1 = \mathbf{0}$, $\blamda_1 = \mathbf{0}$.
 \end{algorithm}
 %\STATE Compute residuals $r_i(\bb) = \| {\bb} - {A}_i \, \delta_i(\hat{\x}) \|_2$ for $i = k_1, \dots, k_S$.
 
-\subsection{Computational Complexity} Any discussion of the speed of an
+\subsection{Computational Complexity and Parallelism} Any discussion of the speed of an
 algorithm should discuss the comutational complexity of the algorithm.  For the
 alignment stage ALM algorithm \eqref{alg:alignment_alm}, this is rather simple.
 The Matrix-vector computions are $O(mn)$, and the vector-vector operations are
@@ -476,18 +500,18 @@ recognition problems, we find that the computation time is dominated by the
 bandwidth required by repeated computation of matrix-vector and matrix-matrix
 multiplications in the inner loop.
 
-I summary, the alignment stage essentially two levels of available parallelism:
-at the higher level there are multiple alignent problems that are solved
-independently, or {\bf problem-level} parallelism.  At a lower level, the first-order linear algebraic operations
-exhibit parallelism within image operations, i.e. at a pixel level.  We term
-this {\bf pixel-level} parallelism.
+In summary, the alignment stage essentially two levels of available
+parallelism: at the higher level there are multiple iterative alignent problems
+that are solved independently, or {\bf problem-level} parallelism.  At a lower
+level, the first-order linear algebraic operations exhibit parallelism within
+image operations, i.e. at a pixel level.  We term this {\bf pixel-level}
+parallelism.
 
 \subsection{CPU Implementation} 
 \label{sec:alignment_implementation_cpu}
-
 One of the main contributions of this paper is a more efficent mapping of the
 two levels of parallelism available in iterative face alignment to the two
-levels of concurrency available in atypical multicore CPU architecture.
+levels of concurrency available in a typical multicore CPU architecture.
 
 We argue that, in constrast with previous implementations, which mapped problem
 level parallelism onto core-level concurrency, it is more efficient to
