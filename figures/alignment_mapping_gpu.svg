@@ -1,0 +1,2507 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="alignment_mapping_gpu.svg">
+  <defs
+     id="defs4">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective10" />
+    <inkscape:perspective
+       id="perspective3685"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3685-2"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3685-5"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3685-9"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective6375"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective6522"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective8062"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective9960"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective9982"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective10058"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective10145"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective10257"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.9674121"
+     inkscape:cx="178.75317"
+     inkscape:cy="879.17827"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1196"
+     inkscape:window-height="1577"
+     inkscape:window-x="0"
+     inkscape:window-y="19"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2822"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Bitstream Vera Sans;font-style:normal;font-weight:normal;font-size:40px"><flowRegion
+         id="flowRegion2824"><rect
+           id="rect2826"
+           width="12.218978"
+           height="71.277374"
+           x="257.27737"
+           y="67.376778" /></flowRegion><flowPara
+         id="flowPara2828"></flowPara></flowRoot>    <g
+       id="g5986"
+       transform="matrix(0.25758656,0,0,0.25758656,28.407299,12.713064)">
+      <g
+         transform="translate(-183.45205,189.70024)"
+         id="use4547"
+         inkscape:tile-x0="173.68092"
+         inkscape:tile-y0="45.589363">
+        <text
+           id="text4607"
+           y="84.478333"
+           x="182.62669"
+           style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           xml:space="preserve"><tspan
+             y="84.478333"
+             x="182.62669"
+             id="tspan4609"
+             sodipodi:role="line">SMP</tspan></text>
+        <rect
+           y="45.589363"
+           x="173.68092"
+           height="178.7256"
+           width="252.95436"
+           id="rect4611"
+           style="fill:none;stroke:#000000;stroke-width:1.99999988;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <g
+           id="g4613">
+          <g
+             id="g4615"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690424)"
+             inkscape:tile-cx="283.39893"
+             inkscape:tile-cy="252.43623"
+             inkscape:tile-w="116.24078"
+             inkscape:tile-h="59.56226"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text4617"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan4619"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect4621"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4623"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5061"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5063"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5065"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4625"
+             transform="matrix(1,0,0,0.92134506,-30.988714,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5069"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5071"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5073"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4627"
+             transform="matrix(1,0,0,0.92134506,85.252067,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5077"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5079"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5081"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4629"
+             transform="matrix(1,0,0,0.92134506,85.252067,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5085"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5087"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5089"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+        </g>
+      </g>
+      <g
+         transform="translate(-183.45205,377.36212)"
+         id="use4549"
+         inkscape:tile-x0="173.68092"
+         inkscape:tile-y0="45.589363">
+        <text
+           id="text4633"
+           y="84.478333"
+           x="182.62669"
+           style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           xml:space="preserve"><tspan
+             y="84.478333"
+             x="182.62669"
+             id="tspan4635"
+             sodipodi:role="line">SMP</tspan></text>
+        <rect
+           y="45.589363"
+           x="173.68092"
+           height="178.7256"
+           width="252.95436"
+           id="rect4637"
+           style="fill:none;stroke:#000000;stroke-width:1.99999988;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <g
+           id="g4639">
+          <g
+             id="g4641"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690424)"
+             inkscape:tile-cx="283.39893"
+             inkscape:tile-cy="252.43623"
+             inkscape:tile-w="116.24078"
+             inkscape:tile-h="59.56226"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text4643"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan4645"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect4647"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4649"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5093"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5095"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5097"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4651"
+             transform="matrix(1,0,0,0.92134506,-30.988714,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5101"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5103"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5105"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4653"
+             transform="matrix(1,0,0,0.92134506,85.252067,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5109"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5111"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5113"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4655"
+             transform="matrix(1,0,0,0.92134506,85.252067,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5117"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5119"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5121"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+        </g>
+      </g>
+      <g
+         transform="translate(-183.45205,565.024)"
+         id="use4551"
+         inkscape:tile-x0="173.68092"
+         inkscape:tile-y0="45.589363">
+        <text
+           id="text4659"
+           y="84.478333"
+           x="182.62669"
+           style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           xml:space="preserve"><tspan
+             y="84.478333"
+             x="182.62669"
+             id="tspan4661"
+             sodipodi:role="line">SMP</tspan></text>
+        <rect
+           y="45.589363"
+           x="173.68092"
+           height="178.7256"
+           width="252.95436"
+           id="rect4663"
+           style="fill:none;stroke:#000000;stroke-width:1.99999988;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <g
+           id="g4665">
+          <g
+             id="g4667"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690424)"
+             inkscape:tile-cx="283.39893"
+             inkscape:tile-cy="252.43623"
+             inkscape:tile-w="116.24078"
+             inkscape:tile-h="59.56226"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text4669"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan4671"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect4673"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4675"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5125"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5127"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5129"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4677"
+             transform="matrix(1,0,0,0.92134506,-30.988714,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5133"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5135"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5137"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4679"
+             transform="matrix(1,0,0,0.92134506,85.252067,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5141"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5143"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5145"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4681"
+             transform="matrix(1,0,0,0.92134506,85.252067,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5149"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5151"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5153"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+        </g>
+      </g>
+      <g
+         transform="translate(82.150025,2.0383562)"
+         id="use4553"
+         inkscape:tile-x0="173.68092"
+         inkscape:tile-y0="45.589363">
+        <text
+           id="text4685"
+           y="84.478333"
+           x="182.62669"
+           style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           xml:space="preserve"><tspan
+             y="84.478333"
+             x="182.62669"
+             id="tspan4687"
+             sodipodi:role="line">SMP</tspan></text>
+        <rect
+           y="45.589363"
+           x="173.68092"
+           height="178.7256"
+           width="252.95436"
+           id="rect4689"
+           style="fill:none;stroke:#000000;stroke-width:1.99999988;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <g
+           id="g4691">
+          <g
+             id="g4693"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690424)"
+             inkscape:tile-cx="283.39893"
+             inkscape:tile-cy="252.43623"
+             inkscape:tile-w="116.24078"
+             inkscape:tile-h="59.56226"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text4695"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan4697"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect4699"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4701"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5157"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5159"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5161"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4703"
+             transform="matrix(1,0,0,0.92134506,-30.988714,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5165"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5167"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5169"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4705"
+             transform="matrix(1,0,0,0.92134506,85.252067,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5173"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5175"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5177"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4707"
+             transform="matrix(1,0,0,0.92134506,85.252067,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5181"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5183"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5185"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+        </g>
+      </g>
+      <g
+         transform="translate(82.150025,189.70024)"
+         id="use4555"
+         inkscape:tile-x0="173.68092"
+         inkscape:tile-y0="45.589363">
+        <text
+           id="text4711"
+           y="84.478333"
+           x="182.62669"
+           style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           xml:space="preserve"><tspan
+             y="84.478333"
+             x="182.62669"
+             id="tspan4713"
+             sodipodi:role="line">SMP</tspan></text>
+        <rect
+           y="45.589363"
+           x="173.68092"
+           height="178.7256"
+           width="252.95436"
+           id="rect4715"
+           style="fill:none;stroke:#000000;stroke-width:1.99999988;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <g
+           id="g4717">
+          <g
+             id="g4719"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690424)"
+             inkscape:tile-cx="283.39893"
+             inkscape:tile-cy="252.43623"
+             inkscape:tile-w="116.24078"
+             inkscape:tile-h="59.56226"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text4721"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan4723"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect4725"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4727"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5189"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5191"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5193"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4729"
+             transform="matrix(1,0,0,0.92134506,-30.988714,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5197"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5199"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5201"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4731"
+             transform="matrix(1,0,0,0.92134506,85.252067,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5205"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5207"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5209"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4733"
+             transform="matrix(1,0,0,0.92134506,85.252067,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5213"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5215"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5217"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+        </g>
+      </g>
+      <g
+         transform="translate(82.150025,377.36212)"
+         id="use4557"
+         inkscape:tile-x0="173.68092"
+         inkscape:tile-y0="45.589363">
+        <text
+           id="text4737"
+           y="84.478333"
+           x="182.62669"
+           style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           xml:space="preserve"><tspan
+             y="84.478333"
+             x="182.62669"
+             id="tspan4739"
+             sodipodi:role="line">SMP</tspan></text>
+        <rect
+           y="45.589363"
+           x="173.68092"
+           height="178.7256"
+           width="252.95436"
+           id="rect4741"
+           style="fill:none;stroke:#000000;stroke-width:1.99999988;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <g
+           id="g4743">
+          <g
+             id="g4745"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690424)"
+             inkscape:tile-cx="283.39893"
+             inkscape:tile-cy="252.43623"
+             inkscape:tile-w="116.24078"
+             inkscape:tile-h="59.56226"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text4747"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan4749"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect4751"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4753"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5221"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5223"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5225"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4755"
+             transform="matrix(1,0,0,0.92134506,-30.988714,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5229"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5231"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5233"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4757"
+             transform="matrix(1,0,0,0.92134506,85.252067,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5237"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5239"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5241"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4759"
+             transform="matrix(1,0,0,0.92134506,85.252067,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5245"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5247"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5249"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+        </g>
+      </g>
+      <g
+         transform="translate(82.150025,565.024)"
+         id="use4559"
+         inkscape:tile-x0="173.68092"
+         inkscape:tile-y0="45.589363">
+        <text
+           id="text4763"
+           y="84.478333"
+           x="182.62669"
+           style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           xml:space="preserve"><tspan
+             y="84.478333"
+             x="182.62669"
+             id="tspan4765"
+             sodipodi:role="line">SMP</tspan></text>
+        <rect
+           y="45.589363"
+           x="173.68092"
+           height="178.7256"
+           width="252.95436"
+           id="rect4767"
+           style="fill:none;stroke:#000000;stroke-width:1.99999988;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <g
+           id="g4769">
+          <g
+             id="g4771"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690424)"
+             inkscape:tile-cx="283.39893"
+             inkscape:tile-cy="252.43623"
+             inkscape:tile-w="116.24078"
+             inkscape:tile-h="59.56226"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text4773"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan4775"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect4777"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4779"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5253"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5255"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5257"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4781"
+             transform="matrix(1,0,0,0.92134506,-30.988714,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5261"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5263"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5265"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4783"
+             transform="matrix(1,0,0,0.92134506,85.252067,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5269"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5271"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5273"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4785"
+             transform="matrix(1,0,0,0.92134506,85.252067,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5277"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5279"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5281"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+        </g>
+      </g>
+      <g
+         transform="translate(347.75211,2.0383562)"
+         id="use4561"
+         inkscape:tile-x0="173.68092"
+         inkscape:tile-y0="45.589363">
+        <text
+           id="text4789"
+           y="84.478333"
+           x="182.62669"
+           style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           xml:space="preserve"><tspan
+             y="84.478333"
+             x="182.62669"
+             id="tspan4791"
+             sodipodi:role="line">SMP</tspan></text>
+        <rect
+           y="45.589363"
+           x="173.68092"
+           height="178.7256"
+           width="252.95436"
+           id="rect4793"
+           style="fill:none;stroke:#000000;stroke-width:1.99999988;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <g
+           id="g4795">
+          <g
+             id="g4797"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690424)"
+             inkscape:tile-cx="283.39893"
+             inkscape:tile-cy="252.43623"
+             inkscape:tile-w="116.24078"
+             inkscape:tile-h="59.56226"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text4799"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan4801"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect4803"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4805"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5285"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5287"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5289"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4807"
+             transform="matrix(1,0,0,0.92134506,-30.988714,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5293"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5295"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5297"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4809"
+             transform="matrix(1,0,0,0.92134506,85.252067,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5301"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5303"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5305"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4811"
+             transform="matrix(1,0,0,0.92134506,85.252067,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5309"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5311"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5313"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+        </g>
+      </g>
+      <g
+         transform="translate(347.75211,189.70024)"
+         id="use4563"
+         inkscape:tile-x0="173.68092"
+         inkscape:tile-y0="45.589363">
+        <text
+           id="text4815"
+           y="84.478333"
+           x="182.62669"
+           style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           xml:space="preserve"><tspan
+             y="84.478333"
+             x="182.62669"
+             id="tspan4817"
+             sodipodi:role="line">SMP</tspan></text>
+        <rect
+           y="45.589363"
+           x="173.68092"
+           height="178.7256"
+           width="252.95436"
+           id="rect4819"
+           style="fill:none;stroke:#000000;stroke-width:1.99999988;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <g
+           id="g4821">
+          <g
+             id="g4823"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690424)"
+             inkscape:tile-cx="283.39893"
+             inkscape:tile-cy="252.43623"
+             inkscape:tile-w="116.24078"
+             inkscape:tile-h="59.56226"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text4825"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan4827"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect4829"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4831"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5317"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5319"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5321"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4833"
+             transform="matrix(1,0,0,0.92134506,-30.988714,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5325"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5327"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5329"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4835"
+             transform="matrix(1,0,0,0.92134506,85.252067,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5333"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5335"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5337"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4837"
+             transform="matrix(1,0,0,0.92134506,85.252067,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5341"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5343"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5345"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+        </g>
+      </g>
+      <g
+         transform="translate(347.75211,377.36212)"
+         id="use4565"
+         inkscape:tile-x0="173.68092"
+         inkscape:tile-y0="45.589363">
+        <text
+           id="text4841"
+           y="84.478333"
+           x="182.62669"
+           style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           xml:space="preserve"><tspan
+             y="84.478333"
+             x="182.62669"
+             id="tspan4843"
+             sodipodi:role="line">SMP</tspan></text>
+        <rect
+           y="45.589363"
+           x="173.68092"
+           height="178.7256"
+           width="252.95436"
+           id="rect4845"
+           style="fill:none;stroke:#000000;stroke-width:1.99999988;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <g
+           id="g4847">
+          <g
+             id="g4849"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690424)"
+             inkscape:tile-cx="283.39893"
+             inkscape:tile-cy="252.43623"
+             inkscape:tile-w="116.24078"
+             inkscape:tile-h="59.56226"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text4851"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan4853"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect4855"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4857"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5349"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5351"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5353"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4859"
+             transform="matrix(1,0,0,0.92134506,-30.988714,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5357"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5359"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5361"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4861"
+             transform="matrix(1,0,0,0.92134506,85.252067,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5365"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5367"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5369"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4863"
+             transform="matrix(1,0,0,0.92134506,85.252067,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5373"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5375"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5377"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+        </g>
+      </g>
+      <g
+         transform="translate(347.75211,565.024)"
+         id="use4567"
+         inkscape:tile-x0="173.68092"
+         inkscape:tile-y0="45.589363">
+        <text
+           id="text4867"
+           y="84.478333"
+           x="182.62669"
+           style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           xml:space="preserve"><tspan
+             y="84.478333"
+             x="182.62669"
+             id="tspan4869"
+             sodipodi:role="line">SMP</tspan></text>
+        <rect
+           y="45.589363"
+           x="173.68092"
+           height="178.7256"
+           width="252.95436"
+           id="rect4871"
+           style="fill:none;stroke:#000000;stroke-width:1.99999988;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <g
+           id="g4873">
+          <g
+             id="g4875"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690424)"
+             inkscape:tile-cx="283.39893"
+             inkscape:tile-cy="252.43623"
+             inkscape:tile-w="116.24078"
+             inkscape:tile-h="59.56226"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text4877"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan4879"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect4881"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4883"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5381"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5383"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5385"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4885"
+             transform="matrix(1,0,0,0.92134506,-30.988714,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5389"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5391"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5393"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4887"
+             transform="matrix(1,0,0,0.92134506,85.252067,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5397"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5399"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5401"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4889"
+             transform="matrix(1,0,0,0.92134506,85.252067,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5405"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5407"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5409"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+        </g>
+      </g>
+      <g
+         transform="translate(613.35419,2.0383562)"
+         id="use4569"
+         inkscape:tile-x0="173.68092"
+         inkscape:tile-y0="45.589363">
+        <text
+           id="text4893"
+           y="84.478333"
+           x="182.62669"
+           style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           xml:space="preserve"><tspan
+             y="84.478333"
+             x="182.62669"
+             id="tspan4895"
+             sodipodi:role="line">SMP</tspan></text>
+        <rect
+           y="45.589363"
+           x="173.68092"
+           height="178.7256"
+           width="252.95436"
+           id="rect4897"
+           style="fill:none;stroke:#000000;stroke-width:1.99999988;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <g
+           id="g4899">
+          <g
+             id="g4901"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690424)"
+             inkscape:tile-cx="283.39893"
+             inkscape:tile-cy="252.43623"
+             inkscape:tile-w="116.24078"
+             inkscape:tile-h="59.56226"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text4903"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan4905"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect4907"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4909"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5413"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5415"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5417"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4911"
+             transform="matrix(1,0,0,0.92134506,-30.988714,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5421"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5423"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5425"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4913"
+             transform="matrix(1,0,0,0.92134506,85.252067,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5429"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5431"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5433"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4915"
+             transform="matrix(1,0,0,0.92134506,85.252067,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5437"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5439"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5441"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+        </g>
+      </g>
+      <g
+         transform="translate(613.35419,189.70024)"
+         id="use4571"
+         inkscape:tile-x0="173.68092"
+         inkscape:tile-y0="45.589363">
+        <text
+           id="text4919"
+           y="84.478333"
+           x="182.62669"
+           style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           xml:space="preserve"><tspan
+             y="84.478333"
+             x="182.62669"
+             id="tspan4921"
+             sodipodi:role="line">SMP</tspan></text>
+        <rect
+           y="45.589363"
+           x="173.68092"
+           height="178.7256"
+           width="252.95436"
+           id="rect4923"
+           style="fill:none;stroke:#000000;stroke-width:1.99999988;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <g
+           id="g4925">
+          <g
+             id="g4927"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690424)"
+             inkscape:tile-cx="283.39893"
+             inkscape:tile-cy="252.43623"
+             inkscape:tile-w="116.24078"
+             inkscape:tile-h="59.56226"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text4929"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan4931"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect4933"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4935"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5445"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5447"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5449"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4937"
+             transform="matrix(1,0,0,0.92134506,-30.988714,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5453"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5455"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5457"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4939"
+             transform="matrix(1,0,0,0.92134506,85.252067,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5461"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5463"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5465"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4941"
+             transform="matrix(1,0,0,0.92134506,85.252067,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5469"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5471"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5473"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+        </g>
+      </g>
+      <g
+         transform="translate(613.35419,377.36212)"
+         id="use4573"
+         inkscape:tile-x0="173.68092"
+         inkscape:tile-y0="45.589363">
+        <text
+           id="text4945"
+           y="84.478333"
+           x="182.62669"
+           style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           xml:space="preserve"><tspan
+             y="84.478333"
+             x="182.62669"
+             id="tspan4947"
+             sodipodi:role="line">SMP</tspan></text>
+        <rect
+           y="45.589363"
+           x="173.68092"
+           height="178.7256"
+           width="252.95436"
+           id="rect4949"
+           style="fill:none;stroke:#000000;stroke-width:1.99999988;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <g
+           id="g4951">
+          <g
+             id="g4953"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690424)"
+             inkscape:tile-cx="283.39893"
+             inkscape:tile-cy="252.43623"
+             inkscape:tile-w="116.24078"
+             inkscape:tile-h="59.56226"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text4955"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan4957"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect4959"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4961"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5477"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5479"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5481"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4963"
+             transform="matrix(1,0,0,0.92134506,-30.988714,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5485"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5487"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5489"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4965"
+             transform="matrix(1,0,0,0.92134506,85.252067,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5493"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5495"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5497"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4967"
+             transform="matrix(1,0,0,0.92134506,85.252067,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5501"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5503"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5505"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+        </g>
+      </g>
+      <g
+         transform="translate(613.35419,565.024)"
+         id="use4575"
+         inkscape:tile-x0="173.68092"
+         inkscape:tile-y0="45.589363">
+        <text
+           id="text4971"
+           y="84.478333"
+           x="182.62669"
+           style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           xml:space="preserve"><tspan
+             y="84.478333"
+             x="182.62669"
+             id="tspan4973"
+             sodipodi:role="line">SMP</tspan></text>
+        <rect
+           y="45.589363"
+           x="173.68092"
+           height="178.7256"
+           width="252.95436"
+           id="rect4975"
+           style="fill:none;stroke:#000000;stroke-width:1.99999988;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <g
+           id="g4977">
+          <g
+             id="g4979"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690424)"
+             inkscape:tile-cx="283.39893"
+             inkscape:tile-cy="252.43623"
+             inkscape:tile-w="116.24078"
+             inkscape:tile-h="59.56226"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text4981"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan4983"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect4985"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4987"
+             transform="matrix(1,0,0,0.92134506,-30.988713,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5509"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5511"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5513"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4989"
+             transform="matrix(1,0,0,0.92134506,-30.988714,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5517"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5519"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5521"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4991"
+             transform="matrix(1,0,0,0.92134506,85.252067,-96.690428)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5525"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5527"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5529"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <g
+             id="use4993"
+             transform="matrix(1,0,0,0.92134506,85.252067,-37.128168)"
+             inkscape:tile-x0="225.27854"
+             inkscape:tile-y0="222.6551">
+            <text
+               id="text5533"
+               y="251.91801"
+               x="221.91336"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="251.91801"
+                 x="221.91336"
+                 id="tspan5535"
+                 sodipodi:role="line">Align</tspan></text>
+            <rect
+               ry="10.853697"
+               rx="10"
+               y="208.94235"
+               x="213.02719"
+               height="64.647072"
+               width="116.24078"
+               id="rect5537"
+               style="fill:none;stroke:#000000;stroke-width:2.0836215;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+        </g>
+      </g>
+      <rect
+         y="27.675079"
+         x="-23.608686"
+         height="774.38934"
+         width="1079.7227"
+         id="rect4577"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <text
+         id="text5539"
+         y="79.951225"
+         x="-5.5397315"
+         style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="79.951225"
+           x="-5.5397315"
+           id="tspan5541"
+           sodipodi:role="line">Nvidia GPU</tspan><tspan
+           id="tspan5543"
+           y="129.95123"
+           x="-5.5397315"
+           sodipodi:role="line">GTX 480</tspan></text>
+    </g>
+  </g>
+</svg>

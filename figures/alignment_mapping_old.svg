@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="alignment_mapping_old.svg">
+  <defs
+     id="defs4">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective10" />
+    <inkscape:perspective
+       id="perspective3685"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3685-2"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3685-5"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3685-9"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective6375"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective6522"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective8062"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective9960"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective9982"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective10058"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective10145"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective10257"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.3658243"
+     inkscape:cx="193.00253"
+     inkscape:cy="943.64641"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1196"
+     inkscape:window-height="1577"
+     inkscape:window-x="0"
+     inkscape:window-y="19"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2822"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Bitstream Vera Sans;font-style:normal;font-weight:normal;font-size:40px"><flowRegion
+         id="flowRegion2824"><rect
+           id="rect2826"
+           width="12.218978"
+           height="71.277374"
+           x="257.27737"
+           y="67.376778" /></flowRegion><flowPara
+         id="flowPara2828" /></flowRoot>    <g
+       id="g10210"
+       transform="matrix(0.30541996,0,0,0.30541996,63.982618,347.3271)">
+      <rect
+         y="-1038.9247"
+         x="-117.42689"
+         height="515.33636"
+         width="1079.7227"
+         id="rect4577-0"
+         style="fill:none;stroke:#000000;stroke-width:2;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <g
+         id="g10118">
+        <text
+           xml:space="preserve"
+           style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           x="-74.218781"
+           y="-972.30011"
+           id="text5539-4"><tspan
+             sodipodi:role="line"
+             id="tspan5541-5"
+             x="-74.218781"
+             y="-972.30011">Intel CPU</tspan><tspan
+             sodipodi:role="line"
+             x="-74.218781"
+             y="-922.30011"
+             id="tspan5543-9">E5530</tspan></text>
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           id="rect8052-0-1"
+           width="500.35922"
+           height="470.9794"
+           x="-94.330009"
+           y="-1018.7969" />
+        <g
+           id="g10104"
+           transform="matrix(1.0903419,0,0,1.0903419,-3.7702969,68.384887)">
+          <g
+             inkscape:tile-y0="-889.77175"
+             inkscape:tile-x0="-69.930272"
+             inkscape:tile-h="145.66933"
+             inkscape:tile-w="206.16907"
+             inkscape:tile-cy="-816.93708"
+             inkscape:tile-cx="33.154263"
+             transform="matrix(0.81504454,0,0,0.81504454,-105.03267,327.37281)"
+             id="g10040">
+            <g
+               transform="matrix(1.9526411,0,0,1.9526411,162.72458,-1006.2232)"
+               id="g6496">
+              <g
+                 id="g6501">
+                <text
+                   xml:space="preserve"
+                   style="font-size:38.39468765px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+                   x="-44.2915"
+                   y="-191.77298"
+                   id="text4591-0"
+                   transform="scale(1.0418108,0.95986719)"><tspan
+                     sodipodi:role="line"
+                     id="tspan4593-7"
+                     x="-44.2915"
+                     y="-191.77298">Align</tspan></text>
+                <rect
+                   ry="5.7627997"
+                   rx="5.7627997"
+                   y="-223.67201"
+                   x="-55.02953"
+                   height="59.56226"
+                   width="116.24078"
+                   id="rect4595-8"
+                   style="fill:none;stroke:#000000;stroke-width:1.15256011;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+              </g>
+            </g>
+            <text
+               id="text4659-7"
+               y="-1454.4583"
+               x="52.013844"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="-1454.4583"
+                 x="52.013844"
+                 id="tspan4661-0"
+                 sodipodi:role="line">Core</tspan></text>
+            <rect
+               y="-1493.3473"
+               x="43.068073"
+               height="178.7256"
+               width="252.95436"
+               id="rect4663-1"
+               style="fill:none;stroke:#000000;stroke-width:2.25053596;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <use
+             id="use10098"
+             transform="translate(0,152.95279)"
+             xlink:href="#g10040"
+             inkscape:tiled-clone-of="#g10040"
+             y="0"
+             x="0"
+             width="744.09448"
+             height="1052.3622" />
+          <use
+             id="use10100"
+             transform="translate(216.47752,0)"
+             xlink:href="#g10040"
+             inkscape:tiled-clone-of="#g10040"
+             y="0"
+             x="0"
+             width="744.09448"
+             height="1052.3622" />
+          <use
+             id="use10102"
+             transform="translate(216.47752,152.95279)"
+             xlink:href="#g10040"
+             inkscape:tiled-clone-of="#g10040"
+             y="0"
+             x="0"
+             width="744.09448"
+             height="1052.3622" />
+        </g>
+      </g>
+      <g
+         id="g10118-1"
+         transform="translate(533.56551,1.4073264)">
+        <text
+           xml:space="preserve"
+           style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           x="-74.218781"
+           y="-972.30011"
+           id="text5539-4-7"><tspan
+             sodipodi:role="line"
+             id="tspan5541-5-5"
+             x="-74.218781"
+             y="-972.30011">Intel CPU</tspan><tspan
+             sodipodi:role="line"
+             x="-74.218781"
+             y="-922.30011"
+             id="tspan5543-9-6">E5530</tspan></text>
+        <rect
+           style="fill:none;stroke:#000000;stroke-width:2;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           id="rect8052-0-1-5"
+           width="500.35922"
+           height="470.9794"
+           x="-94.330009"
+           y="-1018.7969" />
+        <g
+           id="g10104-4"
+           transform="matrix(1.0903419,0,0,1.0903419,-3.7702969,68.384887)">
+          <g
+             inkscape:tile-y0="-889.77175"
+             inkscape:tile-x0="-69.930272"
+             inkscape:tile-h="145.66933"
+             inkscape:tile-w="206.16907"
+             inkscape:tile-cy="-816.93708"
+             inkscape:tile-cx="33.154263"
+             transform="matrix(0.81504454,0,0,0.81504454,-105.03267,327.37281)"
+             id="g10040-2">
+            <g
+               transform="matrix(1.9526411,0,0,1.9526411,162.72458,-1006.2232)"
+               id="g6496-2">
+              <g
+                 id="g6501-1">
+                <text
+                   xml:space="preserve"
+                   style="font-size:38.39468765px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+                   x="-44.2915"
+                   y="-191.77298"
+                   id="text4591-0-7"
+                   transform="scale(1.0418108,0.95986719)"><tspan
+                     sodipodi:role="line"
+                     id="tspan4593-7-2"
+                     x="-44.2915"
+                     y="-191.77298">Align</tspan></text>
+                <rect
+                   ry="5.7627997"
+                   rx="5.7627997"
+                   y="-223.67201"
+                   x="-55.02953"
+                   height="59.56226"
+                   width="116.24078"
+                   id="rect4595-8-4"
+                   style="fill:none;stroke:#000000;stroke-width:1.15256011;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+              </g>
+            </g>
+            <text
+               id="text4659-7-1"
+               y="-1454.4583"
+               x="52.013844"
+               style="font-size:40px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+               xml:space="preserve"><tspan
+                 y="-1454.4583"
+                 x="52.013844"
+                 id="tspan4661-0-6"
+                 sodipodi:role="line">Core</tspan></text>
+            <rect
+               y="-1493.3473"
+               x="43.068073"
+               height="178.7256"
+               width="252.95436"
+               id="rect4663-1-5"
+               style="fill:none;stroke:#000000;stroke-width:2.25053596;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          </g>
+          <use
+             id="use10098-7"
+             transform="translate(0,152.95279)"
+             xlink:href="#g10040-2"
+             inkscape:tiled-clone-of="#g10040-2"
+             y="0"
+             x="0"
+             width="744.09448"
+             height="1052.3622" />
+          <use
+             id="use10100-8"
+             transform="translate(216.47752,0)"
+             xlink:href="#g10040-2"
+             inkscape:tiled-clone-of="#g10040-2"
+             y="0"
+             x="0"
+             width="744.09448"
+             height="1052.3622" />
+          <use
+             id="use10102-5"
+             transform="translate(216.47752,152.95279)"
+             xlink:href="#g10040-2"
+             inkscape:tiled-clone-of="#g10040-2"
+             y="0"
+             x="0"
+             width="744.09448"
+             height="1052.3622" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
