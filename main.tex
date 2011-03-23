@@ -584,13 +584,34 @@ than off-chip memory, this implementation is slower than the proposed implementa
 
 \subsection{GPU Implementation}
 \label{sec:alignment_implementation_gpu}
+This section discusses how to efficently map the two levels of parallelism
+available in iterative face alignment to the two levels of concurrency
+available in the NVIDIA Fermi GPU architecture.
 
-This section discusses how to implement algorithm
-\eqref{alg:iterative_alignment} on the GPU.  Like for the CPU case, many GPU
-implementation strategies were explored during the course of our development,
-and are only mentioned briefly.  Listed in order of increasing performance
-based on a synthetic benchmark of the $\ell_1$ minimization step, they
-included:
+Our proposed GPU implementation for the iterative alignment stage consists of a
+single kernel that performs all of the test image alignment problems.  Each of
+instance of the alignment problem is assigned its own thread block, and the GPU
+hardware schedules as many of these thread blocks to run concurrently as the 
+hardware will allow.  
+This mapping of the alignment problem onto the concurrency provided by the pair
+of CPUs is visualized in Figure \ref{fig:alignment_mapping_gpu}.
+\begin{figure}
+\centering
+\includegraphics[width=3.4in]{figures/alignment_mapping_gpu}
+\caption{Proposed mapping of alignment parallelism onto gpu concurrency}
+\label{fig:alignment_mapping_gpu}
+\end{figure}
+The full resolution test image, along with its numerical derivatives in both
+image directions, are stored in GPU texture memory. This  allows the
+recomputation of $b(\tau)$ and $J(\tau)$, which essentially consist of warped
+versions of the test image and its derivatives, to exploit the GPU's special
+purpose hardware for bilinear interpolation.
+
+\subsection{Other Implementation Strategies}
+Several GPU implementation strategies were explored during the course of our
+development, and are only mentioned briefly.  Listed in order of increasing
+performance based on a synthetic benchmark of the $\ell_1$ minimization step,
+they included:
 \begin{enumerate}
 \item Solving a single problem instance at a time using Cublas\footnote{Nvidia provided BLAS implementation} (302 ms)
 \item Pure CUDA C implementation solving one problem per SMP using cuda streams\footnote{Streams is a CUDA feature that allows multiple
@@ -619,24 +640,6 @@ the GPU's L2 cache.
 % instances can still exit early, and can still update a global variable signaling
 % that they're done
 
-Our proposed GPU implementation for the iterative alignment stage consists of a
-single kernel that performs all of the test image alignment problems.  Each of
-instance of the alignment problem is assigned its own thread block, and the GPU
-hardware schedules as many of these thread blocks to run concurrently as the 
-hardware will allow.  
-
-\begin{figure}
-\centering
-\includegraphics[width=3.4in]{figures/alignment_mapping_gpu}
-\caption{Proposed mapping of alignment parallelism onto gpu concurrency}
-\label{fig:alignment_mapping_gpu}
-\end{figure}
-
-The full resolution test image, along with its numerical derivatives in both
-image directions, are stored in GPU texture memory. This  allows the
-recomputation of $b(\tau)$ and $J(\tau)$, which essentially consist of warped
-versions of the test image and its derivatives, to exploit the GPU's special
-purpose hardware for bilinear interpolation.
 
 % Should really verify somehow that we're maxing out GPU bandwidth
 
@@ -680,9 +683,6 @@ $\x_1 = \mathbf{0}$, $\e_1 = \bb$, $\y_1 =
 nicely onto the BLAS API (such as SGEMV, SAXPY {\bf? Victor, fill in here}), we
 call Intel's MKL BLAS library, which internally takes advantage of the SSE
 units on all available CPU cores. 
-{\bf TODO: Our current implementation links against the MKL
-library provided internally with matlab; we are in the process of updating the code to link directly against a newer version
-of MKL}  
 
 For operations that do not map nicely onto the BLAS API, such as the shrinkage
 operator, {\bf Argue that these parts are optimized, and/or demonstrate that
