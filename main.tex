@@ -34,9 +34,7 @@
 %\title{Efficient Parallelization of Sparse Representation for Face Recognition}
 %\thanks{Corresponding author: . This work was partially supported by ARO MURI W911NF-06-1-0076.}}
 %\title{Many-Core Parallelization of $\ell_1$-Minimization for Face Recognition
-\title{Parallelization of Fast $\ell_1$-Minimization for Face Recognition
-%\thanks{Corresponding author: . This work was partially supported by ARO MURI W911NF-06-1-0076.}
-}
+\title{Parallelization of Fast $\ell_1$-Minimization for Face Recognition}
 
 \author{First Author\\
 Institution1\\
@@ -293,7 +291,8 @@ opportunity to perform computations concurrently on hardware.  Algorithms often
 exhibit multiple levels of parallelism, and hardware often provides multiple
 levels of concurrency.  In these terms, the primary contribution of this paper
 will be to determine the optimal mappings between the parallelism available in
-$\ell_1$-Minimization and the concurrency available in multi-core CPU and GPU architectures.
+$\ell_1$-Minimization and the concurrency available in multi-core CPU and GPU
+architectures.
 
 In this section we discuss the levels of concurrency available in the hardware
 architectures considered in this paper, as well as other aspects of the
@@ -340,23 +339,15 @@ Each processor further has 8MB of L3 cache that is shared by all four cores.
 Overall, this means the algorithm has approximately 16MB of on-chip cache
 available.  This corresponds to 1024 image vectors.  
 
-With Hyperthreading enabled, each core can support two threads simultaneously.
+%With Hyperthreading enabled, each core can support two threads simultaneously.
 For floating point instructions, each core also has a vector processing unit
 (SSE) capable of performing the same arithmetic operation on four single
 precision floating point values simultaneously.  
 
 There are thus two important levels of concurrency that need to be exploited to
 efficiently use a modern CPU: {\em core-level} concurrency and {\em vector-level}
-concurrency. CPU tools for exploiting these two levels of concurrency are
-relatively mature.  Heavily optimized Basic Linear Algebra Subprograms (BLAS) are
-commercially available that make good use of both levels of CPU concurrency.
-For operations that do not fit well with the BLAS API, we 
-achieve both vector-level and core-level concurrency through a combination of
-the OpenMP API \cite{dagum2002openmp} and the automatic vectorization 
-facilities of Intel's C++ compiler (ICC)\cite{dulong1999overview}.
-% DW: I'm really not sure these citations are even really relevant;
-% our target audience will just google icc openmp and get more up-to-date
-% info anyway.
+concurrency. 
+
 \subsection{GPU Hardware Concurrency}
 The main defining characteristics of contemporary multi-core GPU architectures
 are that they have two (much wider) levels of concurrency, relatively small amounts of
@@ -505,60 +496,78 @@ parallelism: at the higher level there are multiple iterative alignent problems
 that are solved independently, or {\bf problem-level} parallelism.  At a lower
 level, the first-order linear algebraic operations exhibit parallelism within
 image operations, i.e. at a pixel level.  We term this {\bf pixel-level}
-parallelism.
+parallelism.  In the following two sections will will discuss how to
+exploit these two levels of parallelism on cpu and gpu architectures.
 
 \subsection{CPU Implementation} 
 \label{sec:alignment_implementation_cpu}
-One of the main contributions of this paper is a more efficent mapping of the
-two levels of parallelism available in iterative face alignment to the two
-levels of concurrency available in a typical multicore CPU architecture.
+This section discusses how to efficently map the two levels of parallelism
+available in iterative face alignment to the two levels of concurrency
+available in a typical multicore CPU architecture.
 
-We argue that, in constrast with previous implementations, which mapped problem
-level parallelism onto core-level concurrency, it is more efficient to
+We will show that, in constrast with previous implementations, which mapped
+problem level parallelism onto core-level concurrency, it is more efficient to
 completely disregard problem-level parallelism, and instead map pixel-level
-parallelism onto both core-level and vector-level cpu concurrency.  In other words,
-the implementation we advocate performs alignment of the test image against the gallery
-images of a single user at a time.  Each matrix-vector and vector-vector operation
-gets broken into 8 parts that run one per core, and into 4 single float vectors
-that execute on the SSE SIMD units.
+parallelism onto both core-level and vector-level cpu concurrency.  In other
+words, the cpu implementation we advocate performs alignment of the test image
+against the gallery images of a single user at a time.  Each matrix-vector and
+vector-vector operation gets broken into 8 parts that run one per core, and
+into 4 single float vectors that execute on the SSE SIMD units.
+This mapping of the alignment problem onto the concurrency provided by the pair
+of CPUs is visualized in Figure \ref{fig:alignment_mapping_cpu}.
+\begin{figure}
+\centering
+\includegraphics[width=3.4in]{figures/alignment_mapping_cpu}
+\caption{Proposed mapping of alignment parallelism onto cpu concurrency}
+\label{fig:alignment_mapping_cpu}
+\end{figure}
 
-Why is this
-implementation faster?  Recall that the L2 cache can old up to 128 image
-vectors' worth of data.  Since we're only aligning data for one gallery user at a
-time the working set of the problem fits into L2 cache, resulting in
-significantly higher image alignment speed than previous cpu implementations. 
+Recall that the L2 cache can old up to 128 image vectors' worth of data.  Since
+we're only aligning data for one gallery user at a time the working set of the
+problem fits into L2 cache.  Due to the higher bandwidth of L2 cache relative
+to L3 cache, this results in significantly higher image alignment speed than
+previous cpu implementations, as will be seen and discussed further in section
+\ref{sec:alignment_benchmark}.
 
+{\bf Implementation Details} In our implementation, most of the operations
+required by the alignment stage take advantage of Intel Math Kernel Library
+(MKL), a commercial implementation of the standard Basic Linear Algebra
+Subprograms (BLAS).  For image resampling, we make use of Intel's Integrated
+Performance Primitives (IPP) library.  Both of these libraries are heavily
+optimized for Intel multicore CPU's, and are able to make good use of both
+core-level and vector-level concurrency.  For operations that do not map well
+onto existing libraries, we achieve both vector-level and core-level
+concurrency through a combination of the OpenMP API \cite{dagum2002openmp} and
+the automatic vectorization facilities of Intel's C++ compiler
+(ICC)\cite{dulong1999overview}.
 
-In our proposed CPU implementation of the iterative alignment stage, we
-therefore perform parallelization in a manner similar to the matlab code:
-solving a single problem instance at a time, relying on the threaded version of
-MKL BLAS for both multi-core and vector parallelism.  
+{\bf Comparison to Previous Implementations} The implementation presented in
+\cite{WagnerA2009-CVPR} and \cite{WagnerA2011-PAMI} schedules instances of the
+alignment problem to the cpu cores in a 1:1 fashion.  
+This mapping of the alignment problem onto the concurrency provided by the pair
+of CPUs is visualized in Figure \ref{fig:alignment_mapping_old}.
+\begin{figure}
+\centering
+\includegraphics[width=3.4in]{figures/alignment_mapping_old}
+\caption{Old mapping of alignment parallelism onto cpu concurrency}
+\label{fig:alignment_mapping_old}
+\end{figure}
 
+This implementation was written using the OpenCV library
+as a wrapper for MKL, and, like our proposed implementation, achieves vector-level concurrency implicitly.  
+With eight alignment problems (associated with 8 training users) being solved
+concurrently, and with 20-40 images per training user, all of the required data
+fits into L3 cache.  While the L3 cache has much higher bandwidth and lower latency
+than off-chip memory, this implementation is slower than the proposed implementation.
 
-This section discusses how the iterative alignment problem can be implemented
-on CPU hardware.  
-
-{\bf Comparison to Previous Implementations}
-The implementations presented in \cite{WagnerA2009-CVPR} and
-\cite{WagnerA2011-PAMI} were written using the OpenCV library.  OpenCV wraps
-either the operating system's built-in BLAS library, or Math Kernel Library
-(MKL), Intel's BLAS implementation, and thus achieves vector (i.e. pixel)-level
-parallelism implicitly.  The authors of \cite{WagnerA2011-PAMI} used OpenMP to
-schedule instances of the alignment problem to the CPU cores in a 1:1 fashion.
-With eight alignment problems for ten training users being solved concurrently,
-and with 20-40 images per training user, all of the required data fits into L3
-cache.  This provided a significant, though sub-linear improvement over a
-single-core implementation.
-
-During the course of development, many implementation strategies were tried.
-Listed in order of increasing performance based on a synthetic benchmark of
-the $\ell_1$ minimization step, they included:
-\begin{enumerate}
-\item A pure C++ implementation threaded and vectorized with OpenMP and icpc (200 ms).
-\item An OpenCV (with MKL backend) implementation threaded with OpenMP similar to \cite{WagnerA2011-PAMI} (190ms.)
-\item A straightforward MATLAB implementation (which uses threaded MKL internally) (60 ms.)
-\end{enumerate}
-
+%During the course of development, many implementation strategies were tried.
+%Listed in order of increasing performance based on a synthetic benchmark of
+%the $\ell_1$ minimization step, they included:
+%\begin{enumerate}
+%\item A pure C++ implementation threaded and vectorized with OpenMP and icpc (200 ms).
+%\item An OpenCV (with MKL backend) implementation threaded with OpenMP similar to \cite{WagnerA2011-PAMI} (190ms.)
+%\item A straightforward MATLAB implementation (which uses threaded MKL internally) (60 ms.)
+%\end{enumerate}
 
 %\subsection{Tuning the GEMV operation}
 %When matrix-vector operations are called sequentially on the same data,
@@ -615,6 +624,13 @@ single kernel that performs all of the test image alignment problems.  Each of
 instance of the alignment problem is assigned its own thread block, and the GPU
 hardware schedules as many of these thread blocks to run concurrently as the 
 hardware will allow.  
+
+\begin{figure}
+\centering
+\includegraphics[width=3.4in]{figures/alignment_mapping_gpu}
+\caption{Proposed mapping of alignment parallelism onto gpu concurrency}
+\label{fig:alignment_mapping_gpu}
+\end{figure}
 
 The full resolution test image, along with its numerical derivatives in both
 image directions, are stored in GPU texture memory. This  allows the
@@ -756,7 +772,8 @@ implementation is faster at solving a single small problem.
 \end{figure}
 
 
-\subsection{Face Alignment Stage Benchmark} \label{sec:alignment_benchmark}
+\subsection{Face Alignment Stage Benchmark} 
+\label{sec:alignment_benchmark}
 This section presents benchmarks of our CPU and GPU implementations of the
 alignment stage of the face recognition pipeline described in Algorithm
 \ref{alg:iterative_alignment}.  The iterative alignment seeks a similarity
@@ -815,32 +832,9 @@ Our final experiment is to compare the speeds of CPU and GPU implementations ent
 
 \section{Conclusion}
 
-
-
-\begin{figure}
-\centering
-\includegraphics[width=3.4in]{figures/alignment_mapping_old}
-\caption{Old mapping of alignment parallelism onto cpu concurrency}
-\label{fig:alignment_mapping_old}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=3.4in]{figures/alignment_mapping_cpu}
-\caption{Proposed mapping of alignment parallelism onto cpu concurrency}
-\label{fig:alignment_mapping_cpu}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=3.4in]{figures/alignment_mapping_gpu}
-\caption{Proposed mapping of alignment parallelism onto gpu concurrency}
-\label{fig:alignment_mapping_gpu}
-\end{figure}
-
 {\small
 \bibliographystyle{ieee}
 \bibliography{faces}
 }
 
-\end{document}
+
