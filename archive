@@ -1,0 +1,11 @@
+#!/bin/bash
+FILENAME=../dist/ijcb_paper_`date +%Y_%m_%d_%H_%M`.zip
+#git archive --format zip --output $FILENAME master
+#scp $FILENAME percept@cpanel.cs.illinois.edu:public_html/Hidden/$FILE
+
+echo "I have uploaded an archive of our IJCB paper to: $FILENAME"
+echo ""
+echo "http://cpanel.cs.illinois.edu/~percept/Hidden/$FILE"
+echo ""
+echo "Cheers,"
+echo "Drew"
