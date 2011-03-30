@@ -346,7 +346,8 @@ can in principle hold up to 128 image vectors.
 %... so can fit 2**10  = 1024 images.
 Each processor further has 8MB of L3 cache that is shared by all four cores.
 Overall, this means the algorithm has approximately 16MB of on-chip cache
-available.  This corresponds to 1024 image vectors.  
+available.  This corresponds to 1024 image vectors.  A scale drawing
+of the caches of the processor we're targeting can be seen in Figure \ref{fig:caches}.
 
 %With Hyperthreading enabled, each core can support two threads simultaneously.
 For floating point instructions, each core also has a vector processing unit
@@ -383,9 +384,9 @@ Each SMP contains its own L1-cache, which is divided between hardware managed
 and software managed ("shared") memory.  Additionally, all SMPs share a common
 L2-cache.  For our system, each SMP has 64 KB of L1 cache with a total of 896
 KB of L1 cache/shared memory and 768KB of L2 cache. The relatively small amount
-of cache (1/23 as much as CPU L3) on the GPU is ballanced by a significantly
+of cache (1/23 as much as CPU L3) on the GPU is balanced by a significantly
 higher bandwidth between the processor chip and off-chip memory (DRAM) compared
-to the CPU.  
+to the CPU.  A scale drawing of the caches available on the GPU can be seen in Figure \ref{fig:caches}.
 
 The GPU has its own memory system, any data the GPU uses must first be
 transferred from CPU DRAM to GPU DRAM over PCI-Express.  For our application,
