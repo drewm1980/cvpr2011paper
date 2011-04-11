@@ -355,13 +355,11 @@ An explanation of the CUDA programming model at a useful level of completeness w
 more space than is available here, so we will instead frame our discussion in terms of 
 hardware capabilities, and refer the reader to the NVIDIA C for CUDA Programming Guide.
 
-Compared to CPU architectures, GPU architectures dedicate fewer of their transistors
-to cache, and more of them for arithmetic logic. Our target GPU architecture
+Our target GPU architecture
 is the Nvidia Fermi architecture (\eg, the GTX 480 GPU used in this paper). 
 CUDA based GPUs are comprised of several \emph{streaming multiprocessors} (SMP) 
 (currently 14 to 16 for a high end GPU).  Each SMP is capable of executing up to 64
 floating point operations concurrently.  
-
 
 %The GPU uses a SPMD (Single Program Multiple Data) programming model: at any given
 %point in time, all threads are running the same gpu program, or \emph{kernel}, but
