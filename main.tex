@@ -1,4 +1,3 @@
-
 \documentclass[10pt,twocolumn,letterpaper]{article}
 % ICCV Rules:
 % 8 page limit (6 free + 2 paid)
@@ -341,7 +340,7 @@ floating point values simultaneously \footnote{By the publication date, the vect
 units of typical high-end CPUS will double.}.  
 
 There are thus two important levels of concurrency that need to be exploited to
-efficiently use a modern CPU: {\em core-level} concurrency and {\em vector-level}
+efficiently use a modern CPU: {\em core-level} concurrency and {\em sse-level}
 concurrency. 
 
 \subsection{GPU Hardware Concurrency}
@@ -353,25 +352,16 @@ clock speeds (such as branch prediction, out-of-order instruction execution, etc
 most of the transistors on a GPU are dedicated to arithmetic logic units.
 An explanation of the CUDA programming model at a useful level of completeness would take 
 more space than is available here, so we will instead frame our discussion in terms of 
-hardware capabilities, and refer the reader to the NVIDIA C for CUDA Programming Guide.
+hardware capabilities\footnote{A discussion of the CUDA programming model can be found
+in the NVIDIA C for CUDA Programming Guide}.
 
-Our target GPU architecture
-is the Nvidia Fermi architecture (\eg, the GTX 480 GPU used in this paper). 
-CUDA based GPUs are comprised of several \emph{streaming multiprocessors} (SMP) 
-(currently 14 to 16 for a high end GPU).  Each SMP is capable of executing up to 64
-floating point operations concurrently.  
-
-%The GPU uses a SPMD (Single Program Multiple Data) programming model: at any given
-%point in time, all threads are running the same gpu program, or \emph{kernel}, but
-%they all operate on different data.  During kernel execution, threads can only communicate
-%(or synchronize with each other) within groups of threads called blocks.  Each block
-%is further subdivided into groups of 32 threads called \emph{warps}. 
-%Typically, an SMP will hold several thread blocks at a time, although it "only" has enough 
-%hardware to schedule
-%2 warps to perform a floating point operation at a time (the remaining warps are either
-%inactive, or waiting for data to arrive).  Threads within a block are able to synchronize
-%(wait at certain points of a program), which gives them a chance to communicate via a
-%relatively small amount of shared cache.
+Our target GPU architecture is the Nvidia Fermi architecture (\eg, the GTX 480
+GPU used in this paper).  CUDA based GPUs are comprised of several
+\emph{streaming multiprocessors} (SMP), each of which is roughly analogous to a CPU core.
+For Fermi architecture GPU's, there are up to 16 SMP's, and each SMP is capable of executing up to 64 single precision 
+floating point operations
+concurrently\footnote{In CUDA terms, the warp width is 32, and the floating pipeline can
+issue up to two warps simultaneously}. 
 
 % GPU CACHE DISCUSSION
 % for L2 cache
@@ -380,54 +370,45 @@ floating point operations concurrently.
 % 48 images
 Each SMP contains its own L1-cache, which is divided between hardware managed
 and software managed ("shared") memory.  Additionally, all SMPs share a common
-L2-cache.  For our system, each SMP has 64 KB of L1 cache for a total of 896
-KB of L1 cache/shared memory and 768KB of L2 cache. The relatively small amount
+L2-cache.  For our system, each SMP has 64 KB of L1 cache, and all SMP's share
+768KB of L2 cache. 
+%The cache hierarchy 
+The relatively small amount
 of cache (1/23 as much as CPU L3) on the GPU is balanced by a significantly
 higher bandwidth between the processor chip and off-chip memory (DRAM) compared
 to the CPU.  A scale drawing of the caches available on the GPU can be seen in Figure \ref{fig:caches}.
-
-The GPU has its own memory system, any data the GPU uses must first be
+The GPU has its own memory system, and any data the GPU uses must first be
 transferred from CPU DRAM to GPU DRAM over PCI-Express.  For our application,
-this transfer overhead is amortized over a large amount of computation and is
+this transfer overhead can be amortized over a large amount of computation and is
 not a major concern.
 
-Compared to a typical CPU, a GPU has much higher peak computational bandwidth
-as well as data bandwith to DRAM.  However, since our application is primarily
-of matrix-vector operations and image resampling operations, it has a very low
-arithmetic intensity (i.e. we perform a very small number of arithmetic
-operations for every number that has to be loaded), and thus performance is
-typically constrained by memory (and cache) bandwidth.  At large problem sizes
-the CPU is limited by its relatively low bandwidth to DRAM compared to the gpu,
-while at small problem sizes the GPU is limited by the relatively high latency
-of its access to DRAM. 
+While the programming model for
+the SIMD units of each SMP is somewhat more flexible than on the CPU,
+leveraging the flexibility typically comes at the cost of reduced parallelism
+\footnote{In CUDA terms, code branches that cause warp divergence usually
+result in serialization of the different groups of threads}.  Therefore, for
+the purposes of comparing hardware architectures, the SIMD units on the GPU are
+roughly analogous to the CPU SIMD units. Thus, in summary, the GPU hardware 
+provides two levels of concurrency: {\em SMP-level}
+concurrency and {\em warp-level} concurrency.  Note that the GPU provides more
+concurrency than a cpu at both levels (14 SMP's vs. 8 cores) and (64 wide vs. 4 wide SIMD
+units).
 
 \section{Parallelism in the Face Alignment Stage}
 \label{sec:alignment}
-There are essentially two levels of parallelism available for exploitation in
-for iterative alignment in the face recognition application.  The primary goal
-of this section is to introduce these two levels of parallelism.  Additionally,
-in order for some important aspects of our implementations to be clear later,
-we need to establish how the iterative alignment stage works in some
-detail.
 
-The inputs of the iterative alignment stage are the test image $f(x,y)$ stacked into an $M$-
-dimensional vector $\f$, and the aligned and stacked training images $A_i$ for
-each training user $i$. 
-The algorithm repeatedly solves a linearized version of the minimization problem
-in \eqref{eq:l1min_alignment}.  This involves two computational steps:
-the computation of the linearization, and the solution of the minimization problem.
+Given the hardware concurrency in modern parallel computing architectures, next,
+we shall study the optimal mappings of the algorithm parallelism in face recognition to the multi-core CPUs and GPUs, respectively.
+In this section, we first focus on the face alignment stage (see Figure \ref{fig:pipeline}).
 
-The computation of the linearization is complicated by the need to avoid trivial 
-solutions where the algorithm
-progressively zooms in on a black pixel of the test image.
-This is achieved by minimizing the $\ell_1$ error between the illumination model $Ax$ and the cropped,
-resampled, and normalized test image $\tilde\bb$, rather than the un-normalized version as in 
-conventional Lucas-Kanade iterative alignment.
-This involves a bit of calculus:
+Face alignment \eqref{eq:l1min_alignment} estimates an image transformation $\tau$ that rectifies the query image $\tilde{\bb}$ with possible pose variation
+w.r.t. each training class $A_i$, which leads to the minimal sparsity in error $\ee$ after the alignment. Note that directly solving \eqref{eq:l1min_alignment} would require
+simultaneously estimating $\xx$, $\ee$, and $\tau$ typically on a nonlinear manifold, which renders the problem extremely difficult to solve exactly with many local minima.
+
+To mitigate the problem, if the system can obtain to a good initial guess of the transformation $\tau$ (\eg, provided by a good face detector),
+the optimal solution for $\tau$ can be sought iteratively by a sequence of linearized approximations $j=1, 2, \cdots$ as follows:
 \begin{equation}
-\frac{\partial}{\partial \tau_p} \frac{\bb}{||\bb||} 
-= \frac{1}{||\bb||} \frac{\partial \bb}{\partial \tau_p} - 
-\frac{\bb}{||\bb||^3} \bb^T \frac{\partial \bb}{\partial \tau_p}
+\min_{\xx, \ee, \Delta \tau_j}\|\ee\|_1\quad \subj\quad \tilde\bb\circ\tau_j +  J_j\Delta \tau_j = A_i\xx + \ee,
 \end{equation}
 If the warping $\tau$ is constrained to be a similarity transform,
 it can be paramaterized in such a way that the computation of $\frac{\partial \bb}{\partial \tau_p}$
@@ -516,7 +497,7 @@ available in a typical multicore CPU architecture.
 We will show that, in constrast with previous implementations, which mapped
 problem level parallelism onto core-level concurrency, it is more efficient to
 completely disregard problem-level parallelism, and instead map pixel-level
-parallelism onto both core-level and vector-level cpu concurrency.  In other
+parallelism onto both core-level and sse-level cpu concurrency.  In other
 words, the cpu implementation we advocate performs alignment of the test image
 against the gallery images of a single user at a time.  Each matrix-vector and
 vector-vector operation gets broken into 8 parts that run one per core, and
@@ -543,8 +524,8 @@ required by the alignment stage take advantage of Intel Math Kernel Library
 Subprograms (BLAS).  For image resampling, we make use of Intel's Integrated
 Performance Primitives (IPP) library.  Both of these libraries are heavily
 optimized for Intel multicore CPU's, and are able to make good use of both
-core-level and vector-level concurrency.  For operations that do not map well
-onto existing libraries, we achieve both vector-level and core-level
+core-level and sse-level concurrency.  For operations that do not map well
+onto existing libraries, we achieve both sse-level and core-level
 concurrency through a combination of the OpenMP API \cite{dagum2002openmp} and
 the automatic vectorization facilities of Intel's C++ compiler
 (ICC)\cite{dulong1999overview}.
@@ -562,33 +543,11 @@ of CPUs is visualized in Figure \ref{fig:alignment_mapping_old}.
 \end{figure}
 
 This implementation was written using the OpenCV library
-as a wrapper for MKL, and, like our proposed implementation, achieves vector-level concurrency implicitly.  
+as a wrapper for MKL, and, like our proposed implementation, achieves sse-level concurrency implicitly.  
 With eight alignment problems (associated with 8 training users) being solved
 concurrently, and with 20-40 images per training user, all of the required data
 fits into L3 cache.  While the L3 cache has much higher bandwidth and lower latency
 than off-chip memory, this implementation is slower than the proposed implementation.
-
-%During the course of development, many implementation strategies were tried.
-%Listed in order of increasing performance based on a synthetic benchmark of
-%the $\ell_1$ minimization step, they included:
-%\begin{enumerate}
-%\item A pure C++ implementation threaded and vectorized with OpenMP and icpc (200 ms).
-%\item An OpenCV (with MKL backend) implementation threaded with OpenMP similar to \cite{WagnerA2011-PAMI} (190ms.)
-%\item A straightforward MATLAB implementation (which uses threaded MKL internally) (60 ms.)
-%\end{enumerate}
-
-%\subsection{Tuning the GEMV operation}
-%When matrix-vector operations are called sequentially on the same data,
-%the operation can be blocked so that each thread operates on the same block of data for each operation.
-%For Single threaded MKL sgemv, Code took          0.0335823 msec per instance to run!
-%For Automatic multi-threaded MKL sgemv, Code took 0.008179 msec per instance to run!
-%For Manually multi-threaded MKL sgemv, Code took  0.0061276 msec per instance to run!
-
-%\subsection{Tuning the Soft-Thresholding Operator}
-%...Make sure there are no branches
-%...Make sure there are no function calls
-%...Make sure the loop gets automatically vectorized
-%...Block the computation into work for different cpu cores
 
 \subsection{GPU Implementation}
 \label{sec:alignment_implementation_gpu}
@@ -644,12 +603,6 @@ threads can be scheduled to run simultaneously.  The primary downside of this
 approach is that it forces synchronization between all problem instances.  It will
 also have increased kernel launch overhead and potentially less efficient use of
 the GPU's L2 cache.
-% DREW Idea... in hindsight, maybe we should still try many kernel launches. 
-% instances can still exit early, and can still update a global variable signaling
-% that they're done
-
-
-% Should really verify somehow that we're maxing out GPU bandwidth
 
 \section{Parallelization of the Face Recognition Stage}
 \label{sec:recognition}
@@ -837,6 +790,16 @@ to have the true user in the training set, inner loop tolerance to 1e-2 and oute
 Our final experiment is to compare the speeds of CPU and GPU implementations entire pipeline in Figure \ref{fig:pipeline}.
 
 \section{Conclusion}
+
+Compared to a typical CPU, a GPU has much higher peak computational bandwidth
+as well as data bandwith to DRAM.  However, since our application is primarily
+of matrix-vector operations and image resampling operations, it has a very low
+arithmetic intensity (i.e. we perform a very small number of arithmetic
+operations for every number that has to be loaded), and thus performance is
+typically constrained by memory (and cache) bandwidth.  At large problem sizes
+the CPU is limited by its relatively low bandwidth to DRAM compared to the gpu,
+while at small problem sizes the GPU is limited by the relatively high latency
+of its access to DRAM. 
 
 {\small
 \bibliographystyle{ieee}
