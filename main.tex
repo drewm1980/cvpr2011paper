@@ -751,7 +751,7 @@ a choice for a threshold of the number of users kept for the recognition stage,
 we varied the number of users kept for the recognition stage and estimated the probability
 of the test user being among the set of training users kept for the recognition stage.
 As can be seen in Figure \ref{fig:user_alignment_rank_plot}, there are rapidly diminishing
-returns as the number of kept users is increased beyond ten.  
+returns as the number of kept users is increased beyond 20.  
 \begin{figure}
 \centering
 \includegraphics[width=3.4in]{figures/user_alignment_rank_plot}
@@ -765,9 +765,17 @@ users kept for the recognition stage}
 
 \subsection{Face Recognition Pipeline Benchmarks}
 \label{sec:pipeline_benchmark}
-The fourth experiment compares the recognition rate of the face recognition algorithm at different
-image resolutions.  We fixed the number of users to be $enter here$ which was shown in figure  $enter here$  have 95\% probability
-to have the true user in the training set, inner loop tolerance to 1e-2 and outer loop tolerance to 1e-3.  
+The fourth experiment compares the recognition rate of the face recognition algorithm at different image resolutions.  We tested 5 square resolutions {32, 48, 64, 96, 128} with no image perturbations.  We fixed the number of users to 20 which was shown in figure \ref{fig:user_alignment_rank_plot} have approximately 95\% probability to have the true user in the training set, inner loop tolerance to 1e-5 and outer loop tolerance to 1e-2.  
+
+\begin{figure}
+\centering
+\includegraphics[width=3.4in]{figures/accuracyVsResolution}
+\caption{Accuracy vs Image Resolution}
+\label{fig:accuracy_vs_resolution}
+\end{figure}
+
+The results shown in figure \ref{fig:accuracy_vs_resolution} indicate that
+image resolutions of 64x64 provides the best recognition rate for our pipeline. One possible reason why the higher resolutions have a lower recognition rate is that the higher resolution images may contain more noise.
 
 Our final experiment is to compare the speeds of CPU and GPU implementations entire pipeline in Figure \ref{fig:pipeline}.
 
