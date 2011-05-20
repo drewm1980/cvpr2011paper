@@ -1,9 +1,8 @@
-TARGETS=main.pdf main_allen.pdf
+TARGETS=main.pdf 
 
 all: ${TARGETS} 
 
 main.pdf:main.tex figures/alignment_runtime_graph.eps
-main_allen.pdf:main_allen.tex figures/alignment_runtime_graph.eps
 
 # Always build main.pdf target, letting latexmk figure out all of the deps of main.pdf automatically
 
