@@ -671,25 +671,13 @@ The x-axis represents the size of the $A$ matrix and the y-axis represents the
 average amount of time it to complete a single problem instance.  The GPU
 implementation tends to be faster than the CPU implementation at solving a
 single large problem, whereas the the CPU implementation is faster at solving a
-single small problem.  Figure \ref{fig:random_data2} shows the various sizes
-and tolerances at which our GPU implementation begins to run faster than the
-CPU implementation on synthetic data and will provide researchers with a
-starting point of where to begin setting their tolerance levels for the ALM
-algorithm.
+single small problem.  
 \begin{figure}
 \begin{center}
 \includegraphics[width=3.5in]{results/random_data/time_vs_matrix_size_constant_tol}
 \end{center}
 \caption{Speed vs Dimensions of $A$.}
 \label{fig:random_data}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=3.5in]{results/random_data/size_vs_speed_crossover_ratio_3}
-\end{center}
-\caption{Relation between CPU and GPU runtime vs tolerance level}
-\label{fig:random_data2}
 \end{figure}
 
 \subsection{Face Alignment Stage Benchmark} 
