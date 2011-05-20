@@ -122,13 +122,13 @@ the coefficients of the linear illumination model $A\x$.
 Numerically, the original solution \cite{WagnerA2009-CVPR} was implemented based 
 on standard interior-point methods, and its speed has been since improved by ALM in a more recent paper
 \cite{WagnerA2011-PAMI}. However, due the high per-class cost
-of the alignment step, the recognition system still fails to achieve \emph{real-time recognition} against datasets of hundreds or thousands of users.
+of the alignment step, the recognition system still fails to achieve real-time recognition against datasets of hundreds or thousands of users.
 In this paper, in addition to accelerating the generic
 $\ell_1$-min objectives \eqref{eq:l1min} and \eqref{eq:l1min_denoise}, we 
 also discuss how to properly accelerate the iterative face alignment step
 \eqref{eq:l1min_alignment} on multi-core CPUs and GPUs.
 
-In this paper we will clearly distinguish between algorithm {\em parallelism},
+In this discussion we will clearly distinguish between algorithm {\em parallelism},
 which is a property of an algorithm, and hardware {\em concurrency}, which is a
 property of a hardware architecture. Parallelism in an algorithm provides the
 opportunity to perform computations concurrently on hardware.  Algorithms often
@@ -140,18 +140,20 @@ architectures.
 
 Finally, we present extensive benchmark to compare the performance of the
 generic ALM $\ell_1$-min algorithm and the corresponding face recognition
-routines on massively parallel CPUs and GPUs.  To this end, a new face
-recognition system for security and access control applications has been fully implemented on a state-of-the-art
-workstation, as shown in Figure \ref{fig:pipeline}. 
+routines on massively parallel CPUs and GPUs.  To this end, a face
+recognition system for security and access control applications has been implemented, 
+and is diagrammed in Figure \ref{fig:pipeline}. This pipeline follows the work of \cite{WagnerA2011-PAMI}, but
+the fast implementations presented in this paper are novel.
 Since the parallelization of any algorithm
 is highly dependent on the target hardware, we will give a brief overview of
 the architecture of our test system in detail in Section
 \ref{sec:concurrency}.
-Finally, note that for applications targeting thousands of users or more, it would likely be
-necessary to distribute the work over a network of computers, while this paper
-focuses on the parallelism available in a single (shared memory) machine.
-The C++ source code of our implementations, which target Nvidia's CUDA GPU architecture,
-will be made available for peer evaluation.
+Finally, note that 
+while this paper focuses on the parallelism available in a single (shared memory) machine,
+applications targeting thousands of users or more, will likely require computation be
+distributed over a cluster or network of computers, and this is not addressed here.
+The source code of our implementations, which target Nvidia's CUDA GPU architecture,
+as well as the x86-64 architecture, will be made available for peer evaluation.
 \begin{figure}
 \centering
 {\tiny \input{figures/pipeline_simplified.tex}}
@@ -179,23 +181,24 @@ solution to the \emph{forward stagewise linear regression} problem called LARS
 for BP in \cite{MalioutovD2005,DonohoD2006}.
 
 Although Homotopy can be shown to exactly estimate BP when the solution is
-sufficiently sparse \cite{DonohoD2006}, the algorithm still involves 
-computationally expensive operations such as matrix-matrix multiplication and 
-the solution of least-squares problems with varying $A$ matrices. 
-In Section \ref{sec:ALM}, we contend
-that ALM is a better choice for implementation on many-core CPUs and GPUs. The ALM algorithm belongs to a
+sufficiently sparse \cite{DonohoD2006}, the algorithm still involves
+computationally expensive operations such as matrix-matrix multiplication and
+the solution of least-squares problems with varying $A$
+matrices\footnote{During the face alignment algorithm presented later, The $A$
+matrix changes between alignment iterations but not within the L1 solver}.  In
+Section \ref{sec:ALM}, we contend that ALM is a better choice for
+implementation on many-core CPUs and GPUs. The ALM algorithm belongs to a
 category of approximate $\ell_1$-min solutions called \emph{iterative
-shrinkage-thresholding} (IST) methods \cite{WrightS2008,BeckA2009}.
-IST algorithms mainly involve elementary operations such as vector 
-algebra and matrix-vector multiplication. Therefore,
-when the dimension of the problem becomes high, IST-type algorithms are
-particularly suitable for hardware systems with a high degree of concurrency. In
-\cite{YangA2010-ICIP}, the authors further showed that, compared to other
-IST-type algorithms, ALM is able to achieve good estimation accuracy comparable
-to BP and Homotopy, while at the same time significantly improve the speed
-compared to these exact $\ell_1$-min solutions. Due to these facts, in this
-paper, we choose ALM as the core algorithm to implement the complete parallel
-face recognition pipeline.
+shrinkage-thresholding} (IST) methods \cite{WrightS2008,BeckA2009}.  IST
+algorithms mainly involve elementary operations such as vector algebra and
+matrix-vector multiplication. Therefore, when the dimension of the problem
+becomes high, IST-type algorithms are particularly suitable for hardware
+systems with a high degree of concurrency. In \cite{YangA2010-ICIP}, the
+authors showed that ALM is able to significantly improve the solver speed,
+while still achieving estimation accuracy competitive with exact $\ell_1$-min
+solutions, such as BP and Homotopy methods, as well as other IST-type
+algorithms.  Therefore, in this paper, we choose ALM as the core algorithm to
+implement the complete parallel face recognition pipeline.
 
 In terms of the past works in parallel $\ell_1$-min, the literature has been
 limited, to the best of our knowledge. In \cite{BorghiA2010}, Borghi et al.
