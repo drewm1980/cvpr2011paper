@@ -19,7 +19,7 @@ level_times = [];
 i = 0;
 
 for ratio=2:4
-    name = [type '_' num2str(n) '_' num2str(ratio) '_'];
+    name = [type '_' num2str(ratio) '_' num2str(n) '_'];
     
     gpuName = [name 'GPU.mat'];
     gpuData = load(gpuName);
@@ -43,7 +43,7 @@ for ratio=2:4
             
             count = 0;
             
-            for m=-1:0.5:1
+            for m=-0.5:0.5:0.5
                 count = count + 1;
                 xpoint  = find(squeeze(gpuData.averageRunTime(j,k,:,2,2)) + m/2 > squeeze(blasData.averageRunTime(j,k,:,3,2))==0,1);
                 if isempty(xpoint);
@@ -92,22 +92,24 @@ for ratio=unique(ratios)'
         end
         
         plotX = [plotX; xpoint];
-        plotY = [plotY; unique_tols(j) unique_tols(j) unique_tols(j) unique_tols(j) unique_tols(j)];
+        plotY = [plotY; unique_tols(j) unique_tols(j) unique_tols(j)]; % unique_tols(j) unique_tols(j)];
     end
         
     semilogy(plotX, plotY, '-o');
     set(gca, 'ydir', 'reverse');
+    ylabel(['Outer tolerance level']);
     xlabel('A matrix');
     xlabel(['A matrix (m x ' num2str(ratio/10) 'm)']);
     xlim([min(min(plotX))-500 max(max(plotX))+500]);
-    legend('GPU slower by 1 second','GPU slower by 1/2 second', 'GPU = CPU speed', 'GPU faster by 1/2 second', 'GPU faster by 1 second');
+    %legend('GPU slower by 1 second','GPU slower by 1/2 second', 'GPU = CPU speed', 'GPU faster by 1/2 second', 'GPU faster by 1 second');
+    legend('GPU slower by 1/2 second', 'GPU = CPU speed', 'GPU faster by 1/2 second');
     %axis([]);
     
     %hold off;
     set (h,'windowstyle','normal');               %   Window must be undocked for the following
     set (h,'Units','Inches');                     %   Using units of inches
     pos=get(h,'position');                        %   Save position values
-    set (h,'position',[pos(1),pos(2),12,6]);       %   and set plot area to 5 by 3.75
+    set (h,'position',[pos(1),pos(2),11,6]);       %   and set plot area to 5 by 3.75
     set(h,'paperpositionmode','auto');            %   Set output to WYSIWYG for current screen settings
     
     plot2svg(['size_vs_speed_crossover_ratio_' num2str(ratio) '.svg'], h, 'png');
