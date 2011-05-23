@@ -14,6 +14,7 @@
 \usepackage{amsfonts}
 \usepackage{algorithm}
 \usepackage{algorithmic}
+\usepackage{subfigure}
 
 % Needed for getting formulas in dia diagrams.
 \usepackage{pstricks}
@@ -54,9 +55,19 @@ First line of institution2 address\\
 
 \maketitle
 
-\begin{abstract}
-
-\end{abstract}
+\begin{abstract} Recently a family of promising face recognition algorithms
+that are based on sparse representation and $\ell_1$ minimization have been
+been developed.  These algorithms have not yet seen commercial application,
+largely due to their greater computational requirements compared to more
+traditional algorithms.  This paper studies techniques for leveraging the
+massive parallelism available in GPU and multi-core CPU hardware to accelerate
+augmented Lagrangian method (ALM) based $\ell_1$ minimization solvers.  The
+proposed implementations are significantly faster than than previously
+published implementations.  Despite the low arithmetic intensity of ALM
+solvers, the GPU can still outperform the CPU by a wide margin for large
+problem sizes, and when solving many small problems simultaneously.  The
+proposed CPU implementation remains faster for solving a single moderately
+sized problem.  \end{abstract}
 
 \section{Introduction} 
 $\ell_1$-minimization ($\ell_1$-min) has received much attention in recent
@@ -318,27 +329,24 @@ installed in the machine.  The amount of RAM installed exceeds the amount used
 by the algorithms, and is not an important performance consideration.  
 
 \begin{figure}
-\begin{center}
-\includegraphics[scale=1.0]{figures/cpu_caches}
-\end{center}
-\caption{Scale Drawing of the caches on a E5530 CPU }
-\label{fig:caches}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-\includegraphics[scale=1.0]{figures/gpu_caches}
-\end{center}
-\caption{Scale Drawing of the caches on a GTX480 GPU}
-\label{fig:caches}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-\includegraphics[scale=1.0]{figures/arrays}
-\end{center}
-\caption{Scale Drawing of the algorithm data structures}
-\label{fig:caches}
+\centering
+\subfigure[The larger algorithm data structures]
+{
+	\includegraphics[scale=1.2]{figures/arrays}
+	\label{fig:arrays}
+}
+\subfigure[The caches on a E5530 CPU]
+{
+	\includegraphics[scale=1.2]{figures/cpu_caches}
+	\label{fig:cpu_caches}
+}
+\subfigure[The caches on a GTX480 GPU]
+{
+	\includegraphics[scale=1.2]{figures/gpu_caches}
+	\label{fig:gpu_caches}
+}
+\caption{Scale drawings for the visual comparison of the algorithm
+working set to available caches}
 \end{figure}
 
 % CPU CACHE DISCUSSION
