@@ -35,6 +35,12 @@ for i=5
     blasASize      = (blasDimsPowers.^2 * i / 10 ) * 4 / (2^20);
     
     %subplot(1, 3, i-1);
+    % index 1 is outer tolerance
+    % index 2 is inner tolerance
+    % index 3 is different resolutions
+    % index 4 is (2) GPU (3) BLAS
+    % index 5 is (1) time to upload (2) time to solve (3) time to free memory
+
     plotA = squeeze(gpuData.averageRunTime(3,3,:,2,2))';
     plotC = squeeze(blasData.averageRunTime(3,3,:,3,2))';
     %plot(gpuASize(1:gpuDimLen), plotA(1:gpuDimLen), 'bx-');
