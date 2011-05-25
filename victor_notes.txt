@@ -1,0 +1,24 @@
+CPU: (moteserver3.eecs.berkeley.edu)  
+Intel Xeon X5550 2.66 GHz
+24 GB RAM (i think so)
+nVidia Tesla C1060
+
+GPU: (mescal607.cs.berkeley.edu)
+Intel Core i7 920 2.66 GHz
+8 GB RAM
+lspci gives nVidia GTX 285..... I thought this was a fermi machine.... I wonder if it was switched...
+
+SCRIPTS:
+figure 4: 
+   if the GPU on mescal is NOT a fermi, you may want to re-run the experiments on your machine.
+   data: cvpr2011/matlab/bench_PALM1_batch.m  (change type to either "GPU" or "BLAS")
+   plot:  cvpr2011paper/results/random_data/bench_PALM_paper1.m
+   be sure its bench_PALM_paper1.m, with a ONE!
+
+figure 6:
+   plot:  cvpr2011paper/figures/user_alignment_rank_histogram.m
+
+figure 7:
+   shouldn't need to rerun data
+   data:  cvpr2011/pipeline/singleblock/full_pipeline (run host and non-host code for different resolutions {0.5, 0.75, 1, 1.25, 1.5, 2}
+   plot:  cvpr2011paper/results/accuracy/plotAccVsRes.m

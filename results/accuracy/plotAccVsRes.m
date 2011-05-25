@@ -11,19 +11,19 @@ for i=1:numel(res)
 end
 %%
 close all;
-h = figure;
-plot(res, acc(:,1) * 100 , '--o', res, acc(:,2) * 100, 'x-');
-legend('CPU', 'GPU', 'Location', 'best');
-xlabel('Resolution');
-ylabel('Accuracy %');
+h = figure(7);
+plot( res, acc(:,2) * 100, 'kx-', res, acc(:,1) * 100 , 'ko-');
+legend('GPU', 'CPU', 'Location', 'SouthEast');
+xlabel('Window width (pixels)');
+ylabel('Recognition Rate (%)');
 ylim([0 100]);
 
 set (h,'windowstyle','normal');               %   Window must be undocked for the following
 set (h,'Units','Inches');                     %   Using units of inches
-pos=get(h,'position');                        %   Save position values
-set (h,'position',[pos(1),pos(2),pos(1)+3.75,pos(2)]);       %   and set plot area to 5 by 3.75
-set(h, 'PaperPosition', [0 0 3.75 3]);
+windowSize = [0 0 3.75 2];
+set(h,'position', windowSize);
+set(h, 'PaperPosition', windowSize);
+
 print(h, '../../figures/accuracyVsResolution.eps', '-depsc2');
-print(h, 'accuracyVsResolution.eps', '-depsc2');
 
 end

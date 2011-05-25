@@ -1,12 +1,12 @@
 %!PS-Adobe-3.0 EPSF-3.0
-%%Creator: MATLAB, The Mathworks, Inc. Version 7.9.0.529 (R2009b). Operating System: Darwin 10.7.0 Darwin Kernel Version 10.7.0: Sat Jan 29 15:17:16 PST 2011; root:xnu-1504.9.37~1/RELEASE_I386 i386.
+%%Creator: MATLAB, The Mathworks, Inc. Version 7.8.0.347 (R2009a). Operating System: Linux 2.6.26-2-amd64 #1 SMP Tue Mar 9 22:29:32 UTC 2010 x86_64.
 %%Title: ./user_alignment_rank_plot.eps
-%%CreationDate: 05/20/2011  15:45:57
+%%CreationDate: 05/24/2011  23:19:12
 %%DocumentNeededFonts: Helvetica
 %%DocumentProcessColors: Cyan Magenta Yellow Black
 %%LanguageLevel: 2
 %%Pages: 1
-%%BoundingBox:     0     0   256   209
+%%BoundingBox:     0     0   256   143
 %%EndComments
 
 %%BeginProlog
@@ -136,17 +136,15 @@
   smat stri tri_to_matrix tmat2 concatmatrix } bdef
 /ds {stri astore pop} bdef
 /dt {dtri astore pop} bdef
-/db {2 copy /cols xdef /rows xdef mul dup 3 mul string
+/db {2 copy /cols xdef /rows xdef mul dup string
   currentfile 
   3 index 0 eq {/ASCIIHexDecode filter}
   {/ASCII85Decode filter 3 index 2 eq {/RunLengthDecode filter} if }
   ifelse exch readstring pop
-  dup 0 3 index getinterval /rbmap xdef
-  dup 2 index dup getinterval /gbmap xdef
-  1 index dup 2 mul exch getinterval /bbmap xdef pop pop}bdef
+  /bmap xdef pop pop} bdef
 /it {gs np dtri aload pop moveto lineto lineto cp c
   cols rows 8 compute_transform 
-  rbmap gbmap bbmap true 3 colorimage gr}bdef
+  {bmap} image gr}bdef
 /il {newpath moveto lineto stroke}bdef
 currentdict end def
 %%EndProlog
@@ -161,7 +159,7 @@ end
 
 %%Page: 1 1
 %%BeginPageSetup
-%%PageBoundingBox:     0     0   256   209
+%%PageBoundingBox:     0     0   256   143
 MathWorks begin
 bpage
 %%EndPageSetup
@@ -170,9 +168,9 @@ bpage
 bplot
 
 /dpi2point 12 def
-portraitMode 0000 2592 csm
+portraitMode 0000 1728 csm
 
-    0    79  3081  2513 rc
+    0     9  3081  1719 rc
 85 dict begin %Colortable dictionary
 /c0 { 0.000000 0.000000 0.000000 sr} bdef
 /c1 { 1.000000 1.000000 1.000000 sr} bdef
@@ -185,108 +183,294 @@ portraitMode 0000 2592 csm
 c0
 1 j
 1 sg
-   0    0 3241 2593 rf
+   0    0 3241 1729 rf
 6 w
-0 2081 2501 0 0 -2081 431 2275 4 MP
+0 1281 2501 0 0 -1281 431 1411 4 MP
 PP
--2501 0 0 2081 2501 0 0 -2081 431 2275 5 MP stroke
+-2501 0 0 1281 2501 0 0 -1281 431 1411 5 MP stroke
 4 w
 DO
 SO
 6 w
 0 sg
- 431 2275 mt 2932 2275 L
- 431  194 mt 2932  194 L
- 431 2275 mt  431  194 L
-2932 2275 mt 2932  194 L
- 431 2275 mt 2932 2275 L
- 431 2275 mt  431  194 L
- 431 2275 mt  431 2249 L
- 431  194 mt  431  219 L
+ 431 1411 mt 2932 1411 L
+ 431  130 mt 2932  130 L
+ 431 1411 mt  431  130 L
+2932 1411 mt 2932  130 L
+ 431 1411 mt 2932 1411 L
+ 431 1411 mt  431  130 L
+ 431 1411 mt  431 1385 L
+ 431  130 mt  431  155 L
 %%IncludeResource: font Helvetica
 /Helvetica /ISOLatin1Encoding 120 FMSR
 
- 398 2420 mt 
+ 398 1556 mt 
 (0) s
- 931 2275 mt  931 2249 L
- 931  194 mt  931  219 L
- 865 2420 mt 
+ 931 1411 mt  931 1385 L
+ 931  130 mt  931  155 L
+ 865 1556 mt 
 (50) s
-1431 2275 mt 1431 2249 L
-1431  194 mt 1431  219 L
-1331 2420 mt 
+1431 1411 mt 1431 1385 L
+1431  130 mt 1431  155 L
+1331 1556 mt 
 (100) s
-1931 2275 mt 1931 2249 L
-1931  194 mt 1931  219 L
-1831 2420 mt 
+1931 1411 mt 1931 1385 L
+1931  130 mt 1931  155 L
+1831 1556 mt 
 (150) s
-2431 2275 mt 2431 2249 L
-2431  194 mt 2431  219 L
-2331 2420 mt 
+2431 1411 mt 2431 1385 L
+2431  130 mt 2431  155 L
+2331 1556 mt 
 (200) s
-2932 2275 mt 2932 2249 L
-2932  194 mt 2932  219 L
-2832 2420 mt 
+2932 1411 mt 2932 1385 L
+2932  130 mt 2932  155 L
+2832 1556 mt 
 (250) s
- 431 2275 mt  456 2275 L
-2932 2275 mt 2906 2275 L
- 263 2319 mt 
-(86) s
- 431 1977 mt  456 1977 L
-2932 1977 mt 2906 1977 L
- 263 2021 mt 
-(88) s
- 431 1680 mt  456 1680 L
-2932 1680 mt 2906 1680 L
- 263 1724 mt 
+ 431 1411 mt  456 1411 L
+2932 1411 mt 2906 1411 L
+ 263 1455 mt 
+(85) s
+ 431  984 mt  456  984 L
+2932  984 mt 2906  984 L
+ 263 1028 mt 
 (90) s
- 431 1383 mt  456 1383 L
-2932 1383 mt 2906 1383 L
- 263 1427 mt 
-(92) s
- 431 1085 mt  456 1085 L
-2932 1085 mt 2906 1085 L
- 263 1129 mt 
-(94) s
- 431  788 mt  456  788 L
-2932  788 mt 2906  788 L
- 263  832 mt 
-(96) s
- 431  491 mt  456  491 L
-2932  491 mt 2906  491 L
- 263  535 mt 
-(98) s
- 431  194 mt  456  194 L
-2932  194 mt 2906  194 L
- 196  238 mt 
+ 431  557 mt  456  557 L
+2932  557 mt 2906  557 L
+ 263  601 mt 
+(95) s
+ 431  130 mt  456  130 L
+2932  130 mt 2906  130 L
+ 196  174 mt 
 (100) s
- 431 2275 mt 2932 2275 L
- 431  194 mt 2932  194 L
- 431 2275 mt  431  194 L
-2932 2275 mt 2932  194 L
-gs 431 194 2502 2082 rc
-/c8 { 0.000000 0.000000 1.000000 sr} bdef
-c8
-25 -13 25 -4 24 0 25 -9 25 -5 25 -4 25 0 24 -5 
-25 -9 25 0 25 -9 25 0 24 -9 25 0 25 -4 25 -5 
-25 -9 24 -9 25 0 25 -8 25 -9 25 -5 25 -4 24 0 
-25 -9 25 0 25 0 25 -5 24 0 25 -4 25 0 25 0 
-25 0 24 0 25 -9 25 0 25 0 25 0 24 0 25 -5 
-25 -4 25 -5 25 0 25 -4 24 0 25 -5 25 0 25 -9 
-25 -4 24 -5 25 -8 25 0 25 -5 25 0 24 -9 25 -4 
-25 -9 25 -14 25 -9 25 0 24 -9 25 0 25 -4 25 -9 
-25 -18 24 0 25 -9 25 -13 25 0 25 -18 24 -27 25 -14 
-25 -18 25 -13 25 0 24 -13 25 -18 25 -18 25 -9 25 -32 
-25 -8 24 -36 25 -5 25 -13 25 -14 25 -9 24 -17 25 -5 
-25 -13 25 -59 25 -22 24 -49 25 -54 25 -94 25 -98 25 -157 
-24 -103 25 -291 25 -296 463 2025 100 MP stroke
+ 431 1411 mt 2932 1411 L
+ 431  130 mt 2932  130 L
+ 431 1411 mt  431  130 L
+2932 1411 mt 2932  130 L
+gs 431 130 2502 1282 rc
+25 -7 25 -3 24 0 25 -5 25 -3 25 -2 25 0 24 -3 
+25 -5 25 0 25 -5 25 0 24 -5 25 0 25 -3 25 -2 
+25 -5 24 -6 25 0 25 -5 25 -5 25 -2 25 -3 24 0 
+25 -5 25 0 25 0 25 -3 24 0 25 -2 25 0 25 0 
+25 0 24 0 25 -5 25 0 25 0 25 0 24 0 25 -3 
+25 -3 25 -2 25 0 25 -3 24 0 25 -2 25 0 25 -5 
+25 -3 24 -3 25 -5 25 0 25 -2 25 0 24 -5 25 -3 
+25 -5 25 -8 25 -5 25 0 24 -5 25 0 25 -3 25 -5 
+25 -10 24 0 25 -5 25 -8 25 0 25 -10 24 -16 25 -7 
+25 -11 25 -7 25 0 24 -8 25 -10 25 -11 25 -5 25 -18 
+25 -5 24 -21 25 -2 25 -8 25 -8 25 -5 24 -10 25 -3 
+25 -7 25 -34 25 -13 24 -28 25 -31 25 -54 25 -56 25 -90 
+24 -60 25 -167 25 -170 463 1182 100 MP stroke
 gr
 
-c8
-0 sg
- 630 2563 mt 
+gs 390 57 2603 1199 rc
+24 W
+463 1182 PD
+24 W
+488 1012 PD
+24 W
+513 845 PD
+24 W
+537 785 PD
+24 W
+562 695 PD
+24 W
+587 639 PD
+24 W
+612 585 PD
+24 W
+637 554 PD
+24 W
+661 526 PD
+24 W
+686 513 PD
+24 W
+711 479 PD
+24 W
+736 472 PD
+24 W
+761 469 PD
+24 W
+785 459 PD
+24 W
+810 454 PD
+24 W
+835 446 PD
+24 W
+860 438 PD
+24 W
+885 436 PD
+24 W
+909 415 PD
+24 W
+934 410 PD
+24 W
+959 392 PD
+24 W
+984 387 PD
+24 W
+1009 376 PD
+24 W
+1034 366 PD
+24 W
+1058 358 PD
+24 W
+1083 358 PD
+24 W
+1108 351 PD
+24 W
+1133 340 PD
+24 W
+1158 333 PD
+24 W
+1182 317 PD
+24 W
+1207 307 PD
+24 W
+1232 307 PD
+24 W
+1257 299 PD
+24 W
+1282 294 PD
+24 W
+1306 294 PD
+24 W
+1331 284 PD
+24 W
+1356 279 PD
+24 W
+1381 276 PD
+24 W
+1406 276 PD
+24 W
+1430 271 PD
+24 W
+1455 271 PD
+24 W
+1480 266 PD
+24 W
+1505 258 PD
+24 W
+1530 253 PD
+24 W
+1555 250 PD
+24 W
+1579 245 PD
+24 W
+1604 245 PD
+24 W
+1629 243 PD
+24 W
+1654 243 PD
+24 W
+1679 238 PD
+24 W
+1703 235 PD
+24 W
+1728 232 PD
+24 W
+1753 227 PD
+24 W
+1778 227 PD
+24 W
+1803 225 PD
+24 W
+1827 225 PD
+24 W
+1852 222 PD
+24 W
+1877 222 PD
+24 W
+1902 220 PD
+24 W
+1927 217 PD
+24 W
+1952 214 PD
+24 W
+1976 214 PD
+24 W
+2001 214 PD
+24 W
+2026 214 PD
+24 W
+2051 214 PD
+24 W
+2076 209 PD
+24 W
+2100 209 PD
+24 W
+2125 209 PD
+24 W
+2150 209 PD
+24 W
+2175 209 PD
+24 W
+2200 207 PD
+24 W
+2224 207 PD
+24 W
+2249 204 PD
+24 W
+2274 204 PD
+24 W
+2299 204 PD
+24 W
+2324 199 PD
+24 W
+2348 199 PD
+24 W
+2373 196 PD
+24 W
+2398 194 PD
+24 W
+2423 189 PD
+24 W
+2448 184 PD
+24 W
+2473 184 PD
+24 W
+2497 178 PD
+24 W
+2522 173 PD
+24 W
+2547 171 PD
+24 W
+2572 168 PD
+24 W
+2597 168 PD
+24 W
+2621 163 PD
+24 W
+2646 163 PD
+24 W
+2671 158 PD
+24 W
+2696 158 PD
+24 W
+2721 153 PD
+24 W
+2745 150 PD
+24 W
+2770 150 PD
+24 W
+2795 148 PD
+24 W
+2820 145 PD
+24 W
+2845 140 PD
+24 W
+2869 140 PD
+24 W
+2894 137 PD
+24 W
+2919 130 PD
+gr
+
+gs 431 130 2502 1282 rc
+gr
+
+ 630 1699 mt 
 (Number of users in reduced training set) s
- 114 1515 mt  -90 rotate
+ 114 1051 mt  -90 rotate
 (Probability) s
 90 rotate
 
