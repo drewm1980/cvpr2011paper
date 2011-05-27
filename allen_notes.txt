@@ -127,3 +127,4 @@ Figure 5 also needs to be redrawn to use the same Matlab styles as the rest.
 
 The legend is out of bound.
 
+TODO: Move footnote from table to perf. discussion.
