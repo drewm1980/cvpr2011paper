@@ -1,0 +1,187 @@
+Mohamed	Abdel-Mottaleb	mottaleb@miami.edu	University of Miami (US)	No						
+David	Ackerman	ackerman@sarnoff.com	Sarnoff Corporation (US)	No						
+Andy	Adler	adler@sce.carleton.ca	Carleton University (CA)	No						
+Lale	Akarun	akarun@boun.edu.tr	Bogazici University (TR)	No						
+George	Bebis	bebis@cse.unr.edu	University of Nevada ?C Reno (US)	No						
+Olga	Bellon	olga@ufpr.br	Universidade Federal do Parana (BR)	No						
+Ross 	Beveridge	ross@cs.colostate.edu	Colorado State University (US)	No						
+Ross	Beveridge	ross@cs.colostate.edu?	Colorado State University (US)	No						
+Vijayakumar	Bhagavatula	kumar@ece.cmu.edu	Carnegie Mellon University (US)	No						
+Bir	Bhanu	bhanu@cris.ucr.edu	UC - Riverside (US)	No						
+Josef	Bigun	josef.bigun@ide.hh.se	Halmsted University Halmsted (SE)	No						
+Wageeh	Boles	w.boles@qut.edu.au	Queensland University of Technology (AU)	No						
+Alan	Bovik	bovik@ece.utexas.edu	The University of Texas at Austin	No						
+Julien	Bringer	julien@sagem.com	Sagem S??curit?? (FR)	No						
+Mark	Burge	mark.burge@noblis.org	Noblis (US)	No						
+Josef	Campbell	jpc@ll.mit.edu	MIT LL	No						
+Patrizio	Campisi	campisi@uniroma3.it	Universita degli Studi Roma TRE (IT)	No						
+Honza	Cernocky	cernocky@fit.vutbr.cz	Brno University of Technology Brno (CZ)	No						
+Christophe	Champod	christophe.champod@unil.ch	Universite de Lausanne (CH)	No						
+Michal	Choras	michal.choras@itti.com.pl	University of Technology and Life Sciences (PL)	No						
+John	Daugman	jgd1000@cl.cam.ac.uk	Cambridge University (UK)	No						
+Farzin	Deravi	f.deravi@kent.ac.uk	University of Kent (UK)	No						
+Bernadette	Dorizzi	bernadette.dorizzi@it-sudparis.eu	Telecom and Management SudParis (FR)	No						
+Eliza	Du	yidu@iupui.edu	Indiana University-Purdue University Indianapolis US)	No						
+Ramani	Duraiswami	ramani@umiacs.umd.edu	University of Maryland (US)	No						
+Sonia 	Garcia-Salicet	salicetti@it-sudparis.eu	Telecom and Management SudParis (FR)	No						
+Shaogang	Gong	sgg@dcs.qmul.ac.uk	University of London (UK)	No						
+Venu	Govindaraju	venu@cubs.buffalo.edu	University of Buffalo (US)	No						
+Patrick	Grother	pgrother@nist.gov	National Institute of Standards and Technology (US)	No						
+Anil	Jain	jain@cse.msu.edu	Michigan State University (US)	No						
+Xudong	Jiang	exdjiang@ntu.edu.sg	Nanyang Technological University (SG)	No						
+Ioannis	Kakadiaris	ioannisk@uh.edu	University of Houston (US)	No						
+Tae-Kyun	Kim	tkk22@cam.ac.uk	Cambridge University (UK)	No						
+Josef	Kittler	j.kittler@surrey.ac.uk	University of Surrey	No						
+David	Kriegman	kriegman@cs.ucsd.edu	University of California Santa Barbara (US)	No						
+Krzysztof	Kryszczuk	kkr@zurich.ibm.com	IBM Zurich Research Laboratory (CH)	No						
+Eric	Kukula	kukula@purdue.edu	Purdue University (US)	No						
+Rick	Lazarick	rlazarick@csc.com	Computer Sciences Corporation, USA	No						
+Seong-Whan	Lee	swlee@image.korea.ac.kr	Korea University (KR)	No						
+Stan	Li	szli@cbsr.ia.ac.cn	Chinese Academy of Sciences (CN)	No						
+Chengjun	Liu	chengjun.liu@njit.edu	New Jersey Institute of Technology (US)	No						
+Davide 	Maltoni	maltoni@csr.unibo.it	University of Bologna, Italy	No						
+Sebastien	Marcel	marcel@idiap.ch	Idiap Research Institute (CH)	No						
+Brian	Martin	bmartin@l1id.com	L1 ID (US)	No						
+Aleix	Martinez	aleix@ece.osu.edu	The Ohio State University (US)	No						
+John	MASON	j.s.d.mason@swansea.ac.uk	Swansea University (UK)	No						
+James	Matey	matey@usna.edu	US Naval Academy (US)	No						
+Karthik	Nandakumar	knandakumar@i2r.a-star.edu.sg	Institute for Infocomm Research (SG)	No						
+Elaine	Newton	enewton@nist.gov	National Institute of Standards and Technology (US)	No						
+Mark	Nixon	msn@ecs.soton.ac.uk	University of Southampton (UK)	No						
+Javier 	Ortega-Garcia	javier.ortega@uam.es	Autonomous University of Madrid (ES)	No						
+Unsang	Park	parkunsa@cse.msu.edu	Michigan State University	No						
+Dijana	Petrovska	dijana.petrovska@it-sudparis.eu	Télécom and Management SudParis	No						
+Jonathon	Phillips	jonathon@nist.gov	National Institute of Standards and Technology (US)	No						
+Matti	Pietik?inen	matti.pietikainen@ee.oulu.fi	University of Oulu (FN)	No						
+Norman	Poh	normanpoh@ieee.org	University of Surrey (UK)	No						
+Salil	Prabhakar	salilp@digitalpersona.com	Digital Persona (US)	No						
+Hugo	Proença	hugomcp@di.ubi.pt	University of Beira Interior, Portugal	No						
+Nalini	Ratha	ratha@us.ibm.com	IBM Research (US)	No						
+Karl	Ricanek	ricanekk@uncw.edu	UNC Wilmington (US)	No						
+Fabio	Roli	roli@diee.unica.it	University of Cagliari (IT)	No						
+Arun	Ross	arun.ross@mail.wvu.edu	West Virginia University (US)	No						
+Trina	Russ	tdruss@sandia.gov	Digital Signal Corporation (US)	No						
+Sudeep	Sarkar	sarkar@cse.usf.edu	University of South Florida (US)	No						
+Marios	Savvides	marios.savvides@ri.cmu.edu	Carnegie Mellon University (US)	No						
+Natalia	Schmid	natalias@csee.wvu.edu	West Virginia University (US)	No						
+Kuntal	Sengupta	kuntal.sengupta@ieee.org	MERL Reserarch (US)	No						
+Kuntal	Sengupta	sengupta@ieee.org	MERL (US)	No						
+Stehpine	Shuckers	sschucke@clarkson.edu	Clarkson University (US)	No						
+Terence	Sim	tsim@comp.nus.edu.sg	National University of Singapore	No						
+Richa	Singh	rsingh@iiitd.ac.in	IIIT Delhi (IN)	No						
+Sridha	Sridharan	s.sridharan@qut.edu.au	Queensland University of Technology Brisbane (AU)	No						
+Alex	Stoianov	alex.stoianov@ipc.on.ca	Office of the Information and Privacy Commissioner/Ontario (CA)	No						
+Zhenan	Sun	znsun@nlpr.ia.ac.cn	NLPR (CN)	No						
+Tieniu	Tan	tnt@nlpr.ia.ac.cn	NLPR (CN)	No						
+Chun Wei	TAN	cwtan501@gmail.com	POLYU	No						
+Andrew	Teoh	bjteoh@ieee.org	Yonsei University (KR)	No						
+Massimo	Tistarelli	tista@uniss.it	University of Sassari (IT)	No						
+Kar-Ann	Toh	katoh@ieee.org	Mohamed	Abdel-Mottaleb	mottaleb@miami.edu	University of Miami (US)	No						
+David	Ackerman	ackerman@sarnoff.com	Sarnoff Corporation (US)	No						
+Andy	Adler	adler@sce.carleton.ca	Carleton University (CA)	No						
+Lale	Akarun	akarun@boun.edu.tr	Bogazici University (TR)	No						
+George	Bebis	bebis@cse.unr.edu	University of Nevada ?C Reno (US)	No						
+Olga	Bellon	olga@ufpr.br	Universidade Federal do Parana (BR)	No						
+Ross 	Beveridge	ross@cs.colostate.edu	Colorado State University (US)	No						
+Ross	Beveridge	ross@cs.colostate.edu?	Colorado State University (US)	No						
+Vijayakumar	Bhagavatula	kumar@ece.cmu.edu	Carnegie Mellon University (US)	No						
+Bir	Bhanu	bhanu@cris.ucr.edu	UC - Riverside (US)	No						
+Josef	Bigun	josef.bigun@ide.hh.se	Halmsted University Halmsted (SE)	No						
+Wageeh	Boles	w.boles@qut.edu.au	Queensland University of Technology (AU)	No						
+Alan	Bovik	bovik@ece.utexas.edu	The University of Texas at Austin	No						
+Julien	Bringer	julien@sagem.com	Sagem S??curit?? (FR)	No						
+Mark	Burge	mark.burge@noblis.org	Noblis (US)	No						
+Josef	Campbell	jpc@ll.mit.edu	MIT LL	No						
+Patrizio	Campisi	campisi@uniroma3.it	Universita degli Studi Roma TRE (IT)	No						
+Honza	Cernocky	cernocky@fit.vutbr.cz	Brno University of Technology Brno (CZ)	No						
+Christophe	Champod	christophe.champod@unil.ch	Universite de Lausanne (CH)	No						
+Michal	Choras	michal.choras@itti.com.pl	University of Technology and Life Sciences (PL)	No						
+John	Daugman	jgd1000@cl.cam.ac.uk	Cambridge University (UK)	No						
+Farzin	Deravi	f.deravi@kent.ac.uk	University of Kent (UK)	No						
+Bernadette	Dorizzi	bernadette.dorizzi@it-sudparis.eu	Telecom and Management SudParis (FR)	No						
+Eliza	Du	yidu@iupui.edu	Indiana University-Purdue University Indianapolis US)	No						
+Ramani	Duraiswami	ramani@umiacs.umd.edu	University of Maryland (US)	No						
+Sonia 	Garcia-Salicet	salicetti@it-sudparis.eu	Telecom and Management SudParis (FR)	No						
+Shaogang	Gong	sgg@dcs.qmul.ac.uk	University of London (UK)	No						
+Venu	Govindaraju	venu@cubs.buffalo.edu	University of Buffalo (US)	No						
+Patrick	Grother	pgrother@nist.gov	National Institute of Standards and Technology (US)	No						
+Anil	Jain	jain@cse.msu.edu	Michigan State University (US)	No						
+Xudong	Jiang	exdjiang@ntu.edu.sg	Nanyang Technological University (SG)	No						
+Ioannis	Kakadiaris	ioannisk@uh.edu	University of Houston (US)	No						
+Tae-Kyun	Kim	tkk22@cam.ac.uk	Cambridge University (UK)	No						
+Josef	Kittler	j.kittler@surrey.ac.uk	University of Surrey	No						
+David	Kriegman	kriegman@cs.ucsd.edu	University of California Santa Barbara (US)	No						
+Krzysztof	Kryszczuk	kkr@zurich.ibm.com	IBM Zurich Research Laboratory (CH)	No						
+Eric	Kukula	kukula@purdue.edu	Purdue University (US)	No						
+Rick	Lazarick	rlazarick@csc.com	Computer Sciences Corporation, USA	No						
+Seong-Whan	Lee	swlee@image.korea.ac.kr	Korea University (KR)	No						
+Stan	Li	szli@cbsr.ia.ac.cn	Chinese Academy of Sciences (CN)	No						
+Chengjun	Liu	chengjun.liu@njit.edu	New Jersey Institute of Technology (US)	No						
+Davide 	Maltoni	maltoni@csr.unibo.it	University of Bologna, Italy	No						
+Sebastien	Marcel	marcel@idiap.ch	Idiap Research Institute (CH)	No						
+Brian	Martin	bmartin@l1id.com	L1 ID (US)	No						
+Aleix	Martinez	aleix@ece.osu.edu	The Ohio State University (US)	No						
+John	MASON	j.s.d.mason@swansea.ac.uk	Swansea University (UK)	No						
+James	Matey	matey@usna.edu	US Naval Academy (US)	No						
+Karthik	Nandakumar	knandakumar@i2r.a-star.edu.sg	Institute for Infocomm Research (SG)	No						
+Elaine	Newton	enewton@nist.gov	National Institute of Standards and Technology (US)	No						
+Mark	Nixon	msn@ecs.soton.ac.uk	University of Southampton (UK)	No						
+Javier 	Ortega-Garcia	javier.ortega@uam.es	Autonomous University of Madrid (ES)	No						
+Unsang	Park	parkunsa@cse.msu.edu	Michigan State University	No						
+Dijana	Petrovska	dijana.petrovska@it-sudparis.eu	Télécom and Management SudParis	No						
+Jonathon	Phillips	jonathon@nist.gov	National Institute of Standards and Technology (US)	No						
+Matti	Pietik?inen	matti.pietikainen@ee.oulu.fi	University of Oulu (FN)	No						
+Norman	Poh	normanpoh@ieee.org	University of Surrey (UK)	No						
+Salil	Prabhakar	salilp@digitalpersona.com	Digital Persona (US)	No						
+Hugo	Proença	hugomcp@di.ubi.pt	University of Beira Interior, Portugal	No						
+Nalini	Ratha	ratha@us.ibm.com	IBM Research (US)	No						
+Karl	Ricanek	ricanekk@uncw.edu	UNC Wilmington (US)	No						
+Fabio	Roli	roli@diee.unica.it	University of Cagliari (IT)	No						
+Arun	Ross	arun.ross@mail.wvu.edu	West Virginia University (US)	No						
+Trina	Russ	tdruss@sandia.gov	Digital Signal Corporation (US)	No						
+Sudeep	Sarkar	sarkar@cse.usf.edu	University of South Florida (US)	No						
+Marios	Savvides	marios.savvides@ri.cmu.edu	Carnegie Mellon University (US)	No						
+Natalia	Schmid	natalias@csee.wvu.edu	West Virginia University (US)	No						
+Kuntal	Sengupta	kuntal.sengupta@ieee.org	MERL Reserarch (US)	No						
+Kuntal	Sengupta	sengupta@ieee.org	MERL (US)	No						
+Stehpine	Shuckers	sschucke@clarkson.edu	Clarkson University (US)	No						
+Terence	Sim	tsim@comp.nus.edu.sg	National University of Singapore	No						
+Richa	Singh	rsingh@iiitd.ac.in	IIIT Delhi (IN)	No						
+Sridha	Sridharan	s.sridharan@qut.edu.au	Queensland University of Technology Brisbane (AU)	No						
+Alex	Stoianov	alex.stoianov@ipc.on.ca	Office of the Information and Privacy Commissioner/Ontario (CA)	No						
+Zhenan	Sun	znsun@nlpr.ia.ac.cn	NLPR (CN)	No						
+Tieniu	Tan	tnt@nlpr.ia.ac.cn	NLPR (CN)	No						
+Chun Wei	TAN	cwtan501@gmail.com	POLYU	No						
+Andrew	Teoh	bjteoh@ieee.org	Yonsei University (KR)	No						
+Massimo	Tistarelli	tista@uniss.it	University of Sassari (IT)	No						
+Kar-Ann	Toh	katoh@ieee.org	Yonsei University (KR)	No						
+Sergey	Tulyakov	tulyakov@acsu.buffalo.edu	SUNU Buffalo	No						
+Mayank	Vatsa	mayank@iiitd.ac.in	IIIT Delhi (IN)	No						
+Raymond	Veldhuis	r.n.j.veldhuis@utwente.nl	University of Twente (NL)	No						
+Yunhong	Wang	yhwang@buaa.edu.cn	Baihang University (CN)	No						
+James	Wayman	jlwayman@aol.com	San Jose State University (US)	No						
+Fred	Wheeler	wheeler@research.ge.com	GE Global Research (US)	No						
+Damon	Woodard	woodard@clemson.edu	Clemson University (US)	No						
+Haiyun	Xu	h.xu@ewi.utwente.nl	University of Twente (NL)	No						
+Jian	Yang	yang@njit.edu	Nanjing University of Science and Technology (CN)	No						
+Jian	Yang	csjyang@mail.njust.edu.cn	Nanjing University of Science and Technology	No						
+Pong	Yuen	pcyuen@comp.hkbu.edu.hk	Hong Kong Baptist University (HK)	No						
+David	Zhang	csdzhang@comp.polyu.edu.hk	The Hong Kong Polytechnic University (HK)	No						
+Yong	Zhang	yzhang@cis.ysu.edu	Youngstown State University (US)	No						
+Jie	Zhou	zhoujie@info.au.tsinghua.edu.cn	Tsinghua University (CN)	No						
+Jie	Zhou	jzhou@tsinghua.edu.cn	Tsinghua University	NoYonsei University (KR)	No						
+Sergey	Tulyakov	tulyakov@acsu.buffalo.edu	SUNU Buffalo	No						
+Mayank	Vatsa	mayank@iiitd.ac.in	IIIT Delhi (IN)	No						
+Raymond	Veldhuis	r.n.j.veldhuis@utwente.nl	University of Twente (NL)	No						
+Yunhong	Wang	yhwang@buaa.edu.cn	Baihang University (CN)	No						
+James	Wayman	jlwayman@aol.com	San Jose State University (US)	No						
+Fred	Wheeler	wheeler@research.ge.com	GE Global Research (US)	No						
+Damon	Woodard	woodard@clemson.edu	Clemson University (US)	No						
+Haiyun	Xu	h.xu@ewi.utwente.nl	University of Twente (NL)	No						
+Jian	Yang	yang@njit.edu	Nanjing University of Science and Technology (CN)	No						
+Jian	Yang	csjyang@mail.njust.edu.cn	Nanjing University of Science and Technology	No						
+Pong	Yuen	pcyuen@comp.hkbu.edu.hk	Hong Kong Baptist University (HK)	No						
+David	Zhang	csdzhang@comp.polyu.edu.hk	The Hong Kong Polytechnic University (HK)	No						
+Yong	Zhang	yzhang@cis.ysu.edu	Youngstown State University (US)	No						
+Jie	Zhou	zhoujie@info.au.tsinghua.edu.cn	Tsinghua University (CN)	No						
+Jie	Zhou	jzhou@tsinghua.edu.cn	Tsinghua University	No

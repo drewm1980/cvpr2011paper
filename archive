@@ -1,7 +1,7 @@
 #!/bin/bash
 FILENAME=../dist/ijcb_paper_`date +%Y_%m_%d_%H_%M`.zip
-#git archive --format zip --output $FILENAME master
-#scp $FILENAME percept@cpanel.cs.illinois.edu:public_html/Hidden/$FILE
+git archive --format zip --output $FILENAME master
+scp $FILENAME percept@cpanel.cs.illinois.edu:public_html/Hidden/$FILE
 
 echo "Hello Allen and Victor-"
 echo ""

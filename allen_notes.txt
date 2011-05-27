@@ -1,0 +1,129 @@
+Comments about IJCB from Chapter 4 onward: 
+
+1. Remove the sentence between 311-314. We are only concerned about single GPU performance in this paper. The sentence is not our concern in this paper. 
+DONE
+
+2. Line 374: sse should be SSE. 
+DONE
+
+3. Remove footnote 3: Not our concern to predict whether the vector units will double. It has no consequences to our experiments. 
+DONE
+
+4. Figure 2: remove smily face. remove pseudo-inverse of A_i. 
+DONE
+
+To save space, we could rotate A as A transpose and draw a fat matrix in subfigure 1. Move 16 KB block and A_i in one row above A of 3.1 MB. 
+DONE
+
+Why written KiB and MiB? They should be simply KB and MB, consistent with the rest of the paper. 
+
+KiB and MiB are the technically more correct way to specify the values that are powers of two.  The paper should be consistent now.
+DONE
+
+5. Overall, I think "on-chip cache" is redundant. We should define cache as on-chip memory the first time referred in the paper, and subsequently simply use "cache". 
+DONE
+
+6. The term "warp" was not well defined. The first use of it is in footnote 5 without definition. The it was used in line 422 to denote "warp-level concurrency".  
+Its definition needs to be given in the main text first. 
+
+While writing that section I spent hours trying to come up with an explanation of the CUDA pragramming model
+that was concise enough for the paper yet still accurate, but I don't think it is possible; this is noted in the paper.
+The footnotes are for readers who are already familiar with CUDA terminology.  I changed "warp-level" to "thread-level"
+to keep cuda programming model terms out of the body of the paper.  
+DONE
+
+7. remove "obtain <to>" in line 447. 
+DONE
+
+replace line 450 by: sought iteratively by linearization at each $j$th step as follows: 
+DONE
+
+8. Line 469. Change "the computation time …" to "the overall computational complexity is still dominated by the inner loop ALM iterations." 
+Computational complexity is a theoretical CS term that isn't appropriate here; this statement is empirical.  
+I changed the sentence to read a bit better.
+DONE
+
+9. line 529: change "see" to "SSE". Please do a global replacement of the typo. 
+DONE
+
+10. Is the conclusion in Section 4.1, that solving a single alignment problem by the entire CPU and MKL, justified anywhere in the experiment? 
+Currently this is only justified by being faster than our earlier paper.  I want to run a benchmark for this.
+TODO
+
+Figure 5 shows the comparison between CPU and GPU. But we need one extra comparison (possibly superimposed on the same setting in Figure 5) between problem-parallelism and pixel-level parallelism. 
+See previous.
+TODO
+
+11. Line 583. Change "intel" to "Intel". 
+DONE
+
+12. Line 585. Which matrix is to be inverted with n\times n dimension? 
+DONE
+
+Did we already mention that matrix inverse does not dominate the alignment ALM previously? Should as well remove that. 
+I deleted the first instance of this, which was just the last remaining shred of what used to be a discussion of comutational complexity.
+DONE
+
+Line 587 to the end of Section 4.2 may be too detailed. Could as well remove that. 
+Float vs. double precision is a very significant aspect of the implementation since they affect both accuracy and runtime,
+so I can't delete it entirely.  I did, however, remove the speculation on how blas libraries might/should be implemented internally.
+DONE
+
+Also, paragraph 617-619 can go. Trivial to assume experiment will be in Section 6. 
+Further, not precise to mention synthetic image data. We did not do simulation on alignment. 
+DONE
+
+13. For consistency, please replace $\ell_1$-minimization or $\ell_1$
+minimization as $\ell_1$-min globally except the first time in Introduction. 
+DONE
+
+14. Replace the sentence from line 624 "to represent the aligned testing image …" by "to recover a sparse representation for classification:"  
+Need to give away explicitly each A_i is independently rectified by \tau_i^{-1}, as eqn (2) does not illustrate the whole idea. 
+DONE
+
+15. Last sentence in Line 629 is redundant. Literature review has been done in
+Introduction. No need to cite previous works again in the technical part. 
+DONE
+
+16. typo ell_1 in Line 631. Also last sentence of line 635 is not necessary. Trivial to assume Section 6 contains experiments to justify our discussion. 
+DONE
+
+We can merge the above two paragraphs as one paragraph. 
+DONE
+
+17. Line 683. Algorithm 3 does not require pseudoinverse of A. Am I missing something here? 
+TODO
+
+18. Line 690. add "on <the> CPU and GPU platforms".  
+DONE
+
+There are missing references in the latex. Please fix those. 
+DONE
+
+For all CPU/GPU comparison, please modify the plots to use the same marker style, line style, and color style to be consistent. 
+DONE for Victor's plots
+TODO for Drew's plot
+
+Could we use different markers other than + and x, because the two are rotational symmetric. Say, + and circle. 
+DONE
+
+19. Please do not use past tense in the paper describe what we do. Use present tense. Example, change "benchmarked" to "benchmark" 
+DONE, at least for the experiments section.
+
+20. The table in Line 766 doesn't have caption. Either we describe those numbers as part of the paragraph, or we use a formal table with everything. 
+DONE, converted to table.  I actually had both versions in the .tex source; wasn't sure which was better.
+
+21. Line 772. Lack transition between the two paragraphs. What is the connection between the discussion about CMU and the above. 
+
+22. Line 793. It reads cumbersome: "it takes fort our proposed CPU and GPU algorithms…" Change to: Figure 5 shows the average run time of the CPU and GPU implementations to align a query image against all the subject classes separately. We vary the number of subject classes to show how the algorithms scale. 
+
+Figure 5 also needs to be redrawn to use the same Matlab styles as the rest. 
+
+23. I suggest we remove Figure 6 and the corresponding description. It is not the purpose of this paper to discuss thresholding the alignment error. It is a problem in the original face recognition problem, but has nothing to do with parallelization. 
+
+24. Line 860: typo: "Since would expect" 
+
+25. Please redraw Figure 7. Also need to enforce the same convention for the x,y-axis units. For example, y-axis label in here should be "Accuracy [%]" 
+
+The legend is out of bound.
+
