@@ -1,3 +1,5 @@
 /results export-ignore
+/lit_review export-ignore
+diatest export-ignore
 .gitattributes export-ignore
 .gitignore export-ignore
