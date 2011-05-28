@@ -716,7 +716,7 @@ face recognition pipeline, as seen in Algorithm \ref{alg:alm_rec}.
 
 First, in order to test our theory that the GPU performs best solving many
 $\ell_1$ problems-per concurrently, we benchmark three implementations of the
-alignment $\ell_1$-min with $A$ of size $5120 \times 32$, and a fixed
+alignment $\ell_1$-min solver with $A$ of size $5120 \times 32$, and a fixed
 $50$ inner loop iterations for each of $50$ outer loop iterations. The runtime
 on a GTX480 GPU is averaged over a large number of trials, which are run
 sequentially or concurrently depending on the implementation.
@@ -724,6 +724,8 @@ The results are shown in Table \ref{tbl:ubench}.
 Our proposed parallelization of the $\ell_1$-min used in the alignment
 stage is {\em eight times} faster than an implementation solving a single
 problem at a time using the stock BLAS libraries.
+\footnote{Note that the streams implementation is limited significantly by a 
+cap on the number of concurrent streams in the current version of CUDA}
 %The results are shown below:
 \begin{table}[h!]
 \caption{Benchmark of implementations of alignment $\ell_1$-min.}
@@ -733,36 +735,35 @@ Sequential solver using CUBLAS & 302\,ms \\
 \hline
 One problem per SMP using CUDA streams & 70\,ms  \\
 \hline
-One problem per SMP using single kernel & {\bf 36\,ms} \\
+Four problems per SMP using single kernel & {\bf 36\,ms} \\
 \hline
 \end{tabular}
 \label{tbl:ubench}
 \end{table}
-%\footnote{The streams implementation is limited significantly by a 
-%cap on the number of concurrent streams in the current version of CUDA}
  
-For experiments on face data we use subsets of the CMU Multi-PIE Face Database.
-For gallery images we use frontal images from session 1, which contains 20
-images per user taken under different illuminations. For test images we use
-images from session 2.  The training images are prepared as follows:
-The iterative alignment stage seeks a similarity
-transformation between the coordinate frame of the "camera" resolution test
-image and the coordinate frame of the "canonical" resolution images which the
-images are compared.  We use a $64 \times 64$ pixel window in the canonical
-frame.  The training images are aligned by manually clicking the two outer eye
-corners in the camera frame, and then warping the images via a similarity
-transformation such that the eye corners lie at a pair of canonical eye
-locations in the canonical frame.  The canonical eye corners are chosen such
-that for well aligned images, the canonical window contains exclusively pixels
-from the subject's face.  We assume the face detector is accurate, so for the test
-images we use clicked eye corners for test image alignment initialization.\footnote{Previous
-publications have shown that iterative alignment improves recognition accuracy substantially
-even with clicked eye corners}
+Using an implementation motivated by the previous result, we now benchmark our
+iterative alignment implementation on real face data.  For experiments on face
+data we use subsets of the CMU Multi-PIE Face Database.  For gallery images we
+use frontal images from session 1, which contains 20 images per user taken
+under different illuminations. For test images we use images from session 2.
+The training images are prepared as follows: The iterative alignment stage
+seeks a similarity transformation between the coordinate frame of the "camera"
+resolution test image and the coordinate frame of the "canonical" resolution
+images which the images are compared.  We use a $64 \times 64$ pixel window in
+the canonical frame.  The training images are aligned by manually clicking the
+two outer eye corners in the camera frame, and then warping the images via a
+similarity transformation such that the eye corners lie at a pair of canonical
+eye locations in the canonical frame.  The canonical eye corners are chosen
+such that for well aligned images, the canonical window contains exclusively
+pixels from the subject's face.  We assume the face detector is accurate, so
+for the test images we use clicked eye corners for test image alignment
+initialization.\footnote{Previous publications have shown that iterative
+alignment improves recognition accuracy substantially even with clicked eye
+corners}
 
-In Figure \ref{fig:alignment_stage_runtime} we report the time it takes fort
-our proposed CPU and GPU algorithms to align a single test image against each
-of the users in the gallery.  We vary the size of the gallery to show how
-implementation scales in the number of gallery users.
+Figure \ref{fig:alignment_stage_runtime} shows the average run time of the CPU and GPU implementations to align
+a query image against all the subject classes separately. We vary the number of
+subject classes to show how the algorithms scale. 
 \begin{figure}
 \centering
 \includegraphics[width=3.4in]{figures/alignment_runtime_graph}
@@ -794,7 +795,7 @@ number of training users kept for the recognition stage.}
 \label{fig:user_alignment_rank_plot} \end{figure}
 
 Finally, we perform an experiment verifying the recognition accuracy of the
-overall pipeline.  Since would expect higher recognition rates but longer
+overall pipeline.  Since one would expect higher recognition rates but longer
 execution time for higher resolution images, we compare the recognition rate of
 the overall pipeline with the face recognition stage run at 5 different
 canonical image resolutions: $32\times32, 48 \times 48, 64 \times 64, 96 \times

@@ -16,7 +16,6 @@ To save space, we could rotate A as A transpose and draw a fat matrix in subfigu
 DONE
 
 Why written KiB and MiB? They should be simply KB and MB, consistent with the rest of the paper. 
-
 KiB and MiB are the technically more correct way to specify the values that are powers of two.  The paper should be consistent now.
 DONE
 
@@ -45,14 +44,6 @@ DONE
 
 9. line 529: change "see" to "SSE". Please do a global replacement of the typo. 
 DONE
-
-10. Is the conclusion in Section 4.1, that solving a single alignment problem by the entire CPU and MKL, justified anywhere in the experiment? 
-Currently this is only justified by being faster than our earlier paper.  I want to run a benchmark for this.
-TODO
-
-Figure 5 shows the comparison between CPU and GPU. But we need one extra comparison (possibly superimposed on the same setting in Figure 5) between problem-parallelism and pixel-level parallelism. 
-See previous.
-TODO
 
 11. Line 583. Change "intel" to "Intel". 
 DONE
@@ -91,18 +82,11 @@ DONE
 We can merge the above two paragraphs as one paragraph. 
 DONE
 
-17. Line 683. Algorithm 3 does not require pseudoinverse of A. Am I missing something here? 
-TODO
-
 18. Line 690. add "on <the> CPU and GPU platforms".  
 DONE
 
 There are missing references in the latex. Please fix those. 
 DONE
-
-For all CPU/GPU comparison, please modify the plots to use the same marker style, line style, and color style to be consistent. 
-DONE for Victor's plots
-TODO for Drew's plot
 
 Could we use different markers other than + and x, because the two are rotational symmetric. Say, + and circle. 
 DONE
@@ -114,17 +98,41 @@ DONE, at least for the experiments section.
 DONE, converted to table.  I actually had both versions in the .tex source; wasn't sure which was better.
 
 21. Line 772. Lack transition between the two paragraphs. What is the connection between the discussion about CMU and the above. 
+DONE
 
-22. Line 793. It reads cumbersome: "it takes fort our proposed CPU and GPU algorithms…" Change to: Figure 5 shows the average run time of the CPU and GPU implementations to align a query image against all the subject classes separately. We vary the number of subject classes to show how the algorithms scale. 
-
-Figure 5 also needs to be redrawn to use the same Matlab styles as the rest. 
-
-23. I suggest we remove Figure 6 and the corresponding description. It is not the purpose of this paper to discuss thresholding the alignment error. It is a problem in the original face recognition problem, but has nothing to do with parallelization. 
+22. Line 793. It reads cumbersome: "it takes fort our proposed CPU and GPU algorithms…" Change to: 
+Figure 5 shows the average run time of the CPU and GPU implementations to align
+a query image against all the subject classes separately. We vary the number of
+subject classes to show how the algorithms scale. 
+DONE
 
 24. Line 860: typo: "Since would expect" 
-
-25. Please redraw Figure 7. Also need to enforce the same convention for the x,y-axis units. For example, y-axis label in here should be "Accuracy [%]" 
+DONE
 
 The legend is out of bound.
+DONE
+---------------------------------------------
+17. Line 683. Algorithm 3 does not require pseudoinverse of A. Am I missing something here? 
+TODO: Figure out if code is calling the correct solver.
 
-TODO: Move footnote from table to perf. discussion.
+10. Is the conclusion in Section 4.1, that solving a single alignment problem by the entire CPU and MKL, justified anywhere in the experiment? 
+Currently this is only justified by being faster than our earlier paper.  I want to run a benchmark for this.
+TODO
+
+Figure 5 shows the comparison between CPU and GPU. But we need one extra comparison (possibly superimposed on the same setting in Figure 5) between problem-parallelism and pixel-level parallelism. 
+See previous.
+TODO
+
+For all CPU/GPU comparison, please modify the plots to use the same marker style, line style, and color style to be consistent. 
+DONE for Victor's plots
+TODO for Drew's plot
+
+Figure 5 also needs to be redrawn to use the same Matlab styles as the rest. 
+TODO
+
+23. I suggest we remove Figure 6 and the corresponding description. It is not the purpose of this paper to discuss thresholding the alignment error. It is a problem in the original face recognition problem, but has nothing to do with parallelization. 
+TODO: Replace this figure with timing for recognition stage.
+
+25. Please redraw Figure 7. Also need to enforce the same convention for the x,y-axis units. For example, y-axis label in here should be "Accuracy [%]" 
+TODO
+
