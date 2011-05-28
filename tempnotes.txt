@@ -1,9 +1,0 @@
-First paragraph section 4, explain linearization.
-
-Make Algorithm 2 just for a single user.
-Get across idea of multiple users using diagram.
-
-In section 4.2, explain our fastest algorithm first, then contrast with previous algorithms, finish by arguing for our algorithm again.
-
-Figure 4, fix markers.
-Switch to IJCB latex format.
