@@ -1,13 +1,8 @@
 #!/bin/bash
-FILEDIR=../dist/ijcb_paper_`date +%Y_%m_%d_%H_%M`
-FILENAME=$FILEDIR.zip
-echo "Archiving to directory $FILEDIR..."
-git archive --output $FILENAME master
-#mkdir $FILEDIR
-#git archive master | tar -x -v -C $FILEDIR
-#echo "Removing $FILEDIR/results to save space..."
-#rm -rf $FILEDIR/results
-#echo "Compressing "
+FILENAME=ijcb_paper_`date +%Y_%m_%d_%H_%M`.zip
+FILEPATH=../dist/$FILENAME
+echo "Archiving to $FILEPATH..."
+git archive --output $FILEPATH master
 
 echo ""
 echo ""
@@ -24,5 +19,5 @@ echo ""
 echo ""
 echo ""
 echo "Uploading..."
-scp $FILENAME percept@cpanel.cs.illinois.edu:public_html/Hidden/drew/$FILENAME
+scp $FILEPATH percept@cpanel.cs.illinois.edu:public_html/Hidden/drew/$FILENAME
 echo "Done..."
