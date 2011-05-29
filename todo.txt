@@ -1,12 +1,8 @@
 To do list:
 
-*** Benchmark solving alignment problem by entire CPU vs. one per core, update Section 4.1 to include it.
+*** Benchmark solving alignment problem by entire CPU vs. one per core, update Section 4.1 and Figure 5 to include it.
 
-*** Remove Threshold plot with one sentence description of threshold choice.
- 
-*** Add figure showing timings for the recognition stage as function of problem size.
-
-** Modify the plots to use the same marker style, line style, and color style to be consistent. 
+** Make style of Figure 5 consistent with other plots.
 
 ** Interpret 2 percent accuracy difference
 

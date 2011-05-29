@@ -794,34 +794,37 @@ problems in concurrent batches, but the overall trend is linear as expected.
 %number of training users kept for the recognition stage.}
 %\label{fig:user_alignment_rank_plot} \end{figure}
 
+The next experiment compares the speed of the GPU and CPU implementations of
+the recognition stage.  It was determined that keeping 20 gallery users is
+sufficient to ensure that the correct user is kept for the recognition stage
+with 95\% probability.  Since recognition failures are typically caused by a
+poor alignment, we find that keeping more users for the recognition stage does
+not necessarily improve recognition rate.
+%The inner loop tolerance to 1e-5 and outer loop tolerance to 1e-2.  
+In Figure \ref{fig:recognition_stage_runtime} we show recognition stage runtime
+for canonical images of size: $32\times32$, $48 \times 48$, $64 \times 64$, $96 \times
+96$, and $128 \times 128$.  For all image resolutions the problem size
+is sufficiently small that the CPU is significantly faster than the GPU.  Note
+also that for both implementations, the recognition stage takes much less time
+than the alignment stage.
 \begin{figure} 
 \centering
 \includegraphics[width=3.4in]{figures/speedVsResolution}
 \caption{Recognition stage runtime vs. size of training database.}
 \label{fig:recognition_stage_runtime} \end{figure}
 
-Finally, we perform an experiment verifying the recognition accuracy of the
-overall pipeline.  Since one would expect higher recognition rates but longer
-execution time for higher resolution images, we compare the recognition rate of
-the overall pipeline with the face recognition stage run at 5 different
-canonical image resolutions: $32\times32, 48 \times 48, 64 \times 64, 96 \times
-96, \textrm{and} 128 \times 128$.  As motivated by Figure
-\ref{fig:user_alignment_rank_plot}, we fix the number of gallery users to 20,
-giving approximately 95\% probability to have the true user in the training
-set.  
-%The inner loop tolerance to 1e-5 and outer loop tolerance to 1e-2.  
 \begin{figure}
 \centering
 \includegraphics[width=3.4in]{figures/accuracyVsResolution}
 \caption{Recognition rate of the full pipeline vs. face window resolution.}
 \label{fig:accuracy_vs_resolution}
 \end{figure}
-As can be seen in Figure \ref{fig:accuracy_vs_resolution}, at the optimal
-resolution, which happens to match the alignment stage resolution, this bound
-is very nearly achieved by the GPU implementation.  For significantly lower
-resolutions, the accuracy drops off significantly.  Of the two main stages of
-the face recognition pipeline, the iterative alignment stage is by far the most
-expensive; the recognition stage requires less than one second.
+Finally, we perform an experiment verifying the recognition accuracy of the
+overall pipeline.  As can be seen in Figure \ref{fig:accuracy_vs_resolution},
+at the optimal resolution, which happens to match the alignment stage
+resolution, the GPU implementation reaches 95\% recognition rate, the max
+achievable given the alignment results.  For significantly lower resolutions,
+the accuracy drops off significantly.  
 
 \section{Conclusion}
 We have shown that our proposed parallelization is {\em eight times} faster
