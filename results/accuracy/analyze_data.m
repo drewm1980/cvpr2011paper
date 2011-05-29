@@ -13,8 +13,8 @@ blas = importdata([dir 'blas_recognition_output_keepers_20.txt']);
 cuda = importdata([dir 'cuda_recognition_output_keepers_20.txt']);
 %save([dir 'blas_recognition_output_keepers_20.mat'],blas);
 %save([dir 'cuda_recognition_output_keepers_20.mat'],cuda);
-blas = load([dir 'blas_recognition_output_keepers_20.mat'],blas);
-blas = load([dir 'cuda_recognition_output_keepers_20.mat'],cuda);
+%blas = load([dir 'blas_recognition_output_keepers_20.mat'],blas);
+%cuda = load([dir 'cuda_recognition_output_keepers_20.mat'],cuda);
 
 %%labels = {'upload time', 'solve time', 'user names', 'threshold', 'tol', ...
     'tol_int', 'maxIterInner', 'maxIterOuter', 'm', 'n', 'k', ...
