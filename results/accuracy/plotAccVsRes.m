@@ -26,4 +26,4 @@ set(h, 'PaperPosition', windowSize);
 
 print(h, '../../figures/accuracyVsResolution.eps', '-depsc2');
 
-%end
+end

@@ -1,0 +1,18 @@
+To do list:
+
+*** Benchmark solving alignment problem by entire CPU vs. one per core, update Section 4.1 to include it.
+
+*** Remove Threshold plot with one sentence description of threshold choice.
+ 
+*** Add figure showing timings for the recognition stage as function of problem size.
+
+** Modify the plots to use the same marker style, line style, and color style to be consistent. 
+
+** Interpret 2 percent accuracy difference
+
+* First paragraph section 4, explain linearization.
+
+* Update speed comparisons and diagrams to GTX 580?
+
+* Better citation for previously reported speed?
+
