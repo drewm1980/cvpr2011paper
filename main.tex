@@ -776,23 +776,29 @@ the CPU algorithm solves problems sequentially, there is a linear trend.
 The tiers seen in the GPU profile result from the GPU hardware scheduling alignment
 problems in concurrent batches, but the overall trend is linear as expected.
 
-The following experiment fulfills the dual purpose of verifying the accuracy of
-the alignment stage, and motivating a threshold on how many users are kept for
-the recognition stage.  Setting this threshold establishes a compromise between
-recognition speed and potential recognition rate.  To explore the affect of the
-threshold on potential recognition rate, we vary the number of users kept for
-the recognition stage and estimate the probability of the test user being
-among the set of training users kept for the recognition stage.  This curve
-bounds above the achievable recognition rate of the overall pipeline.  As can
-be seen in Figure \ref{fig:user_alignment_rank_plot}, there are rapidly
-diminishing returns as the number of kept users is increased beyond 20; a small
-fraction of the gallery.
+%The following experiment fulfills the dual purpose of verifying the accuracy of
+%the alignment stage, and motivating a threshold on how many users are kept for
+%the recognition stage.  Setting this threshold establishes a compromise between
+%recognition speed and potential recognition rate.  To explore the affect of the
+%threshold on potential recognition rate, we vary the number of users kept for
+%the recognition stage and estimate the probability of the test user being
+%among the set of training users kept for the recognition stage.  This curve
+%bounds above the achievable recognition rate of the overall pipeline.  As can
+%be seen in Figure \ref{fig:user_alignment_rank_plot}, there are rapidly
+%diminishing returns as the number of kept users is increased beyond 20; a small
+%fraction of the gallery.
+%\begin{figure} 
+%\centering
+%\includegraphics[width=3.4in]{figures/user_alignment_rank_plot}
+%\caption{Probability of the test user being kept for the recognition stage vs.
+%number of training users kept for the recognition stage.}
+%\label{fig:user_alignment_rank_plot} \end{figure}
+
 \begin{figure} 
 \centering
-\includegraphics[width=3.4in]{figures/user_alignment_rank_plot}
-\caption{Probability of the test user being kept for the recognition stage vs.
-number of training users kept for the recognition stage.}
-\label{fig:user_alignment_rank_plot} \end{figure}
+\includegraphics[width=3.4in]{figures/speedVsResolution}
+\caption{Recognition stage runtime vs. size of training database.}
+\label{fig:recognition_stage_runtime} \end{figure}
 
 Finally, we perform an experiment verifying the recognition accuracy of the
 overall pipeline.  Since one would expect higher recognition rates but longer
