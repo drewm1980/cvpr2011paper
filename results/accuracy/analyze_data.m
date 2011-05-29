@@ -112,8 +112,8 @@ cuda_keep1 = true_user < 250;
 
 %sci_threshold = 0.17;
 
-%blas_keep2 = SCI(:,1) > sci_threshold;
-%cuda_keep2 = SCI(:,2) > sci_threshold;
+blas_keep2 = SCI(:,1) > sci_threshold;
+cuda_keep2 = SCI(:,2) > sci_threshold;
 
 blas_rank = trueUserRank(blas_keep1 & blas_keep2,1);
 cuda_rank = trueUserRank(cuda_keep1 & cuda_keep2,2);
@@ -217,8 +217,8 @@ rejected = sum(cuda_keep3 == 0);
 blas_keep1 = true_user <= 250;
 cuda_keep1 = true_user <= 250;
 
-%blas_keep2 = SCI(:,1) > sci_threshold;
-%cuda_keep2 = SCI(:,2) > sci_threshold;
+blas_keep2 = SCI(:,1) > sci_threshold;
+cuda_keep2 = SCI(:,2) > sci_threshold;
 %blas_keep3 = users_residuals{1}(:,1) < residual_threshold;
 %cuda_keep3 = users_residuals{2}(:,1) < residual_threshold;
 
