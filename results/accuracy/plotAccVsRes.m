@@ -1,4 +1,3 @@
-function plotAccVsRes()
 %%
 res = [32 48 64 80 96 128];
 acc = zeros(numel(res),2);
@@ -26,4 +25,3 @@ set(h, 'PaperPosition', windowSize);
 
 print(h, '../../figures/accuracyVsResolution.eps', '-depsc2');
 
-end
