@@ -28,6 +28,8 @@
 \def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
 
 % Pages are numbered in submission mode, and unnumbered in camera-ready
+
+\hyphenation{under-determined}
 \ifcvprfinal\pagestyle{empty}\fi
 \begin{document}
 
@@ -36,6 +38,7 @@
 %\thanks{Corresponding author: . This work was partially supported by ARO MURI W911NF-06-1-0076.}}
 %\title{Many-Core Parallelization of $\ell_1$-Minimization for Face Recognition
 \title{Parallelization of Fast $\ell_1$-Minimization for Face Recognition}
+%\title{Parallelization of Fast $\ell_1$-Minimization Towards Real-Time Face Recognition}
 
 \author{First Author\\
 Institution1\\
@@ -55,15 +58,26 @@ First line of institution2 address\\
 
 \maketitle
 
-\begin{abstract} 
-Recently a family of promising face recognition algorithms that are based on sparse representation and $\ell_1$ minimization have been been developed.  These algorithms have not yet seen commercial application, largely due to their greater computational requirements compared to more traditional algorithms.  This paper studies techniques for leveraging the massive parallelism available in GPU and multi-core CPU hardware to accelerate augmented Lagrangian method (ALM) based $\ell_1$ minimization solvers.  The proposed implementations are significantly faster than than previously published implementations.  Despite the low arithmetic intensity of ALM solvers, the GPU can still outperform the CPU by a wide margin for large problem sizes, and when solving many small problems simultaneously.  The proposed CPU implementation remains faster for solving a single moderately sized problem.  
-\end{abstract}
+\begin{abstract} Recently a family of promising face recognition algorithms
+based on sparse representation and $\ell_1$-minimization ($\ell_1$-min) have been
+developed.  These algorithms have not yet seen commercial application, 
+largely due to higher computational cost compared to other traditional
+algorithms. This paper studies techniques for leveraging the 
+massive parallelism available in GPU and CPU hardware to accelerate
+$\ell_1$-min based on augmented Lagrangian method (ALM) solvers. We demonstrate
+through extensive simulation and real-world experiment that the proposed
+algorithms significantly speed up the sparsity recovery problem compared to the
+state of the art.  Despite the low arithmetic intensity of ALM solvers, the GPU
+can still outperform the CPU by a wide margin for large problem sizes, and when
+solving many small problems simultaneously. The CPU implementation remains
+faster for solving a single moderately sized problem. The source code of the
+algorithms will be made available for peer evaluation.  \end{abstract}
 
 \section{Introduction} 
-$\ell_1$ minimization ($\ell_1$-min) has received much attention in recent
+$\ell_1$-minimization ($\ell_1$-min) has received much attention in recent
 years due to important applications in compressive sensing
 \cite{BrucksteinA2007} and sparse representation \cite{WrightJ2010-PIEEE}.  
-$\ell_1$-min refers to finding the minimum $\ell_1$-norm solution to an
+The problem refers to finding the minimum $\ell_1$-norm solution to an
 underdetermined linear system $\bb=A\xx$:
 \begin{equation}
 \min \|\xx\|_1\quad \mbox{ subj. to }\quad \bb = A\xx.
@@ -118,7 +132,7 @@ $\tau_i$ converges to a transformation that aligns the test image $\tilde\bb$
 with the training images from the $i$-th class $A_i$. In other words, the algorithm 
 extends Lucas-Kanade iterative alignment \cite{LucasB1981} to use the
 $\ell_1$-norm as a robust error function, while simultaneously estimating
-the coefficients of the linear illumination model $A\x$.  
+the coefficients of the linear illumination model $A_i\x$.  
 
 Numerically, the original solution \cite{WagnerA2009-CVPR} was implemented based 
 on standard interior-point methods, and its speed has been since improved by ALM in a more recent paper
@@ -129,8 +143,8 @@ $\ell_1$-min objectives \eqref{eq:l1min} and \eqref{eq:l1min_denoise}, we
 also discuss how to properly accelerate the iterative face alignment step
 \eqref{eq:l1min_alignment} on multi-core CPUs and GPUs.
 
-In this discussion we will clearly distinguish between algorithm {\em parallelism},
-which is a property of an algorithm, and hardware {\em concurrency}, which is a
+To clarify discussion, we clearly distinguish between {\em parallelism},
+which is a property of an algorithm, and {\em concurrency}, which is a
 property of a hardware architecture. Parallelism in an algorithm provides the
 opportunity to perform computations concurrently on hardware.  Algorithms often
 exhibit multiple levels of parallelism, and hardware often provides multiple
@@ -153,7 +167,7 @@ Finally, note that
 while this paper focuses on the parallelism available in a single (shared memory) machine,
 applications targeting thousands of users or more, will likely require computation be
 distributed over a cluster or network of computers, and this is not addressed here.
-The source code of our implementations, which target Nvidia's CUDA GPU architecture,
+The source code of our implementations, which target Nvidia's CUDA GPU architecture
 as well as the x86-64 architecture, will be made available for peer evaluation.
 \begin{figure}
 \centering
@@ -163,8 +177,7 @@ as well as the x86-64 architecture, will be made available for peer evaluation.
 \end{figure}
 
 \subsection{Literature Review} 
-We first briefly review the literature of $\ell_1$-min and existing
-works on its parallelization.  Traditionally, $\ell_1$-min (or the so-called
+Traditionally, $\ell_1$-min (a.k.a.
 basis pursuit (BP)) has been formulated as a linear program
 \cite{ChenS2001-SIAM}. Several variations of the solution are also well known
 in optimization, including a noisy approximation via quadratic programming
@@ -184,10 +197,10 @@ for BP in \cite{MalioutovD2005,DonohoD2006}.
 Although Homotopy can be shown to exactly estimate BP when the solution is
 sufficiently sparse \cite{DonohoD2006}, the algorithm still involves
 computationally expensive operations such as matrix-matrix multiplication and
-the solution of least-squares problems with varying $A$
-matrices.\footnote{During the face alignment algorithm presented later, The $A$
-matrix changes between alignment iterations but not within the L1 solver}  In
-Section \ref{sec:ALM}, we contend that ALM is a better choice for
+linear least-squares problems with varying $A$
+matrices.
+%\footnote{During the face alignment algorithm presented later, The $A$ matrix changes between alignment iterations but not within the L1 solver}  
+In Section \ref{sec:ALM}, we contend that ALM is a better choice for
 implementation on many-core CPUs and GPUs. The ALM algorithm belongs to a
 category of approximate $\ell_1$-min solutions called \emph{iterative
 shrinkage-thresholding} (IST) methods \cite{WrightS2008,BeckA2009}.  IST
@@ -198,8 +211,8 @@ systems with a high degree of concurrency. In \cite{YangA2010-ICIP}, the
 authors showed that ALM is able to significantly improve the solver speed,
 while achieving estimation accuracy competitive with exact $\ell_1$-min
 solutions such as BP and Homotopy methods, and other IST-type
-algorithms.  Therefore, we choose ALM as the core algorithm for
-implementation of the parallel face recognition pipeline.
+algorithms. Therefore, we choose ALM as the core algorithm for
+implementation of $\ell_1$-min in the parallel face recognition pipeline.
 
 In terms of the past works in parallel $\ell_1$-min, the literature has been
 limited, to the best of our knowledge. In \cite{BorghiA2010}, Borghi et al.
@@ -208,30 +221,24 @@ Moreau-Yosida regularization. In \cite{MurphyM2010}, Murphy et al. presented
 parallel implementation of the l1-SPIRIT MRI reconstruction algorithm on NVidia
 CUDA programmable GPU architecture, which is also used in this paper.
 
-\section{Augmented Lagrange Multiplier Method}
+\section{Augmented Lagrangian Method}
 \label{sec:ALM}
 
-For the completeness of the paper, in this section, we briefly describe the ALM
-algorithm for $\ell_1$-min \eqref{eq:l1min} \cite{YangA2010-ICIP}
- %and analyze its complexity
-. 
-Parallelization of ALM for face alignment and recognition will
-be discussed in Section \ref{sec:alignment} and Section \ref{sec:recognition},
-respectively.
-
-Lagrange multiplier methods have been frequently used in convex programming to
-eliminate equality constraints via adding a significant penalty term to the
+In this section, we briefly describe the ALM algorithm for $\ell_1$-min \eqref{eq:l1min} \cite{YangA2010-ICIP}
+and analyze its complexity. Lagrange multipliers have been frequently used in convex programming to
+eliminate equality constraints via adding a penalty term to the
 cost function for infeasible points. ALM methods differ from other
 penalty-based approaches by simultaneously estimating the optimal solution and
-Lagrange multipliers in an iterative fashion.  For $\ell_1$-min, the augmented
-Lagrangian is defined as: \begin{equation} L_\mu(\xx,\yy) = \|\xx\|_1 +
-\yy^T(\bb - A\xx - \ee) + \frac{\mu}{2} \| \bb-A\xx-\ee \|_2^2, \end{equation}
+Lagrange multipliers in an iterative fashion.  For $\ell_1$-min \eqref{eq:l1min}, the augmented
+Lagrange function is defined as: 
+\begin{equation} L_\mu(\xx,\yy) = \|\xx\|_1 +
+\yy^T(\bb - A\xx) + \frac{\mu}{2} \| \bb-A\xx \|_2^2, 
+\end{equation}
 where $\mu > 0$ is a constant that penalizes infeasibility and $\yy$ is a
-vector of lagrange multipliers.
+vector of Lagrange multipliers.
 
-In Lagrange Multiplier Theory, if there exists a Lagrangian $y^*$ that
-satisfies the second-order sufficiency conditions for optimality
-\cite{BertsekasD2003}, then for a sufficiently large $\mu$, the optimal
+In Lagrange Multiplier Theory \cite{BertsekasD2003}, if there exists a Lagrangian $y^*$ that
+satisfies the second-order sufficiency conditions for optimality, then for a sufficiently large $\mu$, the optimal
 $\ell_1$-min solution also minimizes
 \begin{equation}
 \xx^* = \arg \min L_\mu(\xx,\yy^*).
@@ -253,8 +260,8 @@ iteratively update $\xx$ and $\yy$:
 \right . ,
 \label{eq:alm}
 \end{equation}
-where $\mu_{k}\rightarrow \infty$ is a monotonically increasing positive sequence.
-The iteration terminates when the estimates $(\xx, \yy)$ converge.
+where $\mu_{k}\rightarrow \infty$ is monotonically increasing.
+The iteration terminates when the estimates $(\xx_k, \yy_k)$ converge.
 
 Note that in the iterative procedure \eqref{eq:alm}, the second
 step only involves vector algebra and matrix-vector multiplication. Therefore,
@@ -846,7 +853,7 @@ hundreds of users on a handful of purpose-build multi-GPU workstations.
 
 {\small
 \bibliographystyle{ieee}
-\bibliography{faces}
+\bibliography{faces-short}
 }
 
 \end{document}
