@@ -64,13 +64,16 @@ developed.  These algorithms have not yet seen commercial application,
 largely due to higher computational cost compared to other traditional
 algorithms. This paper studies techniques for leveraging the 
 massive parallelism available in GPU and CPU hardware to accelerate
-$\ell_1$-min based on augmented Lagrangian method (ALM) solvers. We demonstrate
-through extensive simulation and real-world experiment that the proposed
-algorithms significantly speed up the sparsity recovery problem compared to the
-state of the art.  Despite the low arithmetic intensity of ALM solvers, the GPU
-can still outperform the CPU by a wide margin for large problem sizes, and when
-solving many small problems simultaneously. The CPU implementation remains
-faster for solving a single moderately sized problem. The source code of the
+$\ell_1$-min based on augmented Lagrangian method (ALM) solvers. 
+Due to the low arithmetic intensity of ALM solvers, both
+architectures are bandwidth limited.  
+with large problems running faster on the GPU, and small problems running faster
+on the CPU.  
+On both architectures, the proposed implementations dramatically out-perform
+nieve library-based implementations. 
+At the problem sizes most important for $\ell_1$-min based
+face recognition, both architectures achieve comparable performance.
+The source code of the
 algorithms will be made available for peer evaluation.  \end{abstract}
 
 \section{Introduction} 
@@ -167,7 +170,7 @@ Finally, note that
 while this paper focuses on the parallelism available in a single (shared memory) machine,
 applications targeting thousands of users or more, will likely require computation be
 distributed over a cluster or network of computers, and this is not addressed here.
-The source code of our implementations, which target Nvidia's CUDA GPU architecture
+The source code of our implementations, which target NVIDIA's CUDA GPU architecture
 as well as the x86-64 architecture, will be made available for peer evaluation.
 \begin{figure}
 \centering
@@ -218,19 +221,20 @@ In terms of the past works in parallel $\ell_1$-min, the literature has been
 limited, to the best of our knowledge. In \cite{BorghiA2010}, Borghi et al.
 developed a special proximal gradient $\ell_1$-min algorithm based on
 Moreau-Yosida regularization. In \cite{MurphyM2010}, Murphy et al. presented
-parallel implementation of the l1-SPIRIT MRI reconstruction algorithm on NVidia
-CUDA programmable GPU architecture, which is also used in this paper.
+parallel implementation of the l1-SPIRIT MRI reconstruction algorithm on 
+the same GPU architecture addressed in this paper.
 
 \section{Augmented Lagrangian Method}
 \label{sec:ALM}
 
-In this section, we briefly describe the ALM algorithm for $\ell_1$-min \eqref{eq:l1min} \cite{YangA2010-ICIP}
-and analyze its complexity. Lagrange multipliers have been frequently used in convex programming to
-eliminate equality constraints via adding a penalty term to the
-cost function for infeasible points. ALM methods differ from other
-penalty-based approaches by simultaneously estimating the optimal solution and
-Lagrange multipliers in an iterative fashion.  For $\ell_1$-min \eqref{eq:l1min}, the augmented
-Lagrange function is defined as: 
+In this section, we briefly describe the ALM algorithm for $\ell_1$-min
+\eqref{eq:l1min} \cite{YangA2010-ICIP} and analyze its complexity. Lagrange
+multipliers have been frequently used in convex programming to eliminate
+equality constraints via adding a penalty term to the cost function for
+infeasible points. ALM methods differ from other penalty-based approaches by
+simultaneously estimating the optimal solution and Lagrange multipliers in an
+iterative fashion.  For $\ell_1$-min \eqref{eq:l1min}, the augmented Lagrange
+function is defined as: 
 \begin{equation} L_\mu(\xx,\yy) = \|\xx\|_1 +
 \yy^T(\bb - A\xx) + \frac{\mu}{2} \| \bb-A\xx \|_2^2, 
 \end{equation}
@@ -301,22 +305,24 @@ In this section we discuss the levels of concurrency available in the hardware
 architectures considered in this paper, as well as other aspects of the
 hardware that are important for performance.  In particular, since caches
 (regions of on-chip memory) are often orders of magnitude faster than off-chip
-memory, their sizes and speeds have big performance implications.  We give a
+memory, their sizes and speeds have a dramatic effect on performance.  We give a
 brief overview of the caches that are available in our target architectures,
-and defer discussion of their performance implications to Sections
+and defer discussion of their performance effects to Sections
 \ref{sec:alignment_implementation_cpu} and
 \ref{sec:alignment_implementation_gpu}.
 
-We will primarily be comparing CPU and GPU architectures on a per-board basis:
-for CPU implementation we make use of all the cores in as many CPUs are present
-on one motherboard, and for GPU implementation we make use of a single
-many-core Nvidia GPU chip on a PCI card. 
-%GPUs are commonly shipped with a
-%single GPU chip per PCI-express card.  Note that while typical engineering
-%workstations can only support a single high-end GPU due to their high current
-%draw, purpose-built servers can support multiple high-end GPU's.  
+Our discussion and experiments will focus on the most common hardware
+configuration for engineering workstations: a motherboard with two quad-core
+processors, and a PCI card with a single high-end GPU.  
+Recognition involving more than a few hundred users with contemporary hardware
+would require a server(or cluster) configuration with an expandable 
+number of processors.  We will not address efficient parallelization for 
+these systems, which may have additional challenges associated with
+their non-shared memory model.\footnote{Non-shared memory configurations
+include CPU blade servers, multi-GPU servers, and clusters}.
 Unless otherwise specified, all implementations utilize single precision
 floating point datatypes.  
+% WORKING HERE
 
 \subsection{CPU Hardware Concurrency} 
 \label{sec:CPU-concurrency}
@@ -384,7 +390,7 @@ more space than is available here, so we will instead frame our discussion in te
 hardware capabilities. \footnote{A discussion of the CUDA programming model can be found
 in the NVIDIA C for CUDA Programming Guide}
 
-Our target GPU architecture is the Nvidia Fermi architecture (\eg, the GTX 480
+Our target GPU architecture is the NVIDIA Fermi architecture (\eg, the GTX 480
 GPU used in this paper).  CUDA based GPUs are comprised of several
 \emph{streaming multiprocessors} (SMP), each of which is roughly analogous to a CPU core.
 For Fermi architecture GPU's, there are up to 16 SMP's, and each SMP is capable of executing up to 64 single precision 
@@ -648,7 +654,7 @@ the CPU implementation of the $\ell_1$-min advocated in Section
 well onto MKL BLAS calls, and the operations that do not can be easily
 parallelized using OpenMP and auto-vectorization.
 
-On the GPU, most of the operations map well onto similar calls in Nvidia's GPU
+On the GPU, most of the operations map well onto similar calls in NVIDIA's GPU
 BLAS library (CUBLAS) which, like MKL, can take advantage of both levels of
 concurrency available in the hardware architecture.  Operations that do not map
 well onto the CUBLAS API were implemented as GPU kernels (in C for CUDA).
