@@ -140,8 +140,9 @@ the coefficients of the linear illumination model $A_i\x$.
 Numerically, the original solution \cite{WagnerA2009-CVPR} was implemented based 
 on standard interior-point methods, and its speed has been since improved by ALM in a more recent paper
 \cite{WagnerA2011-PAMI}. However, due the high per-class cost
-of the alignment step, the recognition system still fails to achieve real-time recognition against datasets of hundreds or thousands of users.
-In this paper, in addition to accelerating the generic
+of the alignment step, the recognition system still fails to achieve real-time
+recognition against datasets of hundreds or thousands of users.  In this paper,
+in addition to accelerating the generic
 $\ell_1$-min objectives \eqref{eq:l1min} and \eqref{eq:l1min_denoise}, we 
 also discuss how to properly accelerate the iterative face alignment step
 \eqref{eq:l1min_alignment} on multi-core CPUs and GPUs.
@@ -311,7 +312,7 @@ and defer discussion of their performance effects to Sections
 \ref{sec:alignment_implementation_cpu} and
 \ref{sec:alignment_implementation_gpu}.
 
-Our discussion and experiments will focus on the most common hardware
+Our discussion and experiments will address the most common hardware
 configuration for engineering workstations: a motherboard with two quad-core
 processors, and a PCI card with a single high-end GPU.  
 Recognition involving more than a few hundred users with contemporary hardware
@@ -518,34 +519,51 @@ which is a representative example of a modern multi-core CPU.
 
 For the E5530, the L2 cache in each core is only able to store about 16 images.
 For image alignment problem, the number of training images per class is
-typically larger than 16.  Therefore, if eight instances of
-\eqref{eq:alignment-linearization} were be executed in parallel on the eight
-cores, there would be an insufficient amount of L1 or L2 cache to hold $B_j$ and
-$B_j^\dagger$ during the iterative process to execute Algorithm
-\ref{alg:iterative_alignment}. Therefore, the bottleneck in this strategy becomes the
-bandwidth between the L2 cache and L3 cache. The implementation of some
-previous works \cite{WagnerA2009-CVPR,WagnerA2011-PAMI} is indeed based on this
-mapping strategy.
+typically larger than 16.  
+In this paper we consider two mappings of the parallelism available in the alignment
+stage to the concurrency available on the CPU.  We argue that the latter
+implementation should achieve higher performance, and later verify that this is the case.
 
-In this paper, we show that for CPU parallelism of face alignment, a higher
-performance implementation can be achieved by {\em not} taking advantage of
-problem-level parallelism at all, and instead mapping the pixel-level parallelism
+The first implementation disregards 
+problem-level parallelism, and instead mapping the pixel-level parallelism
 onto both the core-level and the SSE-level concurrency provided by the CPU.  In
-other words, the proposed CPU implementation performs alignment of a query
+other words, alignment is performed of the query
 image against the training images of a single user at a time using all cores on
-both processors.
+both processors.  The advantage of this implementation is that all of the variables
+for the inner loop, most notably $B_j$ and $B_j^\dagger$, fit in L2 cache.  
 
-More specifically, in our implementation, most of the operations take
+The second implementation maps problem-level parallelism onto core-level
+concurrency, and maps pixel-level parallelism onto SSE-level concurrency.  In
+other words, eight instances of \eqref{eq:alignment-linearization} are executed
+in parallel with each problem running on one of the eight cores.  The advantage
+of this implementation is that since the cores are operating on different
+alignment problem instances, no data is shared between cores, and therefore no
+synchronization is necessary between the cores.  Furthermore, even with eight
+problem instances running concurrently, the local variables for the inner
+loop still fit in L3 cache.  Thanks to the sequential data access patterns of
+the solver, prefetching significantly reduces the bandwidth difference between
+L2 and L3 cache.  For these reasons, we expect this implementation to out-perform
+the previous implementation.
+
+%The implementation of some
+%previous works \cite{WagnerA2009-CVPR,WagnerA2011-PAMI} are indeed based on the latter
+%parallelization strategy.
+
+%64 byte cache line-size per clock.  L3 cache running at lower clock than cpu.  Two reads and a write per clock.
+%4 floats at a time in SSE.
+
+In both implementations, most of the operations take
 advantage of Intel Math Kernel Library (MKL), a commercial implementation of
 the standard Basic Linear Algebra Subprograms (BLAS). For the image resampling
 step, we make use of the Intel Integrated Performance Primitives (IPP) library.
 Both MKL and IPP are optimized for Intel multi-core CPUs, and are able to
-automatically utilize both core-level and vector-level concurrency. For other
+automatically utilize both core-level and vector-level concurrency (for the first implementation),
+but are also available in single-threaded versions (for the second implementation). For 
 operations that are not optimized by Intel in-house libraries, such as the shrinkage
-operator in step 7 of Algorithm \ref{alg:iterative_alignment}, we achieve both
-vector-level and core-level concurrency through a combination of the Open MP
-API \cite{dagum2002openmp} and the automatic vectorization facilities of the
-Intel C++ compiler (ICC) \cite{dulong1999overview}. 
+operator in step 7 of Algorithm \ref{alg:iterative_alignment}, we achieve 
+vector-level concurrency via
+the automatic vectorization facilities of the Intel C++ compiler (ICC) \cite{dulong1999overview}.
+To achieve core-level concurrency we make use of the Open MP API. \cite{dagum2002openmp} 
 %We shall compare the performance of the two parallelism methods in Section \ref{sec:experiment}.
 
 \subsection{GPU Implementation}
@@ -556,38 +574,40 @@ $\ell_1$-min.  As can be seen in Figure \ref{fig:caches}, the GPU has
 a very small amount of cache compared to the CPU.  While it might be possible
 to fit a single instance of the alignment problem (with a slightly reduced problem size)
 into L2 cache, this would not be an efficient use of the GPU's resources.
-The strength of the GPU's memory architecture for our purposes it's ability to sustain a very
-high bandwidth to DRAM.  A higher overall bandwidth can be achieved if 
-many memory transactions are performed simultaneously, than can be achieved
-with a large number of smaller transactions that are just large enough to fill
-the L2 cache.
+The strength of the GPU's memory architecture for our purposes is it's ability to sustain a very
+high bandwidth to DRAM.  This bandwidth is achieved by having a very large number of
+threads issuing memory requests simultaneously.  Solving many alignment problem instances
+concurrently increases the number of threads that can be used.
 
-Therefore, whereas on the CPU we advocate performing alignment for one training
-class at a time, on the GPU we advocate performing alignment for many classes
-concurrently.  \footnote{In CUDA terminology, Our proposed alignment stage
+Therefore, our recommended GPU implementation is strikingly similar in spirit
+to our recommended CPU implementation: on the CPU we use the cores to solve
+multiple instances concurrently, and on the GPU we use multiple SMP's for the 
+same purpose.
+\footnote{In CUDA terminology, Our proposed alignment stage
 implementation consists of a single kernel that performs alignment for all
 subject classes.  Each instance of the alignment problem is assigned its own
 thread block, and the GPU hardware schedules as many thread blocks to run
 concurrently as the hardware will allow.} The number of subject classes that
-actually get aligned concurrently is chosen by the GPU hardware. In our
-experiments the hardware is able to schedule 4-5 classes per SMP to run
-concurrently. This mapping of the problem-level parallelism onto the SMP-level
-concurrency is illustrated in Figure \ref{fig:alignment_mapping_gpu}.
+actually get aligned concurrently is ultimately chosen by the GPU hardware, 
+but can be influenced by manual tuning of the code. We have empirically determined
+that performance is highest with 5-7 subject classes aligned simultaneously on each SMP.
+%This mapping of the problem-level parallelism onto the SMP-level
+%concurrency is illustrated in Figure \ref{fig:alignment_mapping_gpu}.
+%\begin{figure}
+%\centering
+%\includegraphics[width=3.4in]{figures/alignment_mapping_gpu}
+%\caption{Proposed mapping of alignment parallelism onto GPU concurrency}
+%\label{fig:alignment_mapping_gpu}
+%\end{figure}
 
-\begin{figure}
-\centering
-\includegraphics[width=3.4in]{figures/alignment_mapping_gpu}
-\caption{Proposed mapping of alignment parallelism onto GPU concurrency}
-\label{fig:alignment_mapping_gpu}
-\end{figure}
-
+Several other aspects of the implementation merit discussion.  
 The full resolution query image, along with its numerical derivatives in both
 image directions, are stored in GPU texture memory. This  allows the
 computation of $b(\tau)$ and $J(\tau)$, which essentially consist of warped
 versions of the test image and its derivatives, to exploit the GPU's special
 purpose hardware for bilinear interpolation.
 
-Solving one alignment problem per SMP necessitated the implementation of a
+Solving one alignment problem per SMP necessitates the implementation of a
 custom CUDA routine for computing $B_j^\dagger = (B_j^TB_j)^{-1} B^T = G^{-1} B_j^T$. $G$
 is inverted using Gaussian elimination with partial pivoting.  To achieve
 precision comparable to the single precision LAPACK routines in Intel's MKL
@@ -646,12 +666,10 @@ $\x_1 = \mathbf{0}$, $\e_1 = \bb$, $\y_1 =
 \end{algorithm}
 
 \subsection{Recognition Stage Implementation} Compared to problem-level
-parallelism, pixel-level parallelism in Algorithm \ref{alg:alm_rec} is
-relatively easy to exploit using existing BLAS libraries.  For this reason,
-both the CPU and GPU implementation of the recognition stage is very similar to
-the CPU implementation of the $\ell_1$-min advocated in Section
-\ref{sec:alignment_implementation_cpu}.  On the CPU, most of the operations map
-well onto MKL BLAS calls, and the operations that do not can be easily
+parallelism, the exclusively pixel-level parallelism in Algorithm \ref{alg:alm_rec} is
+relatively straightforward to exploit:  
+On the CPU, most of the operations map
+well onto MKL BLAS calls, and operations that do not can be easily
 parallelized using OpenMP and auto-vectorization.
 
 On the GPU, most of the operations map well onto similar calls in NVIDIA's GPU
@@ -681,21 +699,21 @@ general $\ell_1$-min problem on synthetic data.  We will then progress in
 Section \ref{sec:benchmark} to demonstrating the speed and accuracy of our
 implementations as applied to the alignment and recognition stages of the face
 recognition problem.
-
-To generate a meaningful comparison between different hardware architectures,
-in all cases we compare the performance of hardware architectures on a
-per-board basis:  For CPU implementations, the benchmark makes use of all of
-the cores in as many CPU's are present.  For GPU implementations, the benchmark
-makes the best use of the entire GPU chip (most GPU boards have a single GPU
-chip).  Aside from the exceptions already mentioned in Section
+%To generate a meaningful comparison between different hardware architectures,
+%in all cases we compare the performance of hardware architectures on a
+%per-board basis:  For CPU implementations, the benchmark makes use of all of
+%the cores in as many CPU's are present.  For GPU implementations, the benchmark
+%makes the best use of the entire GPU chip (most GPU boards have a single GPU
+%chip).  
+Aside from the exceptions already mentioned in Section
 \ref{sec:alignment_implementation_gpu}, all math operations are performed in
 single precision.
 
 \subsection{Simulations on Random Data}
 \label{sec:simulation}
 
-The first experiment compares the performance of our two proposed
-implementations of the general $\ell_1$-min (Algorithm \eqref{alg:alm}) given a
+The first experiment compares the performance of our proposed CPU and GPU
+implementations of the general $\ell_1$-min (Algorithm \eqref{alg:alm}), given a
 generic random matrix $A$ and a random sparse vector $\xx_0$.  The measurement
 $d \times n$ matrix $A$ is generated as a random Gaussian matrix, with each
 entry randomly generated from the standard normal and normalized with unit
@@ -703,7 +721,7 @@ column norm.  The ratio of $d/n$ is fixed at $1/2$ with $n$ varying from 1000 to
 The ground truth signals, $\xx_0$ have a sparsity rate of 10\% of d with
 elements sampled from a normal distribution and normalized to unit $\ell_2$ vector
 norm.  Because the ground truth signal $\xx_0$ is known, the algorithm
-terminats when $\|\bx-\bx_0\| < \tau$ with $\tau=10^{-3}$.  The measurement
+terminates when $\|\bx-\bx_0\| < \tau$ with $\tau=10^{-3}$.  The measurement
 vector is generated with the equation $\bb_0 = A \xx_0$.   
 
 The results of this benchmark can be found in Figure \ref{fig:random_data}.
@@ -711,7 +729,8 @@ The x-axis represents the size of the $A$ matrix and the y-axis represents the
 average amount of time it to complete a single problem instance.  The GPU
 implementation tends to be faster than the CPU implementation at solving a
 single large problem, whereas the CPU implementation is faster at solving a
-single small problem.  
+single small problem.  The transition between the two regimes occurs where
+the problem size begins to exceed the size of the CPU L3 cache. 
 \begin{figure}
 \begin{center}
 \includegraphics[width=3.5in]{figures/time_vs_matrix_size_constant_tol}
@@ -783,11 +802,13 @@ subject classes to show how the algorithms scale.
 \caption{Alignment stage runtime vs. size of training database.}
 \label{fig:alignment_stage_runtime}
 \end{figure}
-Similar to the results in Figure \ref{fig:random_data},
-there is a crossover point above which the GPU out-performs the CPU.  Since
-the CPU algorithm solves problems sequentially, there is a linear trend.  
 The tiers seen in the GPU profile result from the GPU hardware scheduling alignment
 problems in concurrent batches, but the overall trend is linear as expected.
+The CPU implementation that solves one problem instance per core out-performs
+the single-instance-at-a-time implementation by a wide margin, and is even competitive
+with the GPU implementation.\footnote{Note that the GPU implementation was tuned
+to be fast for the full problem set; tuning affects the locations of the tiers,
+so the lower corners of the tiers are most relevant.}
 
 %The following experiment fulfills the dual purpose of verifying the accuracy of
 %the alignment stage, and motivating a threshold on how many users are kept for
@@ -840,18 +861,22 @@ achievable given the alignment results.  For significantly lower resolutions,
 the accuracy drops off significantly.  
 
 \section{Conclusion}
-We have shown that our proposed parallelization is {\em eight times} faster
-than an implementation solving a single problem at a time using the stock
-CUBLAS library. Furthermore, the proposed mapping of the parallelism of the
-face alignment problem onto the concurrency provided in modern CPU and GPU
-architectures results in dramatic improvements in recognition speed over
-previously reported implementations of the same pipeline.  Whereas earlier
-implementations required over a second to align a test image against just one
-of the 250 users in Multi-PIE session 1, the proposed CPU implementation can
-perform the same task in only 45 seconds, and the GPU implementation can do it
-in {\bf under 10 seconds}!.  In principle, the parallelization techniques
-presented here make it feasible to implement an access control system for
-hundreds of users on a handful of purpose-build multi-GPU workstations.
+We have demonstrated that on both CPU and GPU algorithms, parallelizations of
+ALM that solve multiple face alignment problems concurrently are significantly
+faster than implementations that rely purely on vendor-supplied BLAS libraries.
+Furthermore, thanks to a combination of faster hardware, and more efficient use
+of the hardware, we have demonstrated dramatic improvements in recognition
+speed over previously reported implementations of the same pipeline.  Whereas
+earlier implementations required over a second to align a test image against
+just one of the 250 users in Multi-PIE session 1, the proposed 
+implementations can perform the same task in 
+{\bf under 10 seconds}!.  In principle, the
+parallelization techniques presented here make it feasible to implement an
+access control system for hundreds of users on a handful of purpose-build
+multi-GPU workstations.  As CPU manufacturers 
+increase the number of cores and vector widths, and as GPU manufacturers increase the amount
+of cache, both architectures are rapidly converging towards an architectural balance
+that increasingly favorable for $ell_1$-min based face recognition.
 
 %We argue that in addition to vendor supplied libraries
 %that attempt to leverage both levels of concurrency of the GPU, there is a need
