@@ -165,8 +165,8 @@ the architecture of our test system in detail in Section
 \ref{sec:concurrency}.
 Finally, note that 
 while this paper focuses on the parallelism available in a single (shared memory) machine,
-applications targeting thousands of subjects or more will likely require computation be
-distributed over a cluster or network of computers. This variant is not addressed here.
+applications targeting thousands of subjects or more will likely require computation to be
+distributed over a cluster or network of computers. These systems are not addressed here.
 The source code of our implementations, which target NVIDIA Fermi GPUs
 as well as Intel x86-64 CPUs, will be made available for peer evaluation.
 \begin{figure}
@@ -212,7 +212,7 @@ matrix-vector multiplication. Therefore, when the dimension of the problem
 becomes high, IST-type algorithms are particularly suitable for hardware
 systems with a high degree of concurrency. In \cite{YangA2010-ICIP}, the
 authors showed that ALM is able to significantly improve the solver speed,
-while achieving estimation accuracy competitive to other $\ell_1$-min
+while achieving estimation accuracy competitive with other $\ell_1$-min
 solutions. Therefore, we choose ALM as the core algorithm for
 implementation of $\ell_1$-min in the parallel face recognition pipeline.
 
@@ -306,7 +306,7 @@ In this section we discuss the levels of concurrency available in the hardware
 architectures considered in this paper, as well as other aspects of the
 hardware that are important for performance.  In particular, since caches
 (regions of on-chip memory) are often orders of magnitude faster than off-chip
-memory, their sizes and speed have a dramatic effect on performance.  We give a
+memory, their sizes and speeds have a dramatic effect on performance.  We give a
 brief overview of the caches that are available in our target architectures,
 and defer discussion of their performance effects to Sections
 \ref{sec:alignment_implementation_cpu} and
@@ -527,11 +527,11 @@ The naive implementation disregards
 problem-level parallelism, and instead maps pixel-level parallelism
 onto both the core-level and the SSE-level concurrency provided by the CPU.  In
 other words, alignment of the query image is performed
-against a single user at a time using all available cores on
+against a single subject at a time using all available cores on
 the processors.  The potential advantage of this implementation is that all of the variables
 for the inner loop, most notably $B_j$ and $B_j^\dagger$, fit in L2 cache.  
 
-Instead, our manually optimized implementation maps problem-level parallelism onto core-level
+In contrast, our manually optimized implementation maps problem-level parallelism onto core-level
 concurrency, and maps pixel-level parallelism onto SSE-level concurrency.  In
 other words, eight instances of \eqref{eq:alignment-linearization} are executed
 in parallel with each problem running on one of the eight cores.  The advantage
@@ -604,13 +604,13 @@ First of all, we take advantage of the GPU's special hardware dedicated to bilin
 for the computation of $b(\tau)$ and $J(\tau)$, which essentially consist of resampled
 versions of the test image and its derivatives.
 Second, since there are no standard CUDA libraries that work at the SMP level, we use a
-custom routine for computing $B_j^\dagger = (B_j^TB_j)^{-1} B^T = G^{-1} B_j^T$, while $G$
-is inverted using Gaussian elimination with partial pivoting.  To achieve
+custom routine for computing $B_j^\dagger = (B_j^TB_j)^{-1} B^T = G^{-1} B_j^T$, with $G$
+inverted using Gaussian elimination with partial pivoting.  To achieve
 precision comparable to the single precision LAPACK routines in Intel's MKL
 with this simplistic algorithm, we use double precision.  Since $G$ is only $n
 \times n$ and $B_j^\dagger$ is only computed once per optimization problem, the
 cost of the inversion is dwarfed by the cost of other steps.  
-Similarly, sums and dot-products of long vectors are also
+Similarly, sums and dot-products of large vectors are also
 performed in double precision.
 %The lack of a atomic floating point addition on the GPU
 %significantly reduces the perfomance of this step of the algorithm.
@@ -619,8 +619,8 @@ performed in double precision.
 
 \section{Parallelization of the Face Recognition Stage} \vspace{-0.05in}
 \label{sec:recognition}
-After the face alignment stage is complete, 20 subject classes with lowest
-alignment error will be selected for recognition, $\bb$ and $A_i$ are re-sampled to a common alignment
+After the face alignment stage is complete, the 20 subject classes with lowest
+alignment error are selected for recognition, $\bb$ and $A_i$ are re-sampled to a common alignment
 using $\tau_i$, and $A_i$ are concatenated into a new matrix $A$.
 A sparse representation of $\bb$ w.r.t $A$ is then recovered
 by solving a single $\ell_1$-min problem, as shown
@@ -772,16 +772,15 @@ Four problems per SMP using single kernel & {\bf 36\,ms} \\
 Using an implementation motivated by the previous result, we now benchmark our
 iterative alignment implementation on real face data.  For experiments on face
 data we use subsets of the CMU Multi-PIE Face Database.  For gallery images we
-use frontal images from session 1, which contains 20 images per user taken
+use frontal images from session 1, which contains 20 images per subject taken
 under different illuminations. For test images we use images from session 2.
 The training images are prepared as follows: The iterative alignment stage
-seeks a similarity transformation between the coordinate frame of the test image
-resolution and the coordinate frame of the ``canonical'' resolution
-which the images are compared. We use a $64 \times 64$ pixel window in
-the canonical frame. The training images are aligned by manually clicking the
-two outer eye corners in the camera frame, and then warped via a
-similarity transformation such that the eye corners lie at a pair of canonical
-eye locations in the canonical frame.
+seeks a similarity transformation between the coordinate frame of the
+full-resolution test image and a ``canonical'' coordinate frame in which images
+are compared.  The training images are aligned by applying a similarity
+transormation that maps two manually clicked outer eye corners to fixed
+locations in the canonical frame.  A $64 \times 64$
+pixel window in the canonical frame is used for resampling. 
 
 Figure \ref{fig:alignment_stage_runtime} shows the average run time of the CPU and GPU implementations to align
 a query image against all the subject classes separately. We vary the total number of
@@ -798,14 +797,14 @@ required $\approx 600$ ms seconds per subject in a similar setting.
 
 \begin{figure}[t!]
 \centering
-\includegraphics[width=3in]{figures/alignment_runtime_graph}\vspace{0.05in}
+\includegraphics[width=3.3in]{figures/alignment_runtime_graph}\vspace{0.05in}
 \caption{Alignment stage runtime vs. size of training database.} \vspace{-0.1in}
 \label{fig:alignment_stage_runtime}
 \end{figure}
 
 The next experiment compares the speed of the GPU and CPU implementations of
 the recognition stage.  It was determined that keeping 20 gallery subjects is
-sufficient to ensure that the correct user is kept for the recognition stage
+sufficient to ensure that the correct subject is kept for the recognition stage
 with 95\% probability.  Since recognition failures are typically caused by a
 poor alignment, we find that keeping more subjects for the recognition stage does
 not necessarily improve recognition rate.
