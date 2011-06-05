@@ -65,14 +65,12 @@ largely due to higher computational cost compared to other traditional
 algorithms. This paper studies techniques for leveraging the 
 massive parallelism available in GPU and CPU hardware to accelerate
 $\ell_1$-min based on augmented Lagrangian method (ALM) solvers. 
-Due to the low arithmetic intensity of ALM solvers, implementations on both
-architectures are primarily limited by memory bandwidth,  
-with large problems running faster on the GPU and small problems running faster
-on the CPU.  
-On both architectures, the proposed implementations significantly outperform
-naive library-based implementations. 
+For very large problems the GPU is faster to higher memory bandwidth, while 
+for problems that fit in the larger CPU L3 cache, the CPU is faster.
 At the problem sizes most important for $\ell_1$-min based
 face recognition, both architectures achieve comparable performance.
+On both architectures, the proposed implementations significantly outperform
+naive library-based implementations, as well as published results. 
 The source code of the
 algorithms will be made available for peer evaluation.  \end{abstract}
 \vspace{-0.1in}
@@ -796,10 +794,10 @@ problems in concurrent batches, but the overall trend is linear as expected.
 The manually threaded CPU implementation slightly outperforms the GPU implementation,
 and it beats the \emph{naive}
 library threaded implementation by a wide margin.
-Compared to previously published results, the new implementation can align the query
-image with 250 subject classes in under 10 seconds, while the best previous effort
-required 1.7 seconds per subject class (i.e. 253 seconds for 250 subjects).
-
+The new implementation can align the query
+image in $\approx 40$ ms per subject, 
+while the fastest previously published result \cite{WagnerA2011-PAMI}
+required $\approx 600$ ms seconds per subject in a similar setting.  
 
 \begin{figure}[t!]
 \centering
