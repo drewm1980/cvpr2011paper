@@ -90,10 +90,10 @@ the \emph{sparsest} solution to the system \eqref{eq:l1min}.
 
 Among its many applications, $\ell_1$-min has been recently used to reformulate
 image-based face recognition as a sparse representation problem
-\cite{WrightJ2009-PAMI}.  If we stack the $d$ pixels of the training images of $K$ subject
-classes into the columns of matrices $(A_1\in\Re^{d\times n_1}, \cdots, A_K\in\Re^{d\times n_K})$, combine
-the matrices into a larger matrix $A = [A_1, \cdots, A_K]\in\Re^{d\times n}$, and arrange the pixels of a new
-query image into a vector $\bb\in\Re^d$, \emph{sparsity-based
+\cite{WrightJ2009-PAMI}.  If we stack the $m$ pixels of the $n_i$ training images of $K$ subject
+classes into the columns of matrices $(A_1\in\Re^{m\times n_1}, \cdots, A_K\in\Re^{m\times n_K})$, combine
+the matrices into a larger matrix $A = [A_1, \cdots, A_K]\in\Re^{m\times n}$, and arrange the pixels of a new
+query image into a vector $\bb\in\Re^m$, \emph{sparsity-based
 classification} (SBC) solves the following minimization problem:
 \begin{equation}
 \min_{\xx, \ee} \| \xx \|_1 + \|\ee\|_1 \quad \subj \quad \bb = A \xx + \ee.
@@ -240,7 +240,7 @@ function is defined as:
 where $\mu > 0$ is a constant that penalizes infeasibility and $\yy$ is a
 vector of Lagrange multipliers.
 
-In Lagrange Multiplier Theory \cite{BertsekasD2003}, if there exists a Lagrangian $y^*$ that
+In Lagrange Multiplier Theory \cite{BertsekasD2003}, if there exists a multiplier $\y^*$ that
 satisfies the second-order sufficiency conditions for optimality, then for a sufficiently large $\mu$, the optimal
 $\ell_1$-min solution also minimizes
 \begin{equation}
@@ -276,6 +276,7 @@ whose time complexity is bounded by $O(n^2)$ and can be easily parallelized.
 Algorithm \ref{alg:alm} summarizes the generic ALM $\ell_1$-min algorithm. \footnote{For conciseness, we
 only present the ALM algorithm in the primal domain. There also
 exist implementations in the dual domain \cite{YangJ2009,YangA2010-ICIP}.}
+The soft-thresholding algorithm involves the element-wise operator $\shrink(x) = \sign(x)\max(|x|,0)$.
 
  \begin{algorithm}[h]
 \caption{Augmented Lagrangian Method (ALM)}
@@ -285,7 +286,7 @@ exist implementations in the dual domain \cite{YangJ2009,YangA2010-ICIP}.}
 \WHILE{not converged ($k = 1,2,\ldots$)} 
 \STATE $t_1 \leftarrow 1$, $\zz_1 \leftarrow \xx_k$, $\uu_1 \leftarrow \xx_k$ 
 \WHILE{not converged ($l = 1,2,\ldots$)} 
-\STATE $\uu_{l+1}  \leftarrow \mbox{shrink}(\zz_l - \frac{1}{\tau}A^T(A\zz_l - \bb - \frac{1}{\mu_k}\yy_k), \frac{1}{\mu_k\tau})$
+\STATE $\uu_{l+1}  \leftarrow \shrink(\zz_l - \frac{1}{\tau}A^T(A\zz_l - \bb - \frac{1}{\mu_k}\yy_k), \frac{1}{\mu_k\tau})$
 \STATE $t_{l+1} \leftarrow \frac{1}{2}( 1 + \sqrt{1+4t_l^2})$
 \STATE $\zz_{l+1} \leftarrow \uu_{l+1}+ \frac{t_l - 1}{t_{l+1}}(\uu_{l+1} - \uu_l)$ 
 \ENDWHILE 
@@ -485,7 +486,7 @@ The per-class alignment algorithm via ALM is summarized in Algorithm
 \WHILE{not converged ($k = 1,2,\ldots$)}
 \STATE $\uu_0\leftarrow \ww_{k-1}$; $\zz_0\leftarrow \ee_{k-1}$
 \WHILE{not converged ($l = 1,2,\ldots$)}
-\STATE $\zz_l \leftarrow \mbox{shrink}\left(\bb_j - B_j\uu_{l-1} + \frac{\yy_{k}}{\mu_{k-1}}, \frac{1}{\mu_{k-1}}\right)$
+\STATE $\zz_l \leftarrow \shrink\left(\bb_j - B_j\uu_{l-1} + \frac{\yy_{k}}{\mu_{k-1}}, \frac{1}{\mu_{k-1}}\right)$
 \STATE $\uu_l \leftarrow B_j^\dagger \left(\bb_j - \zz_{l} + \frac{\yy_{k-1}}{\mu_{k-1}} \right) $
 \ENDWHILE
 \STATE $\ww_k \leftarrow \uu_l$; $\ee_k \leftarrow \zz_l$
@@ -558,7 +559,7 @@ step, we make use of the Intel Integrated Performance Primitives (IPP) library.
 Both MKL and IPP are optimized for Intel multi-core CPUs, and are able to
 automatically utilize both core-level and vector-level concurrency (for the first implementation),
 but are also available in single-threaded versions (for the second implementation). For 
-operations that are not optimized by Intel in-house libraries, such as the shrinkage
+operations that are not optimized by Intel in-house libraries, such as the soft thresholding
 operator in step 7 of Algorithm \ref{alg:iterative_alignment}, we achieve 
 vector-level concurrency via
 the automatic vectorization facilities of the Intel C++ compiler (ICC) \cite{dulong1999overview}.
@@ -645,11 +646,11 @@ gains achieved by our proposed implementations over previously published impleme
 $\x_1 = \mathbf{0}$, $\e_1 = \bb$, $\y_1 =
 \mathbf{0}$.
 \WHILE{not converged ($k = 1,2,\ldots$)}
-\STATE $\e_{k+1} = \textup{shrink}(\bb - A\x_k +
+\STATE $\e_{k+1} = \shrink(\bb - A\x_k +
 \frac{1}{\mu}\y_k, \frac{1}{\mu})$;
 \STATE $t_1\leftarrow 1$, $\z_1 \leftarrow \x_k$, $\w_1 \leftarrow \x_k$;
 \WHILE{not converged ($l = 1,2,\ldots$)}
-\STATE $\w_{l+1} \leftarrow \textup{shrink}(\z_l +
+\STATE $\w_{l+1} \leftarrow \shrink(\z_l +
 \frac{1}{\gamma}A^T(\bb - A\z_l - \e_{k+1} +
 \frac{1}{\mu}\y_k), \frac{1}{\mu\gamma})$;
 \STATE $t_{l+1} \leftarrow \frac{1}{2}( 1 +
@@ -710,10 +711,10 @@ recognition problem.
 
 The first experiment compares the performance of our proposed CPU and GPU
 implementations of the general $\ell_1$-min solver (Algorithm \eqref{alg:alm}).
-The $d \times n$ measurement matrix $A$ is a random Gaussian matrix, with each
+The $m \times n$ measurement matrix $A$ is a random Gaussian matrix, with each
 entry generated from the standard normal distribution and normalized to unit
-column norm.  The ratio of $d/n$ is fixed at $1/2$ with $n$ varying from 1000 to 8000.
-The ground truth signal, $\xx_0$ has a sparsity rate of 10\% of d with
+column norm.  The ratio of $m/n$ is fixed at $1/2$ with $n$ varying from 1000 to 8000.
+The ground truth signal, $\xx_0$ has a sparsity rate of 10\% of $m$ with
 elements sampled from a normal distribution and normalized to unit column
 norm.  Because the ground truth signal $\xx_0$ is known, the algorithm
 terminates when $\|\bx-\bx_0\| < \tau$ with $\tau=10^{-3}$.  The measurement
