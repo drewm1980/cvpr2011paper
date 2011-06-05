@@ -90,7 +90,7 @@ the \emph{sparsest} solution to the system \eqref{eq:l1min}.
 
 Among its many applications, $\ell_1$-min has been recently used to reformulate
 image-based face recognition as a sparse representation problem
-\cite{WrightJ2009-PAMI}.  If we stack the pixels of the training images of $K$ subject
+\cite{WrightJ2009-PAMI}.  If we stack the $d$ pixels of the training images of $K$ subject
 classes into the columns of matrices $(A_1\in\Re^{d\times n_1}, \cdots, A_K\in\Re^{d\times n_K})$, combine
 the matrices into a larger matrix $A = [A_1, \cdots, A_K]\in\Re^{d\times n}$, and arrange the pixels of a new
 query image into a vector $\bb\in\Re^d$, \emph{sparsity-based
@@ -153,7 +153,7 @@ will be to determine the optimal mappings between the parallelism available in
 $\ell_1$-min and the concurrency available in multi-core CPU and GPU
 architectures.
 
-Finally, we present extensive benchmark to compare the performance of the
+Finally, we present extensive benchmarks to compare the performance of the
 generic ALM $\ell_1$-min algorithm and the corresponding face recognition
 routines on massively parallel CPUs and GPUs.  To this end, a face
 recognition system for security and access control applications has been implemented, 
@@ -314,7 +314,7 @@ and defer discussion of their performance effects to Sections
 
 Our discussion and experiments will address the most common hardware
 configuration for engineering workstations: a motherboard with two quad-core
-processors, and a PCI card with a single high-end GPU.  
+processors and a PCIe card with a single high-end GPU.  
 Recognition involving more than a few hundred subjects with contemporary hardware
 would require a server (or cluster) configuration with an expandable 
 number of processors.  We will not address efficient parallelization for 
@@ -392,8 +392,8 @@ GPU used in this paper).  An explanation of the GPU programming model (CUDA) at 
 hardware capabilities. 
 %\footnote{A discussion of the CUDA programming model can be found in the NVIDIA C for CUDA Programming Guide}
 CUDA programmable GPUs are comprised of several
-\emph{streaming multiprocessors} (SMP), each of which is roughly analogous to a CPU core.
-For Fermi architecture GPU's, there are up to 16 SMP's, and each SMP is capable of executing up to 64 single precision 
+\emph{streaming multiprocessors} (SM), each of which is roughly analogous to a CPU core.
+For Fermi architecture GPUs there are up to 16 SMs, and each SM is capable of executing up to 64 single precision 
 floating point operations
 concurrently. \footnote{In CUDA terms, the warp width is 32, and the floating pipeline can
 issue up to two warps simultaneously}
@@ -403,9 +403,9 @@ issue up to two warps simultaneously}
 % 768KB = 786432 bytes
 % 64*64*4 = 2**14 bytes = 16384 bytes per image
 % 48 images
-Each SMP contains its own L1-cache, which is divided between hardware managed
-and software managed ("shared") memory.  Additionally, all SMPs share a common
-L2-cache.  For our system, each SMP has 64 KiB of L1 cache, and all SMP's share
+Each SM contains its own L1-cache, which is divided between hardware managed
+and software managed (``shared") memory.  Additionally, all SMs share a common
+L2-cache.  For our system, each SM has 64 KiB of L1 cache, and all SMs share
 768KB of L2 cache. 
 %The cache hierarchy 
 The relatively small amount
@@ -413,30 +413,30 @@ of cache (1/23 as much as CPU L3) on the GPU is balanced by a significantly
 higher bandwidth between the processor chip and off-chip memory (DRAM) compared
 to the CPU.  A scale drawing of the caches available on the GPU can be seen in Figure \ref{fig:gpu_caches}.
 The GPU has its own memory system, and any data the GPU uses must first be
-transferred from CPU DRAM to GPU DRAM over PCI-Express.  For our application,
+transferred from CPU DRAM to GPU DRAM over PCIe.  For our application,
 this transfer overhead can be amortized over a large amount of computation and is
 not a major concern.
 
 While the programming model for
-the SIMD units of each SMP is somewhat more flexible than on the CPU,
+the SIMD units of each SM is somewhat more flexible than on the CPU,
 leveraging the flexibility typically comes at the cost of reduced concurrency.\footnote{
 In CUDA terms, code branches that cause warp divergence usually
 result in serialization of the different groups of threads}  Therefore, for
 the purposes of comparing hardware architectures, the SIMD units on the GPU are
 roughly analogous to the CPU SIMD units. Thus, in summary, the GPU hardware 
-provides two levels of concurrency: {\em SMP-level}
+provides two levels of concurrency: {\em SM-level}
 concurrency and {\em thread-level} concurrency.  Note that the GPU provides more
-concurrency than a CPU at both levels (14 SMP's vs. 8 cores) and (64 wide vs. 4 wide SIMD
+concurrency than a CPU at both levels (14 SMs vs. 8 cores) and (64 wide vs. 4 wide SIMD
 units).
 
 
 \section{Parallelism in the Face Alignment Stage}\vspace{-0.05in}
 \label{sec:alignment}
 
-Given the hardware concurrency in modern parallel computing architectures,
-next, we shall study the optimal mappings of the algorithm parallelism in face
-recognition to the multi-core CPUs and GPUs, respectively.  In this section, we
-first focus on the face alignment stage (see Figure \ref{fig:pipeline}).
+We will next discuss the parallelism available in the face recognition
+pipeline, and propose techniques for exploiting this parallelism on the GPU and CPU hardware 
+described in the previous section.  In this section we first focus on the
+face alignment stage (see Figure \ref{fig:pipeline}).
 
 Face alignment \eqref{eq:l1min_alignment} estimates an image transformation
 $\tau$ that rectifies the query image $\tilde{\bb}$ with possible pose
@@ -444,7 +444,7 @@ variation w.r.t. each training class $A_i$, which leads to the minimal sparsity
 in error $\ee$ after the alignment. Note that directly solving
 \eqref{eq:l1min_alignment} is inefficient since it is a non-convex problem
 and may exhibit local minima.
-However, given a good initial guess of the
+However, given a good initial estimate of the
 transformation $\tau$ (\eg, provided by an accurate face detector), the optimal
 solution for $\tau$ can be sought iteratively by linearization at each $j$th
 step:
@@ -569,7 +569,7 @@ To achieve core-level concurrency we make use of the Open MP API. \cite{dagum200
 \label{sec:alignment_implementation_gpu}
 While on the CPU, algorithm performance is highly dependent on effective
 cache usage, cache is relatively unimportant on the GPU for ALM based
-$\ell_1$-min.  As can be seen in Figure \ref{fig:caches}, the GPU has 
+$\ell_1$-min.  As can be seen in Figure \ref{fig:gpu_caches}, the GPU has 
 a very small amount of cache compared to the CPU.  While it might be possible
 to fit a single instance of the alignment problem (with a slightly reduced problem size)
 into L2 cache, this would not be an efficient use of the GPU's resources.
@@ -580,7 +580,7 @@ concurrently increases the number of threads that can be used.
 
 Therefore, our recommended GPU implementation is strikingly similar in spirit
 to our recommended CPU implementation: on the CPU we use the cores to solve
-multiple instances concurrently, and on the GPU we use multiple SMP's for the 
+multiple instances concurrently, and on the GPU we use multiple SMs for the 
 same purpose.\footnote{In CUDA terms, our proposed alignment stage
 implementation consists of a single kernel that performs alignment for all
 subject classes.  Each instance of the alignment problem is assigned its own
@@ -589,8 +589,8 @@ concurrently as the hardware will allow.} The number of subject classes that
 are actually scheduled to run concurrently is chosen by the GPU hardware, 
 but can be indirectly influenced by manual tuning of the code (i.e., the kernel launch
 configuration in CUDA terms). We have empirically determined
-that performance is highest with 5-7 subject classes aligned simultaneously on each SMP.
-%This mapping of the problem-level parallelism onto the SMP-level
+that performance is highest with 5-7 subject classes aligned simultaneously on each SM.
+%This mapping of the problem-level parallelism onto the SM-level
 %concurrency is illustrated in Figure \ref{fig:alignment_mapping_gpu}.
 %\begin{figure}
 %\centering
@@ -603,7 +603,7 @@ Several other aspects of the implementation merit discussion.
 First of all, we take advantage of the GPU's special hardware dedicated to bilinear interpolation
 for the computation of $b(\tau)$ and $J(\tau)$, which essentially consist of resampled
 versions of the test image and its derivatives.
-Second, since there are no standard CUDA libraries that work at the SMP level, we use a
+Second, since there are no standard CUDA libraries that work at the SM level, we use a
 custom routine for computing $B_j^\dagger = (B_j^TB_j)^{-1} B^T = G^{-1} B_j^T$, with $G$
 inverted using Gaussian elimination with partial pivoting.  To achieve
 precision comparable to the single precision LAPACK routines in Intel's MKL
@@ -625,7 +625,7 @@ using $\tau_i$, and $A_i$ are concatenated into a new matrix $A$.
 A sparse representation of $\bb$ w.r.t $A$ is then recovered
 by solving a single $\ell_1$-min problem, as shown
 in \eqref{eq:l1min_denoise}, using Algorithm \ref{alg:alm_rec}.  The
-coefficients $\x$ are then used to compute error residuals that are used for
+coefficients in $\x$ are then used to compute error residuals that are used for
 classification.  
 %This recognition algorithm has
 %been extensively studied in
@@ -761,9 +761,9 @@ cap on the number of concurrent streams in the current version of CUDA}
 \hline
 Sequential solver using CUBLAS & 302\,ms \\
 \hline
-One problem per SMP using CUDA streams & 70\,ms  \\
+One problem per SM using CUDA streams & 70\,ms  \\
 \hline
-Four problems per SMP using single kernel & {\bf 36\,ms} \\
+Four problems per SM using single kernel & {\bf 36\,ms} \\
 \hline
 \end{tabular} \vspace{-0.1in}
 \label{tbl:ubench}
@@ -788,7 +788,7 @@ subject classes to show how the algorithms scale. The plateaus seen in the GPU c
 result from the GPU hardware scheduling the computation of alignment
 problems in concurrent batches, but the overall trend is linear as expected.
 The manually threaded CPU implementation slightly outperforms the GPU implementation,
-and it beats the \emph{naive}
+and it surpasses the \emph{naive}
 library threaded implementation by a wide margin.
 The new implementation can align the query
 image in $\approx 40$ ms per subject, 
@@ -840,7 +840,7 @@ inversion and vector reduction routines.
 We have demonstrated that on both CPU and GPU algorithms, parallelizations of
 ALM that solve multiple face alignment problems concurrently are significantly
 faster than implementations that rely purely on vendor-supplied BLAS libraries.
-Furthermore, thanks to a combination of faster hardware, and more efficient use
+Furthermore, thanks to a combination of faster hardware and more efficient use
 of the hardware, we have demonstrated dramatic improvements in recognition
 speed over previously reported implementations.
 As CPU manufacturers increase the number of cores and vector widths, and as GPU 
@@ -859,7 +859,7 @@ that increasingly favorable for $\ell_1$-min based face recognition.
 
 %We argue that in addition to vendor supplied libraries
 %that attempt to leverage both levels of concurrency of the GPU, there is a need
-%for standard libraries that operate at the SMP level of concurrency.
+%for standard libraries that operate at the SM level of concurrency.
 
 {\small
 \bibliographystyle{ieee}
