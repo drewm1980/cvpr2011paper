@@ -5,17 +5,17 @@ cpu2=load('alignment_runtime_graph_reference_cpu_percore.dat');
 gtx480=load('alignment_runtime_graph_reference_gtx480.dat');
 gtx580=load('alignment_runtime_graph_reference_gtx580.dat');
 
-%userCount = cpu1(:,1);
-%cpu1 = cpu1(:,2);
-%cpu2 = cpu2(:,2);
-%gtx480 = gtx480(:,2);
-%gtx580 = gtx580(:,2);
+userCount = cpu1(:,1);
+cpu1 = cpu1(:,2);
+cpu2 = cpu2(:,2);
+gtx480 = gtx480(:,2);
+gtx580 = gtx580(:,2);
+%userCount = cpu1(1:2:end,1);
+%cpu1 = cpu1(1:2:end,2);
+%cpu2 = cpu2(1:2:end,2);
+%gtx480 = gtx480(1:2:end,2);
+%gtx580 = gtx580(1:2:end,2);
 
-userCount = cpu1(1:2:end,1);
-cpu1 = cpu1(1:2:end,2);
-cpu2 = cpu2(1:2:end,2);
-gtx480 = gtx480(1:2:end,2);
-gtx580 = gtx580(1:2:end,2);
 close all;
 h = figure(7);
 
