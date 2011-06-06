@@ -725,8 +725,8 @@ The $x$-axis represents the size of the $A$ matrix and the $y$-axis represents t
 average amount of time to complete a single problem instance.  The GPU
 implementation tends to be faster than the CPU implementation at solving a
 single large problem, whereas the CPU implementation is faster at solving a
-single small problem.  The transition between the two regimes occurs (at 2000) where
-the problem size begins to exceed the size of the CPU L3 cache. 
+single small problem.  The transition between the two regimes occurs where the size of
+$A$ reaches $2000 \times \1000 \times 4 = 8$ MB, i.e. the size of the CPU L3 cache. 
 \begin{figure}
 \begin{center}
 \includegraphics[width=2.5in]{figures/time_vs_matrix_size_constant_tol}
