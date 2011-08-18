@@ -1,10 +1,6 @@
-\documentclass[10pt,twocolumn,letterpaper]{article}
-% ICCV Rules:
-% 8 page limit (6 free + 2 paid)
-% 10MB pdf file size limit
-% 30MB supplementary materials file size limit (PDF or ZIP)
+\documentclass[preprint]{sigplanconf}
 
-\usepackage{cvpr}
+%\usepackage{cvpr}
 \usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
 \usepackage{times}
 \usepackage{epsfig}
@@ -15,50 +11,47 @@
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \usepackage{subfigure}
-
-% Needed for getting formulas in dia diagrams.
 \usepackage{pstricks}
 \usepackage{tikz}
-
 \usepackage{mydefs}
 
-\cvprfinalcopy % *** Uncomment this line for the final submission
-
-\def\cvprPaperID{184} % *** Enter the CVPR Paper ID here
-\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
-
-% Pages are numbered in submission mode, and unnumbered in camera-ready
+% A few things in cvpr style file but not in ACM...
+\def\eg{\emph{e.g.\ }} 
+\def\ie{\emph{i.e.\ }} 
 
 \hyphenation{under-determined}
-\ifcvprfinal\pagestyle{empty}\fi
 \begin{document}
 
-\title{\vspace{-0.75in} Parallelization of Fast $\ell_1$-Minimization for Face Recognition}
+\conferenceinfo{PPoPP '12}{Feb. 29, New Orleans.} 
+\copyrightyear{2012} 
+\copyrightdata{[to be supplied]} 
 
-% For a paper whose authors are all at the same institution,
-% omit the following lines up until the closing ``}''.
-% Additional authors and addresses can be added with ``\and'',
-% just like the second author.
-% To save space, use either the email address or home page, not both
+\titlebanner{REVIEW COPY; PLEASE TO NOT REDISTRIBUTE}        % These are ignored unless
+%\preprintfooter{short description of paper}   % 'preprint' option specified.
 
-\author{Andrew Wagner\\
-University of Illinois at Urbana-Champaign\\
-{\small awagner@illinois.edu}
-\and
-Victor Shia\\
-University of California Berkeley\\
-{\small vshia@eecs.berkeley.edu}
-\and
-Allen Yang\\
-{\small yang@eecs.berkeley.edu}
-\and
-Mark Murphy\\
-{\small mjmurphy@eecs.berkeley.edu}
-\and
-Yi Ma\\
-University of Illinois at Urbana-Champaign\\
-{\small yima@illinois.edu}
-}
+\title{Parallelization of Fast $\ell_1$-Minimization for Face Recognition}
+
+%\authorinfo{Name1}
+           %{Affiliation1}
+           %{Email1}
+%\authorinfo{Name2\and Name3}
+           %{Affiliation2/3}
+           %{Email2/3}
+\authorinfo{Andrew Wagner\and Yi Ma}
+			{University of Illinois at Urbana-Champaign}
+			{\{awagner,yima\}@illinois.edu}
+\authorinfo{Victor Shia\and Allen Yang\and Mark Murphy}
+			{University of California Berkeley}
+			{\{vshia,yang,mjmurphy\}@eecs.berkeley.edu}
+%\authorinfo{Allen Yang}
+			%{University of California Berkeley}
+			%{yang@eecs.berkeley.edu}
+%\authorinfo{Mark Murphy}
+			%{University of California Berkeley}
+			%{mjmurphy@eecs.berkeley.edu}
+%\authorinfo{Yi Ma}
+			%{University of Illinois at Urbana-Champaign}
+			%{yima@illinois.edu}
 
 \maketitle
 
@@ -861,16 +854,12 @@ that increasingly favorable for $\ell_1$-min based face recognition.
 %access control system for hundreds of subjects on a handful of purpose-build
 %multi-GPU workstations.  
 
-
 %We argue that in addition to vendor supplied libraries
 %that attempt to leverage both levels of concurrency of the GPU, there is a need
 %for standard libraries that operate at the SM level of concurrency.
 
-\vspace{-0.06in}
-{\small
-\bibliographystyle{ieee}
+\bibliographystyle{abbrvnat}
 \bibliography{faces-short}
-}
 
 \end{document}
 
