@@ -31,27 +31,18 @@
 
 \title{Parallelization of Fast $\ell_1$-Minimization for Face Recognition}
 
-%\authorinfo{Name1}
-           %{Affiliation1}
-           %{Email1}
-%\authorinfo{Name2\and Name3}
-           %{Affiliation2/3}
-           %{Email2/3}
-\authorinfo{Andrew Wagner\and Yi Ma}
-			{University of Illinois at Urbana-Champaign}
-			{\{awagner,yima\}@illinois.edu}
-\authorinfo{Victor Shia\and Allen Yang\and Mark Murphy}
-			{University of California Berkeley}
-			{\{vshia,yang,mjmurphy\}@eecs.berkeley.edu}
-%\authorinfo{Allen Yang}
-			%{University of California Berkeley}
-			%{yang@eecs.berkeley.edu}
-%\authorinfo{Mark Murphy}
-			%{University of California Berkeley}
-			%{mjmurphy@eecs.berkeley.edu}
-%\authorinfo{Yi Ma}
+\authorinfo{Name1}
+		   {Affiliation1}
+		   {Email1}
+\authorinfo{Name2\and Name3}
+		   {Affiliation2/3}
+		   {Email2/3}
+%\authorinfo{Andrew Wagner\and Yi Ma}
 			%{University of Illinois at Urbana-Champaign}
-			%{yima@illinois.edu}
+			%{\{awagner,yima\}@illinois.edu}
+%\authorinfo{Victor Shia\and Allen Yang\and Mark Murphy}
+			%{University of California Berkeley}
+			%{\{vshia,mjmurphy,yang\}@eecs.berkeley.edu}
 
 \maketitle
 
@@ -68,10 +59,8 @@ On both architectures, the proposed implementations significantly outperform
 naive library-based implementations, as well as previous systems. 
 The source code of the
 algorithms will be made available for peer evaluation.  \end{abstract}
-\vspace{-0.1in}
 
 \section{Introduction} 
-\vspace{-0.06in}
 $\ell_1$-minimization ($\ell_1$-min) has received much attention in recent
 years due to important applications in compressive sensing
 \cite{BrucksteinA2007} and sparse representation \cite{WrightJ2010-PIEEE}.  
@@ -99,9 +88,16 @@ classification} (SBC) solves the following minimization problem:
 If the sparsest solutions for $\x$ and $\e$ are recovered, $\ee$ provides a
 means to compensate for pixels that are corrupted due to occlusion of some part of the query
 image, and the dominant nonzero coefficients of $\xx$ reveal the membership of
-$\bb$ based on the training image labels associated with $A$. 
-%Since $A$ contains many images per user taken under different illuminations, 
-%$A_i\x_i$ acts as a linear illumination model for the test image $\bb$.
+$\bb$ based on the training image labels associated with $A$.  
+{\bf Several
+classifiers based on $\xx$ have been proposed that all have nearly identical 
+performance.  In this paper classification is performed using the following residual:
+\begin{equation}
+i^* = \argmin{i} || \bb - \ee - A_i \xx_i||_2
+\label{eq:classification}
+\end{equation}
+}
+% changed
 
 In this paper, we study parallelization of $\ell$-min on many-core CPU and GPU
 architectures. Although $\ell_1$-min \eqref{eq:l1min} is a convex
@@ -169,12 +165,12 @@ as well as Intel x86-64 CPUs, will be made available for peer evaluation.
 \begin{figure}
 \centering
 {\tiny \input{figures/pipeline_simplified.tex}}
-\caption{The face recognition pipeline.\vspace{-0.1in}}
+\caption{The face recognition pipeline.}
 \label{fig:pipeline}
 \end{figure}
 
 
-\subsection{Literature Review} \vspace{-0.06in}
+\subsection{Literature Review} 
 Traditionally, $\ell_1$-min (a.k.a.
 basis pursuit (BP)) has been formulated as a linear program
 \cite{ChenS2001-SIAM}. Several variations of the solution are also well known
@@ -222,7 +218,6 @@ the same GPU architecture addressed in this paper.
 
 \section{Augmented Lagrangian Method}
 \label{sec:ALM}
-\vspace{-0.06in}
 In this section, we briefly describe the ALM algorithm for $\ell_1$-min
 \eqref{eq:l1min} \cite{YangA2010-ICIP} and analyze its complexity. Lagrange
 multipliers have been frequently used in convex programming to eliminate
@@ -297,9 +292,7 @@ The soft-thresholding algorithm involves the element-wise operator $\shrink(x) =
 \label{alg:alm} 
 \end{algorithm}
 
-\vspace{-0.06in}
 \section{Hardware Concurrency} \label{sec:concurrency}
-\vspace{-0.06in}
 In this section we discuss the levels of concurrency available in the hardware
 architectures considered in this paper, as well as other aspects of the
 hardware that are important for performance.  In particular, since caches
@@ -321,11 +314,8 @@ their non-shared memory model.
 %\footnote{Non-shared memory configurations include CPU blade servers, multi-GPU servers, and clusters}.
 Unless otherwise specified, all implementations utilize single precision
 floating point datatypes.  
-% WORKING HERE
-
 
 \subsection{CPU Hardware Concurrency}
-\vspace{-0.06in}
 \label{sec:CPU-concurrency}
 The main defining characteristics of contemporary multi-core CPU architectures
 are that they have two levels of concurrency, relatively large amounts of
@@ -356,7 +346,7 @@ by the algorithms, and is not an important performance consideration.
 \label{fig:caches}
 \caption{A visual comparison of the algorithm working set to the CPU and GPU
 caches.  Note: Although the aspect ratio could not be preserved, all arrays and
-caches are drawn so that the area is proportional to the size of the data. } \vspace{-0.1in}
+caches are drawn so that the area is proportional to the size of the data. } 
 \end{figure}
 
 % CPU CACHE DISCUSSION
@@ -378,7 +368,7 @@ There are thus two important levels of concurrency that need to be exploited to
 efficiently use a modern CPU: {\em core-level} concurrency and {\em SSE-level}
 concurrency. 
 
-\subsection{GPU Hardware Concurrency} \vspace{-0.06in}
+\subsection{GPU Hardware Concurrency} 
 The main defining characteristics of contemporary multi-core GPU architectures
 are that they have two (much wider) levels of concurrency, relatively small amounts of
  cache, and relatively low clock speeds.  Whereas most of the transistors on
@@ -428,7 +418,7 @@ concurrency than a CPU at both levels (14 SMs vs. 8 cores) and (64 wide vs. 4 wi
 units).
 
 
-\section{Parallelism in the Face Alignment Stage}\vspace{-0.06in}
+\section{Parallelism in the Face Alignment Stage}
 \label{sec:alignment}
 
 We will next discuss the parallelism available in the face recognition
@@ -436,16 +426,35 @@ pipeline, and propose techniques for exploiting this parallelism on the GPU and 
 described in the previous section.  In this section we first focus on the
 face alignment stage (see Figure \ref{fig:pipeline}).
 
+{\bf
 Face alignment \eqref{eq:l1min_alignment} estimates an image transformation
-$\tau$ that rectifies the query image $\tilde{\bb}$ with possible pose
-variation w.r.t. each training class $A_i$, which leads to the minimal sparsity
-in error $\ee$ after the alignment. Note that directly solving
-\eqref{eq:l1min_alignment} is inefficient since it is a non-convex problem
-and may exhibit local minima.
-However, given a good initial estimate of the
-transformation $\tau$ (\eg, provided by an accurate face detector), the optimal
-solution for $\tau$ can be sought iteratively by linearization at each $j$th
-step:
+$\tau$ that maps pixels in a canonical frame, where the face is well aligned,
+back to pixels in the original image.  
+This is illustrated in Figure \ref{fig:transformation}.
+\begin{figure}
+\centering
+\includegraphics[width=3.4in]{figures/transformation}
+\caption{The simililarity transformation $\tau$ maps pixels in a canonical frame
+where the image is aligned back to pixel locations in the original-sized images.}
+\label{fig:transformation}
+\end{figure}
+The training images are prepared as
+follows: canonical outer-eye corner locations are defined in the canonical
+frame, and the outer-eye corners are manually selected in the training images.
+The training images are warped/resampled by a similarity transformation
+(rotation, translation, and scale) between the two reference frames that is
+computed from the eye corners.
+The canonical eye corners are also illustrated in Figure \ref{fig:transformation}
+
+During iterative alignment, the transformation $\tau$ between the original test
+image and the canonical frame is initialized via a face detector, and then updated
+iteratively.  A different $\tau_i$ is computed separately for each training class $A_i$.  
+$\ell_1$ minimization is performed on canonical-sized images that
+have been stacked into the columns of matrices.  
+Directly solving \eqref{eq:l1min_alignment} in its original formulation is difficult since 
+it is a non-convex problem and may exhibit local minima.
+Minimization is therefore performed iteratively, alternating between updating
+a linearized version of the problem at each $j$th step, and solving the linearized problem:
 \begin{equation}
 \min_{\xx, \ee, \Delta \tau_j}\|\ee\|_1\quad \subj\quad \tilde\bb\circ\tau_j +  J_j\Delta \tau_j = A_i\xx + \ee,
 \end{equation}
@@ -458,6 +467,7 @@ following linear program:
 \min_{\ww, \ee}\|\ee\|_1\quad \subj\quad \bb_j = B_j\ww + \ee.
 \label{eq:alignment-linearization}
 \end{equation}
+}
 %If the warping $\tau$ is constrained to be a similarity transform,
 %it can be paramaterized in such a way that the computation of $\frac{\partial \bb}{\partial \tau_p}$
 %reduces to several linear vector operations involving pixel coordinates $(u,v)$, $\tau \in \Re^4$,
@@ -504,7 +514,7 @@ image operations, \ie, at the pixel level.  We call this \emph{pixel-level
 parallelism}.  The following two sections discuss methods for exploiting
 these two levels of parallelism on CPU and GPU architectures.
 
-\subsection{CPU Implementation} \vspace{-0.06in}
+\subsection{CPU Implementation} 
 \label{sec:alignment_implementation_cpu}
 
 Optimal implementation of Algorithm \ref{alg:iterative_alignment} on a multi-core CPU must take 
@@ -563,7 +573,7 @@ the automatic vectorization facilities of the Intel C++ compiler (ICC) \cite{dul
 To achieve core-level concurrency we make use of the Open MP API. \cite{dagum2002openmp} 
 %We shall compare the performance of the two parallelism methods in Section \ref{sec:experiment}.
 
-\subsection{GPU Implementation} \vspace{-0.06in}
+\subsection{GPU Implementation} 
 \label{sec:alignment_implementation_gpu}
 While on the CPU, algorithm performance is highly dependent on effective
 cache usage, cache is relatively unimportant on the GPU for ALM based
@@ -615,7 +625,7 @@ performed in double precision.
 %In Section \ref{sec:experiment}, we show the performance of our CPU and GPU
 %implementations running on synthetic and real image data.
 
-\section{Parallelization of the Face Recognition Stage} \vspace{-0.06in}
+\section{Parallelization of the Face Recognition Stage} 
 \label{sec:recognition}
 After the face alignment stage is complete, the 20 subject classes with lowest
 alignment error are selected for recognition, $\bb$ and $A_i$ are re-sampled to a common alignment
@@ -661,7 +671,7 @@ $\x_1 = \mathbf{0}$, $\e_1 = \bb$, $\y_1 =
 \end{algorithmic}
 \end{algorithm}
 
-\subsection{Recognition Stage Implementation} \vspace{-0.06in}
+\subsection{Recognition Stage Implementation} 
 Compared to problem-level
 parallelism, the exclusively pixel-level parallelism in Algorithm \ref{alg:alm_rec} is
 relatively straightforward to exploit:  
@@ -686,7 +696,7 @@ GPU on data stored in GPU DRAM.
 %which is computed on the CPU via Intel's LAPACK implementation, and then
 %uploaded to GPU DRAM.  
 
-\section{Experiments} \vspace{-0.06in}
+\section{Experiments} 
 \label{sec:experiment} 
 In this section, we benchmark the
 performance of our parallel implementations of $\ell_1$-min on CPU and GPU
@@ -718,21 +728,27 @@ terminates when $\|\bx-\bx_0\| < \tau$ with $\tau=10^{-3}$.  The measurement
 vector is generated by $\bb = A \xx_0$.   
 
 The results of this benchmark can be found in Figure \ref{fig:random_data}.
-The $x$-axis represents the size of the $A$ matrix and the $y$-axis represents the
-average amount of time to complete a single problem instance.  The GPU
+The $x$-axis represents the size of the $A$ matrix and the $y$-axis represents
+the average amount of time to complete a single problem instance.  The GPU
 implementation tends to be faster than the CPU implementation at solving a
 single large problem, whereas the CPU implementation is faster at solving a
-single small problem.  The transition between the two regimes occurs where the size of
-$A$ reaches $2000 \times \1000 \times 4 = 8$ MB, i.e. the size of the CPU L3 cache. 
+single small problem.  {\bf The change in slope of the CPU curve is caused by a
+transition from the CPU being cache-bandwidth-bound to memory-bandwidth-bound.
+Since there are other data structures besides $A$, The transition between the
+two regimes occurs slightly before the size of $A$ reaches $2000 \times \1000
+\times 4 = 8$ MB, i.e. the size of the CPU L3 cache. }
+%changed
+
 \begin{figure}
 \begin{center}
-\includegraphics[width=2.5in]{figures/time_vs_matrix_size_constant_tol}
-\end{center} \vspace{-0.1in}
-\caption{\small Comparison of $\ell_1$-min runtime vs. dimensions of $A$ on random data.} \vspace{-0.1in}
+\includegraphics[width=3.35in]{figures/time_vs_matrix_size_constant_tol}
+\end{center} 
+\caption{\small Comparison of $\ell_1$-min runtime vs. dimensions of $A$ on random data.  {\bf The crossover
+occurs near where the size of the problem exceeds the size of the CPU L3 cache.}} 
 \label{fig:random_data}
 \end{figure}
 
-\subsection{Face Recognition Pipeline Benchmark} \vspace{-0.06in}
+\subsection{Face Recognition Pipeline Benchmark} 
 \label{sec:benchmark}
 This section presents benchmarks of the CPU and GPU implementations of the
 alignment stage (i.e., Algorithm
@@ -755,6 +771,7 @@ cap on the number of concurrent streams in the current version of CUDA}
 \begin{table}[t!]
 \caption{\small Benchmark of implementations of alignment $\ell_1$-min.}
 \small
+\centering
 \begin{tabular}{|l|c|}
 \hline
 Sequential solver using CUBLAS & 302\,ms \\
@@ -763,7 +780,7 @@ One problem per SM using CUDA streams & 70\,ms  \\
 \hline
 Four problems per SM using single kernel & {\bf 36\,ms} \\
 \hline
-\end{tabular} \vspace{-0.1in}
+\end{tabular} 
 \label{tbl:ubench}
 \end{table}
  
@@ -795,8 +812,8 @@ required $\approx 600$ ms seconds per subject in a similar setting.
 
 \begin{figure}[t!]
 \centering
-\includegraphics[width=3.3in]{figures/alignment_runtime_graph}\vspace{0.06in}
-\caption{Alignment stage runtime vs. size of training database.} \vspace{-0.1in}
+\includegraphics[width=3.35in]{figures/alignment_runtime_graph}
+\caption{Alignment stage runtime vs. size of training database.} 
 \label{fig:alignment_stage_runtime}
 \end{figure}
 
@@ -815,8 +832,8 @@ also that for both implementations, the recognition stage takes much less time
 than the alignment stage.
 \begin{figure}[t!]
 \centering
-\includegraphics[width=2.5in]{figures/speedVsResolution} \vspace{-0.06in}
-\caption{Recognition stage runtime vs. face window resolution}\vspace{-0.1in}
+\includegraphics[width=3.35in]{figures/speedVsResolution} 
+\caption{Recognition stage runtime vs. face window resolution}
 \label{fig:recognition_stage_runtime} \end{figure}
 
 Finally, we perform an experiment verifying the recognition accuracy of the
@@ -829,12 +846,12 @@ accuracy may be a result of numerical precision differences in our matrix
 inversion and vector reduction routines.
 \begin{figure}[t!]
 \centering
-\includegraphics[width=2.5in]{figures/accuracyVsResolution} \vspace{-0.06in}
-\caption{Recognition rate of the full pipeline vs. face window resolution.} \vspace{-0.1in}
+\includegraphics[width=3.35in]{figures/accuracyVsResolution} 
+\caption{Recognition rate of the full pipeline vs. face window resolution.} 
 \label{fig:accuracy_vs_resolution}
 \end{figure}
 
-\section{Conclusion}\vspace{-0.06in}
+\section{Conclusion}
 We have demonstrated that on both CPU and GPU algorithms, parallelizations of
 ALM that solve multiple face alignment problems concurrently are significantly
 faster than implementations that rely purely on vendor-supplied BLAS libraries.
